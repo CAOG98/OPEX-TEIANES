@@ -1,0 +1,102 @@
+/* CONTENEDOR FORMULARIO */
+.contFormIdea{
+    max-width: 100%;
+    width: 70%;
+    margin: auto auto;
+    border-radius: 20px;
+    padding:20px 40px 30px 40px;
+    background-color: #fff;
+    box-shadow: rgb(38, 57, 77) 0px 20px 20px -10px;
+}
+/* TITULO DEL FORMULARIO */
+.titleForm{
+    text-align: center;
+}
+/* SELECTS DEL FORMULARIO */
+.selectOption{
+    padding: 5px;
+    max-width: 100%;
+    width: 100%;
+    border: 1px solid #000;
+    border-radius: 5px;
+    margin: 5px 0 5px 0;
+}
+
+@media (max-width:768px) {
+    .contFormIdea{
+        max-width: 100%;
+        width: 95%;
+    }
+}
+.buttonIdea{ 
+    background-color: #fff;
+    border: 3px solid #006dba;
+    border-radius: 10px;
+    padding: 8px 30px;
+    font-size: 18px;
+    transition: 0.3s;
+    margin: 20px -50px -12px -50px; 
+    position:relative;
+    top:50%; 
+    left:84%;
+}
+@media (max-width:600px) {
+    .buttonIdea{ 
+        margin: 16px -50px; 
+        position:relative;
+        top:50%; 
+        left:45%;
+
+    }
+    
+}
+.buttonIdea:hover{ 
+    background-color: #006dba;
+    color: #fff;
+    border: 3px solid #fff;
+}
+
+/* Estilos generales de los campos */
+.ideaTeian{
+    display: flex;
+    flex-direction: column;
+    margin: 10px 0;
+}
+.titleTeian, .inputTeian{
+    display: flex;
+    flex-direction: column;
+    margin: 10px 0;
+}
+.titleTeianInput{
+    border: 1px solid #000000;
+    border-radius: 5px;
+    padding: 12px;
+    max-width: 100%;
+    width: 100%;
+}
+.txtAreaTeian{
+    padding: 20px;
+    border: 1px solid #000;
+    border-radius: 5px;
+}
+/* Color mensaje al enviar los datos */
+.messageExito{
+    color: #1ACE00;
+}
+/* Color mensaje de los errores */
+.errorMess{
+    color: #E91212;
+}
+/* Titulos de los inputs */
+.titleInput{
+    color: #000000;
+}
+
+/* CAMPO SUBIR ARCHIVOS */
+.fileTeian{
+    display: block;
+    border: 1px solid #000;
+    border-radius: 5px;
+    max-width: 100%;
+    width: 100%;
+}

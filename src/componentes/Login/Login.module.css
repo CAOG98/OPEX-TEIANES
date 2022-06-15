@@ -1,0 +1,101 @@
+/* STYLES LOGIN */
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@200&family=Kanit:wght@900&display=swap');
+
+.bodyLogin{
+    position: absolute;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(to top,
+  #fff  20%, #B8E2FF 40%, #6CC0FA 60%, #389ADF  80%, #006dba  100%) no-repeat;
+}
+.login{
+    max-width: 100%;
+    width: 40%;
+    padding: 0 50px 20px 50px;
+    border: 1px solid #333;
+    border-radius: 10px;
+    margin-top: 50px;
+    background-color: #fff;
+    font-family: 'Inter', sans-serif;
+    
+}
+.imageTitle{
+    margin: 0 auto;
+}
+.imageTitle, .imageFootCard{
+    display: block;
+    max-width: 100%;
+    width: 100px;
+}
+.footCard{
+    display:flex;
+    justify-content: right;
+}
+.footCard span{
+    padding-top: 5px;
+    font-size: 12px;
+    font-weight: 600;
+}
+@media (max-width:765px){
+    .imageFootCard{
+        display: block;
+        margin: auto;
+        margin-top: 20px;
+    }
+    span{
+        margin: auto;
+    }
+    .buttonLogin{
+        margin: auto;
+    }
+}
+@media (max-width:1250px){
+    .login{
+        max-width: 100%;
+        width: 50%; 
+    }
+}
+@media (max-width: 670px){
+    .login{
+        max-width: 100%;
+        width: 80%;  
+    }
+}
+@media (max-width: 412px){
+    .login{
+        max-width: 100%;
+        width: 95%;  
+    }
+}
+.buttonLogin{
+    background-color: #fff;
+    color: #006dba;
+    font-weight: 900;
+    border:3px solid;
+    border-radius: 5px;
+    transition: 0.3s;
+    padding: 7px;
+    text-decoration: none;
+    transition: 0.4s;
+}
+.buttonLogin:hover{
+    background-color: #006dba;
+    color: #fff;
+    border-radius: 5px;
+}
+.titleCard{
+    text-align: center;
+    font-weight: bold;
+}
+.footerLogin{
+    /* background-color: #006dba; */
+    background: #000000;
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+}
+.txtFooter{
+    color: #fff;
+    font-size: 18px;
+}

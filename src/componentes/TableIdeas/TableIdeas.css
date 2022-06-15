@@ -1,0 +1,16 @@
+/* style header table */
+.rdt_TableCol{
+    background-color: #006dba;
+    color: #fff;
+}
+.rdt_Table{
+    height: 50%;
+}
+
+
+@media (max-width: 700px){
+    .contTable{
+        max-width: 100% !important;
+        width: 70% !important;
+    }
+}

@@ -1,0 +1,29 @@
+/* Tamaño de la imagen */
+.imageLogo{
+    margin: 0 auto;
+    display: block;
+    max-width: 100%;
+    width: 100px;
+}
+/* Links principales de NavBar */
+.linkNavBar{
+    text-align: center;
+    color: #fff !important;
+    background-color: #1A8EDF;
+}
+.linkNavBar:hover{
+    background-color: #006dba;
+    color: #fff;
+}
+.navBarColl{
+    background-color: #000000;
+}
+.navbar-light .navbar-toggler {
+    color: rgb(51 142 248);
+    border-color: rgba(0,0,0,.1);
+}
+@media (min-width:990px){
+    .navBarBody{
+      display: none;
+    }
+  }

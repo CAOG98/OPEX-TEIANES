@@ -1,0 +1,23 @@
+.imagesTitle{
+    margin: 0 auto;
+    display: block;
+    max-width: 100%;
+    width: 100px;
+}
+.imageFooterLogo{
+    margin: 0 auto;
+    display: block;
+    max-width: 100%;
+    width: 100px;
+}
+.sidebarS{
+    display: flex;
+    height: 100vh;
+    overflow: scroll initial;
+    border-right:1px solid #333;
+}
+@media (max-width:990px) {
+    .sidebarS{
+        display: none;
+    }
+  }
