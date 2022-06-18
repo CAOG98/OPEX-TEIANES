@@ -19,25 +19,24 @@ const App = () =>(
   // <FormularioLogin/>
     // <div>
     // <Routes>
-    //   <Route path="/Login" exact element={<Login/>} />
-    //   <Route path="/FormPrincipal" index element={<FormPrincipal/>} />
+    //   <Route path="/" element={<FormPrincipal/>} />
     // </Routes>
     // </div>
 
-    // <FormularioLogin/>
-  <div className={cont}>
-    
-  <SideBar />
-  <NavBar/>
-  <Routes>
-    <Route path="/"  element={<FormIdea />} />
-    <Route path="/Formideas" element={<FormIdea />} />
-    <Route path="/TableIdeas" element={<TableIdeas/>}/>
-    <Route path="/ApproveIdeas" element={<ApprovedIdeas/>}/>
-    <Route path="/TeianesAccepted" element={<AcceptedTeianes/>}/>
-    <Route path="/TeianesRechazados" element={<TeianesRechazados/>}/>
-    <Route path="/Dudas" element={<Dudas/>}/>
-  </Routes>
-  </div> 
+    <FormularioLogin/>
+  // <div className={cont}>
+  // <FormularioLogin/>
+  // <SideBar />
+  // <NavBar/>
+  // <Routes>
+  //   <Route path="/"  element={<FormIdea />} />
+  //   <Route path="/Formideas" element={<FormIdea />} />
+  //   <Route path="/TableIdeas" element={<TableIdeas/>}/>
+  //   <Route path="/ApproveIdeas" element={<ApprovedIdeas/>}/>
+  //   <Route path="/TeianesAccepted" element={<AcceptedTeianes/>}/>
+  //   <Route path="/TeianesRechazados" element={<TeianesRechazados/>}/>
+  //   <Route path="/Dudas" element={<Dudas/>}/>
+  // </Routes>
+  // </div> 
   )
 export default App

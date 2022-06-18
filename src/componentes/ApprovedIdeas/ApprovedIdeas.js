@@ -13,7 +13,9 @@ const paragaphIdea = styles.paragaphIdea
 const accordionMain = styles.accordionMain
 const titleAccordionCont = styles.titleAccordionCont
 
+
 const ApprovedIdeas = () =>{
+
   //1 Configurar los hooks
   const [users, setUsers] = useState([])
   //2 Funcion para mosrar los datos con fetch
@@ -21,12 +23,10 @@ const ApprovedIdeas = () =>{
   const showData = async() =>{
     const response = await fetch(URL)
     const data = await response.json()
-    console.log(data)
     setUsers(data)
-  }
+  } 
   const renderAccordion = (item, index) =>{
     return(
-      <div>
       <Accordion key={index} className={accordionMain}>
       <Accordion.Item eventKey={item} >
         <Accordion.Header>{item.name}</Accordion.Header>
@@ -42,18 +42,18 @@ const ApprovedIdeas = () =>{
         </Accordion.Body>
       </Accordion.Item>
     </Accordion>
-    </div>
     )
   }
 
   useEffect(() =>{
     showData()
   }, [])
+
   return(
-      <Container className={accordionCont}>
-          <h1 className={titleAccordion}>TEIANES POR ACEPTAR O RECHAZAR</h1>
-        {users.map(renderAccordion)} 
-      </Container>
+    <Container className={accordionCont}>
+      <h1 className={titleAccordion}>TEIANES POR ACEPTAR O RECHAZAR</h1>
+      {users.map(renderAccordion)} 
+    </Container>
   );
 }
   export default ApprovedIdeas

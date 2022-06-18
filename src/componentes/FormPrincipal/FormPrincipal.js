@@ -16,18 +16,17 @@ const FormPrincipal = () =>{
   return(
     <div>
       <div className={cont}>
-  <SideBar />
-  <NavBar/>
-  <Routes>
-    <Route path="/"  exact element={<FormIdea />} >
-    <Route path="/Formideas" element={<FormIdea />} />
-    <Route path="/TableIdeas" element={<TableIdeas/>}/>
-    <Route path="/ApproveIdeas" element={<ApprovedIdeas/>}/>
-    <Route path="/TeianesAccepted" element={<AcceptedTeianes/>}/>
-    <Route path="/TeianesRechazados" element={<TeianesRechazados/>}/>
-    <Route path="/Dudas" element={<Dudas/>}/>
-    </Route>
-  </Routes>
+        <SideBar />
+        <NavBar/>
+        <Routes>
+          <Route path="/" element={<FormIdea />}/>
+          <Route path="/Formideas" element={<FormIdea />} />
+          <Route path="/TableIdeas" element={<TableIdeas/>}/>
+          <Route path="/ApproveIdeas" element={<ApprovedIdeas/>}/>
+          <Route path="/TeianesAccepted" element={<AcceptedTeianes/>}/>
+          <Route path="/TeianesRechazados" element={<TeianesRechazados/>}/>
+          <Route path="/Dudas" element={<Dudas/>}/>
+        </Routes>
   </div> 
     </div>
   );

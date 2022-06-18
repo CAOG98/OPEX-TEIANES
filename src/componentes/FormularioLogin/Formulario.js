@@ -1,12 +1,17 @@
-import React, {useState} from "react";
+import React, {useEffect, useState} from "react";
 import { Formik, Form, Field, ErrorMessage } from "formik";
 import { Button, Container } from "react-bootstrap";
 import gerberLogo from './images/GerberLogo.png';
 import ideaLogo from './images/idea.png';
+import ideaPrendida from './images/ideaPrendida.png';
 import styles from './FormularioLogin.module.css'
 import { ModalFooter } from 'react-bootstrap';
 import Marquee from "react-fast-marquee";
 import { Outlet } from "react-router-dom";
+import {AiOutlineEyeInvisible, AiOutlineEye} from 'react-icons/ai'
+
+
+
 const Formulario = () =>{
     // Hook
     const[formularioEnviado, cambiarFormularioEnviado] = useState(false)
@@ -26,12 +31,24 @@ const Formulario = () =>{
     const contFormInput = styles.contFormInput
     const titleInput = styles.titleInput
     const buttonLogin = styles.buttonLogin
+    const btnHidePassword = styles.btnHidePassword
+    const passwordField = styles.passwordField
+    const inputFormPassword = styles.inputFormPassword
 
+    const [eye, setEye] = useState(false)
 
+        const toggleBtn = () =>{
+            setEye(prevState => !prevState);
+        }
+
+    const [imagen, setImagen] = useState(false)
+    const btn = () =>{
+        setImagen(prevState => !prevState)
+    }
     return(
         <div className={bodyLogin}>
         <Container className={clases}>
-            <img className={imageTitle} src={ideaLogo} alt='Teian'></img>
+            <img className={imageTitle} src={imagen ? ideaPrendida : ideaLogo } alt='Teian'></img>
             <h1 className={titleCard}>TEIANES</h1>
             <h5 className={titleCard}>(IDEAS DE MEJORA)</h5>
             <Formik
@@ -59,7 +76,7 @@ const Formulario = () =>{
                     resetForm()
                     console.log(valores);
                     cambiarFormularioEnviado(true)
-                    setTimeout(() => cambiarFormularioEnviado(false), 5000)
+                    setTimeout(() => cambiarFormularioEnviado(false), 500)
                 }}
             >
                 {({errors}) =>(
@@ -73,12 +90,15 @@ const Formulario = () =>{
                         </div>
                         <div className={contFormInput}>
                             <label htmlFor="Contraseña">Contraseña</label>
-                            <Field className={inputForm} maxlength="9" type ="password" id="contraseña" name="contraseña" placeholder="Colocar la contraseña"/>
+                            <div className={passwordField}>
+                                <Field className={inputFormPassword} maxlength="9" type ={eye ? "text": "password"} id="contraseña" name="contraseña" placeholder="Colocar la contraseña"/>
+                                <Button className={btnHidePassword} onClick={toggleBtn}>{eye?<AiOutlineEyeInvisible/>: <AiOutlineEye/> }</Button>
+                            </div>
                             <ErrorMessage name ="contraseña" component={() =>(
                                 <div className={errorMess}>{errors.contraseña}</div>
                                 )}/>
                         </div>
-                        <Button className={buttonLogin} type="submit">Iniciar Sesión</Button>
+                        <button className={buttonLogin} type="submit" onClick={btn}>Iniciar Sesión</button>
                         {formularioEnviado && <p className={messageExito}>Formulario enviado con exito!</p>}
                         <div className={footCard}>
                             <img  className={imageFootCard} src={gerberLogo} alt='gerber'/>

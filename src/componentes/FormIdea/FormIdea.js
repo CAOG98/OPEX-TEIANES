@@ -4,9 +4,34 @@ import styles from './FormIdea.module.css'
 import { Outlet } from 'react-router-dom';
 import React, {useState} from "react";
 import { Formik, Form, Field, ErrorMessage } from "formik";
+import axios from 'axios';
 
 const FormIdea = () =>{
+    //Hooks validacion de formulario
     const[formularioEnviado, cambiarFormularioEnviado] = useState(false)
+
+    // Hooks para subir archivos
+    // const[archivos, setArchivos] = useState(null)
+    // const subirArchivos=e=>{
+    //     setArchivos(e)
+    // }
+
+    // const insertarArchivos=async()=>{
+    //     const f = new FormData();
+        
+    //     for(let index = 0; index < archivos.length; index++){
+    //         f.append("files",archivos[index]);
+
+    //     }
+    //     await axios.post("https://localhost:7267/api/Archivos", f).then(response=>{
+    //         console.log(Response.data);
+    //     }).catch(error=>{
+    //         console.log(error)
+    //     })
+    // }
+
+
+    // Estilos
     const contFormIdea = styles.contFormIdea
     const titleForm = styles.titleForm
     const selectOption = styles.selectOption
@@ -30,7 +55,7 @@ const FormIdea = () =>{
                     coach:'',
                     soporte:'',
                     mensajeTeian:'',
-                    file:''
+                    file:[]
                 }}
                 // Validacion nombre
                 validate={(valores)=>{
@@ -108,12 +133,13 @@ const FormIdea = () =>{
                                 )}/>
                         </div>
                         <div>
-                            <Field type="file" name="file" className={fileTeian}/>
+                            {/* <Field type="file" name="file" multiple className={fileTeian} onChange{() =>}/>
                             <ErrorMessage name ="file" component={() =>(
                                 <div className={errorMess}>{errors.file}</div>
-                                )}/>
+                                )}/> */}
+                                <input type="file" name ="files" multiple />
                         </div>
-                        <button type="submit" className={buttonIdea}>Enviar teian</button>
+                        <button type="submit" className={buttonIdea} >Enviar teian</button>
                         {formularioEnviado && <p className={messageExito}>Formulario enviado con exito!</p>}
                     </Form>
                 )}

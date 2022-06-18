@@ -53,9 +53,6 @@
         flex-flow: row wrap;
     }
     .buttonAccept{
-        margin-bottom: 10px;
-    }
-    .buttonAccept, .buttonCancel{
         border: none;
         border-radius: 5px;
         padding: 5px 10px 5px 10px;
@@ -70,9 +67,15 @@
 }
 @media (max-width:380px) {
     .paragaphIdea{
-        font-size: 0.6em;
+        font-size: 0.720em;
     }
 }
+@media (max-width:312px) {
+    .buttonAccept{
+        margin-bottom: 10px;
+    }
+}
+
 
 
 

@@ -134,3 +134,30 @@ span{
     background-color: #000000;
     width: 100%;
 }
+
+
+/* Contraseña boton */
+.passwordField{
+    display: flex;
+    position: relative;
+}
+.inputFormPassword{
+    border: 1px solid #000000;
+    border-radius: 5px;
+    margin: 5px 0 10px 0;
+    padding: 10px 20px;
+    max-width: 100%;
+    width: 100%;
+}
+.btnHidePassword{
+    position:absolute;
+    top: 10px;
+    right: 10px;
+    border: none;
+    color: #000;
+    background-color: transparent;
+}
+.btnHidePassword:hover{
+    color: #333;
+    background-color: #fff;
+}
