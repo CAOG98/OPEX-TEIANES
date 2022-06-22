@@ -1,59 +1,48 @@
 import React, { useEffect, useState } from 'react';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import styles from './ApprovedIdeas.module.css'
-import { Accordion, Container} from 'react-bootstrap';
-
-const accordionCont = styles.accordionCont
-const titleAccordion = styles.titleAccordion
-const buttonAccept = styles.buttonAccept
-const buttonCancel = styles.buttonCancel
-const buttons = styles.buttons
-const content = styles.content
-const paragaphIdea = styles.paragaphIdea
-const accordionMain = styles.accordionMain
-const titleAccordionCont = styles.titleAccordionCont
-
+import { Accordion, Button, Card, Container} from 'react-bootstrap';
+import Ideas from '../Ideas';
+import Pagination from '../Ideas/Pagination';
 
 const ApprovedIdeas = () =>{
+  const [ideas, setIdeas] = useState([])
+  const [info, setInfo] = useState({})
 
-  //1 Configurar los hooks
-  const [users, setUsers] = useState([])
-  //2 Funcion para mosrar los datos con fetch
-  const URL = 'https://gorest.co.in/public/v2/users'
-  const showData = async() =>{
-    const response = await fetch(URL)
-    const data = await response.json()
-    setUsers(data)
-  } 
-  const renderAccordion = (item, index) =>{
-    return(
-      <Accordion key={index} className={accordionMain}>
-      <Accordion.Item eventKey={item} >
-        <Accordion.Header>{item.name}</Accordion.Header>
-        <Accordion.Body>
-          <div className={content}>
-            <h3>{item.name}</h3>
-            <h5 className={paragaphIdea}>{item.email}</h5>
-          </div>
-          <div className={buttons}>
-            <button className={buttonAccept}>ACEPTAR</button>
-            <button className={buttonCancel}>RECHAZAR</button>
-          </div>
-        </Accordion.Body>
-      </Accordion.Item>
-    </Accordion>
-    )
+  const initialUrl = "https://rickandmortyapi.com/api/character"
+
+  const fetchIdeas = (url) =>{
+    fetch(url)
+    .then(response => response.json())
+    .then(data =>{
+      setIdeas(data.results)
+      setInfo(data.info)
+    })
+    .catch(error => console.log(error))
+  }
+  
+  const onPrevious = () =>{
+    fetchIdeas(info.prev)
+  }
+  const onNext = () =>{
+    fetchIdeas(info.next)
   }
 
+
   useEffect(() =>{
-    showData()
+    fetchIdeas(initialUrl)
   }, [])
 
   return(
-    <Container className={accordionCont}>
-      <h1 className={titleAccordion}>TEIANES POR ACEPTAR O RECHAZAR</h1>
-      {users.map(renderAccordion)} 
+    <>
+    <Container style={{maxWidth:"100%",overflow:"scroll"}}>
+    <h1 className="text-center">TEIANES POR APROBAR</h1>
+      <Pagination prev={info.prev} next={info.next} onPrevious={onPrevious} onNext={onNext} />
+      <Ideas ideas ={ideas}/>
+      <Pagination prev={info.prev} next={info.next} onPrevious={onPrevious} onNext={onNext} />
     </Container>
+    
+    </>
   );
 }
   export default ApprovedIdeas

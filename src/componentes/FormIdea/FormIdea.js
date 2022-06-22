@@ -133,14 +133,14 @@ const FormIdea = () =>{
                                 )}/>
                         </div>
                         <div>
-                            {/* <Field type="file" name="file" multiple className={fileTeian} onChange{() =>}/>
+                            <Field type="file" name="file" multiple className={fileTeian}/>
                             <ErrorMessage name ="file" component={() =>(
                                 <div className={errorMess}>{errors.file}</div>
-                                )}/> */}
-                                <input type="file" name ="files" multiple />
+                                )}/>
+                                {/* <input type="file" name ="files" multiple /> */}
                         </div>
-                        <button type="submit" className={buttonIdea} >Enviar teian</button>
-                        {formularioEnviado && <p className={messageExito}>Formulario enviado con exito!</p>}
+                        <button type="submit" className={buttonIdea}>Enviar teian</button>
+                        {formularioEnviado && <div><p className={messageExito}>Formulario enviado con exito!</p></div>}
                     </Form>
                 )}
             </Formik>

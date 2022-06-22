@@ -42,7 +42,7 @@ const Formulario = () =>{
         }
 
     const [imagen, setImagen] = useState(false)
-    const btn = () =>{
+    const btnImg = () =>{
         setImagen(prevState => !prevState)
     }
     return(
@@ -83,7 +83,7 @@ const Formulario = () =>{
                     <Form>
                         <div className={contFormInput}>
                             <label className={titleInput} htmlFor="Numero del trabajador">Numero del Trabajador</label>
-                            <Field className={inputForm} maxlength="9" type ="text" id="numeroTrabajador" name="numeroTrabajador" placeholder="Escribe el Numero del Trabajador"/>
+                            <Field className={inputForm} maxlength="9" type ="text" id="numeroTrabajador" name="numeroTrabajador" placeholder="Escribe el Numero del Trabajador" autoComplete="off" />
                             <ErrorMessage  name ="numeroTrabajador" component={() =>(
                                 <div className={errorMess}>{errors.numeroTrabajador}</div>
                                 )}/>
@@ -91,14 +91,14 @@ const Formulario = () =>{
                         <div className={contFormInput}>
                             <label htmlFor="Contraseña">Contraseña</label>
                             <div className={passwordField}>
-                                <Field className={inputFormPassword} maxlength="9" type ={eye ? "text": "password"} id="contraseña" name="contraseña" placeholder="Colocar la contraseña"/>
+                                <Field className={inputFormPassword} maxlength="9" type ={eye ? "text": "password"} id="contraseña" name="contraseña" placeholder="Colocar la contraseña" autoComplete="off" />
                                 <Button className={btnHidePassword} onClick={toggleBtn}>{eye?<AiOutlineEyeInvisible/>: <AiOutlineEye/> }</Button>
                             </div>
                             <ErrorMessage name ="contraseña" component={() =>(
                                 <div className={errorMess}>{errors.contraseña}</div>
                                 )}/>
                         </div>
-                        <button className={buttonLogin} type="submit" onClick={btn}>Iniciar Sesión</button>
+                        <button className={buttonLogin} type="submit" onClick={btnImg}>Iniciar Sesión</button>
                         {formularioEnviado && <p className={messageExito}>Formulario enviado con exito!</p>}
                         <div className={footCard}>
                             <img  className={imageFootCard} src={gerberLogo} alt='gerber'/>

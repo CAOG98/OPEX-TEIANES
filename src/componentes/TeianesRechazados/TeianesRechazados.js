@@ -1,58 +1,52 @@
 import React, { useEffect, useState } from 'react';
 import 'bootstrap/dist/css/bootstrap.min.css';
-import styles from './TeianesRechazados.module.css'
-import { Accordion, Container, Form} from 'react-bootstrap';
-
-const accordionCont = styles.accordionCont
-const titleAccordion = styles.titleAccordion
-const buttonUndo = styles.buttonUndo
-const buttonImplement = styles.buttonImplement
-const buttons = styles.buttons
-const content = styles.content
-const paragaphIdea = styles.paragaphIdea
-const accordionMain = styles.accordionMain
-const titleAccordionCont = styles.titleAccordionCont
+import { Accordion, Button, Card, Container} from 'react-bootstrap';
+import Pagination from '../Ideas/Pagination';
+import IdeasCanceladas from '../Ideas/IdeasCanceladas';
 
 const TeianesRechazados = () =>{
-  //1 Configurar los hooks
-  const [users, setUsers] = useState([])
-  //2 Funcion para mosrar los datos con fetch
-  const URL = 'https://gorest.co.in/public/v2/users'
-  const showData = async() =>{
-    const response = await fetch(URL)
-    const data = await response.json()
-    console.log(data)
-    setUsers(data)
+  const [ideas, setIdeas] = useState([])
+  const [info, setInfo] = useState({})
+
+  const initialUrl = "https://rickandmortyapi.com/api/character"
+
+  const fetchIdeas = (url) =>{
+    fetch(url)
+    .then(response => response.json())
+    .then(data =>{
+      setIdeas(data.results)
+      setInfo(data.info)
+    })
+    .catch(error => console.log(error))
   }
-  const renderAccordion = (item, index) =>{
-    return(
-      <div>
-      <Accordion key={index} className={accordionMain}>
-      <Accordion.Item eventKey={item} >
-        <Accordion.Header>{item.name}</Accordion.Header>
-        <Accordion.Body>
-          <div className={content}>
-            <h3>{item.name}</h3>
-            <h5 className={paragaphIdea}>{item.email}</h5>
-          </div>
-          <div className={buttons}>
-            <button className={buttonUndo}>DESHACER</button>
-          </div>
-        </Accordion.Body>
-      </Accordion.Item>
-    </Accordion>
-    </div>
-    )
+  
+  const onPrevious = () =>{
+    fetchIdeas(info.prev)
   }
+  const onNext = () =>{
+    fetchIdeas(info.next)
+  }
+  const DeleteItems = (indexItem) => {
+    setIdeas((prevState) =>
+      prevState.filter((todo, index) => index !== indexItem)
+    );
+  };
+
 
   useEffect(() =>{
-    showData()
+    fetchIdeas(initialUrl)
   }, [])
+
   return(
-      <Container className={accordionCont}>
-          <h1 className={titleAccordion}>TEIANES RECHAZADOS</h1>
-        {users.map(renderAccordion)}
-      </Container>
+    <>
+    <Container style={{maxWidth:"100%",overflow:"scroll"}}>
+    <h1 className="text-center">TEIANES RECHAZADOS</h1>
+      <Pagination prev={info.prev} next={info.next} onPrevious={onPrevious} onNext={onNext} />
+      <IdeasCanceladas ideas ={ideas} DeleteItems={DeleteItems}/>
+      <Pagination prev={info.prev} next={info.next} onPrevious={onPrevious} onNext={onNext} />
+    </Container>
+    
+    </>
   );
 }
   export default TeianesRechazados

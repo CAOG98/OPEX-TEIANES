@@ -4,12 +4,17 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import 'styled-components'
 import DataTable from 'react-data-table-component';
 import './TableIdeas.css'
-import { Container } from 'react-bootstrap';
+import { Button, Container } from 'react-bootstrap';
 
 
 const TableIdeas = () =>{
   //1 Configurar los hooks
+
+  // HOOk para los datos del json
   const [users, setUsers] = useState([])
+
+  // HOOK para ocultar un campo de la tabla
+  const [hideSoporte, setHideSoporte] = React.useState(false);
   //2 Funcion para mosrar los datos con fetch
   const URL = 'https://gorest.co.in/public/v2/users'
   const showData = async() =>{
@@ -40,7 +45,9 @@ const TableIdeas = () =>{
     },
     {
       name: 'AREA DE SOPORTE',
-      selector: row => row.gender
+      selector: row => row.gender,
+      sortable: true,
+      omit: hideSoporte ,
     },
     {
       name: 'TEIAN',
@@ -57,6 +64,7 @@ const TableIdeas = () =>{
     selectAllRowsText: true,
     selectAllRowsItemText: 'Todos'
   }
+  
   // createTheme creates a new theme named solarized that overrides the build in dark theme
   //4. Mostramos la data en DataTable
   return(
@@ -69,7 +77,12 @@ const TableIdeas = () =>{
         paginationComponentOptions={paginacionOpciones}
         fixedHeader
         fixedHeaderScrollHeight='550px'
+        selectableRows
+        keyField
+        highlightOnHover
+        noDataComponent
         />
+        <Button onClick={() => setHideSoporte(!hideSoporte)}>Ocultar Area de soporte</Button>
     </Container>
   );
 }

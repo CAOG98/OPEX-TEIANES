@@ -12,7 +12,6 @@ import SideBar from "./componentes/SideBar";
 import NavBar from "./componentes/NavBar";
 import styles from './index.module.css'
 import FormularioLogin from "./componentes/FormularioLogin";
-
 const cont = styles.cont
 
 const App = () =>(
@@ -23,20 +22,20 @@ const App = () =>(
     // </Routes>
     // </div>
 
-    <FormularioLogin/>
-  // <div className={cont}>
-  // <FormularioLogin/>
-  // <SideBar />
-  // <NavBar/>
-  // <Routes>
-  //   <Route path="/"  element={<FormIdea />} />
-  //   <Route path="/Formideas" element={<FormIdea />} />
-  //   <Route path="/TableIdeas" element={<TableIdeas/>}/>
-  //   <Route path="/ApproveIdeas" element={<ApprovedIdeas/>}/>
-  //   <Route path="/TeianesAccepted" element={<AcceptedTeianes/>}/>
-  //   <Route path="/TeianesRechazados" element={<TeianesRechazados/>}/>
-  //   <Route path="/Dudas" element={<Dudas/>}/>
-  // </Routes>
-  // </div> 
+    // <FormularioLogin/>
+  <div className={cont}>
+  <SideBar />
+  <NavBar/>
+  <Routes>
+    <Route path="/"  element={<FormIdea />} />
+    <Route path="/Formideas" element={<FormIdea />} />
+    <Route path="/TableIdeas" element={<TableIdeas/>}/>
+    <Route path="/ApproveIdeas" element={<ApprovedIdeas/>}/>
+    <Route path="/TeianesAccepted" element={<AcceptedTeianes/>}/>
+    <Route path="/TeianesRechazados" element={<TeianesRechazados/>}/>
+    <Route path="/Dudas" element={<Dudas/>}/>
+  </Routes>
+  </div> 
+
   )
 export default App
