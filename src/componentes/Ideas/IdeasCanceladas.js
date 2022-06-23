@@ -29,11 +29,11 @@ const IdeasCanceladas = ({ideas = [], DeleteItems}) =>{
                   </Card.Text>
                   <div style={{display:"flex", justifyContent:"space-between"}}>
                     <Button variant="secondary" style={{marginRight:"10px"}}>Deshacer</Button>
-                    <Tooltip title="Borrar">
+                    {/* <Tooltip title="Borrar">
                       <IconButton onClick={() => DeleteItems(index)}>
                         <DeleteIcon />
                       </IconButton>
-                    </Tooltip>
+                    </Tooltip> */}
                   </div>
                 </Card.Body>
               </Card>

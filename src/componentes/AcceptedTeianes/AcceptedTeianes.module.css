@@ -1,77 +1,18 @@
-/* Estilos a todo el contendor hijo */
-.accordionMain{
-    margin-bottom: 10px;
-}
-/* Estilos a todo el contendor padre */
-.accordionCont{
-    max-width: 100%;
-    width: 90%;
-    overflow: scroll;
-    margin-top: 20px;
-    margin-bottom: 40px;
-    border-radius: 20px;
-}
-/* Personalización del scrollBar */
-.accordionCont::-webkit-scrollbar {
-    width: 12px;             
-  }
-  
-  .accordionCont::-webkit-scrollbar-track {
-    background: #fff;       
-  }
-  
-  .accordionCont::-webkit-scrollbar-thumb {
-    background-color: #0d6efd;  
-    border-radius: 20px;      
-    border: 3px solid #fff;  
-  }
-
-.titleAccordion{
+.titleTeianCont{
     text-align: center;
 }
-/* Estilos botones de los acordiones */
-.buttons{
-    display: flex;
-    justify-content: end;
-}
-.buttonUndo{
-    background-color: #B2B0B0;
-}
-.buttonImplement{
-    background-color: #00BB11;
-    margin-right: 20px;
-}
-.buttonUndo, .buttonImplement{
-    border: none;
-    border-radius: 5px;
-    padding: 5px 10px 5px 10px;
-    color: #ffffff;
+.titleTeian{
+    display: inline-block;
+    position: relative;
+    text-align: center;
 }
 
-@media (max-width:386px) {
-    .buttons{
-        display: flex;
-        justify-content: center;
-        flex-flow: row wrap;
-    }
-    .buttonUndo{
-        margin-bottom: 10px;
-    }
-    .buttonUndo, .buttonImplement{
-        border: none;
-        border-radius: 5px;
-        padding: 5px 10px 5px 10px;
-        color: #ffffff;
-    }   
+.titleTeian::before{
+    content: '';
+    color: #445CF5;
+    font-size: 60px;
 }
-/* Contenido del acordion*/
-.content{
-    display: flex;
-    flex-direction: column;
-    flex-flow: column wrap;
+.titleTeian::after{
+    right: 400px;
 }
-@media (max-width:380px) {
-    .paragaphIdea{
-        font-size: 0.6em;
-    }
-}
+

@@ -68,8 +68,8 @@ export default function CustomizedDialogs() {
         aria-labelledby="customized-dialog-title"
         open={open}
       >
-        <BootstrapDialogTitle id="customized-dialog-title" onClose={handleClose} style={{background:"#0d6efd", color:"#fff"}}>
-          INFORMACIÓN
+        <BootstrapDialogTitle id="customized-dialog-title" onClose={handleClose} style={{background:"#445CF5", color:"#fff"}}>
+        <InfoIcon/> INFORMACIÓN
         </BootstrapDialogTitle>
         <DialogContent dividers>
           <Typography gutterBottom>

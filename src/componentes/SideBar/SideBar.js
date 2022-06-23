@@ -31,7 +31,7 @@ class SideBar extends React.Component{
           <CDBSidebarContent className="sidebar-content">
 
               <CDBSidebarMenu>
-                <NavLink exact to="/Formideas"  style={({ isActive }) =>
+                <NavLink exact to="Teian/Formideas"  style={({ isActive }) =>
                   isActive
                     ? {
                         color: '#006dba',
@@ -44,7 +44,7 @@ class SideBar extends React.Component{
                 </NavLink>
 
 
-                <NavLink exact to="/TableIdeas" style={({ isActive }) =>
+                <NavLink exact to="Teian/TableIdeas" style={({ isActive }) =>
                   isActive
                     ? {
                         color: '#006dba',
@@ -58,7 +58,7 @@ class SideBar extends React.Component{
 
 
 
-                <NavLink exact to="/ApproveIdeas" style={({ isActive }) =>
+                <NavLink exact to="Teian/ApproveIdeas" style={({ isActive }) =>
                   isActive
                     ? {
                         color: '#006dba',
@@ -71,7 +71,7 @@ class SideBar extends React.Component{
                 </NavLink>
 
 
-                <NavLink exact to="/TeianesAccepted" style={({ isActive }) =>
+                <NavLink exact to="Teian/TeianesAccepted" style={({ isActive }) =>
                   isActive
                     ? {
                         color: '#006dba',
@@ -84,7 +84,7 @@ class SideBar extends React.Component{
                 </NavLink>
 
 
-                <NavLink exact to="/TeianesRechazados" style={({ isActive }) =>
+                <NavLink exact to="Teian/TeianesRechazados" style={({ isActive }) =>
                   isActive
                     ? {
                         color: '#006dba',
@@ -95,7 +95,7 @@ class SideBar extends React.Component{
                 }  activeClassName="activeClicked">
                 <CDBSidebarMenuItem icon="trash">TEIANES RECHAZADOS</CDBSidebarMenuItem>
                 </NavLink>
-                <NavLink exact to="/Perfil" style={({ isActive }) =>
+                <NavLink exact to="Teian/Perfil" style={({ isActive }) =>
                   isActive
                     ? {
                         color: '#006dba',
@@ -111,7 +111,7 @@ class SideBar extends React.Component{
           
   
           <CDBSidebarFooter style={{ textAlign: 'center', borderTop:'1px solid #333', backgroundColor:'#006dba' }}>
-            <NavLink exact to="/Dudas" activeClassName="activeClicked" style={{ textDecoration: 'none', color:'#fff' }}>
+            <NavLink exact to="Teian/Dudas" activeClassName="activeClicked" style={{ textDecoration: 'none', color:'#fff' }}>
             <div
               className="sidebar-btn-wrapper"
               style={{

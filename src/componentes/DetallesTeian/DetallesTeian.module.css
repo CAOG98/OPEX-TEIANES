@@ -1,0 +1,44 @@
+.imageBanner{
+    max-width: 100%;
+    width: 20%;
+}
+
+@media (max-width: 729px) {
+    .imageBanner{
+        max-width: 100%;
+        width: 25%;
+    }
+}
+@media (max-width: 575px) {
+    .imageBanner{
+        max-width: 100%;
+        width: 30%;
+    }
+}
+@media (max-width: 511px) {
+    .imageBanner{
+        max-width: 100%;
+        width: 40%;
+    }
+}
+@media (max-width: 425px) {
+    .imageBanner{
+        max-width: 100%;
+        width: 50%;
+    }
+}
+@media (max-width: 425px) {
+    .imageBanner{
+        max-width: 100%;
+        width: 70%;
+    }
+}
+@media (max-width: 317px) {
+    .imageBanner{
+        max-width: 100%;
+        width: 90%;
+    }
+}
+
+
+/* Fondo detalle idea */

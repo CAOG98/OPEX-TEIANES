@@ -2,88 +2,68 @@ import React, {useState, useEffect} from 'react';
 import 'bootstrap/dist/css/bootstrap.min.css';
 // import styles from './TableIdeas.module.css'
 import 'styled-components'
-import DataTable from 'react-data-table-component';
 import './TableIdeas.css'
-import { Button, Container } from 'react-bootstrap';
+import { DataGrid, GridToolbar, esES } from '@mui/x-data-grid';
+import {Container} from 'react-bootstrap';
 
-
-const TableIdeas = () =>{
-  //1 Configurar los hooks
-
-  // HOOk para los datos del json
-  const [users, setUsers] = useState([])
-
-  // HOOK para ocultar un campo de la tabla
-  const [hideSoporte, setHideSoporte] = React.useState(false);
-  //2 Funcion para mosrar los datos con fetch
-  const URL = 'https://gorest.co.in/public/v2/users'
-  const showData = async() =>{
-    const response = await fetch(URL)
-    const data = await response.json()
-    console.log(data)
-    setUsers(data)
-  }
-
-  useEffect(() =>{
-    showData()
-  }, [])
-
-  //3. Configuramos las columnas para DataTable
-
+ //1. Configuramos las columnas para DataTable
   const columns = [
     {
-      name: 'FECHA',
-      selector: row => row.id
+      field:'id',
+      headerName: 'FECHA',
+      headerAlign: 'center',
+      headerClassName: 'headerTable'
     },
     {
-      name: 'TITULO',
-      selector: row => row.name
+      field:'title',
+      headerName: 'TITULO', width: 300,
+      headerAlign: 'center',
+      headerClassName: 'headerTable'
     },
     {
-      name: 'CATEGORIA',
-      selector: row => row.email
+      field: 'body',
+      headerName: 'CATEGORIA', width: 550,
+      headerAlign: 'center',
+      headerClassName: 'headerTable'
     },
     {
-      name: 'AREA DE SOPORTE',
-      selector: row => row.gender,
-      sortable: true,
-      omit: hideSoporte ,
+      field: 'body',
+      headerName: 'AREA DE SOPORTE', width: 580,
+      headerAlign: 'center',
+      headerClassName: 'headerTable'
     },
-    {
-      name: 'TEIAN',
-      selector: row => row.gender
-    },
-    {
-      name: 'STATUS',
-      selector: row => row.gender
-    },
+    
   ]
-  const paginacionOpciones={
-    rowsPerPageText:'Filas por pagina',
-    rangePerPageText: 'de',
-    selectAllRowsText: true,
-    selectAllRowsItemText: 'Todos'
-  }
-  
-  // createTheme creates a new theme named solarized that overrides the build in dark theme
-  //4. Mostramos la data en DataTable
+const TableIdeas = () =>{
+  //1 Configurar los hooks
+  const [tableData, setTableData] = useState([])
+
+
+  useEffect(() =>{
+    fetch("https://jsonplaceholder.typicode.com/posts")
+    .then((data) => data.json())
+    .then((data) => setTableData(data))
+  }, [])
+
+
   return(
-    <Container>
-      <h2 style={{textAlign: 'center'}}>MIS TEIANES</h2>
-        <DataTable
-        columns={columns}
-        data={users}
-        pagination
-        paginationComponentOptions={paginacionOpciones}
-        fixedHeader
-        fixedHeaderScrollHeight='550px'
-        selectableRows
-        keyField
-        highlightOnHover
-        noDataComponent
-        />
-        <Button onClick={() => setHideSoporte(!hideSoporte)}>Ocultar Area de soporte</Button>
-    </Container>
+      <DataGrid
+      title="MIS TEIANES"
+      rows={tableData}
+      columns={columns}
+      components={{ Toolbar: GridToolbar}}
+      componentsProps={{
+        toolbar: {
+          showQuickFilter: true,
+          quickFilterProps: { debounceMs: 500 },
+        },
+      }}
+      pageSize={16}
+      checkboxSelection
+      experimentalFeatures={{ newEditingApi: true }}
+      localeText={esES.components.MuiDataGrid.defaultProps.localeText}
+      getRowHeight={() => 'auto'}
+      />
   );
 }
 

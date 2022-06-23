@@ -30,15 +30,14 @@ const IdeasAceptadas = ({ideas = []}) =>{
                    {item.gender}
                   </Card.Text>
                   <div style={{display:"flex", justifyContent:"space-between"}}>
-                    <Button variant="contained" color="success">Implementar</Button>
-                    <Button variant="contained" style={{backgroundColor:"gray"}} >Deshacer</Button>
+                    <Button variant="contained" style={{backgroundColor:'#445CF5'}}>Implementar</Button>
+                    <Button variant="contained" style={{backgroundColor:"#8A94AB"}} >Deshacer</Button>
                   </div>
-                  <div style={{display:"flex", justifyContent:"space-between", marginTop:"50px"}}>
+                  <div style={{display:"flex", justifyContent:"space-between", marginTop:"6px"}}>
                     <label htmlFor="contained-button-file">
                       <input accept="image/*,video/*" id="contained-button-file" multiple type="file" style={{display:"none"}} />
-                      <Button variant="contained" component="span" style={{marginTop:"10px"}}>
-                        Subir
-                        <AddPhotoAlternateIcon/>
+                      <Button variant="contained" component="span" style={{marginTop:"10px", backgroundColor:"#fff", color:"#000", border:"1px solid"}}>
+                         <AddPhotoAlternateIcon/> Subir
                       </Button>
                     </label>
                     <Tooltip title="Información">

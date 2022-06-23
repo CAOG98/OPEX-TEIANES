@@ -5,6 +5,7 @@ import { Outlet } from 'react-router-dom';
 import React, {useState} from "react";
 import { Formik, Form, Field, ErrorMessage } from "formik";
 import axios from 'axios';
+import 'typeface-quicksand';
 
 const FormIdea = () =>{
     //Hooks validacion de formulario
@@ -90,7 +91,7 @@ const FormIdea = () =>{
                     <Form>
                         <div className={titleTeian}>
                             <label htmlFor="TEIAN">TITULO DEL TEIAN</label>
-                            <Field className={titleTeianInput} type ="text" id="nombre" name="teian" placeholder="TITULO DEL TEIAN" maxlength="109"/>
+                            <Field className={titleTeianInput} type ="text" id="nombre" name="teian" placeholder="Aquí va el titulo de tu idea" maxlength="109"/>
                             <ErrorMessage name ="teian" component={() =>(
                                 <div className={errorMess}>{errors.teian}</div>
                                 )}/>
@@ -98,7 +99,7 @@ const FormIdea = () =>{
                         <div className={inputTeian}>
                            
                             <Field as="select" name="categoria" className={selectOption}>
-                            <option value="">ELIJE TU CATEGORÍA</option>
+                            <option value="">CATEGORÍA (Selecciona la categoría de tu idea)</option>
                                 <option value="CATEGORIA1">CATEGORIA1</option>
                                 <option value="CATEGORIA2">CATEGORIA2</option>
                                 <option value="CATEGORIA3">CATEGORIA3</option>
@@ -109,7 +110,7 @@ const FormIdea = () =>{
 
                             
                             <Field as="select" name="coach" className={selectOption}>
-                            <option value="">ELIJE TU COACH</option>
+                            <option value="">COACH (El coach es el guía para llevar tu idea de mejora)</option>
                                 <option value="COACH1">COACH1</option>
                                 <option value="COACH2">COACH2</option>
                                 <option value="COACH3">COACH3</option>
@@ -119,7 +120,7 @@ const FormIdea = () =>{
                                 )}/>
                             
                             <Field as="select" name="soporte" className={selectOption}>
-                            <option value="">ELIJE TU ÁREA DE SOPORTE (Opcional)</option>
+                            <option value="">ÁREA DE SOPORTE (Opcional) (Selecciona el área que pueda apoyar a tu idea)</option>
                                 <option value="SOPORTE1">SOPORTE1</option>
                                 <option value="SOPORTE2">SOPORTE2</option>
                                 <option value="SOPORTE3">SOPORTE3</option>
@@ -127,7 +128,7 @@ const FormIdea = () =>{
                         </div>
                         <div className={ideaTeian}>
                             <label htmlFor="TEIAN">ESCRIBE TU TEIAN</label>
-                            <Field className={txtAreaTeian} name="mensajeTeian" as="textarea" maxlength="800" placeholder="ESCRIBE TU TEIAN (800)"/>
+                            <Field className={txtAreaTeian} name="mensajeTeian" as="textarea" maxlength="800" placeholder="Aquí escribe tu idea de mejora"/>
                             <ErrorMessage name ="mensajeTeian" component={() =>(
                                 <div className={errorMess}>{errors.mensajeTeian}</div>
                                 )}/>

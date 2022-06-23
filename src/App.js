@@ -12,6 +12,7 @@ import SideBar from "./componentes/SideBar";
 import NavBar from "./componentes/NavBar";
 import styles from './index.module.css'
 import FormularioLogin from "./componentes/FormularioLogin";
+import DetallesTeian from "./componentes/DetallesTeian";
 const cont = styles.cont
 
 const App = () =>(
@@ -27,13 +28,13 @@ const App = () =>(
   <SideBar />
   <NavBar/>
   <Routes>
-    <Route path="/"  element={<FormIdea />} />
-    <Route path="/Formideas" element={<FormIdea />} />
-    <Route path="/TableIdeas" element={<TableIdeas/>}/>
-    <Route path="/ApproveIdeas" element={<ApprovedIdeas/>}/>
-    <Route path="/TeianesAccepted" element={<AcceptedTeianes/>}/>
-    <Route path="/TeianesRechazados" element={<TeianesRechazados/>}/>
-    <Route path="/Dudas" element={<Dudas/>}/>
+    <Route path="Teian/"  element={<FormIdea />} />
+    <Route path="Teian/Formideas" element={<DetallesTeian/>} />
+    <Route path="Teian/TableIdeas" element={<TableIdeas/>}/>
+    <Route path="Teian/ApproveIdeas" element={<ApprovedIdeas/>}/>
+    <Route path="Teian/TeianesAccepted" element={<AcceptedTeianes/>}/>
+    <Route path="Teian/TeianesRechazados" element={<TeianesRechazados/>}/>
+    <Route path="Teian/Dudas" element={<Dudas/>}/>
   </Routes>
   </div> 
 

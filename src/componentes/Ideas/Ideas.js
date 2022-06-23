@@ -24,8 +24,8 @@ const Ideas = ({ideas = []}) =>{
                    {item.gender}
                   </Card.Text>
                   <div style={{display:"flex", justifyContent:"space-between"}}>
-                  <Button variant="contained" color="success"  >Aceptar</Button>
-                  <Button variant="contained" color="error">Rechazar</Button>
+                  <Button variant="contained" style={{backgroundColor:'#20BA81'}} >Aceptar</Button>
+                  <Button variant="contained" style={{backgroundColor:'#DB5F58'}}>Rechazar</Button>
                   </div>
                 </Card.Body>
               </Card>
