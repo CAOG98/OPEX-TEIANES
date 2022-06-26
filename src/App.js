@@ -28,12 +28,13 @@ const App = () =>(
   <SideBar />
   <NavBar/>
   <Routes>
-    <Route path="Teian/"  element={<FormIdea />} />
-    <Route path="Teian/Formideas" element={<DetallesTeian/>} />
+    <Route path="/"  element={<FormIdea />} />
+    <Route path="Teian/Formideas" element={<FormIdea />} />
     <Route path="Teian/TableIdeas" element={<TableIdeas/>}/>
     <Route path="Teian/ApproveIdeas" element={<ApprovedIdeas/>}/>
     <Route path="Teian/TeianesAccepted" element={<AcceptedTeianes/>}/>
     <Route path="Teian/TeianesRechazados" element={<TeianesRechazados/>}/>
+    <Route path="Teian/DetalleTeian" element={<DetallesTeian/>}/>
     <Route path="Teian/Dudas" element={<Dudas/>}/>
   </Routes>
   </div> 

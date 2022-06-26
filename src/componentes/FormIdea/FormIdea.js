@@ -120,7 +120,7 @@ const FormIdea = () =>{
                                 )}/>
                             
                             <Field as="select" name="soporte" className={selectOption}>
-                            <option value="">ÁREA DE SOPORTE (Opcional) (Selecciona el área que pueda apoyar a tu idea)</option>
+                            <option value="">ÁREA DE SOPORTE (Opcional) (Selecciona el área que pueda apoyar tu idea)</option>
                                 <option value="SOPORTE1">SOPORTE1</option>
                                 <option value="SOPORTE2">SOPORTE2</option>
                                 <option value="SOPORTE3">SOPORTE3</option>

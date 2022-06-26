@@ -28,21 +28,24 @@ const initialUrl = "https://rickandmortyapi.com/api/character"
   }, [])
   return (
         <div style={{dislay:"flex"}}>
-            <div style={{border:"2px solid",overflow:"scroll"}}>
-                <h1>TITULO DEL TEIAN</h1>
+            <div >
                 <Container >
                     <Row>
                         <Col lg={12}>
                        
-  <p class="mb-0">What is Lorem Ipsum?
-Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.
-
-Why do we use it?
-It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. The point of using Lorem Ipsum is that it has a more-or-less normal distribution of letters, as opposed to using 'Content here, content here', making it look like readable English. Many desktop publishing packages and web page editors now use Lorem Ipsum as their default model text, and a search for 'lorem ipsum' will uncover many web sites still in their infancy. Various versions have evolved over the years, sometimes by accident, sometimes on purpose (injected humour and the like).
-
-
-Where does it come from?
-Contrary askjdakjsdassajdasjdsallkjas lkasj lkjas jas aksj sadj sakldjsa dklsa djsa djas kldjsakd jalsjskaljdjsakdasjldasjkdsajkldsaj dasjdsa j kasdka jj jk jklsadjkldsajklsdajdsajlkasdjklsadjkldsajlkdjklsdjsdajkjkasdkjlasdkjlasdjlkdsal k jj  ksa jkasjdl j aj  j jlksajakldjasjdksjsakldjldlk  jksadj  jkjk kjl  lkasj lkjas jas aksj sadj sakldjsa dklsa djsa djas kldjsakd jalsjskaljdjsakdasjldasjkdsajkldsaj dasjdsa j kasdka jj jk jklsadjkldsajklsdajdsajlkasdjklsadjkldsajlkdjklsdjsdajkjkasdkjlasdkjlasdjlkdsal k jj  ksa jkasjdl j aj  j jlksajakldjasjdksjsakldjldlk  jksadj  jkjk kjl  jkl kjj jk  jkldjksajlsdajdajdkjladsjlkdsjkdsjkldsajkljlkdsajlksdajklsadj    j jkljkjklajlkasjlksdakjldaskjlsdajkldsaj s  sjakdksaj kj k kljasjklsajkldajdsjkdsakjldsakjlsdajkldsajweq lkasj lkjas jas aksj sadj sakldjsa dklsa djsa djas kldjsakd jalsjskaljdjsakdasjldasjkdsajkldsaj dasjdsa j kasdka jj jk jklsadjkldsajklsdajdsajlkasdjklsadjkldsajlkdjklsdjsdajkjkasdkjlasdkjlasdjlkdsal k jj  ksa jkasjdl j aj  j jlksajakldjasjdksjsakldjldlk  jksadj  jkjk kjl  jkl kjj jk  jkldjksajlsdajdajdkjladsjlkdsjkdsjkldsajkljlkdsajlksdajklsadj    j jkljkjklajlkasjlksdakjldaskjlsdajkldsaj s  sjakdksaj kj k kljasjklsajkldajdsjkdsakjldsakjlsdajkldsajweq lkasj lkjas jas aksj sadj sakldjsa dklsa djsa djas kldjsakd jalsjskaljdjsakdasjldasjkdsajkldsaj dasjdsa j kasdka jj jk jklsadjkldsajklsdajdsajlkasdjklsadjkldsajlkdjklsdjsdajkjkasdkjlasdkjlasdjlkdsal k jj  ksa jkasjdl j aj  j jlksajakldjasjdksjsakldjldlk  jksadj  jkjk kjl  jkl kjj jk  jkldjksajlsdajdajdkjladsjlkdsjkdsjkldsajkljlkdsajlksdajklsadj    j jkljkjklajlkasjlksdakjldaskjlsdajkldsaj s  sjakdksaj kj k kljasjklsajkldajdsjkdsakjldsakjlsdajkldsajweq jkl kjj jk  jkldjksajlsdajdajdkjladsjlkdsjkdsjkldsajkljlkdsajlksdajklsadj    j jkljkjklajlkasjlksdakjldaskjlsdajkldsaj s  sjakdksaj kj k kljasjklsajkldajdsjkdsakjldsakjlsdajkldsajwequioewquioewquioewquioewquioewquiowquioewuioewquioewquioqweuioeqw</p>
+  <p class="mb-0">Trabajadores que conocen a profundidad los problemas de la operación y sus probables soluciones, no conocen la metodología de ideas de mejora.
+  Crear un kiosko con una cuenta de Rever siempre abierta donde la persona capture su idea con asistencia de personal administrativo de RH / OPEX.
+Incrementar exponencialmente el número de ideas de mejora en el sistema.</p>
+  <Row style={{marginTop:"10px"}}>
+    <Col lg="2"><h5>Categorias:</h5></Col>
+    <Col lg="11"><span className="badge rounded-pill" style={{ color:"#000", background:"#D0D0D0"}}>Mejora Continua</span></Col>
+  </Row>
+  <Row style={{marginTop:"10px"}}>
+    <Col lg="2"><h5>Coach:</h5></Col>
+    <Col lg="11"><span className="badge rounded-pill" style={{ color:"#000", background:"#D0D0D0"}}>Christian Valenzuela</span></Col>
+  </Row>
+  
+  
                         </Col>
                     </Row>
                 </Container>
