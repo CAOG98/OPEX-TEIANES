@@ -13,6 +13,25 @@ import {AiOutlineEyeInvisible, AiOutlineEye} from 'react-icons/ai'
 
 
 const Formulario = () =>{
+
+    //
+    const [usuario, setUsuario] = useState({
+        numeroTrabajador: '',
+        password: ''
+    })
+
+    const ingresarValoresMemoria = e =>{
+        const{name,value} = e.target;
+        setUsuario(anterior => ({
+            ...anterior,
+            [name]:value
+
+        }))
+    }
+
+
+
+
     // Hook
     const[formularioEnviado, cambiarFormularioEnviado] = useState(false)
 

@@ -1,56 +1,56 @@
-import React from 'react';
-import Button from '@material-ui/core/Button';
-import Dialog from '@material-ui/core/Dialog';
-import DialogActions from '@material-ui/core/DialogActions';
-import DialogContent from '@material-ui/core/DialogContent';
-import DialogContentText from '@material-ui/core/DialogContentText';
-import DialogTitle from '@material-ui/core/DialogTitle';
-import Slide from '@material-ui/core/Slide';
+import React, {useState} from 'react';
+import { Button, Modal } from 'react-bootstrap';
+import DeleteIcon from '@mui/icons-material/Delete';
 
-const Transition = React.forwardRef(function Transition(props, ref) {
-  return <Slide direction="up" ref={ref} {...props} />;
-});
+export default function ModalEliminar() {
+  const [show, setShow] = useState(false);
+  const [ideas, setIdeas] = useState([])
 
-export default function AlertDialogSlide() {
-  const [open, setOpen] = React.useState(false);
+  const initialUrl = "https://rickandmortyapi.com/api/character"
 
-  const handleClickOpen = () => {
-    setOpen(true);
-  };
+  const fetchIdeas = (url) =>{
+    fetch(url)
+    .then(response => response.json())
+    .then(data =>{
+      setIdeas(data.results)
+    })
+    .catch(error => console.log(error))
+  }
 
-  const handleClose = () => {
-    setOpen(false);
+
+
+  const handleClose = () => setShow(false);
+  const handleShow = () => setShow(true);
+  
+  const DeleteItems = (indexItem) => {
+    setIdeas((prevState) =>
+      prevState.filter((todo, index) => index !== indexItem)
+    );
   };
 
   return (
-    <div>
-      <Button variant="outlined" color="primary" onClick={handleClickOpen}>
-        Slide in alert dialog
+    <>
+      <Button variant="primary" onClick={handleShow}>
+        <DeleteIcon/>
       </Button>
-      <Dialog
-        open={open}
-        TransitionComponent={Transition}
-        keepMounted
-        onClose={handleClose}
-        aria-labelledby="alert-dialog-slide-title"
-        aria-describedby="alert-dialog-slide-description"
-      >
-        <DialogTitle id="alert-dialog-slide-title">{"Use Google's location service?"}</DialogTitle>
-        <DialogContent>
-          <DialogContentText id="alert-dialog-slide-description">
-            Let Google help apps determine location. This means sending anonymous location data to
-            Google, even when no apps are running.
-          </DialogContentText>
-        </DialogContent>
-        <DialogActions>
-          <Button onClick={handleClose} color="primary">
-            Disagree
+
+      <Modal show={show} onHide={handleClose}>
+        <Modal.Header closeButton>
+          <Modal.Title>
+            ¿Esta seguro?
+          </Modal.Title>
+        </Modal.Header>
+        <Modal.Body>¿Estas seguro que deseas eliminar la idea de mejora?</Modal.Body>
+        <Modal.Footer>
+          <Button variant="secondary" onClick={handleClose}>
+            Cerrar
           </Button>
-          <Button onClick={handleClose} color="primary">
-            Agree
+          <Button variant="primary" onClick={handleClose}>
+            Borrar
           </Button>
-        </DialogActions>
-      </Dialog>
-    </div>
+        </Modal.Footer>
+      </Modal>
+    </>
   );
 }
+

@@ -1,9 +1,9 @@
 import React, { useState } from 'react';
 import { Button, Card } from 'react-bootstrap';
 import notFound from '../Ideas/ImagesIdeas/ImageNotFound.jpg'
-import DeleteIcon from '@mui/icons-material/Delete';
 import IconButton from '@mui/material/IconButton';
 import Tooltip from '@mui/material/Tooltip';
+import ModalEliminar from './ModalEliminar'
 
 const IdeasCanceladas = ({ideas = [], DeleteItems}) =>{
 
@@ -29,11 +29,9 @@ const IdeasCanceladas = ({ideas = [], DeleteItems}) =>{
                   </Card.Text>
                   <div style={{display:"flex", justifyContent:"space-between"}}>
                     <Button variant="secondary" style={{marginRight:"10px"}}>Deshacer</Button>
-                    {/* <Tooltip title="Borrar">
-                      <IconButton onClick={() => DeleteItems(index)}>
-                        <DeleteIcon />
-                      </IconButton>
-                    </Tooltip> */}
+                    <Tooltip title="Borrar">
+                      <ModalEliminar/>
+                    </Tooltip>
                   </div>
                 </Card.Body>
               </Card>

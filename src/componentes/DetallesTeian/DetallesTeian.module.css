@@ -20,6 +20,12 @@
     margin-top: 2%;
     color: #fff;
 }
+@media (max-width: 990px) {
+    .imageBanner{
+        height: 250px;
+    }
+}
+
 @media (max-width: 425px) {
     .imageBanner{
         height: 250px;
@@ -30,4 +36,33 @@
     max-width: 100%;
     width: 80%;
 }
+
+/* DetallesInfo */
+.tituloCategorias{
+    margin-top: 20px;
+}
+.DetallesImageGeneral{
+    margin: auto;
+    width: 50%;
+}
+@media (max-width:990px) {
+    .DetallesInfoGeneral{
+        margin: auto;
+        width:100%
+    }
+    .DetallesInfoCategorias{
+        display: flex;
+        justify-content: center;
+    }
+    .bodyDetalles{
+        display: flex;
+        flex-direction: column;
+    }
+    .DetallesImageGeneral{
+        margin-top: 20px;
+        max-width: 100%;
+        width: 100%;
+    }
+}
+
 

@@ -8,6 +8,7 @@
     height: 100%;
     background: linear-gradient(to top,
   #fff  20%, #B8E2FF 40%, #6CC0FA 60%, #389ADF  80%, #006dba  100%) no-repeat;
+  z-index: 2;
 }
 /* Contendor LOGIN */
 .login{

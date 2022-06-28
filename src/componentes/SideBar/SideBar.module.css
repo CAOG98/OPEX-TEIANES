@@ -15,6 +15,7 @@
     height: 100vh;
     overflow: scroll initial;
     border-right:1px solid #333;
+    z-index: 1;
 }
 @media (max-width:990px) {
     .sidebarS{

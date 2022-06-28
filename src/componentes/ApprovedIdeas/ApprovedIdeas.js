@@ -1,7 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import 'bootstrap/dist/css/bootstrap.min.css';
-import styles from './ApprovedIdeas.module.css'
-import { Accordion, Button, Card, Container} from 'react-bootstrap';
+import {Container} from 'react-bootstrap';
 import Ideas from '../Ideas';
 import Pagination from '../Ideas/Pagination';
 
