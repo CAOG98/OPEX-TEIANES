@@ -1,7 +1,6 @@
 .bannerCont{
     width:100%;
-  height:25%;
-  
+  height:29%; 
 }
 .imageBanner{
     filter:contrast(30%);;
@@ -22,13 +21,17 @@
 }
 @media (max-width: 990px) {
     .imageBanner{
-        height: 250px;
+        height: 200px;
+    }
+    .bannerCont{
+      margin-top: 5em;
+      height: 25%;
     }
 }
 
 @media (max-width: 425px) {
     .imageBanner{
-        height: 250px;
+        height: 200px;
     }
 }
 
@@ -43,7 +46,11 @@
 }
 .DetallesImageGeneral{
     margin: auto;
-    width: 50%;
+}
+@media (max-width: 1113px) {
+    .DetallesImageGeneral{
+       width: 50%;
+    }
 }
 @media (max-width:990px) {
     .DetallesInfoGeneral{
@@ -57,12 +64,75 @@
     .bodyDetalles{
         display: flex;
         flex-direction: column;
+        
     }
     .DetallesImageGeneral{
         margin-top: 20px;
         max-width: 100%;
         width: 100%;
     }
+    .fondoDetalleIdea{
+        margin-top: 3em;
+    }
 }
 
 
+@media (max-width: 346px) {
+    .imageBanner{
+      height:200px;
+    }
+    .bannerCont{
+        height: 30%;
+      }
+
+}
+
+/* Estilos Formulario pestaña TEIAN IMPLEMENTADO */
+.ideaTeian{
+    display: flex;
+    flex-direction: column;
+    margin: 10px 0;
+}
+.buttonIdea{ 
+    background-color: #fff;
+    border: 3px solid #006dba;
+    border-radius: 10px;
+    padding: 8px 30px;
+    font-size: 18px;
+    transition: 0.3s;
+    margin: 0 auto;
+    display: flex;
+}
+.buttonIdea:hover{ 
+    background-color: #006dba;
+    color: #fff;
+    border: 3px solid #fff;
+}
+
+.txtAreaTeian{  
+    padding: 20px;
+    border: 1px solid #000;
+    border-radius: 5px;
+    resize:none;
+    width: 100%;
+    height: 140px;
+}
+.txtAreaTeian:focus{
+    box-shadow: 0px 0px 2px 3px rgba(69, 168, 255, .7);
+}
+/* Color mensaje de los errores */
+.errorMess{
+    color: #E91212;
+}
+/* Color mensaje al enviar los datos */
+.messageExito{
+    color: #1ACE00;
+}
+.fileTeian{
+    display: block;
+    border: 1px solid #000;
+    border-radius: 5px;
+    max-width: 100%;
+    width: 100%;
+    margin: 10px 0 20px 0
+}

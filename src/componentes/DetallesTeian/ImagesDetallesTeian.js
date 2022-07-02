@@ -13,51 +13,28 @@ import Lightbox from 'react-lightbox-component';
 // import plugins if you need
 import lgThumbnail from 'lightgallery/plugins/thumbnail';
 import lgZoom from 'lightgallery/plugins/zoom';
-import { Link } from 'react-router-dom';
+import { Link, useParams } from 'react-router-dom';
 
 const imagenDetalle = styles.imagenDetalle
 
-export default function ImagesDetallesTeian() {
-  const [ideas, setIdeas] = useState([])
-  const onBeforeSlide = (detail) => {
-    const { index, prevIndex } = detail;
-    console.log(index, prevIndex);
-};
-const initialUrl = "https://rickandmortyapi.com/api/character"
+const ImagesDetallesTeian = ({ideas}) => {
 
-  const fetchIdeas = (url) =>{
-    fetch(url)
-    .then(response => response.json())
-    .then(data =>{
-      setIdeas(data.results)
-      console.log(data.results)
-    })
-    .catch(error => console.log(error))
-  }
-  useEffect(() =>{
-    fetchIdeas(initialUrl)
-  }, [])
-  const onInit = () => {
-    console.log('lightGallery has been initialized');
-};
-
+const {name} = useParams()
 
   return ( 
-    <Container >
+    <Container>
+      {ideas.filter(item => item.name === name).map((item, index) => (
     <LightGallery
-        onInit={onInit}
         speed={500}
         plugins={[lgThumbnail, lgZoom]}
     >
-      {
-        ideas.map((item, index)=>(
-          <a href={item.image}>
-            <img src={item.image}/>
+          <a href={item.image} key={index}>
+            <img alt={item.name} src={item.image}/>
           </a>
-        ))
-      }
     </LightGallery>
-</Container>
-        
+    ))}   
+</Container>  
   )
 }
+
+export default  ImagesDetallesTeian

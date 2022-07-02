@@ -16,3 +16,15 @@
     right: 400px;
 }
 
+
+.contAceptados{
+    max-width:100%;
+    overflow:scroll;
+}
+
+@media (max-width:990px){
+    .contAceptados{
+        margin-top: 6em;
+    }
+}
+

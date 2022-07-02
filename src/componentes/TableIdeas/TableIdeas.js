@@ -10,28 +10,41 @@ import {Container} from 'react-bootstrap';
   const columns = [
     {
       field:'id',
-      headerName: 'FECHA',
+      headerName: 'ID',
       headerAlign: 'center',
       headerClassName: 'headerTable'
     },
     {
-      field:'title',
-      headerName: 'TITULO', width: 300,
+      field:'Fecha',
+      headerName: 'Fecha',
       headerAlign: 'center',
       headerClassName: 'headerTable'
     },
     {
-      field: 'body',
-      headerName: 'CATEGORIA', width: 550,
+      field: 'Titulo',
+      headerName: 'Titulo', width: 400,
       headerAlign: 'center',
       headerClassName: 'headerTable'
     },
     {
-      field: 'body',
-      headerName: 'AREA DE SOPORTE', width: 580,
+      field: 'Categoria',
+      headerName: 'CATEGORÍA',width: 400,
       headerAlign: 'center',
       headerClassName: 'headerTable'
     },
+    {
+      field: 'Coach',
+      headerName: 'COACH', width: 400,
+      headerAlign: 'center',
+      headerClassName: 'headerTable'
+    },
+    {
+      field: 'AreaSoporte',
+      headerName: 'AREA DE SOPORTE',width: 380,
+      headerAlign: 'center',
+      headerClassName: 'headerTable'
+    },
+
     
   ]
 const TableIdeas = () =>{
@@ -40,18 +53,21 @@ const TableIdeas = () =>{
 
 
   useEffect(() =>{
-    fetch("https://jsonplaceholder.typicode.com/posts")
+    fetch("http://localhost:3000/Personas")
     .then((data) => data.json())
     .then((data) => setTableData(data))
   }, [])
 
 
   return(
+    <Container className="contTable" >
+      <h1 className="titleTable">Mis Teianes</h1>
       <DataGrid
-      title="MIS TEIANES"
+      name="MIS TEIANES"
       rows={tableData}
       columns={columns}
       components={{ Toolbar: GridToolbar}}
+      checkboxSelection
       componentsProps={{
         toolbar: {
           showQuickFilter: true,
@@ -59,11 +75,11 @@ const TableIdeas = () =>{
         },
       }}
       pageSize={16}
-      checkboxSelection
       experimentalFeatures={{ newEditingApi: true }}
       localeText={esES.components.MuiDataGrid.defaultProps.localeText}
       getRowHeight={() => 'auto'}
       />
+      </Container>
   );
 }
 

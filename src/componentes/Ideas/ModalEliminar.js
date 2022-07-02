@@ -2,7 +2,8 @@ import React, {useState} from 'react';
 import { Button, Modal } from 'react-bootstrap';
 import DeleteIcon from '@mui/icons-material/Delete';
 
-export default function ModalEliminar() {
+const ModalEliminar = () => {
+
   const [show, setShow] = useState(false);
   const [ideas, setIdeas] = useState([])
 
@@ -53,4 +54,6 @@ export default function ModalEliminar() {
     </>
   );
 }
+
+export default ModalEliminar
 

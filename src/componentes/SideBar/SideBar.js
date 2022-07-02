@@ -106,17 +106,6 @@ class SideBar extends React.Component{
                 } activeClassName="activeClicked">
                 <CDBSidebarMenuItem icon="user">PERFIL</CDBSidebarMenuItem>
                 </NavLink>
-                <NavLink exact to="Teian/DetalleTeian" style={({ isActive }) =>
-                  isActive
-                    ? {
-                        color: '#006dba',
-                        background: '#7600dc',
-                        transition: '0.3s',
-                      }
-                    : { color: '#545e6f', background: '#f0f0f0', transition: '0.3s', }
-                } activeClassName="activeClicked">
-                <CDBSidebarMenuItem icon="table">DETALLE TEIAN</CDBSidebarMenuItem>
-                </NavLink>
               </CDBSidebarMenu>
           </CDBSidebarContent>
           

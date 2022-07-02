@@ -89,6 +89,7 @@
     padding: 20px;
     border: 1px solid #000;
     border-radius: 5px;
+    resize:none;
 }
 .txtAreaTeian:focus{
     box-shadow: 0px 0px 2px 3px rgba(69, 168, 255, .7);

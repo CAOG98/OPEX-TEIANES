@@ -1,7 +1,8 @@
 import React, { useEffect, useState } from 'react';
 import 'bootstrap/dist/css/bootstrap.min.css';
-import { Card } from 'react-bootstrap';
+import { Card, Container } from 'react-bootstrap';
 import styles from './DetallesTeian.module.css'
+import { useParams } from 'react-router-dom';
 
 
 const imageBanner = styles.imageBanner
@@ -10,38 +11,24 @@ const titleBanner = styles.titleBanner
 const dateBanner = styles.dateBanner
 
 
-const BannerTeianDetalles = () =>{
-  const [ideas, setIdeas] = useState([])
-
-  const initialUrl = "https://rickandmortyapi.com/api/character"
-
-  const fetchIdeas = (url) =>{
-    fetch(url)
-    .then(response => response.json())
-    .then(data =>{
-      setIdeas(data.results)
-      console.log(data.results)
-    })
-    .catch(error => console.log(error))
-  }
-
-  useEffect(() =>{
-    fetchIdeas(initialUrl)
-  }, [])
-  return(
+const BannerTeianDetalles = ({ ideas}) => {
+  const { name } = useParams()
+  return (
     <>
-      <Card className={bannerCont}>
-          <Card.Img src="../imagen.jpeg" alt="Card image" className={imageBanner} />
+    {ideas.filter(item => item.name === name).map((item, index) => (
+        <Card key={index} className={bannerCont}>
+          <Card.Img src={item.image} alt="Card image" className={imageBanner} />
           <Card.ImgOverlay>
-          <span className="badge rounded-pill bg-success text-white" style={{marginBottom:"10px"}}>Aceptada</span>
-              <h3 className={titleBanner}>Acercamiento de la metodología de ideas de mejora a personal operativo</h3>
-              <div className={dateBanner}>
-                <Card.Text>Ultima Actualización:</Card.Text>
-                <Card.Text>23/06/2022</Card.Text>
-              </div>
+            <span className="badge rounded-pill bg-success text-white" style={{ marginBottom: "10px" }}>{item.status}</span>
+            <h3 className={titleBanner}>{item.name}</h3>
+            <div className={dateBanner}>
+              <Card.Text>Ultima Actualización:</Card.Text>
+              <Card.Text>23/06/2022</Card.Text>
+            </div>
           </Card.ImgOverlay>
-      </Card>
+        </Card>
+      ))}
     </>
   );
 }
-  export default BannerTeianDetalles
+export default BannerTeianDetalles

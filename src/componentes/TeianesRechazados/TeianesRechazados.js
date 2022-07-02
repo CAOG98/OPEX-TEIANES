@@ -1,12 +1,18 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState,lazy,Suspense } from 'react';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import { Accordion, Button, Card, Container} from 'react-bootstrap';
 import Pagination from '../Ideas/Pagination';
-import IdeasCanceladas from '../Ideas/IdeasCanceladas';
+// import IdeasCanceladas from '../Ideas/IdeasCanceladas';
+import styles from './TeianesRechazados.module.css'
+
+import Cargando from '../Ideas/Cargando'
+const IdeasCanceladas = lazy(() => import('../Ideas/IdeasCanceladas'))
 
 const TeianesRechazados = () =>{
   const [ideas, setIdeas] = useState([])
   const [info, setInfo] = useState({})
+
+  const contRechazados = styles.contRechazados
 
   const initialUrl = "https://rickandmortyapi.com/api/character"
 
@@ -39,10 +45,12 @@ const TeianesRechazados = () =>{
 
   return(
     <>
-    <Container style={{maxWidth:"100%",overflow:"scroll"}}>
+    <Container style={{maxWidth:"100%",overflow:"scroll"}} className={contRechazados} >
     <h1 className="text-center">TEIANES RECHAZADOS</h1>
       <Pagination prev={info.prev} next={info.next} onPrevious={onPrevious} onNext={onNext} />
+      <Suspense fallback={<Cargando/>}>
       <IdeasCanceladas ideas ={ideas} DeleteItems={DeleteItems}/>
+      </Suspense>
       <Pagination prev={info.prev} next={info.next} onPrevious={onPrevious} onNext={onNext} />
     </Container>
     

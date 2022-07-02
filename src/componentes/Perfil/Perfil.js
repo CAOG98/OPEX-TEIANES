@@ -14,10 +14,13 @@ const Perfil = () =>{
             <Card.Body>
                 <Card.Title>Nombre</Card.Title>
                 <Card.Text>
-                Puesto: <p>Pedro</p>
+                Niombre: <p>PEPE</p>
                 </Card.Text>
                 <Card.Text>
-                Área: <p>Mantenimiento</p>
+                Puesto: <p>Gerente General</p>
+                </Card.Text>
+                <Card.Text>
+                Área: <p>INGENIERIA</p>
                 </Card.Text>
                 <Card.Text>
                 Correo: <p>Pedro@hotmail.com</p>

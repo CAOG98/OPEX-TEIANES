@@ -1,6 +1,4 @@
-
-
-
+import HttpCliente from '../Servicios/HttpCliente'
 
 
 export const loginUsuario = usuario =>{

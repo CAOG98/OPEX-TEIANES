@@ -1,3 +1,13 @@
+/* posicionar el navbar fixed */
+.navBarBody{
+    position: fixed;
+    top: 0;
+    width: 100%;
+    background-color: #fff;
+    z-index: 1000;
+    border-bottom: 1px solid #000;
+  }
+
 /* Tamaño de la imagen */
 .imageLogo{
     margin: 0 auto;

@@ -72,3 +72,15 @@
         font-size: 0.6em;
     }
 }
+
+/* Responsive cards Rechazadas */
+.contRechazados{
+    max-width:100%;
+    overflow:scroll;
+}
+
+@media (max-width:990px){
+    .contRechazados{
+        margin-top: 6em;
+    }
+}

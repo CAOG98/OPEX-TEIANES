@@ -7,30 +7,28 @@ import { Formik, Form, Field, ErrorMessage } from "formik";
 import axios from 'axios';
 import 'typeface-quicksand';
 
+const categ = [
+    {
+        "nombre" : "Mejora Continua",
+        "categoria": ["Christian", "Benajmin", "Chuy"]
+    },
+    {
+        "nombre" : "5s",
+        "categoria": ["Melissa", "Alex", "Pedro"]
+    }
+]
+
+console.log(categ)
+
 const FormIdea = () =>{
     //Hooks validacion de formulario
     const[formularioEnviado, cambiarFormularioEnviado] = useState(false)
+    const [categorias, setCategorias] = useState(-1)
 
-    // Hooks para subir archivos
-    // const[archivos, setArchivos] = useState(null)
-    // const subirArchivos=e=>{
-    //     setArchivos(e)
-    // }
-
-    // const insertarArchivos=async()=>{
-    //     const f = new FormData();
-        
-    //     for(let index = 0; index < archivos.length; index++){
-    //         f.append("files",archivos[index]);
-
-    //     }
-    //     await axios.post("https://localhost:7267/api/Archivos", f).then(response=>{
-    //         console.log(Response.data);
-    //     }).catch(error=>{
-    //         console.log(error)
-    //     })
-    // }
-
+    const handlerCargarCoach = function (e){
+        const opcion = e.target.value
+        setCategorias(opcion)
+    }
 
     // Estilos
     const contFormIdea = styles.contFormIdea
@@ -63,8 +61,6 @@ const FormIdea = () =>{
                     let errores ={};
                     if(!valores.teian){
                         errores.teian ='Porfavor ingresa un nombre'
-                    }else if(!/^[a-zA-ZÀ-ÿ\s]{1,109}$/.test(valores.teian)){
-                        errores.teian = 'El nombre solo puede contener letras y espacios'
                     }
                     if(!valores.categoria){
                         errores.categoria ='Porfavor elije una CATEGORÍA'
@@ -90,7 +86,7 @@ const FormIdea = () =>{
                 {({values,errors,touched}) =>(
                     <Form>
                         <div className={titleTeian}>
-                            <label htmlFor="TEIAN">TITULO DEL TEIAN</label>
+                            <label htmlFor="TEIAN">TITULO DEL TEIAN*</label>
                             <Field className={titleTeianInput} type ="text" id="nombre" name="teian" placeholder="Aquí va el titulo de tu idea" maxlength="109"/>
                             <ErrorMessage name ="teian" component={() =>(
                                 <div className={errorMess}>{errors.teian}</div>
@@ -98,11 +94,13 @@ const FormIdea = () =>{
                         </div>
                         <div className={inputTeian}>
                            
-                            <Field as="select" name="categoria" className={selectOption}>
-                            <option value="">CATEGORÍA (Selecciona la categoría de tu idea)</option>
-                                <option value="CATEGORIA1">CATEGORIA1</option>
-                                <option value="CATEGORIA2">CATEGORIA2</option>
-                                <option value="CATEGORIA3">CATEGORIA3</option>
+                            <Field as="select" name="categoria" className={selectOption} onClick={handlerCargarCoach}>
+                            <option value={-1}>CATEGORÍA (Selecciona la categoría de tu idea)*</option>
+                                {
+                                    categ.map((item, i) =>(
+                                        <option key={"categoria" + i} value ={i}>{item.nombre}</option>
+                                    ))
+                                }
                             </Field>
                             <ErrorMessage name ="categoria" component={() =>(
                                 <div className={errorMess}>{errors.categoria}</div>
@@ -110,10 +108,16 @@ const FormIdea = () =>{
 
                             
                             <Field as="select" name="coach" className={selectOption}>
-                            <option value="">COACH (El coach es el guía para llevar tu idea de mejora)</option>
-                                <option value="COACH1">COACH1</option>
-                                <option value="COACH2">COACH2</option>
-                                <option value="COACH3">COACH3</option>
+                            <option value="">COACH (El coach es el guía para llevar tu idea de mejora)*</option>
+                                {
+                                    categorias > -1 &&
+                                    (
+                                        categ[categorias].categoria.map((item,i)=>(
+                                            <option key={"categoria" + i} value={i}>{item}</option>
+                                        ))
+                                    )
+                                }
+                                
                             </Field>
                             <ErrorMessage name ="coach" component={() =>(
                                 <div className={errorMess}>{errors.coach}</div>
@@ -127,8 +131,8 @@ const FormIdea = () =>{
                             </Field>
                         </div>
                         <div className={ideaTeian}>
-                            <label htmlFor="TEIAN">ESCRIBE TU TEIAN</label>
-                            <Field className={txtAreaTeian} name="mensajeTeian" as="textarea" maxlength="800" placeholder="Aquí escribe tu idea de mejora"/>
+                            <label htmlFor="TEIAN">ESCRIBE TU TEIAN*</label>
+                            <Field className={txtAreaTeian} name="mensajeTeian" as="textarea" placeholder="Aquí escribe tu idea de mejora"/>
                             <ErrorMessage name ="mensajeTeian" component={() =>(
                                 <div className={errorMess}>{errors.mensajeTeian}</div>
                                 )}/>
