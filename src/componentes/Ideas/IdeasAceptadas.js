@@ -52,7 +52,7 @@ const Cargando = () => {
                 <Card.Body>
                   <Card.Title>{item.name}</Card.Title>
                   <Card.Text>
-                   {item.gender}
+                   {item.episode}
                   </Card.Text>
                   <div style={{display:"flex", justifyContent:"space-between"}}>
                     <Button variant="contained" style={{backgroundColor:'#445CF5'}} onClick={() => Implementada()}>Implementar</Button>

@@ -27,6 +27,7 @@ const AcceptedTeianes = () =>{
     .then(data =>{
       setIdeas(data.results)
       setInfo(data.info)
+      console.log(data.results)
     })
     .catch(error => console.log(error))
   }

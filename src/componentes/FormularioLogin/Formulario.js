@@ -9,32 +9,9 @@ import { ModalFooter } from 'react-bootstrap';
 import Marquee from "react-fast-marquee";
 import { Outlet } from "react-router-dom";
 import { AiOutlineEyeInvisible, AiOutlineEye } from 'react-icons/ai'
-import { loginUsuario } from "../../Actions/UsuarioAction";
 
 
 const Formulario = () => {
-    // METODOS LOGIN
-    const [usuario, setUsuario] = useState({
-        numeroTrabajador: '',
-        contraseña: ''
-    })
-    const ingresarValoresMemoria = e => {
-        const { name, value } = e.target; 
-        setUsuario(anterior => ({
-            ...anterior,
-            [name]: value
-
-        }))
-    }
-    const loginUsuarioBoton = e => {
-        e.preventDefault();
-        loginUsuario(usuario).then(response => {
-            console.log('Login exitoso', response)
-            window.localStorage.setItem('token_seguridad', response.data.token);
-        })
-        setImagen(prevState => !prevState)
-    }
-    // METODOS LOGIN END
 
     // Hook
     const [formularioEnviado, cambiarFormularioEnviado] = useState(false)
@@ -76,21 +53,21 @@ const Formulario = () => {
                         numeroTrabajador: '',
                         contraseña: ''
                     }}
-                    // Validacion nombre
-                    // validate={(valores) => {
-                    //     let errores = {};
-                    //     if (!valores.numeroTrabajador) {
-                    //         errores.numeroTrabajador = 'Porfavor ingresa el numero de trabajador'
-                    //     } else if (!/^[0-9]{1,40}$/.test(valores.numeroTrabajador)) {
-                    //         errores.numeroTrabajador = 'El numero del trabajador solo puede contener numeros'
-                    //     }
-                    //     if (!valores.contraseña) {
-                    //         errores.contraseña = 'Porfavor ingresa una contraseña valida'
-                    //     } else if (!/^[a-zA-Z0-9]+$/.test(valores.contraseña)) {
-                    //         errores.contraseña = 'La contraseña solo puede contener letras y numeros'
-                    //     }
-                    //     return errores
-                    // }}
+                    Validacion nombre
+                    validate={(valores) => {
+                        let errores = {};
+                        if (!valores.numeroTrabajador) {
+                            errores.numeroTrabajador = 'Porfavor ingresa el numero de trabajador'
+                        } else if (!/^[0-9]{1,40}$/.test(valores.numeroTrabajador)) {
+                            errores.numeroTrabajador = 'El numero del trabajador solo puede contener numeros'
+                        }
+                        if (!valores.contraseña) {
+                            errores.contraseña = 'Porfavor ingresa una contraseña valida'
+                        } else if (!/^[a-zA-Z0-9]+$/.test(valores.contraseña)) {
+                            errores.contraseña = 'La contraseña solo puede contener letras y numeros'
+                        }
+                        return errores
+                    }}
                     // EN la funcion onSubmit podemos tomar los datos y enviarlos a una api o una base de datos
                     onSubmit={(valores, { resetForm }) => {
                         resetForm()
@@ -111,14 +88,14 @@ const Formulario = () => {
                             <div className={contFormInput}>
                                 <label htmlFor="Contraseña">Contraseña</label>
                                 <div className={passwordField}>
-                                    <Field className={inputFormPassword} type={eye ? "text" : "password"} id="password" name="contraseña" placeholder="Colocar la contraseña" autoComplete="off" value={usuario.contraseña} onChange={ingresarValoresMemoria}/>
+                                    <Field className={inputFormPassword} type={eye ? "text" : "password"} id="password" name="contraseña" placeholder="Colocar la contraseña" autoComplete="off" />
                                     <Button className={btnHidePassword} onClick={toggleBtn}>{eye ? <AiOutlineEyeInvisible /> : <AiOutlineEye />}</Button>
                                 </div>
                                 <ErrorMessage name="contraseña" component={() => (
                                     <div className={errorMess}>{errors.contraseña}</div>
                                 )} />
                             </div>
-                            <button className={buttonLogin} type="submit" onClick={loginUsuarioBoton}>Iniciar Sesión</button>
+                            <button type="submit" className={buttonLogin}>Iniciar Sesión</button>
                             {formularioEnviado && <p className={messageExito}>Formulario enviado con exito!</p>}
                             <div className={footCard}>
                                 <img className={imageFootCard} src={gerberLogo} alt='gerber' />

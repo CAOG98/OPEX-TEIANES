@@ -40,21 +40,23 @@ const App = () => {
   }, [])
 
   return(
-  <div className={cont}>
-    <SideBar />
-    <NavBar />
-    <Routes>
-      <Route path="/" element={<FormularioLogin />} />
-      <Route path="/Login" element={<FormularioLogin />} />
-      <Route path="Teian/Formideas" element={<FormIdea />} />
-      <Route path="Teian/TableIdeas" element={<TableIdeas />} />
-      <Route path="Teian/ApproveIdeas" element={<ApprovedIdeas />} />
-      <Route path="Teian/DetalleTeian/:name" element={<DetallesTeian ideas={ideas} />} />
-      <Route path="Teian/TeianesAccepted" element={<AcceptedTeianes />} />
-      <Route path="Teian/TeianesRechazados" element={<TeianesRechazados />} />
-      <Route path="Teian/Perfil" element={<Perfil />} />
-      <Route path="Teian/Dudas" element={<Dudas />} />
-    </Routes>
-  </div>
+  // <div className={cont}>
+  //   <SideBar />
+  //   <NavBar />
+  //   <Routes>
+  //     <Route path="/" element={<FormularioLogin />} />
+  //     <Route path="/Login" element={<FormularioLogin />} />
+  //     <Route path="Teian/Formideas" element={<FormIdea />} />
+  //     <Route path="Teian/TableIdeas" element={<TableIdeas />} />
+  //     <Route path="Teian/ApproveIdeas" element={<ApprovedIdeas />} />
+  //     <Route path="Teian/DetalleTeian/:name" element={<DetallesTeian ideas={ideas} />} />
+  //     <Route path="Teian/TeianesAccepted" element={<AcceptedTeianes />} />
+  //     <Route path="Teian/TeianesRechazados" element={<TeianesRechazados />} />
+  //     <Route path="Teian/Perfil" element={<Perfil />} />
+  //     <Route path="Teian/Dudas" element={<Dudas />} />
+  //   </Routes>
+  // </div>
+
+  <LoginSecundario/>
 )}
 export default App
