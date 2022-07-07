@@ -8,6 +8,7 @@ import DeleteIcon from '@mui/icons-material/Delete';
 import { Link } from 'react-router-dom';
 import Backdrop from '@mui/material/Backdrop';
 import CircularProgress from '@mui/material/CircularProgress';
+import formatDate from './formatFecha';
 
 
 // Metdo de CARGANDO al momento de dar click en la tarjeta para mandarte a
@@ -40,19 +41,21 @@ const IdeasCanceladas = ({ideas = [], DeleteItems}) =>{
           ideas.map((item, index) =>(
             <div key={index} className="column" >
               <Card style={{ width: '20rem', margin:"25px", borderRadius:"10px", boxShadow: "rgb(38, 57, 77) 0px 20px 20px -10px"}}>
-              <Link to={`/Teian/DetalleTeian/${item.name}`} style={{textDecoration:"none", color:"#000"}} onClick={Cargando}>
-              { imagen ?(
+              <Link to={`/Teian/DetalleTeian/${item.titulO_IDEA}`} style={{textDecoration:"none", color:"#000"}} onClick={Cargando}>
+              { item.archivos.length === 0 ?(
                   <Card.Img variant="top" src={notFound} />
                 ) : (
-                  <Card.Img variant="top" src={item.image} />
+                  <Card.Img variant="top" src={item.archivos} />
                 )
                 }
                 </Link>
-                <span class="badge rounded-pill bg-danger" style={{position:"absolute", margin:"10px"}}>{item.status}</span>
+                <span class="badge rounded-pill bg-danger" style={{position:"absolute", margin:"10px"}}>{item.iD_ESTATUS}</span>
                 <Card.Body>
-                  <Card.Title>{item.name}</Card.Title>
+                  <Card.Title>{item.titulO_IDEA}</Card.Title>
                   <Card.Text>
-                   {item.gender}
+                  {
+                    formatDate(item.fechA_CREACION_IDEA)
+                  }
                   </Card.Text>
                   <div style={{display:"flex", justifyContent:"space-between"}}>
                     <Button variant="secondary" style={{marginRight:"10px"}}>Deshacer</Button>

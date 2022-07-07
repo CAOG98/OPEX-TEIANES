@@ -5,6 +5,7 @@ import { Button, Input} from '@mui/material';
 import { Link } from 'react-router-dom';
 import CircularProgress from '@mui/material/CircularProgress';
 import Backdrop from '@mui/material/Backdrop';
+import formatDate from './formatFecha';
 
 // Metdo de CARGANDO
 const Cargando = () => {
@@ -32,19 +33,21 @@ const Ideas = ({ideas = []}) =>{
           ideas.map((item, index) =>(
             <div key={index} className="column" >
               <Card style={{ width: '20rem', margin:"25px", borderRadius:"10px", boxShadow: "rgb(38, 57, 77) 0px 20px 20px -10px"}}>
-              <Link to={`/Teian/DetalleTeian/${item.name}`} style={{textDecoration:"none", color:"#000"}} onClick={Cargando}>
-              { imagen ?(
+              <Link to={`/Teian/DetalleTeian/${item.titulO_IDEA}`} style={{textDecoration:"none", color:"#000"}} onClick={Cargando}>
+              { item.archivos.length === 0 ?(
                   <Card.Img variant="top" src={notFound} />
                 ) : (
-                  <Card.Img variant="top" src={item.image} />
+                  <Card.Img variant="top" src={item.archivos} />
                 )
                 }
                 </Link>
-                <span class="badge rounded-pill bg-secondary" style={{position:"absolute", margin:"10px"}}>{item.status}</span>
+                <span className="badge rounded-pill bg-secondary" style={{position:"absolute", margin:"10px"}}>{item.iD_ESTATUS}</span>
                 <Card.Body>
-                  <Card.Title>{item.name}</Card.Title>
+                  <Card.Title>{item.titulO_IDEA}</Card.Title>
                   <Card.Text>
-                   {item.gender}
+                  {
+                    formatDate(item.fechA_CREACION_IDEA)
+                  }
                   </Card.Text>
                   <div style={{display:"flex", justifyContent:"space-between"}}>
                   <Button variant="contained" style={{backgroundColor:'#20BA81'}} >Aceptar</Button>

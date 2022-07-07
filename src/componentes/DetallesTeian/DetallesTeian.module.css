@@ -1,99 +1,97 @@
-.bannerCont{
-    width:100%;
-  height:29%; 
+.bannerCont {
+    width: 100%;
+    height: 24%;
 }
-.imageBanner{
-    filter:contrast(30%);;
-    object-fit:cover;
+
+.imageBanner {
+    filter: contrast(30%);
+    ;
+    object-fit: cover;
     object-position: center;
-    width:100%;
-    height:100%;
-    box-shadow: 1px 1px 9x 8px ;
+    width: 100%;
+    height: 100%;
+    box-shadow: 1px 1px 9x 8px;
 }
-.titleBanner{
+
+.titleBanner {
     color: #fff;
     padding-top: 3%;
     font-size: 22px;
 }
-.dateBanner{
+
+.dateBanner {
     margin-top: 2%;
     color: #fff;
 }
+
 @media (max-width: 990px) {
-    .imageBanner{
-        height: 200px;
-    }
-    .bannerCont{
-      margin-top: 5em;
-      height: 25%;
+
+    .bannerCont {
+        margin-top: 5em;
+        height: 25%;
     }
 }
 
-@media (max-width: 425px) {
-    .imageBanner{
-        height: 200px;
-    }
-}
 
-.imagenDetalle{
+.imagenDetalle {
     max-width: 100%;
     width: 80%;
 }
 
 /* DetallesInfo */
-.tituloCategorias{
+.fondoDetalleIdea {
+    background-color: #f5f5f5;
+}
+
+.tituloCategorias {
     margin-top: 20px;
 }
-.DetallesImageGeneral{
-    margin: auto;
+
+.DetallesImageGeneral {
+    width: 50%;
+    margin: 0 auto;
 }
+
 @media (max-width: 1113px) {
-    .DetallesImageGeneral{
-       width: 50%;
+    .DetallesImageGeneral {
+        width: 50%;
     }
 }
+
 @media (max-width:990px) {
-    .DetallesInfoGeneral{
-        margin: auto;
-        width:100%
+    .DetallesInfoGeneral {
+        margin: 20px auto;
+        width: 100%
     }
-    .DetallesInfoCategorias{
+
+    .DetallesInfoCategorias {
         display: flex;
         justify-content: center;
     }
-    .bodyDetalles{
+
+    .bodyDetalles {
         display: flex;
         flex-direction: column;
-        
+
     }
-    .DetallesImageGeneral{
-        margin-top: 20px;
-        max-width: 100%;
-        width: 100%;
-    }
-    .fondoDetalleIdea{
+
+    .fondoDetalleIdea {
         margin-top: 3em;
+        background-color: #f5f5f5;
     }
 }
 
 
-@media (max-width: 346px) {
-    .imageBanner{
-      height:200px;
-    }
-    .bannerCont{
-        height: 30%;
-      }
-
-}
+@media (max-width: 346px) {}
 
 /* Estilos Formulario pestaña TEIAN IMPLEMENTADO */
-.ideaTeian{
+.ideaTeian {
     display: flex;
     flex-direction: column;
     margin: 10px 0;
 }
-.buttonIdea{ 
+
+.buttonIdea {
     background-color: #fff;
     border: 3px solid #006dba;
     border-radius: 10px;
@@ -103,36 +101,71 @@
     margin: 0 auto;
     display: flex;
 }
-.buttonIdea:hover{ 
+
+.buttonIdea:hover {
     background-color: #006dba;
     color: #fff;
     border: 3px solid #fff;
 }
 
-.txtAreaTeian{  
+.txtAreaTeian {
     padding: 20px;
     border: 1px solid #000;
     border-radius: 5px;
-    resize:none;
+    resize: none;
     width: 100%;
     height: 140px;
 }
-.txtAreaTeian:focus{
+
+.txtAreaTeian:focus {
     box-shadow: 0px 0px 2px 3px rgba(69, 168, 255, .7);
 }
+
 /* Color mensaje de los errores */
-.errorMess{
+.errorMess {
     color: #E91212;
 }
+
 /* Color mensaje al enviar los datos */
-.messageExito{
+.messageExito {
     color: #1ACE00;
 }
-.fileTeian{
+
+.fileTeian {
     display: block;
     border: 1px solid #000;
     border-radius: 5px;
     max-width: 100%;
     width: 100%;
     margin: 10px 0 20px 0
+}
+
+@media (max-width:448px) {
+    .imageCarrousel {
+        margin: 0 0px 0 -90px;
+    }
+}
+
+.bodyFiles {
+    height: 25vh;
+    overflow: scroll;
+}
+
+.bodyFiles::-webkit-scrollbar {
+    width: 12px;
+    /* width of the entire scrollbar */
+}
+
+.bodyFiles::-webkit-scrollbar-track {
+    background: #f5f5f5;
+    /* color of the tracking area */
+}
+
+.bodyFiles::-webkit-scrollbar-thumb {
+    background-color: #006dba;
+    /* color of the scroll thumb */
+    border-radius: 20px;
+    /* roundness of the scroll thumb */
+    border: 3px solid #f5f5f5;
+    /* creates padding around scroll thumb */
 }

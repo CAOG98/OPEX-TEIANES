@@ -12,9 +12,8 @@ const Perfil = () =>{
         <Card className="text-center" style={{borderRadius:"10px"}}>
             <Card.Header style={{backgroundColor:"#0d6efd", color:"#fff"}} >PERFIL</Card.Header>
             <Card.Body>
-                <Card.Title>Nombre</Card.Title>
                 <Card.Text>
-                Niombre: <p>PEPE</p>
+                Nombre: <p>PEPE</p>
                 </Card.Text>
                 <Card.Text>
                 Puesto: <p>Gerente General</p>

@@ -115,3 +115,9 @@
     max-width: 100%;
     width: 100%;
 }
+
+@media (max-width: 990px){
+    .contFormIdea{
+        margin-top: 100px ;
+    }
+}

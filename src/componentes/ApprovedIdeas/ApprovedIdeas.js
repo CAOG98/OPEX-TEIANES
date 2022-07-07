@@ -9,44 +9,36 @@ const Ideas = lazy(() => import('../Ideas/Ideas'))
 
 
 const ApprovedIdeas = () =>{
-  const [ideas, setIdeas] = useState([])
-  const [info, setInfo] = useState({})
-
   const contAprovadas = styles.contAprovadas
 
-  const initialUrl = "https://rickandmortyapi.com/api/character"
+  const [ideas, setIdeas] = useState([])
+
+  const initialUrl = "http://10.30.2.167:4000/api/ideas"
 
   const fetchIdeas = (url) =>{
     fetch(url)
     .then(response => response.json())
     .then(data =>{
-      setIdeas(data.results)
-      setInfo(data.info)
+      setIdeas(data)
+      console.log(data)
     })
     .catch(error => console.log(error))
   }
-  
-  const onPrevious = () =>{
-    fetchIdeas(info.prev)
-  }
-  const onNext = () =>{
-    fetchIdeas(info.next)
-  }
-
 
   useEffect(() =>{
     fetchIdeas(initialUrl)
   }, [])
 
+
   return(
     <>
     <Container className={contAprovadas}>
     <h1 className="text-center">TEIANES POR APROBAR</h1>
-      <Pagination prev={info.prev} next={info.next} onPrevious={onPrevious} onNext={onNext} />
+      {/* <Pagination prev={info.prev} next={info.next} onPrevious={onPrevious} onNext={onNext} /> */}
       <Suspense fallback={<Cargando/>}>
       <Ideas ideas ={ideas}/>
       </Suspense>
-      <Pagination prev={info.prev} next={info.next} onPrevious={onPrevious} onNext={onNext} />
+      {/* <Pagination prev={info.prev} next={info.next} onPrevious={onPrevious} onNext={onNext} /> */}
     </Container>
     
     </>

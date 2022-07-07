@@ -24,39 +24,40 @@ const App = () => {
   const [ideas, setIdeas] = useState([])
   const [info, setInfo] = useState({})
 
-  const initialUrl = "https://rickandmortyapi.com/api/character"
+  const initialUrl = "http://10.30.2.167:4000/api/ideas"
 
   const fetchIdeas = (url) =>{
     fetch(url)
     .then(response => response.json())
     .then(data =>{
-      setIdeas(data.results)
-      setInfo(data.info)
+      setIdeas(data)
+      console.log(data)
     })
     .catch(error => console.log(error))
   }
+
   useEffect(() =>{
     fetchIdeas(initialUrl)
   }, [])
 
   return(
-  // <div className={cont}>
-  //   <SideBar />
-  //   <NavBar />
-  //   <Routes>
-  //     <Route path="/" element={<FormularioLogin />} />
-  //     <Route path="/Login" element={<FormularioLogin />} />
-  //     <Route path="Teian/Formideas" element={<FormIdea />} />
-  //     <Route path="Teian/TableIdeas" element={<TableIdeas />} />
-  //     <Route path="Teian/ApproveIdeas" element={<ApprovedIdeas />} />
-  //     <Route path="Teian/DetalleTeian/:name" element={<DetallesTeian ideas={ideas} />} />
-  //     <Route path="Teian/TeianesAccepted" element={<AcceptedTeianes />} />
-  //     <Route path="Teian/TeianesRechazados" element={<TeianesRechazados />} />
-  //     <Route path="Teian/Perfil" element={<Perfil />} />
-  //     <Route path="Teian/Dudas" element={<Dudas />} />
-  //   </Routes>
-  // </div>
+  <div className={cont}>
+    <SideBar />
+    <NavBar />
+    <Routes>
+      <Route path="/" element={<FormularioLogin />} />
+      <Route path="/Login" element={<FormularioLogin />} />
+      <Route path="Teian/Formideas" element={<FormIdea />} />
+      <Route path="Teian/TableIdeas" element={<TableIdeas />} />
+      <Route path="Teian/ApproveIdeas" element={<ApprovedIdeas />} />
+      <Route path="Teian/DetalleTeian/:titulo_Idea" element={<DetallesTeian ideas={ideas} />} />
+      <Route path="Teian/TeianesAccepted" element={<AcceptedTeianes />} />
+      <Route path="Teian/TeianesRechazados" element={<TeianesRechazados />} />
+      <Route path="Teian/Perfil" element={<Perfil />} />
+      <Route path="Teian/Dudas" element={<Dudas />} />
+    </Routes>
+  </div>
 
-  <LoginSecundario/>
+  // <LoginSecundario/>
 )}
 export default App

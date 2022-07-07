@@ -2,6 +2,8 @@ import React, { useEffect, useState } from "react"
 import { Form, Button, Container } from "react-bootstrap";
 import loginService from './login'
 import FormIdea from "../componentes/FormIdea";
+import jwt from 'jwt-decode'
+import styles from './LoginSecundario.module.css'
 
 
 const LoginSecundario = () => {
@@ -43,6 +45,9 @@ const LoginSecundario = () => {
             // noteService.setToken(user.token)
 
             console.log(user)
+            const token = user.token;
+            const user2 = jwt(token); // decode your token here
+            console.log(user2)
             setUser(user)
             setUsername('')
             setPassword('')
@@ -50,14 +55,16 @@ const LoginSecundario = () => {
             setErrorMessage('Wrong credentials')
             setTimeout(() => {
                 setErrorMessage(null)
+                alert('Contraseña o Usuario incorrecto')
             }, 5000)
         }
     }
 
-
     const renderLoginForm = () => {
+        const LoginCont = styles.LoginCont
+
         return (
-            <Container maxWidth="xs">
+            <Container className={LoginCont} >
                 <p message={errorMessage} />
                 <Form onSubmit={handleLogin} >
                     <Form.Group className="mb-3" controlId="formBasicEmail">
@@ -88,7 +95,7 @@ const LoginSecundario = () => {
         <>
             {
                 user
-                    ? renderNewPage()
+                    ? <FormIdea />
                     : renderLoginForm()
             }
         </>

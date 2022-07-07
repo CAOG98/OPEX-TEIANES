@@ -17,28 +17,18 @@ const contAceptados = styles.contAceptados
 
 const AcceptedTeianes = () =>{
   const [ideas, setIdeas] = useState([])
-  const [info, setInfo] = useState({})
 
-  const initialUrl = "https://rickandmortyapi.com/api/character"
+  const initialUrl = "http://10.30.2.167:4000/api/ideas"
 
   const fetchIdeas = (url) =>{
     fetch(url)
     .then(response => response.json())
     .then(data =>{
-      setIdeas(data.results)
-      setInfo(data.info)
-      console.log(data.results)
+      setIdeas(data)
+      console.log(data)
     })
     .catch(error => console.log(error))
   }
-  
-  const onPrevious = () =>{
-    fetchIdeas(info.prev)
-  }
-  const onNext = () =>{
-    fetchIdeas(info.next)
-  }
-
 
   useEffect(() =>{
     fetchIdeas(initialUrl)
@@ -50,12 +40,9 @@ const AcceptedTeianes = () =>{
       <div className={titleTeianCont}>
         <h1 className={titleTeian}>TEIANES ACEPTADOS</h1>
       </div>
-      
-      <Pagination prev={info.prev} next={info.next} onPrevious={onPrevious} onNext={onNext} />
       <Suspense fallback={<Cargando/>}>
       <IdeasAceptadas ideas ={ideas}/>
       </Suspense>
-      <Pagination prev={info.prev} next={info.next} onPrevious={onPrevious} onNext={onNext} />
     </Container>
     </>
   );
