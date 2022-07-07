@@ -121,3 +121,10 @@
         margin-top: 100px ;
     }
 }
+
+/* Imagen en el teian */
+.imageLogo{
+    display: block;
+    max-width: 100%;
+    width: 100px;
+}

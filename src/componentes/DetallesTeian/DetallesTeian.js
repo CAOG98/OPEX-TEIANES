@@ -77,35 +77,23 @@ const DetallesTeian = ({ ideas }) => {
   // Para subir multiples archivos
   // const [archivos, setArchivos] = useState(null)
   // const subirArchivos = e => {
-  //   setArchivos(e)
+  //     setArchivos(e)
   // }
-  // const insertarArchivos = async () => {
-  //   const f = new FormData()
-
-  //   for (let index = 0; index < archivos.length; index++) {
-  //     f.append("files", archivos[index])
-  //   }
-  //   await axios.post("https://rickandmortyapi.com/api/character", f).then(response => {
-  //     console.log(response.data)
-  //   }).catch(error => {
-  //     console.log(error)
-  //   })
+  // const insertarArchivos = async (valores) => {
+  //     const f = new FormData()
+  //     console.log(f)
+  //     for (let index = 0; index < archivos.length; index++) {
+  //         f.append("archivito", archivos[index])
+  //         console.log(f)
+  //     }
+  //     await axios.post(`http://10.30.2.167:4000/api/Ideas?titulo=${valores.teian}` + `&id_user=${user2.nameid}` +
+  //         `&id_coach=${2}` + `&idea_texto=${valores.mensajeTeian}` + `&id_categoria=${1}`, f, { headers: { 'Content-Type': 'application/json' } }).then(response => {
+  //             console.log(response.data)
+  //         }).catch(error => {
+  //             console.log(error)
+  //         })
   // }
 
-
-  // DROPFILES SIRVE PARA SUBIR ARCHIVOS
-  // specify upload params and url for your files
-  const getUploadParams = ({ meta }) => { return { url: 'https://httpbin.org/post' } }
-
-  // called every time a file's `status` changes
-  const handleChangeStatus = ({ meta, file }, status) => { console.log(status, meta, file) }
-
-  // receives array of files that are done uploading when submit button is clicked
-  const handleSubmit = (files, allFiles) => {
-    console.log(files.map(f => f.meta))
-    allFiles.forEach(f => f.remove())
-  }
-  
   // DROPFILES END AQUI TERMINA EL CODIGO DE DROPFILES
 
   const handleChange = (event, newValue) => {
@@ -181,17 +169,9 @@ const DetallesTeian = ({ ideas }) => {
                 {({ values, errors, touched }) => (
                   <Form>
                     {/* <Field accept="image/jpeg,image/png,image/jpe,video/mp4, video/AVI, video/WMV" type="file" name="files" multiple onChange={(e) => subirArchivos(e.target.files)} /> */}
-                    <Container className={bodyFiles}>
-                      <Dropzone
-                        inputContent="Arrastra tus archivos o has click para buscar"
-                        getUploadParams={getUploadParams}
-                        onChangeStatus={handleChangeStatus}
-                        onSubmit={handleSubmit}
-                        accept="image/*,video/*"
-                        maxFiles="4"
-                        minSizeBytes="0"
-                      />
-                    </Container>
+  
+                    {/* <input accept="image/*,video/*" type="file" name="files" multiple onChange={(e) => subirArchivos(e.target.files)} style={{ maxWidth: "100%" }} /> */}
+
                     <div className={ideaTeian}>
                       <label htmlFor="TEIAN">DESCRIPCIÓN IDEA DE MEJORA IMPLEMENTADA*</label>
                       <Field className={txtAreaTeian} name="mensajeTeian" as="textarea" placeholder="Escribe detalladamente como se logro esta idea" />

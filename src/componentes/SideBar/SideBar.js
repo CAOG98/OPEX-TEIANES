@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import {
     CDBSidebar,
@@ -14,11 +14,16 @@ import gerberLogo from '../FormularioLogin/images/GerberLogo.png';
 import styles from './SideBar.module.css'
 
 
-
 class SideBar extends React.Component{
     render(){
       const imageLogo = styles.imagesTitle
       const sidebarS = styles.sidebarS
+
+      const handleLogout = () => {
+        // noteService.setToken(user.token)
+        window.localStorage.removeItem('loggedIdeaAppUser')
+        window.location = "/Login"
+    }
       return(
         <div className={sidebarS}>
         <CDBSidebar textColor="#333" backgroundColor="#fff">
@@ -108,6 +113,7 @@ class SideBar extends React.Component{
                 </NavLink>
               </CDBSidebarMenu>
           </CDBSidebarContent>
+          <CDBSidebarMenuItem icon="VscSignOut"><button onClick={handleLogout}style={{background:"#fff", border:"none", color:"#545e6f"}} >CERRAR SESIÓN</button></CDBSidebarMenuItem>
           
   
           <CDBSidebarFooter style={{ textAlign: 'center', borderTop:'1px solid #333', backgroundColor:'#006dba' }}>

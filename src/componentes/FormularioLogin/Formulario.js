@@ -24,6 +24,7 @@ const Formulario = () => {
     const [password, setPassword] = useState()
     const [user, setUser] = useState()
     const [errorMessage, setErrorMessage] = useState(null)
+    const [imagen, setImagen] = useState(false)
 
 
     useEffect(() => {
@@ -33,6 +34,7 @@ const Formulario = () => {
             const user = JSON.parse(loggedUserJSON)
             setUser(user)
         }
+
     }, [])
 
     const handleLogout = () => {
@@ -49,19 +51,15 @@ const Formulario = () => {
                 username,
                 password
             })
-
             window.localStorage.setItem(
                 'loggedIdeaAppUser', JSON.stringify(user)
             )
 
             // noteService.setToken(user.token)
-
-            console.log(user)
             const token = user.token;
             const user2 = jwt(token); // decode your token here
 
-            
-            console.log(user2)
+            setImagen(prevState => !prevState);
             setUser(user)
             setUsername('')
             setPassword('')
@@ -104,7 +102,6 @@ const Formulario = () => {
 
 
     const RenderFormularioInicioSesion = () => {
-        const [imagen, setImagen] = useState(false)
         return (
             <div className={bodyLogin}>
                 <Container className={clases}>
@@ -158,7 +155,7 @@ const Formulario = () => {
                                         <div className={errorMess}>{errors.contraseña}</div>
                                     )} />
                                 </div>
-                                <p style={{color:"red"}} >{errorMessage}</p>
+                                <p style={{ color: "red" }} >{errorMessage}</p>
                                 <button type="submit" className={buttonLogin}>Iniciar Sesión</button>
                                 {formularioEnviado && <p className={messageExito}>Formulario enviado con exito!</p>}
                                 <div className={footCard}>
@@ -172,9 +169,11 @@ const Formulario = () => {
                         )}
                     </Formik>
                 </Container>
-                <ModalFooter className={footer}>
-                    <Marquee className={txtFooter} direction='right'>Soy parte de la mejora y en mi esta la solución</Marquee>
-                </ModalFooter>
+                <footer className={footer}>
+                    <ModalFooter>
+                        <Marquee className={txtFooter} direction='right'>Soy parte de la mejora y en mi esta la solución</Marquee>
+                    </ModalFooter>
+                </footer>
                 <Outlet />
             </div>
         )
@@ -187,7 +186,7 @@ const Formulario = () => {
         <>
             {
                 user
-                    ? <FormIdea/>
+                    ? window.location = "/Teian/Formideas"
                     : RenderFormularioInicioSesion()
             }
         </>

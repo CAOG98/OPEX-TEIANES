@@ -16,6 +16,12 @@ class NavBar extends React.Component {
     const navBarColl = styles.navBarColl
     const linkNavBarDrop = styles.linkNavBarDrop
     const bgDropD = styles.bgDropD
+
+    const handleLogout = () => {
+      // noteService.setToken(user.token)
+      window.localStorage.removeItem('loggedIdeaAppUser')
+      window.location = "/Login"
+  }
     return (
       <Navbar expand="lg" className={navBarBody}>
         <Container style={{ maxWidth: '100%', width: '100%' }}>
@@ -30,6 +36,7 @@ class NavBar extends React.Component {
               <Nav.Link href="/Teian/TeianesRechazados" className={linkNavBar}>TEIANES RECHAZADOS</Nav.Link>
               <Nav.Link href="/Teian/Dudas" className={linkNavBar}>DUDAS</Nav.Link>
               <Nav.Link href="/Teian/Perfil" className={linkNavBar}>PERFIL</Nav.Link>
+              <button onClick={handleLogout} style={{color:"#fff",border:"none" ,background:"#000"}} >CERRAR SESIÓN</button>
             </Nav>
           </Navbar.Collapse>
         </Container>

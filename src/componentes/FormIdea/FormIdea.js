@@ -7,6 +7,7 @@ import { Formik, Form, Field, ErrorMessage } from "formik";
 import axios from 'axios';
 import 'typeface-quicksand';
 import jwt from 'jwt-decode'
+import gerberLogo from '../FormularioLogin/images/GerberLogo.png';
 
 const categ = [
     {
@@ -49,7 +50,7 @@ const FormIdea = () => {
     const messageExito = styles.messageExito
     const errorMess = styles.errorMess
     const fileTeian = styles.fileTeian
-
+    const imageLogo = styles.imageLogo
 
 
     const sesion = window.localStorage.getItem('loggedIdeaAppUser')
@@ -59,29 +60,29 @@ const FormIdea = () => {
     const user2 = jwt(token);
     console.log(user2)
 
-      //Para subir multiples archivos
-  const [archivos, setArchivos] = useState(null)
+    //Para subir multiples archivos
+    const [archivos, setArchivos] = useState(null)
 
 
-  const subirArchivos = e => {
-    setArchivos(e)
-  }
-
-  
-  const insertarArchivos = async (valores) => {
-    const f = new FormData()
-    console.log(f)
-    for (let index = 0; index < archivos.length; index++) {
-      f.append("archivito", archivos[index])
-      console.log(f)
+    const subirArchivos = e => {
+        setArchivos(e)
     }
-    await axios.post(`http://10.30.2.167:4000/api/Ideas?titulo=${valores.teian}` + `&id_user=${user2.nameid}` + 
-         `&id_coach=${2}` + `&idea_texto=${valores.mensajeTeian}` + `&id_categoria=${1}`, f, {headers: { 'Content-Type': 'application/json' }}).then(response => {
-      console.log(response.data)
-    }).catch(error => {
-      console.log(error)
-    })
-  }
+
+
+    const insertarArchivos = async (valores) => {
+        const f = new FormData()
+        console.log(f)
+        for (let index = 0; index < archivos.length; index++) {
+            f.append("archivito", archivos[index])
+            console.log(f)
+        }
+        await axios.post(`http://10.30.2.167:4000/api/Ideas?titulo=${valores.teian}` + `&id_user=${user2.nameid}` +
+            `&id_coach=${2}` + `&idea_texto=${valores.mensajeTeian}` + `&id_categoria=${1}`, f, { headers: { 'Content-Type': 'application/json' } }).then(response => {
+                console.log(response.data)
+            }).catch(error => {
+                console.log(error)
+            })
+    }
     // const PostIdea = (valores) => {
     //     console.log(valores);
     //     var a = valores.file
@@ -100,7 +101,11 @@ const FormIdea = () => {
 
     return (
         <Container className={contFormIdea}>
+            <div style={{ display: "flex"}}>
+                <img src={gerberLogo} className={imageLogo} alt='Gerber' />
+            </div>
             <h1 className={titleForm}>CREAR TEIAN</h1>
+
             <Formik
                 initialValues={{
                     teian: '',
@@ -197,7 +202,7 @@ const FormIdea = () => {
                             <ErrorMessage name="file" component={() => (
                                 <div className={errorMess}>{errors.file}</div>
                             )} /> */}
-                            <input accept="image/*,video/*" type="file" name ="files" multiple onChange={(e) =>subirArchivos(e.target.files)} />
+                            <input accept="image/*,video/*" type="file" name="files" multiple onChange={(e) => subirArchivos(e.target.files)} style={{ maxWidth: "100%" }} />
                         </div>
                         <button type="submit" className={buttonIdea} >Enviar teian</button>
                         {formularioEnviado && <div><p className={messageExito}>Formulario enviado con exito!</p></div>}
