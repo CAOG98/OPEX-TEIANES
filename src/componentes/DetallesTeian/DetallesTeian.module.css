@@ -5,7 +5,6 @@
 
 .imageBanner {
     filter: contrast(30%);
-    ;
     object-fit: cover;
     object-position: center;
     width: 100%;

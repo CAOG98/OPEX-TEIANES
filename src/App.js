@@ -31,7 +31,7 @@ const App = () => {
     .then(response => response.json())
     .then(data =>{
       setIdeas(data)
-      console.log(data)
+      // console.log(data)
     })
     .catch(error => console.log(error))
   }
@@ -57,7 +57,5 @@ const App = () => {
       <Route path="Teian/Dudas" element={<Dudas />} />
     </Routes>
   </div>
-
-  // <LoginSecundario/>
 )}
 export default App

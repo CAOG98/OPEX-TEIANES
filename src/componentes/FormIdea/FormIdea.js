@@ -20,15 +20,13 @@ const categ = [
     }
 ]
 
-
-console.log(categ)
-
 const FormIdea = () => {
     //Hooks validacion de formulario
     const [formularioEnviado, cambiarFormularioEnviado] = useState(false)
     const [categorias, setCategorias] = useState(-1)
     const [ideas, setIdeas] = useState([])
     const [info, setInfo] = useState({})
+    const [archivosVacios, setArchivosVacios] = useState(false)
 
 
     const handlerCargarCoach = function (e) {
@@ -54,16 +52,29 @@ const FormIdea = () => {
 
 
     const sesion = window.localStorage.getItem('loggedIdeaAppUser')
-    console.log(sesion)
     const sesionJson = JSON.parse(sesion)
     const token = sesionJson.token;
     const user2 = jwt(token);
-    console.log(user2)
 
     //Para subir multiples archivos
     const [archivos, setArchivos] = useState(null)
+    const [errorMessage, setErrorMessage] = useState(null)
 
-
+    // const subirArchivos = e => {
+    //     let sumaTamanio = 0
+    //     for(let i = 0; i < e.length; i++){
+    //         sumaTamanio += e[i].size 
+    //     }
+    //     if (sumaTamanio > 10000000) {
+    //         setErrorMessage('El archivo supera los 10Mb.');
+    //         setTimeout(() => {
+    //             setErrorMessage(null)
+    //         }, 5000)
+            
+    //     } else {
+    //         setArchivos(e)
+    //     }
+    // }
     const subirArchivos = e => {
         setArchivos(e)
     }
@@ -71,10 +82,8 @@ const FormIdea = () => {
 
     const insertarArchivos = async (valores) => {
         const f = new FormData()
-        console.log(f)
         for (let index = 0; index < archivos.length; index++) {
             f.append("archivito", archivos[index])
-            console.log(f)
         }
         await axios.post(`http://10.30.2.167:4000/api/Ideas?titulo=${valores.teian}` + `&id_user=${user2.nameid}` +
             `&id_coach=${2}` + `&idea_texto=${valores.mensajeTeian}` + `&id_categoria=${1}`, f, { headers: { 'Content-Type': 'application/json' } }).then(response => {
@@ -83,25 +92,10 @@ const FormIdea = () => {
                 console.log(error)
             })
     }
-    // const PostIdea = (valores) => {
-    //     console.log(valores);
-    //     var a = valores.file
-    //     console.log(a)
-    //     const requestOptions = {
-    //         method: 'POST',
-    //         headers: { 'Content-Type': 'application/json' },
-    //         body: a
-    //     };
-    //     fetch(`http://10.30.2.167:4000/api/Ideas?titulo=${valores.teian}` + `&id_user=${user2.nameid}` + 
-    //     `&id_coach=${2}` + `&idea_texto=${valores.mensajeTeian}` + `&id_categoria=${1}`, requestOptions)
-    //         .then(response => response.json())
-    //         .then(data => this.setState({ postId: data.id }));
-    // }
-    //ESTOS METODOS SIRVEN PARA SUBIR ARCHIVOS EN CASO DE QUE NO FUNCIONE EL NUEVO
 
     return (
         <Container className={contFormIdea}>
-            <div style={{ display: "flex"}}>
+            <div style={{ display: "flex" }}>
                 <img src={gerberLogo} className={imageLogo} alt='Gerber' />
             </div>
             <h1 className={titleForm}>CREAR TEIAN</h1>
@@ -137,7 +131,6 @@ const FormIdea = () => {
                 }}
                 onSubmit={(valores, { resetForm }) => {
                     resetForm()
-                    // PostIdea(valores)
                     insertarArchivos(valores)
                     cambiarFormularioEnviado(true)
                     setTimeout(() => cambiarFormularioEnviado(false), 5000)
@@ -202,7 +195,8 @@ const FormIdea = () => {
                             <ErrorMessage name="file" component={() => (
                                 <div className={errorMess}>{errors.file}</div>
                             )} /> */}
-                            <input accept="image/*,video/*" type="file" name="files" multiple onChange={(e) => subirArchivos(e.target.files)} style={{ maxWidth: "100%" }} />
+                            <input accept="image/*,video/*" type="file" name="files"  multiple onChange={(e) => subirArchivos(e.target.files)} style={{ maxWidth: "100%" }} />
+                            <p style={{ color: "red" }} >{errorMessage}</p>
                         </div>
                         <button type="submit" className={buttonIdea} >Enviar teian</button>
                         {formularioEnviado && <div><p className={messageExito}>Formulario enviado con exito!</p></div>}

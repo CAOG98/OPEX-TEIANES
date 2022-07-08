@@ -40,14 +40,14 @@ const TeianesRechazados = () =>{
   //   fetchIdeas(initialUrl)
   // }, [])
 
-  const initialUrl = "http://10.30.2.167:4000/api/ideas"
+  const initialUrl = "http://10.30.2.167:4000/api/Ideas/Rechazada"
 
   const fetchIdeas = (url) =>{
     fetch(url)
     .then(response => response.json())
     .then(data =>{
       setIdeas(data)
-      console.log(data)
+      // console.log(data)
     })
     .catch(error => console.log(error))
   }

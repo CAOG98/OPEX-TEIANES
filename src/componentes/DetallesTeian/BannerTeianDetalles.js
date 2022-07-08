@@ -11,6 +11,8 @@ const bannerCont = styles.bannerCont
 const titleBanner = styles.titleBanner
 const dateBanner = styles.dateBanner
 
+const UrlServer = "http://10.30.2.167:4000/"
+
 
 const BannerTeianDetalles = ({ ideas }) => {
   const { titulo_Idea } = useParams()
@@ -18,12 +20,17 @@ const BannerTeianDetalles = ({ ideas }) => {
     <>
       {ideas.filter(item => item.titulO_IDEA === titulo_Idea).map((item, index) => (
         <Card key={index} className={bannerCont}>
-          {item.archivos.length === 0 ? (
-            <Card.Img src={notFound} alt="Card image" className={imageBanner} />
-          ) : (
-            <Card.Img src={item.archivos} alt="Card image" className={imageBanner} />
-          )
-          }
+          { item.archivos.length === 0 ?(
+                  <Card.Img variant="top" src={notFound} className={imageBanner} />
+                ) : (
+                  item.archivos.map((item2, index) => (
+                   index === 0 ?(
+                     <Card.Img variant="top" src={UrlServer + item2.urL_MULTIMEDIA} className={imageBanner} />
+                   ):(
+                    <></>
+                   )
+                  )))
+                }
           <Card.ImgOverlay>
             <span className="badge rounded-pill bg-success text-white" style={{ marginBottom: "10px" }}>{item.iD_ESTATUS}</span>
             <h3 className={titleBanner}>{item.titulO_IDEA}</h3>

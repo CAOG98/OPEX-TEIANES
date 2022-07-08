@@ -113,7 +113,7 @@ class SideBar extends React.Component{
                 </NavLink>
               </CDBSidebarMenu>
           </CDBSidebarContent>
-          <CDBSidebarMenuItem icon="VscSignOut"><button onClick={handleLogout}style={{background:"#fff", border:"none", color:"#545e6f"}} >CERRAR SESIÓN</button></CDBSidebarMenuItem>
+          <CDBSidebarMenuItem icon="user"><button onClick={handleLogout}style={{background:"#fff", border:"none", color:"#545e6f"}} >CERRAR SESIÓN</button></CDBSidebarMenuItem>
           
   
           <CDBSidebarFooter style={{ textAlign: 'center', borderTop:'1px solid #333', backgroundColor:'#006dba' }}>

@@ -86,12 +86,11 @@ const DetallesTeian = ({ ideas }) => {
   //         f.append("archivito", archivos[index])
   //         console.log(f)
   //     }
-  //     await axios.post(`http://10.30.2.167:4000/api/Ideas?titulo=${valores.teian}` + `&id_user=${user2.nameid}` +
-  //         `&id_coach=${2}` + `&idea_texto=${valores.mensajeTeian}` + `&id_categoria=${1}`, f, { headers: { 'Content-Type': 'application/json' } }).then(response => {
+  //     await axios.post(`http://10.30.2.167:4000/api/Ideas?idea_texto=${valores.mensajeTeian}`, f, { headers: { 'Content-Type': 'application/json' } }).then(response => {
   //             console.log(response.data)
   //         }).catch(error => {
   //             console.log(error)
-  //         })
+  //         }) 
   // }
 
   // DROPFILES END AQUI TERMINA EL CODIGO DE DROPFILES
