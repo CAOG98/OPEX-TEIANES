@@ -10,6 +10,7 @@ import { Link } from 'react-router-dom';
 import CircularProgress from '@mui/material/CircularProgress';
 import formatDate from './formatFecha';
 import ReactLoading from 'react-loading';
+import styles from './Ideas.module.css'
 
 const UrlServer = "http://10.30.2.167:4000/"
 
@@ -59,13 +60,13 @@ const IdeasAceptadas = () => {
       </div>
     );
   }
-
+  const loadingCard = styles.loadingCard
   return (
     <>
     {
       !done ? (
-        <div style={{ display: "flex", alignItems: "center", justifyContent: "center" }}>
-          <ReactLoading type={"spinningBubbles"} color={"#0d6efd"} height={100} width={100} />
+        <div className={loadingCard}>
+          <ReactLoading type={"spinningBubbles"} color={"#0d6efd"} height={300} width={300} />
         </div>
       ) : (
         <div style={{ display: "flex", flexWrap: "wrap", margin: "20px", justifyContent: "center" }}>

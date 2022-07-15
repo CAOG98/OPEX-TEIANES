@@ -9,6 +9,8 @@ import axios from 'axios';
 import 'typeface-quicksand';
 import jwt from 'jwt-decode'
 import gerberLogo from '../FormularioLogin/images/GerberLogo.png';
+import Snackbar from '@mui/material/Snackbar';
+import MuiAlert from '@mui/material/Alert';
 
 const categ = [
     {
@@ -60,6 +62,9 @@ const FormIdea = () => {
     //Para subir multiples archivos
     const [archivos, setArchivos] = useState(null)
     const [errorMessage, setErrorMessage] = useState(null)
+    const [open, setOpen] = React.useState(false);
+    const [openError, setOpenError] = React.useState(false);
+    const [successMessage, setSuccessMessage] = useState(null)
 
     // const subirArchivos = e => {
     //     let sumaTamanio = 0
@@ -92,8 +97,18 @@ const FormIdea = () => {
             }).catch(error => {
                 console.log(error)
             })
-    }
 
+    }
+    const Alert = React.forwardRef(function Alert(props, ref) {
+        return <MuiAlert elevation={6} ref={ref} variant="filled" {...props} />;
+    })
+    const [state, setState] = React.useState({
+        open2: false,
+        vertical: 'top',
+        horizontal: 'right',
+      });
+    
+      const { vertical, horizontal, open2 } = state;
     return (
         <Container className={contFormIdea}>
             <div style={{ display: "flex" }}>
@@ -133,8 +148,12 @@ const FormIdea = () => {
                 onSubmit={(valores, { resetForm }) => {
                     resetForm()
                     insertarArchivos(valores)
-                    cambiarFormularioEnviado(true)
-                    setTimeout(() => cambiarFormularioEnviado(false), 5000)
+                    setOpen(true);
+                    setSuccessMessage("Su idea ha sido enviada")
+                    setTimeout(() => {
+                        setSuccessMessage(null)
+                        setOpen(false)
+                    }, 5000)
                 }}
             >
                 {({ values, errors, touched }) => (
@@ -200,7 +219,11 @@ const FormIdea = () => {
                             <p style={{ color: "red" }} >{errorMessage}</p>
                         </div>
                         <button type="submit" className={buttonIdea} >Enviar teian</button>
-                        {formularioEnviado && <div><p className={messageExito}>Formulario enviado con exito!</p></div>}
+                        {open && <Snackbar key={vertical + horizontal} anchorOrigin={{ vertical, horizontal }} open={open} autoHideDuration={6000}>
+                            <Alert severity="success" sx={{ width: '100%' }}>
+                                {successMessage}
+                            </Alert>
+                        </Snackbar>}
                     </Form>
                 )}
             </Formik>

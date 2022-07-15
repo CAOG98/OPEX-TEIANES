@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { Formik, Field, ErrorMessage } from "formik";
-import { Button, Form, Container, Alert } from "react-bootstrap";
+import { Button, Form, Container } from "react-bootstrap";
 import gerberLogo from './images/GerberLogo.png';
 import ideaLogo from './images/idea.png';
 import ideaPrendida from './images/ideaPrendida.png';
@@ -14,7 +14,8 @@ import loginService from '../../Actions/login'
 // JWT
 import jwt from 'jwt-decode'
 import FormIdea from "../FormIdea";
-
+import Snackbar from '@mui/material/Snackbar';
+import MuiAlert from '@mui/material/Alert';
 
 const Formulario = () => {
     // LoginJWT
@@ -23,8 +24,11 @@ const Formulario = () => {
     const [password, setPassword] = useState()
     const [user, setUser] = useState()
     const [errorMessage, setErrorMessage] = useState(null)
-    const [success, setSuccess] = useState(null)
+    const [successMessage, setSuccessMessage] = useState(null)
     const [imagen, setImagen] = useState(false)
+    //Notificación
+    const [open, setOpen] = React.useState(false);
+    const [openError, setOpenError] = React.useState(false);
 
 
     useEffect(() => {
@@ -61,19 +65,22 @@ const Formulario = () => {
 
             // const TokenContext = React.createContext(user2)
             // console.log(TokenContext)
-            
+            setOpen(true);
+            setSuccessMessage("Credenciales Correctas")
             setImagen(prevState => !prevState);
-            setUser(user)
-            setUsername('')
-            setPassword('')
-            setSuccess("Usuario Correcto")
             setTimeout(() => {
-                setSuccess(null)
-            }, 5000)
+                setUser(user)
+                setUsername('')
+                setPassword('')
+                setSuccessMessage(null)
+                setOpen(false)
+            }, 1200)
         } catch (e) {
             setErrorMessage('Contraseña o usuario Incorrectos')
+            setOpenError(true)
             setTimeout(() => {
                 setErrorMessage(null)
+                setOpenError(false)
             }, 5000)
         }
     }
@@ -109,6 +116,16 @@ const Formulario = () => {
 
 
     const RenderFormularioInicioSesion = () => {
+        const Alert = React.forwardRef(function Alert(props, ref) {
+            return <MuiAlert elevation={6} ref={ref} variant="filled" {...props} />;
+        });
+        const [state, setState] = React.useState({
+            open2: false,
+            vertical: 'top',
+            horizontal: 'right',
+          });
+        
+          const { vertical, horizontal, open2 } = state;
         return (
             <div className={bodyLogin}>
                 <Container className={clases}>
@@ -163,6 +180,19 @@ const Formulario = () => {
                                     )} />
                                 </div>
                                 <p style={{ color: "red" }} >{errorMessage}</p>
+                                <Snackbar key={vertical + horizontal} anchorOrigin={{ vertical, horizontal }} open={openError} autoHideDuration={6000}>
+                                    <Alert severity="error" sx={{ width: '100%' }}>
+                                        {errorMessage}
+                                    </Alert>
+                                </Snackbar>
+
+                                <Snackbar key={vertical + horizontal} anchorOrigin={{ vertical, horizontal }} open={open} autoHideDuration={6000}  >
+                                    <Alert severity="success" sx={{ width: '100%' }}>
+                                        {successMessage}
+                                    </Alert>
+                                </Snackbar>
+
+
                                 <button type="submit" className={buttonLogin}>Iniciar Sesión</button>
                                 {formularioEnviado && <p className={messageExito}>Formulario enviado con exito!</p>}
                                 <div className={footCard}>

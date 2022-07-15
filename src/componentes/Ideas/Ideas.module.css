@@ -1,0 +1,12 @@
+.loadingCard{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-top: 200px;
+}
+
+@media (max-width:990px){
+    .loadingCard{
+        margin-top: 50px;
+    }
+}

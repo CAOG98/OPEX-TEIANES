@@ -10,6 +10,7 @@ import Tooltip from '@mui/material/Tooltip';
 import ModalAceptadas from './ModalAceptadas'
 import ModalRechazadas from './ModalRechazadas'
 import ReactLoading from 'react-loading';
+import styles from './Ideas.module.css'
 
 const UrlServer = "http://10.30.2.167:4000/"
 
@@ -79,12 +80,15 @@ const Ideas = () => {
       .then(response => response.json())
       .then(data => this.setState({ postId: data.id }));
   }
+
+  const loadingCard = styles.loadingCard
+
   return (
     <>
       {
         !done ? (
-          <div style={{display:"flex",alignItems:"center", justifyContent:"center"}}>
-            <ReactLoading type={"spinningBubbles"} color={"#0d6efd"} height={100} width={100} />
+          <div className={loadingCard}>
+            <ReactLoading type={"spinningBubbles"} color={"#0d6efd"} height={300} width={300} />
           </div>
         ) : (
           <div style={{ display: "flex", flexWrap: "wrap", margin: "20px", justifyContent: "center" }}>
