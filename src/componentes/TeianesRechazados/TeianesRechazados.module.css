@@ -84,3 +84,21 @@
         margin-top: 6em;
     }
 }
+
+.titleTeianCont{
+    text-align: center;
+}
+.titleTeian{
+    display: inline-block;
+    position: relative;
+    text-align: center;
+}
+
+.titleTeian::before{
+    content: '';
+    color: #445CF5;
+    font-size: 60px;
+}
+.titleTeian::after{
+    right: 400px;
+}

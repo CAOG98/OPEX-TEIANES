@@ -17,7 +17,7 @@ function MyApp() {
   );
 }
 
-export default function IntegrationNotistack() {
+export default function SnackbarSuccesProfile() {
   return (
     <SnackbarProvider maxSnack={3}>
       <MyApp />

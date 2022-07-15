@@ -16,13 +16,13 @@ const columns = [
   },
   {
     field: 'Fecha',
-    headerName: 'Fecha',
+    headerName: 'FECHA',
     headerAlign: 'center',
     headerClassName: 'headerTable'
   },
   {
     field: 'Titulo',
-    headerName: 'Titulo', width: 400,
+    headerName: 'TITULO', width: 400,
     headerAlign: 'center',
     headerClassName: 'headerTable'
   },
@@ -44,9 +44,10 @@ const columns = [
     headerAlign: 'center',
     headerClassName: 'headerTable'
   },
-
-
 ]
+
+const baseUrl = 'http://10.30.2.167:4000/api/Ideas'
+
 const TableIdeas = () => {
   //1 Configurar los hooks
   const [tableData, setTableData] = useState([])
@@ -54,11 +55,26 @@ const TableIdeas = () => {
 
 
   useEffect(() => {
-    fetch("http://localhost:3000/Personas")
+    fetch(baseUrl)
       .then((data) => data.json())
-      .then((data) => setTableData(data))
-  }, [])
+      .then((data) => {
+        console.log(data)
+        var datosArray = [];
+        var fila = 0
+        const mappedResults =
+          Object.keys(data).map(key => {
+            const value = data[key]
+          })
 
+        data.forEach(index => {
+          datosArray[fila] = [];
+          datosArray[fila].push(index.iD_IDEA, index.fechA_CREACION_IDEA, index.titulO_IDEA, index.categorias, index.coaches, index.areaSoporte);
+          fila += 1;
+        })
+        console.log(datosArray)
+      })
+    // .then((data) => setTableData(data))
+  }, [])
 
   return (
     <Container className="contTable" >

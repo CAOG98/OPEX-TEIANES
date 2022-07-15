@@ -9,7 +9,6 @@ import { ModalFooter } from 'react-bootstrap';
 import Marquee from "react-fast-marquee";
 import { Outlet, Navigate } from "react-router-dom";
 import { AiOutlineEyeInvisible, AiOutlineEye } from 'react-icons/ai'
-import Notificacion from './Notificacion'
 // Login
 import loginService from '../../Actions/login'
 // JWT
@@ -24,12 +23,12 @@ const Formulario = () => {
     const [password, setPassword] = useState()
     const [user, setUser] = useState()
     const [errorMessage, setErrorMessage] = useState(null)
+    const [success, setSuccess] = useState(null)
     const [imagen, setImagen] = useState(false)
 
 
     useEffect(() => {
         const loggedUserJSON = window.localStorage.getItem('loggedIdeaAppUser')
-        console.log(loggedUserJSON)
         if (loggedUserJSON) {
             const user = JSON.parse(loggedUserJSON)
             setUser(user)
@@ -58,11 +57,19 @@ const Formulario = () => {
             // noteService.setToken(user.token)
             const token = user.token;
             const user2 = jwt(token); // decode your token here
+            console.log(user2)
 
+            // const TokenContext = React.createContext(user2)
+            // console.log(TokenContext)
+            
             setImagen(prevState => !prevState);
             setUser(user)
             setUsername('')
             setPassword('')
+            setSuccess("Usuario Correcto")
+            setTimeout(() => {
+                setSuccess(null)
+            }, 5000)
         } catch (e) {
             setErrorMessage('Contraseña o usuario Incorrectos')
             setTimeout(() => {

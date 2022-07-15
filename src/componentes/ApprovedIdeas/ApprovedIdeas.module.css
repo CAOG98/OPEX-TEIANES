@@ -92,3 +92,23 @@
     }
 }
 
+.titleTeianCont{
+    text-align: center;
+}
+.titleTeian{
+    display: inline-block;
+    position: relative;
+    text-align: center;
+    font-family: "MADE Tommy soft";
+}
+
+.titleTeian::before{
+    content: '';
+    color: #445CF5;
+    font-size: 60px;
+}
+.titleTeian::after{
+    right: 400px;
+}
+
+

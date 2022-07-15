@@ -1,6 +1,7 @@
 import React, { useEffect, useState, Suspense, lazy } from 'react';
+import Clock from 'react-live-clock';
 import 'bootstrap/dist/css/bootstrap.min.css';
-import { Accordion, Button, Card, Container} from 'react-bootstrap';
+import { Accordion, Button, Card, Container } from 'react-bootstrap';
 import Pagination from '../Ideas/Pagination';
 // import IdeasAceptadas from '../Ideas/IdeasAceptadas';
 import styles from './AcceptedTeianes.module.css'
@@ -15,36 +16,38 @@ const titleTeianCont = styles.titleTeianCont
 const contAceptados = styles.contAceptados
 
 
-const AcceptedTeianes = () =>{
+const AcceptedTeianes = () => {
   const [ideas, setIdeas] = useState([])
 
-  const initialUrl = "http://10.30.2.167:4000/api/Ideas/Aceptadas"
+  // const initialUrl = "http://10.30.2.167:4000/api/Ideas/Aceptadas"
 
-  const fetchIdeas = (url) =>{
-    fetch(url)
-    .then(response => response.json())
-    .then(data =>{
-      setIdeas(data)
-      // console.log(data)
-    })
-    .catch(error => console.log(error))
-  }
+  // const fetchIdeas = (url) => {
+  //   fetch(url)
+  //     .then(response => response.json())
+  //     .then(data => {
+  //       setIdeas(data)
+  //     })
+  //     .catch(error => console.log(error))
+  // }
 
-  useEffect(() =>{
-    fetchIdeas(initialUrl)
-  }, [])
+  // useEffect(() => {
+  //   fetchIdeas(initialUrl)
+  // }, [])
 
-  return(
+  return (
     <>
-    <Container className={contAceptados} >
-      <div className={titleTeianCont}>
-        <h1 className={titleTeian}>TEIANES ACEPTADOS</h1>
-      </div>
-      <Suspense fallback={<Cargando/>}>
-      <IdeasAceptadas ideas ={ideas}/>
-      </Suspense>
-    </Container>
+      <Container className={contAceptados} >
+        {/* <h5 style={{ textAlign: "end" }}>
+          <Clock format={'h:mm:ssa'} ticking={true} timezone={'MX/Pacific'} />
+        </h5> */}
+        <div className={titleTeianCont}>
+          <h1 className={titleTeian}>TEIANES ACEPTADOS</h1>
+        </div>
+        <Suspense fallback={<Cargando />}>
+          <IdeasAceptadas />
+        </Suspense>
+      </Container>
     </>
   );
 }
-  export default AcceptedTeianes
+export default AcceptedTeianes

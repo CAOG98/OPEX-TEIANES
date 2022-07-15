@@ -20,10 +20,12 @@ class SideBar extends React.Component{
       const sidebarS = styles.sidebarS
 
       const handleLogout = () => {
-        // noteService.setToken(user.token)
         window.localStorage.removeItem('loggedIdeaAppUser')
         window.location = "/Login"
     }
+    
+
+
       return(
         <div className={sidebarS}>
         <CDBSidebar textColor="#333" backgroundColor="#fff">

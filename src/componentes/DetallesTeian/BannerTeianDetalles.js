@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import 'bootstrap/dist/css/bootstrap.min.css';
-import { Card, Container } from 'react-bootstrap';
+import { Badge, Card, Container } from 'react-bootstrap';
 import styles from './DetallesTeian.module.css'
 import { useParams } from 'react-router-dom';
 import notFound from '../Ideas/ImagesIdeas/ImageNotFound.jpg';
@@ -20,19 +20,35 @@ const BannerTeianDetalles = ({ ideas }) => {
     <>
       {ideas.filter(item => item.titulO_IDEA === titulo_Idea).map((item, index) => (
         <Card key={index} className={bannerCont}>
-          { item.archivos.length === 0 ?(
-                  <Card.Img variant="top" src={notFound} className={imageBanner} />
-                ) : (
-                  item.archivos.map((item2, index) => (
-                   index === 0 ?(
-                     <Card.Img variant="top" src={UrlServer + item2.urL_MULTIMEDIA} className={imageBanner} />
-                   ):(
-                    <></>
-                   )
-                  )))
-                }
+          {item.archivos.length === 0 ? (
+            <Card.Img variant="top" src={notFound} className={imageBanner} />
+          ) : (
+            item.archivos.map((item2, index) => (
+              index === 0 ? (
+                <Card.Img variant="top" src={UrlServer + item2.urL_MULTIMEDIA} className={imageBanner} />
+              ) : (
+                <></>
+              )
+            )))
+          }
           <Card.ImgOverlay>
-            <span className="badge rounded-pill bg-success text-white" style={{ marginBottom: "10px" }}>{item.iD_ESTATUS}</span>
+            {item.iD_ESTATUS == 1 ? (
+              // <span className="badge rounded-pill bg-secondary" style={{ marginBottom: "10px" }}>{item.estatus}</span>
+              <Badge bg="secondary">{item.estatus}</Badge>
+            ) : item.iD_ESTATUS == 2 ? (
+              // <span className="badge rounded-pill bg-success text-white" style={{ marginBottom: "10px" }}>{item.estatus}</span>
+              <Badge bg="success">{item.estatus}</Badge>
+            ) : item.iD_ESTATUS == 3 ? (
+              // <span className="badge rounded-pill bg-secondary" style={{ marginBottom: "10px" }}>{item.estatus}</span>
+              <Badge bg="warning">{item.estatus}</Badge>
+            ) : item.iD_ESTATUS == 4 ? (
+              // <span className="badge rounded-pill bg-secondary" style={{ marginBottom: "10px" }}>{item.estatus}</span>
+              <Badge bg="danger">{item.estatus}</Badge>
+            ) : (
+              // <span className="badge rounded-pill bg-secondary" style={{ marginBottom: "10px" }}>{item.estatus}</span>
+              <Badge bg="info">{item.estatus}</Badge>
+            )
+            }
             <h3 className={titleBanner}>{item.titulO_IDEA}</h3>
             <div className={dateBanner}>
               <Card.Text>Ultima Actualización:</Card.Text>

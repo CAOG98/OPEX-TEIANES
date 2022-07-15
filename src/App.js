@@ -31,7 +31,6 @@ const App = () => {
     .then(response => response.json())
     .then(data =>{
       setIdeas(data)
-      // console.log(data)
     })
     .catch(error => console.log(error))
   }

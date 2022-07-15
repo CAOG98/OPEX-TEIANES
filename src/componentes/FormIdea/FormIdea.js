@@ -3,6 +3,7 @@ import { Container } from 'react-bootstrap';
 import styles from './FormIdea.module.css'
 import { Outlet } from 'react-router-dom';
 import React, { useEffect, useState } from "react";
+import Clock from 'react-live-clock';
 import { Formik, Form, Field, ErrorMessage } from "formik";
 import axios from 'axios';
 import 'typeface-quicksand';
@@ -70,7 +71,7 @@ const FormIdea = () => {
     //         setTimeout(() => {
     //             setErrorMessage(null)
     //         }, 5000)
-            
+
     //     } else {
     //         setArchivos(e)
     //     }
@@ -78,12 +79,12 @@ const FormIdea = () => {
     const subirArchivos = e => {
         setArchivos(e)
     }
-
-
     const insertarArchivos = async (valores) => {
         const f = new FormData()
-        for (let index = 0; index < archivos.length; index++) {
-            f.append("archivito", archivos[index])
+        if (archivos != null) {
+            for (let index = 0; index < archivos.length; index++) {
+                f.append("archivito", archivos[index])
+            }
         }
         await axios.post(`http://10.30.2.167:4000/api/Ideas?titulo=${valores.teian}` + `&id_user=${user2.nameid}` +
             `&id_coach=${2}` + `&idea_texto=${valores.mensajeTeian}` + `&id_categoria=${1}`, f, { headers: { 'Content-Type': 'application/json' } }).then(response => {
@@ -195,7 +196,7 @@ const FormIdea = () => {
                             <ErrorMessage name="file" component={() => (
                                 <div className={errorMess}>{errors.file}</div>
                             )} /> */}
-                            <input accept="image/*,video/*" type="file" name="files"  multiple onChange={(e) => subirArchivos(e.target.files)} style={{ maxWidth: "100%" }} />
+                            <input accept="image/*,video/*" type="file" name="files" multiple onChange={(e) => subirArchivos(e.target.files)} style={{ maxWidth: "100%" }} />
                             <p style={{ color: "red" }} >{errorMessage}</p>
                         </div>
                         <button type="submit" className={buttonIdea} >Enviar teian</button>
