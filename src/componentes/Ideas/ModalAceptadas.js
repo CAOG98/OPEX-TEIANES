@@ -38,7 +38,8 @@ const ModalAceptadas = (indexEstatus) => {
                 Aceptar
             </Button>
 
-            <Modal show={show} onHide={handleClose}>
+            <Modal show={show} onHide={handleClose} size="lg" aria-labelledby="contained-modal-title-vcenter"
+      centered>
                 <Modal.Header closeButton>
                     <Modal.Title>¿Esta seguro que desea aceptar esta idea?</Modal.Title>
                 </Modal.Header>

@@ -2,7 +2,7 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import { Container } from 'react-bootstrap';
 import styles from './FormIdea.module.css'
 import { Outlet } from 'react-router-dom';
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useRef } from "react";
 import Clock from 'react-live-clock';
 import { Formik, Form, Field, ErrorMessage } from "formik";
 import axios from 'axios';
@@ -11,6 +11,9 @@ import jwt from 'jwt-decode'
 import gerberLogo from '../FormularioLogin/images/GerberLogo.png';
 import Snackbar from '@mui/material/Snackbar';
 import MuiAlert from '@mui/material/Alert';
+import Alert from '@mui/material/Alert';
+import AlertTitle from '@mui/material/AlertTitle';
+import Stack from '@mui/material/Stack';
 
 const categ = [
     {
@@ -65,24 +68,29 @@ const FormIdea = () => {
     const [open, setOpen] = React.useState(false);
     const [openError, setOpenError] = React.useState(false);
     const [successMessage, setSuccessMessage] = useState(null)
+    const inputRef = useRef(null);
+    const [openAlert, setOpenAlert] = React.useState(false);
+    // Boton
+    const [isDisabled, setIsDisabled] = useState(false);
 
-    // const subirArchivos = e => {
-    //     let sumaTamanio = 0
-    //     for(let i = 0; i < e.length; i++){
-    //         sumaTamanio += e[i].size 
-    //     }
-    //     if (sumaTamanio > 10000000) {
-    //         setErrorMessage('El archivo supera los 10Mb.');
-    //         setTimeout(() => {
-    //             setErrorMessage(null)
-    //         }, 5000)
-
-    //     } else {
-    //         setArchivos(e)
-    //     }
-    // }
     const subirArchivos = e => {
-        setArchivos(e)
+        console.log(e)
+        let sumaTamanio = 0
+        for (let i = 0; i < e.length; i++) {
+            sumaTamanio += e[i].size
+        }
+        if (sumaTamanio > 10000000) {
+            setErrorMessage('El archivo supera los 10Mb.');
+            setOpenAlert(true)
+            setTimeout(() => {
+                setErrorMessage(null)
+                setOpenAlert(false)
+                inputRef.current.value = null;
+            }, 3500)
+
+        } else {
+            setArchivos(e)
+        }
     }
     const insertarArchivos = async (valores) => {
         const f = new FormData()
@@ -106,9 +114,9 @@ const FormIdea = () => {
         open2: false,
         vertical: 'top',
         horizontal: 'right',
-      });
-    
-      const { vertical, horizontal, open2 } = state;
+    });
+
+    const { vertical, horizontal, open2 } = state;
     return (
         <Container className={contFormIdea}>
             <div style={{ display: "flex" }}>
@@ -215,8 +223,15 @@ const FormIdea = () => {
                             <ErrorMessage name="file" component={() => (
                                 <div className={errorMess}>{errors.file}</div>
                             )} /> */}
-                            <input accept="image/*,video/*" type="file" name="files" multiple onChange={(e) => subirArchivos(e.target.files)} style={{ maxWidth: "100%" }} />
-                            <p style={{ color: "red" }} >{errorMessage}</p>
+                            <input ref={inputRef} accept="image/*,video/*" type="file" name="files" multiple onChange={(e) => subirArchivos(e.target.files)} style={{ maxWidth: "100%" }} />
+                            {/* <p style={{ color: "red" }} >{errorMessage}</p> */}
+                            {openAlert &&
+                                <Stack sx={{ marginTop: '20px', width: '100%' }} spacing={2}>
+                                    <Alert severity="error">
+                                        <strong>{errorMessage}</strong>
+                                    </Alert>
+                                </Stack>
+                            }
                         </div>
                         <button type="submit" className={buttonIdea} >Enviar teian</button>
                         {open && <Snackbar key={vertical + horizontal} anchorOrigin={{ vertical, horizontal }} open={open} autoHideDuration={6000}>

@@ -12,6 +12,8 @@ import {
   import { NavLink } from 'react-router-dom';
 import gerberLogo from '../FormularioLogin/images/GerberLogo.png';
 import styles from './SideBar.module.css'
+import LogoutIcon from '@mui/icons-material/Logout';
+import AccountCircleIcon from '@mui/icons-material/AccountCircle';
 
 
 class SideBar extends React.Component{
@@ -115,9 +117,13 @@ class SideBar extends React.Component{
                 </NavLink>
               </CDBSidebarMenu>
           </CDBSidebarContent>
-          <CDBSidebarMenuItem icon="user"><button onClick={handleLogout}style={{background:"#fff", border:"none", color:"#545e6f"}} >CERRAR SESIÓN</button></CDBSidebarMenuItem>
-          
-  
+          {/* <CDBSidebarMenuItem icon="LogoutIcon"><LogoutIcon/><button onClick={handleLogout}style={{background:"#fff", border:"none", color:"#545e6f"}} >CERRAR SESIÓN</button></CDBSidebarMenuItem> */}
+
+          <CDBSidebarHeader prefix={<i className="fas fa-sign-out-alt"></i>}>
+          <button onClick={handleLogout}style={{background:"#fff", border:"none", color:"#545e6f"}} >CERRAR SESIÓN</button>
+          </CDBSidebarHeader>
+
+
           <CDBSidebarFooter style={{ textAlign: 'center', borderTop:'1px solid #333', backgroundColor:'#006dba' }}>
             <NavLink to="Teian/Dudas" activeClassName="activeClicked" style={{ textDecoration: 'none', color:'#fff' }}>
             <div

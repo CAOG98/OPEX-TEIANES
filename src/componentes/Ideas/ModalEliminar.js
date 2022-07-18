@@ -57,7 +57,8 @@ const ModalEliminar = (indexIdea) => {
         </Tooltip>
       </Button>
 
-      <Modal show={show} onHide={handleClose}>
+      <Modal show={show} onHide={handleClose} size="lg" aria-labelledby="contained-modal-title-vcenter"
+      centered>
         <Modal.Header closeButton>
           <Modal.Title>¿Estas seguro que deseas eliminar esta idea?</Modal.Title>
         </Modal.Header>

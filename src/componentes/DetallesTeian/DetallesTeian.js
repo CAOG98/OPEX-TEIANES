@@ -103,6 +103,9 @@ const DetallesTeian = ({ ideas }) => {
     setValue(newValue);
   };
 
+
+  const [isDisabled, setIsDisabled] = useState(false);
+
   const { titulo_Idea } = useParams()
   return (
     <Container style={{ maxWidth: "100%" }} >
@@ -118,8 +121,8 @@ const DetallesTeian = ({ ideas }) => {
               },
             }}>
             <Tab label="IDEA CREADA" {...a11yProps(0)} />
-            <Tab label="IMPLEMENTAR" {...a11yProps(1)} />
-            <Tab label="IDEA IMPLEMENTADA" {...a11yProps(2)} />
+            <Tab label="IMPLEMENTAR" {...a11yProps(1)} disabled />
+            <Tab label="IDEA IMPLEMENTADA" {...a11yProps(2)} disabled />
           </Tabs>
         </Box>
         <TabPanel className={tabNav} value={value} index={0}>
@@ -129,7 +132,7 @@ const DetallesTeian = ({ ideas }) => {
             {ideas.filter(item => item.titulO_IDEA === titulo_Idea).map((item, index) => (
               <Col xs={6} className={DetallesInfoGeneral}>
                 <div className={textoIdea}>
-                  <p class="mb-0">{item.ideA_TEXTO}</p>
+                  <p className="mb-0">{item.ideA_TEXTO}</p>
                 </div>
                 <Container className={DetallesInfoCategorias}>
                   <Row className={tituloCategorias}>
