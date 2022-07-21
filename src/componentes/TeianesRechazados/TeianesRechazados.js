@@ -9,7 +9,7 @@ import Cargando from '../Ideas/Cargando'
 const IdeasCanceladas = lazy(() => import('../Ideas/IdeasCanceladas'))
 
 const TeianesRechazados = () => {
-  // const [ideas, setIdeas] = useState([])
+  // 
   // const [info, setInfo] = useState({})
 
   const contRechazados = styles.contRechazados

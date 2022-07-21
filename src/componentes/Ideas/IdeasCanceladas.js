@@ -1,9 +1,9 @@
 import React, { useState, useEffect } from 'react';
-import { Badge, Button, Card, Modal } from 'react-bootstrap';
+import { Badge, Card } from 'react-bootstrap';
 import notFound from '../Ideas/ImagesIdeas/ImageNotFound.jpg'
-import IconButton from '@mui/material/IconButton';
+// import IconButton from '@mui/material/IconButton';
 import Tooltip from '@mui/material/Tooltip';
-import DeleteIcon from '@mui/icons-material/Delete';
+// import DeleteIcon from '@mui/icons-material/Delete';
 import { Link } from 'react-router-dom';
 import Backdrop from '@mui/material/Backdrop';
 import CircularProgress from '@mui/material/CircularProgress';
@@ -32,13 +32,13 @@ const Cargando = () => {
 }
 
 const IdeasCanceladas = () => {
-  const [imagen, setImagen] = useState(false)
-  const [lista, setlista] = useState([]);
+  // const [imagen, setImagen] = useState(false)
+  // const [lista, setlista] = useState([]);
   // ------------------------
   const [ideas, setIdeas] = useState([])
   const [done, setDone] = useState(undefined)
 
-  const initialUrl = "http://10.30.2.167:4000/api/Ideas/Rechazada"
+  const initialUrl = "http://10.30.2.167:4000/api/Ideas/Rechazadas"
 
   const fetchIdeas = (url) => {
     fetch(url)
@@ -75,13 +75,13 @@ const IdeasCanceladas = () => {
                     <Link to={`/Teian/DetalleTeian/${item.titulO_IDEA}`} style={{ textDecoration: "none", color: "#000" }} onClick={Cargando}>
                       <div style={{ height: "250px", overflow: "hidden" }}>
                         {item.archivos.length === 0 ? (
-                          <Card.Img variant="top" src={notFound} />
+                          <Card.Img key={index} variant="top" src={notFound} />
                         ) : (
                           item.archivos.map((item2, index) => (
                             index === 0 ? (
-                              <Card.Img variant="top" src={UrlServer + item2.urL_MULTIMEDIA} />
+                              <Card.Img key={index} variant="top" src={UrlServer + item2.urL_MULTIMEDIA} />
                             ) : (
-                              <></>
+                              <Card.Img key={index} variant="top" src={notFound} />
                             )
                           )))
                         }
@@ -98,10 +98,10 @@ const IdeasCanceladas = () => {
                       </Card.Text>
                       <div style={{ display: "flex", justifyContent: "space-between" }}>
                         <Tooltip title="Deshacer">
-                          <ModalDeshacer index={item.iD_ESTATUS} />
+                          <ModalDeshacer index={item.iD_IDEA} />
                         </Tooltip>
                         <Tooltip title="Borrar">
-                          <ModalEliminar index={item.iD_ESTATUS} />
+                          <ModalEliminar index={item.iD_IDEA} />
                         </Tooltip>
                       </div>
                     </Card.Body>

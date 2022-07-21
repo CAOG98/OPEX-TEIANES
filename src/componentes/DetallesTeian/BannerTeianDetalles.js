@@ -34,19 +34,19 @@ const BannerTeianDetalles = ({ ideas }) => {
           <Card.ImgOverlay>
             {item.iD_ESTATUS == 1 ? (
               // <span className="badge rounded-pill bg-secondary" style={{ marginBottom: "10px" }}>{item.estatus}</span>
-              <Badge bg="secondary">{item.estatus}</Badge>
+              <Badge bg="secondary">{item.estatuto}</Badge>
             ) : item.iD_ESTATUS == 2 ? (
               // <span className="badge rounded-pill bg-success text-white" style={{ marginBottom: "10px" }}>{item.estatus}</span>
-              <Badge bg="success">{item.estatus}</Badge>
+              <Badge bg="success">{item.estatuto}</Badge>
             ) : item.iD_ESTATUS == 3 ? (
               // <span className="badge rounded-pill bg-secondary" style={{ marginBottom: "10px" }}>{item.estatus}</span>
-              <Badge bg="warning">{item.estatus}</Badge>
+              <Badge bg="warning">{item.estatuto}</Badge>
             ) : item.iD_ESTATUS == 4 ? (
               // <span className="badge rounded-pill bg-secondary" style={{ marginBottom: "10px" }}>{item.estatus}</span>
-              <Badge bg="danger">{item.estatus}</Badge>
+              <Badge bg="danger">{item.estatuto}</Badge>
             ) : (
               // <span className="badge rounded-pill bg-secondary" style={{ marginBottom: "10px" }}>{item.estatus}</span>
-              <Badge bg="info">{item.estatus}</Badge>
+              <Badge bg="info">{item.estatuto}</Badge>
             )
             }
             <h3 className={titleBanner}>{item.titulO_IDEA}</h3>

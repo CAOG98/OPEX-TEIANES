@@ -1,12 +1,12 @@
 import React, { useState, useEffect } from 'react';
 import { Badge, Card } from 'react-bootstrap';
 import notFound from '../Ideas/ImagesIdeas/ImageNotFound.jpg'
-import { Button, Input } from '@mui/material';
+// import { Button, Input } from '@mui/material';
 import { Link } from 'react-router-dom';
 import CircularProgress from '@mui/material/CircularProgress';
 import Backdrop from '@mui/material/Backdrop';
 import formatDate from './formatFecha';
-import Tooltip from '@mui/material/Tooltip';
+// import Tooltip from '@mui/material/Tooltip';
 import ModalAceptadas from './ModalAceptadas'
 import ModalRechazadas from './ModalRechazadas'
 import ReactLoading from 'react-loading';
@@ -33,12 +33,11 @@ const Cargando = () => {
 }
 
 const Ideas = () => {
-  const [imagen, setImagen] = useState(false)
   // ------------------------
   const [ideas, setIdeas] = useState([])
   const [done, setDone] = useState(undefined)
 
-  const initialUrl = "http://10.30.2.167:4000/api/ideas"
+  const initialUrl = "http://10.30.2.167:4000/api/Ideas/Proceso"
 
   const fetchIdeas = (url) => {
     fetch(url)
@@ -56,30 +55,6 @@ const Ideas = () => {
     }, 2000)
   }, [])
   // ------------------------
-
-  // CAMBIAR DE ESTADO LA IDEA ACEPTADA CUANDO ESTA EN PROGRESO 
-  const cambiarEstadoAceptadas = (idIdea) => {
-    const requestOptions = {
-      method: 'PUT',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({ title: 'React PUT Request Example' })
-    };
-    fetch(`http://10.30.2.167:4000/api/Ideas/Rechazar/${idIdea}`, requestOptions)
-      .then(response => response.json())
-      .then(data => this.setState({ postId: data.id }));
-  }
-
-  // CAMBIAR DE ESTADO LA IDEA A REACHAZA CUANDO ESTA EN PROGRESO
-  const cambiarEstadoReachazadas = (idIdea) => {
-    const requestOptions = {
-      method: 'PUT',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({ title: 'React PUT Request Example' })
-    };
-    fetch(`http://10.30.2.167:4000/api/Ideas/Aceptar/${idIdea}`, requestOptions)
-      .then(response => response.json())
-      .then(data => this.setState({ postId: data.id }));
-  }
 
   const loadingCard = styles.loadingCard
 
@@ -99,13 +74,13 @@ const Ideas = () => {
                     <Link to={`/Teian/DetalleTeian/${item.titulO_IDEA}`} style={{ textDecoration: "none", color: "#000" }} onClick={Cargando}>
                       <div style={{ height: "250px", overflow: "hidden" }}>
                         {item.archivos.length === 0 ? (
-                          <Card.Img variant="top" src={notFound} />
+                          <Card.Img key={index} variant="top" src={notFound} />
                         ) : (
                           item.archivos.map((item2, index) => (
                             index === 0 ? (
-                              <Card.Img variant="top" src={UrlServer + item2.urL_MULTIMEDIA} />
+                              <Card.Img key={index} variant="top" src={UrlServer + item2.urL_MULTIMEDIA} />
                             ) : (
-                              <></>
+                              <Card.Img key={index} variant="top" src={notFound} />
                             )
                           )))
                         }
@@ -123,8 +98,8 @@ const Ideas = () => {
                       <div style={{ display: "flex", justifyContent: "space-between" }}>
                         {/* <Button variant="contained" type="submit" style={{ backgroundColor: '#20BA81' }} onClick={() => cambiarEstadoAceptadas(item.iD_IDEA)} >Aceptar</Button>
                   <Button variant="contained" style={{ backgroundColor: '#DB5F58' }} onClick={() => cambiarEstadoReachazadas(item.iD_IDEA)}>Rechazar</Button> */}
-                        <ModalAceptadas index={item.iD_ESTATUS} />
-                        <ModalRechazadas index={item.iD_ESTATUS} />
+                        <ModalAceptadas index={item.iD_IDEA}/>
+                        <ModalRechazadas index={item.iD_IDEA}/>
                       </div>
                     </Card.Body>
                   </Card>

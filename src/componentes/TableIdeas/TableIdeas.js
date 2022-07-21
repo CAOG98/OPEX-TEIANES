@@ -46,19 +46,22 @@ const columns = [
   },
 ]
 
-const baseUrl = 'http://10.30.2.167:4000/api/Ideas'
+const idUsuario = window.localStorage.getItem('usuario')
+
+const baseUrl = `http://10.30.2.167:4000/api/Ideas/Usuario${idUsuario}`
 
 const TableIdeas = () => {
   //1 Configurar los hooks
   const [tableData, setTableData] = useState([])
   const [pageSize, setPageSize] = React.useState(5);
+  const [arrayDatos, setArrayDatos] = useState()
 
 
   useEffect(() => {
     fetch(baseUrl)
       .then((data) => data.json())
       .then((data) => {
-        console.log(data)
+        // console.log(data)
         var datosArray = [];
         var fila = 0
         const mappedResults =
@@ -68,9 +71,25 @@ const TableIdeas = () => {
 
         data.forEach(index => {
           datosArray[fila] = [];
-          datosArray[fila].push(index.iD_IDEA, index.fechA_CREACION_IDEA, index.titulO_IDEA, index.categorias, index.coaches, index.areaSoporte);
+          datosArray[fila].push(index.iD_IDEA, index.fechA_CREACION_IDEA, index.titulO_IDEA, index.categoria, index.coaches, index.areA_SOPORTE);
           fila += 1;
         })
+
+        // data.forEach(index2 =>{
+        //   const rows: RowsProp =[
+        //     {id: index2.iD_IDEA, Fecha: index2.fechA_CREACION_IDEA, Titulo: index2.titulO_IDEA, Categoria: index2.categoria, Coach: index2.coaches, AreaSoporte: index2.areA_SOPORTE }
+        //   ]
+        //   setArrayDatos(rows)
+        // })
+
+
+
+
+        // const datosArray2 = JSON.stringify(datosArray)
+        // console.log(datosArray2)
+        // setArrayDatos(datosArray2)
+
+        setArrayDatos(datosArray)
         console.log(datosArray)
       })
     // .then((data) => setTableData(data))

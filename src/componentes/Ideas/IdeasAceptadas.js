@@ -1,10 +1,10 @@
-import { Backdrop, Button } from '@mui/material';
+import { Backdrop } from '@mui/material';
 import React, { useState, useEffect } from 'react';
-import { Badge, Card, Container } from 'react-bootstrap';
+import { Badge, Card } from 'react-bootstrap';
 import notFound from '../Ideas/ImagesIdeas/ImageNotFound.jpg'
 import IconButton from '@mui/material/IconButton'
 import Tooltip from '@mui/material/Tooltip';
-import AddPhotoAlternateIcon from '@mui/icons-material/AddPhotoAlternate';
+// import AddPhotoAlternateIcon from '@mui/icons-material/AddPhotoAlternate';
 import Modal from './Modal'
 import { Link } from 'react-router-dom';
 import CircularProgress from '@mui/material/CircularProgress';
@@ -15,12 +15,12 @@ import styles from './Ideas.module.css'
 const UrlServer = "http://10.30.2.167:4000/"
 
 const IdeasAceptadas = () => {
-  const [tab, setTab] = useState(false)
+  // const [tab, setTab] = useState(false)
   // ------------------------
   const [ideas, setIdeas] = useState([])
   const [done, setDone] = useState(undefined)
 
-  const initialUrl = "http://10.30.2.167:4000/api/ideas/Aceptadas"
+  const initialUrl = "http://10.30.2.167:4000/api/ideas/Aprobadas"
 
   const fetchIdeas = (url) => {
     fetch(url)
@@ -42,9 +42,9 @@ const IdeasAceptadas = () => {
 
 
 
-  const Implementada = () => {
-    setTab(true)
-  };
+  // const Implementada = () => {
+  //   setTab(true)
+  // };
   // Metdo de CARGANDO
   const Cargando = () => {
     const [open, setOpen] = React.useState(true);
@@ -77,13 +77,13 @@ const IdeasAceptadas = () => {
                   <Link to={`/Teian/DetalleTeian/${item.titulO_IDEA}`} style={{ textDecoration: "none", color: "#000" }} onClick={Cargando}>
                     <div style={{ height: "250px", overflow: "hidden" }}>
                       {item.archivos.length === 0 ? (
-                        <Card.Img variant="top" src={notFound} />
+                        <Card.Img key={index} variant="top" src={notFound} />
                       ) : (
                         item.archivos.map((item2, index) => (
                           index === 0 ? (
-                            <Card.Img variant="top" src={UrlServer + item2.urL_MULTIMEDIA} />
+                            <Card.Img key={index} variant="top" src={UrlServer + item2.urL_MULTIMEDIA} />
                           ) : (
-                            <></>
+                            <Card.Img key={index} variant="top" src={notFound} />
                           )
                         )))
                       }

@@ -5,6 +5,7 @@ import NavbarToggle from 'react-bootstrap/esm/NavbarToggle';
 import { Container, Nav, Navbar, NavDropdown } from 'react-bootstrap';
 import NavbarCollapse from 'react-bootstrap/esm/NavbarCollapse';
 import gerberLogo from '../FormularioLogin/images/GerberLogo.png';
+import Avatares from '../Avatar/Avatares'
 
 
 
@@ -22,6 +23,7 @@ class NavBar extends React.Component {
       window.localStorage.removeItem('loggedIdeaAppUser')
       window.location = "/Login"
   }
+  const nameUsuario = window.localStorage.getItem('usuario')
     return (
       <Navbar expand="lg" className={navBarBody}>
         <Container style={{ maxWidth: '100%', width: '100%' }}>

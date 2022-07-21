@@ -107,6 +107,7 @@ const DetallesTeian = ({ ideas }) => {
   const [isDisabled, setIsDisabled] = useState(false);
 
   const { titulo_Idea } = useParams()
+  {console.log(titulo_Idea)}
   return (
     <Container style={{ maxWidth: "100%" }} >
       <BannerTeianDetalles ideas={ideas} />
@@ -120,9 +121,13 @@ const DetallesTeian = ({ ideas }) => {
                 '&.Mui-disabled': { opacity: 0.3 },
               },
             }}>
+              {/* {
+              ideas.map((item, index) => (
+                item.
+              ))} */}
             <Tab label="IDEA CREADA" {...a11yProps(0)} />
-            <Tab label="IMPLEMENTAR" {...a11yProps(1)} disabled />
-            <Tab label="IDEA IMPLEMENTADA" {...a11yProps(2)} disabled />
+            <Tab label="IMPLEMENTAR" {...a11yProps(1)} />
+            <Tab label="IDEA IMPLEMENTADA" {...a11yProps(2)} />
           </Tabs>
         </Box>
         <TabPanel className={tabNav} value={value} index={0}>

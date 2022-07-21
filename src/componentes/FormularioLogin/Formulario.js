@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { Formik, Field, ErrorMessage } from "formik";
+import { Formik, ErrorMessage } from "formik";
 import { Button, Form, Container } from "react-bootstrap";
 import gerberLogo from './images/GerberLogo.png';
 import ideaLogo from './images/idea.png';
@@ -7,15 +7,16 @@ import ideaPrendida from './images/ideaPrendida.png';
 import styles from './FormularioLogin.module.css'
 import { ModalFooter } from 'react-bootstrap';
 import Marquee from "react-fast-marquee";
-import { Outlet, Navigate } from "react-router-dom";
+import { Outlet } from "react-router-dom";
 import { AiOutlineEyeInvisible, AiOutlineEye } from 'react-icons/ai'
 // Login
 import loginService from '../../Actions/login'
 // JWT
 import jwt from 'jwt-decode'
-import FormIdea from "../FormIdea";
 import Snackbar from '@mui/material/Snackbar';
 import MuiAlert from '@mui/material/Alert';
+import FormIdea from "../FormIdea";
+import App from "../../App";
 
 const Formulario = () => {
     // LoginJWT
@@ -29,6 +30,7 @@ const Formulario = () => {
     //Notificación
     const [open, setOpen] = React.useState(false);
     const [openError, setOpenError] = React.useState(false);
+    const [nombreUsuario, setNombreUsuario] = useState(null)
 
 
     useEffect(() => {
@@ -62,11 +64,15 @@ const Formulario = () => {
             const token = user.token;
             const user2 = jwt(token); // decode your token here
             console.log(user2)
+            console.log(user2.nameid)
+            setNombreUsuario(user2.nameid)
 
-            // const TokenContext = React.createContext(user2)
-            // console.log(TokenContext)
+            const user3 = user2.nameid
+            window.localStorage.setItem('usuario', user3)
+            
+
             setOpen(true);
-            setSuccessMessage("Credenciales Correctas")
+            setSuccessMessage("Credenciales Correctas usuario: ")
             setImagen(prevState => !prevState);
             setTimeout(() => {
                 setUser(user)
@@ -84,7 +90,6 @@ const Formulario = () => {
             }, 5000)
         }
     }
-
     // Hook
     const [formularioEnviado, cambiarFormularioEnviado] = useState(false)
 
@@ -95,7 +100,7 @@ const Formulario = () => {
     const imageTitle = styles.imageTitle
     const imageFootCard = styles.imageFootCard
     const footCard = styles.footCard
-    const button = styles.buttonLogin
+
     const bodyLogin = styles.bodyLogin
     const inputForm = styles.inputForm
     const messageExito = styles.messageExito
@@ -113,8 +118,6 @@ const Formulario = () => {
         setEye(prevState => !prevState);
     }
 
-
-
     const RenderFormularioInicioSesion = () => {
         const Alert = React.forwardRef(function Alert(props, ref) {
             return <MuiAlert elevation={6} ref={ref} variant="filled" {...props} />;
@@ -123,9 +126,9 @@ const Formulario = () => {
             open2: false,
             vertical: 'top',
             horizontal: 'right',
-          });
-        
-          const { vertical, horizontal, open2 } = state;
+        });
+
+        const { vertical, horizontal, open2 } = state;
         return (
             <div className={bodyLogin}>
                 <Container className={clases}>
@@ -188,7 +191,7 @@ const Formulario = () => {
 
                                 <Snackbar key={vertical + horizontal} anchorOrigin={{ vertical, horizontal }} open={open} autoHideDuration={6000}  >
                                     <Alert severity="success" sx={{ width: '100%' }}>
-                                        {successMessage}
+                                        {successMessage} {nombreUsuario}
                                     </Alert>
                                 </Snackbar>
 
@@ -208,24 +211,23 @@ const Formulario = () => {
                 </Container>
                 <footer className={footer}>
                     <ModalFooter>
-                        <Marquee className={txtFooter} direction='right'>Soy parte de la mejora y en mi esta la solución</Marquee>
+                        <Marquee className={txtFooter} direction='right' pauseOnClick={true} speed='100' delay={20} gradient={false} gradientColor={0, 0, 0}>Soy parte de la mejora y en mi esta la solución</Marquee>
                     </ModalFooter>
                 </footer>
+
                 <Outlet />
             </div>
         )
     }
 
-
-
-
     return (
         <>
             {
                 user
-                    ? window.location = "/Teian/Formideas"
+                    ? window.location =  "/Teian/Formideas"
                     : RenderFormularioInicioSesion()
             }
+            <App nameUser = {nombreUsuario}/>
         </>
     );
 }

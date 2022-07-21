@@ -15,6 +15,8 @@ import DetallesTeian from "./componentes/DetallesTeian";
 import Perfil from "./componentes/Perfil";
 import LoginSecundario from "./Actions/LoginSecundario";
 import FormIdeaTest from "./componentes/FormIdea";
+import Avatares from './componentes/Avatar/Avatares'
+
 
 
 
@@ -24,7 +26,7 @@ const App = () => {
   const [ideas, setIdeas] = useState([])
   const [info, setInfo] = useState({})
 
-  const initialUrl = "http://10.30.2.167:4000/api/ideas"
+  const initialUrl = "http://10.30.2.167:4000/api/Ideas"
 
   const fetchIdeas = (url) => {
     fetch(url)
@@ -40,21 +42,23 @@ const App = () => {
     fetchIdeas(initialUrl)
   }, [])
 
+
+  const rutaServidor = "" //Pruebas
+  //const rutaservidor="/login" //Produccion
   return (
     <div className={cont}>
       <SideBar />
       <NavBar />
       <Routes>
-        <Route path="/" element={<FormularioLogin />} />
-        <Route path="/Login" element={<FormularioLogin />} />
-        <Route path="Teian/Formideas" element={<FormIdea />} />
-        <Route path="Teian/TableIdeas" element={<TableIdeas />} />
-        <Route path="Teian/ApproveIdeas" element={<ApprovedIdeas />} />
-        <Route path="Teian/DetalleTeian/:titulo_Idea" element={<DetallesTeian ideas={ideas} />} />
-        <Route path="Teian/TeianesAccepted" element={<AcceptedTeianes />} />
-        <Route path="Teian/TeianesRechazados" element={<TeianesRechazados />} />
-        <Route path="Teian/Perfil" element={<Perfil />} />
-        <Route path="Teian/Dudas" element={<Dudas />} />
+        <Route path={rutaServidor + "/Login"} element={<FormularioLogin />} />
+        <Route path={rutaServidor + "/Teian/Formideas"} element={<FormIdea />} />
+        <Route path={rutaServidor + "Teian/TableIdeas"} element={<TableIdeas />} />
+        <Route path={rutaServidor + "Teian/ApproveIdeas"} element={<ApprovedIdeas />} />
+        <Route path={rutaServidor + "Teian/DetalleTeian/:titulo_Idea"} element={<DetallesTeian ideas={ideas} />} />
+        <Route path={rutaServidor + "Teian/TeianesAccepted"} element={<AcceptedTeianes />} />
+        <Route path={rutaServidor + "Teian/TeianesRechazados"} element={<TeianesRechazados />} />
+        <Route path={rutaServidor + "Teian/Perfil"} element={<Perfil />} />
+        <Route path={rutaServidor + "Teian/Dudas"} element={<Dudas />} />
       </Routes>
     </div>
   )
