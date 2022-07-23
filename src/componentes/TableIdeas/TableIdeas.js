@@ -5,42 +5,49 @@ import 'styled-components'
 import './TableIdeas.css'
 import { DataGrid, GridToolbar, esES } from '@mui/x-data-grid';
 import { Container } from 'react-bootstrap';
+import { formatFecha } from '../Ideas/formatFecha'
 
 //1. Configuramos las columnas para DataTable
 const columns = [
   {
-    field: 'id',
-    headerName: 'ID',
+    field: 'iD_IDEA',
+    headerName: 'ID', width: 50,
     headerAlign: 'center',
     headerClassName: 'headerTable'
   },
   {
-    field: 'Fecha',
-    headerName: 'FECHA',
+    field: 'fechA_CREACION_IDEA',
+    headerName: 'FECHA',  width: 130,
     headerAlign: 'center',
     headerClassName: 'headerTable'
   },
   {
-    field: 'Titulo',
+    field: 'titulO_IDEA',
     headerName: 'TITULO', width: 400,
     headerAlign: 'center',
     headerClassName: 'headerTable'
   },
   {
-    field: 'Categoria',
-    headerName: 'CATEGORÍA', width: 400,
+    field: 'categoria',
+    headerName: 'CATEGORÍA', width: 127,
     headerAlign: 'center',
     headerClassName: 'headerTable'
   },
   {
-    field: 'Coach',
-    headerName: 'COACH', width: 400,
+    field: 'coaches',
+    headerName: 'COACH', width: 200,
     headerAlign: 'center',
     headerClassName: 'headerTable'
   },
   {
-    field: 'AreaSoporte',
-    headerName: 'AREA DE SOPORTE', width: 380,
+    field: 'areA_SOPORTE',
+    headerName: 'AREA DE SOPORTE', width: 200,
+    headerAlign: 'center',
+    headerClassName: 'headerTable'
+  },
+  {
+    field: 'ideA_TEXTO',
+    headerName: 'DESCRIPCION DE LA IDEA', width: 200,
     headerAlign: 'center',
     headerClassName: 'headerTable'
   },
@@ -61,48 +68,29 @@ const TableIdeas = () => {
     fetch(baseUrl)
       .then((data) => data.json())
       .then((data) => {
-        // console.log(data)
-        var datosArray = [];
-        var fila = 0
-        const mappedResults =
-          Object.keys(data).map(key => {
-            const value = data[key]
-          })
-
-        data.forEach(index => {
-          datosArray[fila] = [];
-          datosArray[fila].push(index.iD_IDEA, index.fechA_CREACION_IDEA, index.titulO_IDEA, index.categoria, index.coaches, index.areA_SOPORTE);
-          fila += 1;
-        })
-
-        // data.forEach(index2 =>{
-        //   const rows: RowsProp =[
-        //     {id: index2.iD_IDEA, Fecha: index2.fechA_CREACION_IDEA, Titulo: index2.titulO_IDEA, Categoria: index2.categoria, Coach: index2.coaches, AreaSoporte: index2.areA_SOPORTE }
-        //   ]
-        //   setArrayDatos(rows)
-        // })
-
-
-
-
-        // const datosArray2 = JSON.stringify(datosArray)
-        // console.log(datosArray2)
-        // setArrayDatos(datosArray2)
-
-        setArrayDatos(datosArray)
-        console.log(datosArray)
+        setTableData(data)
+        console.log(data)
       })
-    // .then((data) => setTableData(data))
   }, [])
+
+  tableData.map((exam) => {
+    exam['id'] = exam.examId
+  })
+
+  const dataFilter = tableData.map(({ iD_IDEA, fechA_CREACION_IDEA, titulO_IDEA, categoria, coaches, areA_SOPORTE, ideA_TEXTO }) => ({ iD_IDEA, fechA_CREACION_IDEA, titulO_IDEA, categoria, coaches, areA_SOPORTE, ideA_TEXTO }))
+  console.log(dataFilter)
 
   return (
     <Container className="contTable" >
       <h1 className="titleTable">Mis Teianes</h1>
       <DataGrid
         name="MIS TEIANES"
-        rows={tableData}
         columns={columns}
+        rows={dataFilter}
+        getRowId={(row) => row.iD_IDEA}
         components={{ Toolbar: GridToolbar }}
+        alignItems="center"
+        justifyContent="center"
         checkboxSelection
         componentsProps={{
           toolbar: {

@@ -82,7 +82,7 @@ const FormIdea = () => {
 
     const handlerCargarCoach = async (e, valores) => {
         const IdCategoria = e.target.value
-        await axios.get(`http://10.30.2.167:4000/api/Coaches/COACHES_CATEGORIA/${IdCategoria}`).then(response => {
+        await axios.get(`http://10.30.2.167:4000/api/Coaches/CATEGORIA/${IdCategoria}`).then(response => {
             setCoaches(response.data)
         }).catch(error => {
             console.log(error)

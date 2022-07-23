@@ -33,7 +33,6 @@ const App = () => {
       .then(response => response.json())
       .then(data => {
         setIdeas(data)
-        console.log(data)
       })
       .catch(error => console.log(error))
   }
@@ -54,7 +53,7 @@ const App = () => {
         <Route path={rutaServidor + "/Teian/Formideas"} element={<FormIdea />} />
         <Route path={rutaServidor + "Teian/TableIdeas"} element={<TableIdeas />} />
         <Route path={rutaServidor + "Teian/ApproveIdeas"} element={<ApprovedIdeas />} />
-        <Route path={rutaServidor + "Teian/DetalleTeian/:titulo_Idea"} element={<DetallesTeian ideas={ideas} />} />
+        <Route path={rutaServidor + "Teian/DetalleTeian/:iD_IDEA"} element={<DetallesTeian />} />
         <Route path={rutaServidor + "Teian/TeianesAccepted"} element={<AcceptedTeianes />} />
         <Route path={rutaServidor + "Teian/TeianesRechazados"} element={<TeianesRechazados />} />
         <Route path={rutaServidor + "Teian/Perfil"} element={<Perfil />} />

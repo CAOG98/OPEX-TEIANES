@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import ReactPlayer from 'react-player'
 import PropTypes from 'prop-types';
 import Tabs, { tabsClasses } from '@mui/material/Tabs';
@@ -12,6 +12,9 @@ import styles from './DetallesTeian.module.css'
 import { useParams } from 'react-router-dom';
 import { Formik, Form, Field, ErrorMessage } from "formik";
 import axios from 'axios'
+import { Badge, Card } from 'react-bootstrap';
+import notFound from '../Ideas/ImagesIdeas/ImageNotFound.jpg';
+import formatDate from '../Ideas/formatFecha';
 
 
 // Estilos
@@ -69,9 +72,30 @@ function a11yProps(index) {
   };
 }
 
-const DetallesTeian = ({ ideas }) => {
+const DetallesTeian = () => {
   const [formularioEnviado, cambiarFormularioEnviado] = useState(false)
   const [value, setValue] = useState(0);
+  const [ideasDetalle, setIdeasDetalle] = useState([])
+  const [isLoading, setIsLoading] = useState(true);
+
+  const { iD_IDEA } = useParams()
+  console.log(iD_IDEA)
+  const initialUrlDetalle = `http://10.30.2.167:4000/api/Ideas/Detalle_Idea/${iD_IDEA}`
+
+  const fetchIdeasDetalle = (url) => {
+    fetch(url)
+      .then(response => response.json())
+      .then(data => {
+        setIdeasDetalle(data)
+        setIsLoading(false);
+      })
+      .catch(error => console.log(error))
+  }
+
+  useEffect(() => {
+    fetchIdeasDetalle(initialUrlDetalle)
+  }, [])
+  console.log(ideasDetalle)
 
 
   const textoIdea = styles.textoIdea
@@ -105,12 +129,89 @@ const DetallesTeian = ({ ideas }) => {
 
 
   const [isDisabled, setIsDisabled] = useState(false);
+  const imageBanner = styles.imageBanner
+  const bannerCont = styles.bannerCont
+  const titleBanner = styles.titleBanner
+  const dateBanner = styles.dateBanner
 
-  const { titulo_Idea } = useParams()
-  {console.log(titulo_Idea)}
+  const UrlServer = "http://10.30.2.167:4000/"
+
+  if (isLoading) {
+    return (
+      <div className="App">
+        <h1>Cargando...</h1>
+      </div>
+    );
+  }
+
   return (
     <Container style={{ maxWidth: "100%" }} >
-      <BannerTeianDetalles ideas={ideas} />
+      <Card className={bannerCont}>
+        {/* {ideas.archivos.map((item, index) => (
+        <Card key={index} className={bannerCont}>
+          {item.archivos.length === 0 ? (
+            <Card.Img variant="top" src={notFound} className={imageBanner} />
+          ) : (
+            item.archivos.map((item2, index) => (
+              index === 0 ? (
+                <Card.Img variant="top" src={UrlServer + item2.urL_MULTIMEDIA} className={imageBanner} />
+              ) : (
+                <></>
+              )
+            )))
+          }
+      ))} */}
+      {
+        console.log(ideasDetalle.archivos)
+      }
+        {
+          ideasDetalle.archivos.length > 0 ? (
+            ideasDetalle.archivos.map((item, index) => (
+              index === 0 ? (
+                <Card.Img variant="top" src={UrlServer + item.urL_MULTIMEDIA} className={imageBanner} />
+              ) : (
+                <></>
+              )
+            ))
+          ): (
+              <Card.Img variant="top" src={notFound} className={imageBanner} /> 
+            )
+        } 
+
+
+        {/* {ideasDetalle.videos.map((item, index) => (
+            console.log(item)
+          ))} */}
+
+        <Card.ImgOverlay>
+          {ideasDetalle.iD_ESTATUS === 1 ? (
+            // <span className="badge rounded-pill bg-secondary" style={{ marginBottom: "10px" }}>{item.estatus}</span>
+            <Badge bg="secondary">{ideasDetalle.estatuto}</Badge>
+          ) : ideasDetalle.iD_ESTATUS === 2 ? (
+            // <span className="badge rounded-pill bg-success text-white" style={{ marginBottom: "10px" }}>{item.estatus}</span>
+            <Badge bg="success">{ideasDetalle.estatuto}</Badge>
+          ) : ideasDetalle.iD_ESTATUS === 3 ? (
+            // <span className="badge rounded-pill bg-secondary" style={{ marginBottom: "10px" }}>{item.estatus}</span>
+            <Badge bg="warning">{ideasDetalle.estatuto}</Badge>
+          ) : ideasDetalle.iD_ESTATUS === 4 ? (
+            // <span className="badge rounded-pill bg-secondary" style={{ marginBottom: "10px" }}>{item.estatus}</span>
+            <Badge bg="danger">{ideasDetalle.estatuto}</Badge>
+          ) : (
+            // <span className="badge rounded-pill bg-secondary" style={{ marginBottom: "10px" }}>{item.estatus}</span>
+            <Badge bg="info">{ideasDetalle.estatuto}</Badge>
+          )
+          }
+          <h3 className={titleBanner}>{ideasDetalle.titulO_IDEA}</h3>
+          <div className={dateBanner}>
+            <Card.Text>Ultima Actualización:</Card.Text>
+            <Card.Text>
+              {
+                formatDate(ideasDetalle.fechA_CREACION_IDEA)
+              }
+            </Card.Text>
+          </div>
+        </Card.ImgOverlay>
+      </Card>
       <Box sx={{ width: '100%' }} className={fondoDetalleIdea}>
         <Box sx={{ borderBottom: 1, borderColor: 'divider' }}>
           <Tabs className={tabsNav} value={value} onChange={handleChange} variant="scrollable"
@@ -121,7 +222,7 @@ const DetallesTeian = ({ ideas }) => {
                 '&.Mui-disabled': { opacity: 0.3 },
               },
             }}>
-              {/* {
+            {/* {
               ideas.map((item, index) => (
                 item.
               ))} */}
@@ -134,25 +235,24 @@ const DetallesTeian = ({ ideas }) => {
           <p> DETALLES DEL TEIAN</p>
           <hr />
           <Row className={bodyDetalles}>
-            {ideas.filter(item => item.titulO_IDEA === titulo_Idea).map((item, index) => (
-              <Col xs={6} className={DetallesInfoGeneral}>
-                <div className={textoIdea}>
-                  <p className="mb-0">{item.ideA_TEXTO}</p>
-                </div>
-                <Container className={DetallesInfoCategorias}>
-                  <Row className={tituloCategorias}>
-                    <Col lg="2"><h5>Categorias:</h5></Col>
-                    <Col lg="11"><span className="badge rounded-pill" style={{ color: "#000", background: "#D0D0D0" }}>{item.iD_CATEGORIA}</span></Col>
-                  </Row>
-                  <Row className={tituloCategorias}>
-                    <Col lg="2"><h5>Coach:</h5></Col>
-                    <Col lg="11"><span className="badge rounded-pill" style={{ color: "#000", background: "#D0D0D0" }}>{item.iD_COACH}</span></Col>
-                  </Row>
-                </Container>
-              </Col>
-            ))}
+            <Col xs={6} className={DetallesInfoGeneral}>
+              <div className={textoIdea}>
+                <p className="mb-0">{ideasDetalle.ideA_TEXTO}</p>
+              </div>
+              <Container className={DetallesInfoCategorias}>
+                <Row className={tituloCategorias}>
+                  <Col lg="2"><h5>Categoria:</h5></Col>
+                  <Col lg="11"><span className="badge rounded-pill" style={{ color: "#fff", background: "#0d6efd" }}>{ideasDetalle.categoria}</span></Col>
+                </Row>
+                <Row className={tituloCategorias}>
+                  <Col lg="2"><h5>Coach:</h5></Col>
+                  <Col lg="11"><span className="badge rounded-pill" style={{ color: "#fff", background: "#0d6efd" }}>{ideasDetalle.coaches}</span></Col>
+                </Row>
+              </Container>
+            </Col>
+
             <Col xs={4} className={DetallesImageGeneral} >
-              <ImagesDetallesTeian ideas={ideas} />
+              <ImagesDetallesTeian ideasDetalles = {ideasDetalle} />
             </Col>
           </Row>
         </TabPanel>
@@ -209,7 +309,7 @@ const DetallesTeian = ({ ideas }) => {
 
             </Col>
             <Col xs={4} className={DetallesImageGeneral} >
-              <ImagesDetallesTeian ideas={ideas} />
+              {/* <ImagesDetallesTeian /> */}
             </Col>
           </Row>
         </TabPanel>

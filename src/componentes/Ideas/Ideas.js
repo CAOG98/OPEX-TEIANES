@@ -71,7 +71,7 @@ const Ideas = () => {
               ideas.map((item, index) => (
                 <div className="column" key={index} >
                   <Card style={{ width: '20rem', margin: "25px", borderRadius: "10px", boxShadow: "rgb(38, 57, 77) 0px 20px 20px -10px" }} >
-                    <Link to={`/Teian/DetalleTeian/${item.titulO_IDEA}`} style={{ textDecoration: "none", color: "#000" }} onClick={Cargando}>
+                    <Link to={`/Teian/DetalleTeian/${item.iD_IDEA}`} style={{ textDecoration: "none", color: "#000" }} onClick={Cargando}>
                       <div style={{ height: "250px", overflow: "hidden" }}>
                         {item.archivos.length === 0 ? (
                           <Card.Img key={index} variant="top" src={notFound} />
@@ -89,7 +89,7 @@ const Ideas = () => {
                     {/* <span className="badge rounded-pill bg-secondary" style={{position:"absolute", margin:"10px"}}>{item.estatus}</span> */}
                     <Badge style={{ position: "absolute", margin: "10px" }} bg="secondary">{item.estatus}</Badge>
                     <Card.Body>
-                      <Card.Title>{item.titulO_IDEA}</Card.Title>
+                      <Card.Title>{item.titulO_IDEA.length >= 29 ? item.titulO_IDEA.substr(0, 29) + "..." : item.titulO_IDEA }</Card.Title>
                       <Card.Text>
                         {
                           formatDate(item.fechA_CREACION_IDEA)

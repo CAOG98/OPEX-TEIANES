@@ -17,23 +17,36 @@ const contentImagenesCarrousel = styles.contentImagenesCarrousel
 const imagenPreview = styles.imagenPreview
 const UrlServer = "http://10.30.2.167:4000/"
 
-const ImagesDetallesTeian = ({ ideas }) => {
-  console.log(ideas)
+const ImagesDetallesTeian = ({ ideasDetalles }) => {
+  console.log(ideasDetalles)
 
   const { titulo_Idea } = useParams()
   const [toggler, setToggler] = useState(false);
-  
-
+  const arrayImagenes = [];
   return (
     <div className={contentImagenesCarrousel}>
-      <img src={gerberLogo} className={imagenPreview} onClick={() => setToggler(!toggler)} />
+      {ideasDetalles.archivos.map((item, index) => (
+        index === 0 ? (
+          <img src={UrlServer + item.urL_MULTIMEDIA} className={imagenPreview} onClick={() => setToggler(!toggler)} />
+        ) : (
+          <></>
+        )
+      ))}
+      {ideasDetalles.archivos.map((item, index) => (
+        arrayImagenes.push(UrlServer + item.urL_MULTIMEDIA),
+        console.log(arrayImagenes)
+      ))}
+
       <FsLightbox
         toggler={toggler}
-        sources={[
-          'https://i.imgur.com/fsyrScY.jpg',
-          'https://www.youtube.com/watch?v=3nQNiWdeH2Q',
-          'https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/BigBuckBunny.mp4'
-        ]}
+        sources={
+          arrayImagenes
+        }
+        types={[
+          ...new Array(arrayImagenes.length).fill('image'),
+      //  ...new Array(arrayImagenes.length).fill('video')
+        ]
+        }
         disableLocalStorage={true}
         slideDistance={0.5}
       />

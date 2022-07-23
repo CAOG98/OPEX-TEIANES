@@ -14,11 +14,18 @@ const dateBanner = styles.dateBanner
 const UrlServer = "http://10.30.2.167:4000/"
 
 
-const BannerTeianDetalles = ({ ideas }) => {
-  const { titulo_Idea } = useParams()
+const BannerTeianDetalles = ({ ideaDetalle }) => {
+  const [cargando, setCargando] = (false)
+
+
+  console.log(ideaDetalle)
+  // const { iD_IDEA } = useParams()
+  const dataImagenes = ideaDetalle
+  // console.log(dataImagenes)
   return (
     <>
-      {ideas.filter(item => item.titulO_IDEA === titulo_Idea).map((item, index) => (
+      <Card className={bannerCont}>
+        {/* {ideas.archivos.map((item, index) => (
         <Card key={index} className={bannerCont}>
           {item.archivos.length === 0 ? (
             <Card.Img variant="top" src={notFound} className={imageBanner} />
@@ -31,36 +38,44 @@ const BannerTeianDetalles = ({ ideas }) => {
               )
             )))
           }
-          <Card.ImgOverlay>
-            {item.iD_ESTATUS == 1 ? (
-              // <span className="badge rounded-pill bg-secondary" style={{ marginBottom: "10px" }}>{item.estatus}</span>
-              <Badge bg="secondary">{item.estatuto}</Badge>
-            ) : item.iD_ESTATUS == 2 ? (
-              // <span className="badge rounded-pill bg-success text-white" style={{ marginBottom: "10px" }}>{item.estatus}</span>
-              <Badge bg="success">{item.estatuto}</Badge>
-            ) : item.iD_ESTATUS == 3 ? (
-              // <span className="badge rounded-pill bg-secondary" style={{ marginBottom: "10px" }}>{item.estatus}</span>
-              <Badge bg="warning">{item.estatuto}</Badge>
-            ) : item.iD_ESTATUS == 4 ? (
-              // <span className="badge rounded-pill bg-secondary" style={{ marginBottom: "10px" }}>{item.estatus}</span>
-              <Badge bg="danger">{item.estatuto}</Badge>
-            ) : (
-              // <span className="badge rounded-pill bg-secondary" style={{ marginBottom: "10px" }}>{item.estatus}</span>
-              <Badge bg="info">{item.estatuto}</Badge>
-            )
-            }
-            <h3 className={titleBanner}>{item.titulO_IDEA}</h3>
-            <div className={dateBanner}>
-              <Card.Text>Ultima Actualización:</Card.Text>
-              <Card.Text>
-                {
-                  formatDate(item.fechA_CREACION_IDEA)
-                }
-              </Card.Text>
-            </div>
-          </Card.ImgOverlay>
-        </Card>
+      ))} */}
+      {dataImagenes.archivos.map((item, index) => (
+        index === 0 ? (
+          <Card.Img variant="top" src={UrlServer + item.urL_MULTIMEDIA} className={imageBanner} />
+        ) : (
+          <Card.Img variant="top" src={notFound} className={imageBanner} />
+        )
       ))}
+      
+        <Card.ImgOverlay>
+          {dataImagenes.iD_ESTATUS === 1 ? (
+            // <span className="badge rounded-pill bg-secondary" style={{ marginBottom: "10px" }}>{item.estatus}</span>
+            <Badge bg="secondary">{dataImagenes.estatuto}</Badge>
+          ) : dataImagenes.iD_ESTATUS === 2 ? (
+            // <span className="badge rounded-pill bg-success text-white" style={{ marginBottom: "10px" }}>{item.estatus}</span>
+            <Badge bg="success">{dataImagenes.estatuto}</Badge>
+          ) : dataImagenes.iD_ESTATUS === 3 ? (
+            // <span className="badge rounded-pill bg-secondary" style={{ marginBottom: "10px" }}>{item.estatus}</span>
+            <Badge bg="warning">{dataImagenes.estatuto}</Badge>
+          ) : dataImagenes.iD_ESTATUS === 4 ? (
+            // <span className="badge rounded-pill bg-secondary" style={{ marginBottom: "10px" }}>{item.estatus}</span>
+            <Badge bg="danger">{dataImagenes.estatuto}</Badge>
+          ) : (
+            // <span className="badge rounded-pill bg-secondary" style={{ marginBottom: "10px" }}>{item.estatus}</span>
+            <Badge bg="info">{dataImagenes.estatuto}</Badge>
+          )
+          }
+          <h3 className={titleBanner}>{dataImagenes.titulO_IDEA}</h3>
+          <div className={dateBanner}>
+            <Card.Text>Ultima Actualización:</Card.Text>
+            <Card.Text>
+              {
+                formatDate(dataImagenes.fechA_CREACION_IDEA)
+              }
+            </Card.Text>
+          </div>
+        </Card.ImgOverlay>
+      </Card>
     </>
   );
 }

@@ -72,7 +72,7 @@ const IdeasCanceladas = () => {
               ideas.map((item, index) => (
                 <div key={index} className="column" >
                   <Card style={{ width: '20rem', margin: "25px", borderRadius: "10px", boxShadow: "rgb(38, 57, 77) 0px 20px 20px -10px" }}>
-                    <Link to={`/Teian/DetalleTeian/${item.titulO_IDEA}`} style={{ textDecoration: "none", color: "#000" }} onClick={Cargando}>
+                    <Link to={`/Teian/DetalleTeian/${item.iD_IDEA}`} style={{ textDecoration: "none", color: "#000" }} onClick={Cargando}>
                       <div style={{ height: "250px", overflow: "hidden" }}>
                         {item.archivos.length === 0 ? (
                           <Card.Img key={index} variant="top" src={notFound} />
