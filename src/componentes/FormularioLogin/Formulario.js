@@ -211,7 +211,7 @@ const Formulario = () => {
                 </Container>
                 <footer className={footer}>
                     <ModalFooter>
-                        <Marquee className={txtFooter} direction='right' pauseOnClick={true} speed='100' delay={20} gradient={false} gradientColor={0, 0, 0}>Soy parte de la mejora y en mi esta la solución</Marquee>
+                        <Marquee className={txtFooter} direction='right' pauseOnClick={true} speed='100' delay={1} gradient={false} gradientColor={0, 0, 0}>Soy parte de la mejora y en mi esta la solución</Marquee>
                     </ModalFooter>
                 </footer>
 

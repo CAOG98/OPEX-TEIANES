@@ -1,6 +1,6 @@
 .bannerCont {
     width: 100%;
-    height: 28%;
+    height: 27%;
 }
 
 .imageBanner {
@@ -19,7 +19,7 @@
 }
 
 .dateBanner {
-    margin-top: 2%;
+    /* margin-top: 2%; */
     color: #fff;
 }
 
@@ -27,7 +27,7 @@
 
     .bannerCont {
         margin-top: 5em;
-        height: 22%;
+        height: 30%;
     }
 }
 
@@ -194,6 +194,7 @@
     object-fit: cover;
     display: block;
     margin: 0 auto;
+    padding-bottom: 50px;
 }
 
 

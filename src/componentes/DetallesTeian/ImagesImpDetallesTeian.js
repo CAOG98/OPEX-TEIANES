@@ -17,21 +17,21 @@ const contentImagenesCarrousel = styles.contentImagenesCarrousel
 const imagenPreview = styles.imagenPreview
 const UrlServer = "http://10.30.2.167:4000/"
 
-const ImagesDetallesTeian = ({ ideasDetalles }) => {
+const ImagesImpDetallesTeian = ({ ideasDetalles }) => {
 
   const { titulo_Idea } = useParams()
   const [toggler, setToggler] = useState(false);
   const arrayImagenes = [];
   return (
     <div className={contentImagenesCarrousel}>
-      {ideasDetalles.archivos.map((item, index) => (
+      {ideasDetalles.archivosimp.map((item, index) => (
         index === 0 ? (
           <img src={UrlServer + item.urL_MULTIMEDIA} className={imagenPreview} onClick={() => setToggler(!toggler)} />
         ) : (
           <></>
         )
       ))}
-      {ideasDetalles.archivos.map((item, index) => (
+      {ideasDetalles.archivosimp.map((item, index) => (
         arrayImagenes.push(UrlServer + item.urL_MULTIMEDIA),
         console.log(arrayImagenes)
       ))}
@@ -53,4 +53,4 @@ const ImagesDetallesTeian = ({ ideasDetalles }) => {
   )
 }
 
-export default ImagesDetallesTeian
+export default ImagesImpDetallesTeian

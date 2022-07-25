@@ -25,20 +25,6 @@ const FormIdea = () => {
     const [archivosVacios, setArchivosVacios] = useState(false)
 
 
-
-    // ------------------------------------------------------------------
-    // const categ = [
-    //     {
-    //         "nombre": "Mejora Continua",
-    //         "categoria": ["Christian", "Benajmin", "Chuy"]
-    //     },
-    //     {
-    //         "nombre": "5s",
-    //         "categoria": ["Melissa", "Alex", "Pedro"]
-    //     }
-    // ]
-
-
     // hooks
     const [categ, setCateg] = useState([])
     const [categorias, setCategorias] = useState(0)
@@ -178,6 +164,7 @@ const FormIdea = () => {
         <Container className={contFormIdea}>
             <div style={{ display: "flex", justifyContent: "space-between" }}>
                 <img src={gerberLogo} className={imageLogo} alt='Gerber' />
+                <Avatares/>
             </div>
             <h1 className={titleForm}>CREAR TEIAN</h1>
 
@@ -225,7 +212,7 @@ const FormIdea = () => {
                     <Form>
                         <div className={titleTeian}>
                             <label htmlFor="TEIAN">TITULO DEL TEIAN*</label>
-                            <Field className={titleTeianInput} type="text" id="nombre" name="teian" placeholder="Aquí va el titulo de tu idea" maxLength="109" />
+                            <Field className={titleTeianInput} type="text" id="nombre" name="teian" placeholder="Aquí va el titulo de tu idea" maxLength="28" />
                             <ErrorMessage name="teian" component={() => (
                                 <div className={errorMess}>{errors.teian}</div>
                             )} />
@@ -276,12 +263,7 @@ const FormIdea = () => {
                             )} />
                         </div>
                         <div>
-                            {/* <Field accept="image/*,video/*" type="file" name="file" multiple className={fileTeian} />
-                            <ErrorMessage name="file" component={() => (
-                                <div className={errorMess}>{errors.file}</div>
-                            )} /> */}
                             <input ref={inputRef} accept="image/*,video/*" type="file" name="files" multiple onChange={(e) => subirArchivos(e.target.files)} style={{ maxWidth: "100%" }} />
-                            {/* <p style={{ color: "red" }} >{errorMessage}</p> */}
                             {openAlert &&
                                 <Stack sx={{ marginTop: '20px', width: '100%' }} spacing={2}>
                                     <Alert severity="error">

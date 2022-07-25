@@ -92,7 +92,7 @@ const IdeasAceptadas = () => {
                   {/* <span className="badge rounded-pill bg-success text-white" style={{ position: "absolute", margin: "10px" }}>{item.estatus}</span> */}
                   <Badge style={{ position: "absolute", margin: "10px" }} bg="success">{item.estatus}</Badge>
                   <Card.Body>
-                    <Card.Title>{item.titulO_IDEA}</Card.Title>
+                    <Card.Title>{item.titulO_IDEA.length >= 28 ? item.titulO_IDEA.substr(0, 28) + "..." : item.titulO_IDEA}</Card.Title>
                     <Card.Text>
                       {
                         formatDate(item.fechA_CREACION_IDEA)

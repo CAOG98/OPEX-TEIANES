@@ -13,7 +13,6 @@ const ModalAceptadas = (indexEstatus) => {
     // Cambiar el estado a Aceptadas
     const cambiarEstadoAceptadas = (ideaAceptada) => {
         const IA = ideaAceptada.index
-        console.log(IA)
         const requestOptions = {
             method: 'PUT',
             headers: { 'Content-Type': 'application/json' },
