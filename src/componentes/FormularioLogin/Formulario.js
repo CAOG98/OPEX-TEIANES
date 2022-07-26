@@ -64,6 +64,10 @@ const Formulario = () => {
 
             // noteService.setToken(user.token)
             const token = user.token;
+            console.log(user)
+            window.localStorage.setItem('nombre_empleado', user.nomnbre_empleado)
+
+
             const user2 = jwt(token); // decode your token here
             console.log(user2)
             console.log(user2.nameid)
@@ -114,6 +118,8 @@ const Formulario = () => {
     const passwordField = styles.passwordField
     const inputFormPassword = styles.inputFormPassword
     const imagenHormiga = styles.imagenHormiga
+    const titlesFormLogin = styles.titlesFormLogin
+    const formularioLoginCampos = styles.formularioLoginCampos
 
     const [eye, setEye] = useState(false)
 
@@ -135,12 +141,14 @@ const Formulario = () => {
         return (
             <div className={bodyLogin}>
                 <Container className={clases}>
-                    <div style={{display:"flex", justifyContent:"space-between"}} >
+                    <div style={{display:"flex",flexDirection:"column", justifyContent:"end"}} >
                         <img className={imageTitle} src={imagen ? ideaPrendida : ideaLogo} alt='Teian'></img>
                         <img src={hormiga} className={imagenHormiga} />
                     </div>
-                    <h1 className={titleCard}>TEIANES</h1>
-                    <h5 className={titleCard}>(IDEAS DE MEJORA)</h5>
+                    <div className={titlesFormLogin}>
+                        <h1 className={titleCard}>TEIANES</h1>
+                        <h5 className={titleCard}>(IDEAS DE MEJORA)</h5>
+                    </div>
                     <Formik
                         initialValues={{
                             numeroTrabajador: '',
@@ -170,7 +178,7 @@ const Formulario = () => {
                         }}
                     >
                         {({ errors }) => (
-                            <Form onSubmit={handleLogin}>
+                            <Form onSubmit={handleLogin} className={formularioLoginCampos} >
                                 <div className={contFormInput}>
                                     <label className={titleInput} htmlFor="Numero del trabajador">Numero del Trabajador</label>
                                     <Form.Control className={inputForm} type="text" id="numeroTrabajador" name="numeroTrabajador" placeholder="Escribe el Numero del Trabajador" autoComplete="off" onChange={({ target }) => setUsername(target.value)} />
@@ -232,7 +240,7 @@ const Formulario = () => {
             {
                 user
                     ? window.location = "Teian/Formideas"
-            : RenderFormularioInicioSesion()
+                    : RenderFormularioInicioSesion()
             }
             <App nameUser={nombreUsuario} />
         </>

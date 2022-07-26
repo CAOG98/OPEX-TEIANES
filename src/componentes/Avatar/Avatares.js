@@ -12,10 +12,11 @@ const Avatares = () => {
   const badgeNameUser = style.badgeNameUser
 
   const nameUsuario = window.localStorage.getItem('usuario')
+  const nombre_empleado = window.localStorage.getItem('nombre_empleado')
   return (
     <div className={badgeNameUser} >
         <Badge pill bg="primary">
-          {nameUsuario}
+          {nombre_empleado}
         </Badge>
       </div>
   )
