@@ -26,7 +26,8 @@ class SideBar extends React.Component{
         window.location = "/Login"
     }
     
-
+    //const rutaServidor="/teianes/" //Produccion
+    const rutaServidor = "" //Pruebas
 
       return(
         <div className={sidebarS}>
@@ -40,7 +41,7 @@ class SideBar extends React.Component{
           <CDBSidebarContent className="sidebar-content">
 
               <CDBSidebarMenu>
-                <NavLink to="Teian/Formideas"  style={({ isActive }) =>
+                <NavLink to={rutaServidor + "Teian/Formideas"}  style={({ isActive }) =>
                   isActive
                     ? {
                         color: '#006dba',
@@ -53,7 +54,7 @@ class SideBar extends React.Component{
                 </NavLink>
 
 
-                <NavLink to="Teian/TableIdeas" style={({ isActive }) =>
+                <NavLink to={rutaServidor + "Teian/TableIdeas"} style={({ isActive }) =>
                   isActive
                     ? {
                         color: '#006dba',
@@ -65,9 +66,23 @@ class SideBar extends React.Component{
                 <CDBSidebarMenuItem icon="table">MIS TEIANES</CDBSidebarMenuItem>
                 </NavLink>
 
+                
+
+                <NavLink to={rutaServidor +"Teian/IdeasGenerales"} style={({ isActive }) =>
+                  isActive
+                    ? {
+                        color: '#006dba',
+                        background: '#7600dc',
+                        transition: '0.3s',
+                      }
+                    : { color: '#545e6f', background: '#f0f0f0',transition: '0.3s', }
+                }  activeClassName="activeClicked">
+                <CDBSidebarMenuItem icon="th-large">TEIANES GENERALES</CDBSidebarMenuItem>
+                </NavLink>
 
 
-                <NavLink to="Teian/ApproveIdeas" style={({ isActive }) =>
+
+                <NavLink to={rutaServidor +"Teian/ApproveIdeas"} style={({ isActive }) =>
                   isActive
                     ? {
                         color: '#006dba',
@@ -80,7 +95,7 @@ class SideBar extends React.Component{
                 </NavLink>
 
 
-                <NavLink to="Teian/TeianesAccepted" style={({ isActive }) =>
+                <NavLink to={rutaServidor +"Teian/TeianesAccepted"} style={({ isActive }) =>
                   isActive
                     ? {
                         color: '#006dba',
@@ -93,7 +108,7 @@ class SideBar extends React.Component{
                 </NavLink>
 
 
-                <NavLink to="Teian/TeianesRechazados" style={({ isActive }) =>
+                <NavLink to={rutaServidor +"Teian/TeianesRechazados"} style={({ isActive }) =>
                   isActive
                     ? {
                         color: '#006dba',
@@ -104,7 +119,7 @@ class SideBar extends React.Component{
                 }  activeClassName="activeClicked">
                 <CDBSidebarMenuItem icon="trash">TEIANES RECHAZADOS</CDBSidebarMenuItem>
                 </NavLink>
-                <NavLink  to="Teian/Perfil" style={({ isActive }) =>
+                <NavLink  to={rutaServidor +"Teian/Perfil"} style={({ isActive }) =>
                   isActive
                     ? {
                         color: '#006dba',
@@ -125,7 +140,7 @@ class SideBar extends React.Component{
 
 
           <CDBSidebarFooter style={{ textAlign: 'center', borderTop:'1px solid #333', backgroundColor:'#006dba' }}>
-            <NavLink to="Teian/Dudas" activeClassName="activeClicked" style={{ textDecoration: 'none', color:'#fff' }}>
+            <NavLink to={rutaServidor +"Teian/Dudas"} activeClassName="activeClicked" style={{ textDecoration: 'none', color:'#fff' }}>
             <div
               className="sidebar-btn-wrapper"
               style={{

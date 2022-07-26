@@ -16,6 +16,7 @@ import Perfil from "./componentes/Perfil";
 import LoginSecundario from "./Actions/LoginSecundario";
 import FormIdeaTest from "./componentes/FormIdea";
 import Avatares from './componentes/Avatar/Avatares'
+import IdeasGenerales from "./componentes/Ideas/IdeasGenerales";
 
 
 
@@ -43,15 +44,16 @@ const App = () => {
 
 
   const rutaServidor = "" //Pruebas
-  //const rutaservidor="/login" //Produccion
+  //const rutaServidor="/teianes/" //Produccions
   return (
     <div className={cont}>
       <SideBar />
       <NavBar />
       <Routes>
-        <Route path={rutaServidor + "/Login"} element={<FormularioLogin />} />
-        <Route path={rutaServidor + "/Teian/Formideas"} element={<FormIdea />} />
+        <Route path={rutaServidor + "Login"} element={<FormularioLogin />} />
+        <Route path={rutaServidor + "Teian/Formideas"} element={<FormIdea />} />
         <Route path={rutaServidor + "Teian/TableIdeas"} element={<TableIdeas />} />
+        <Route path={rutaServidor + "Teian/IdeasGenerales"} element={<IdeasGenerales />} />
         <Route path={rutaServidor + "Teian/ApproveIdeas"} element={<ApprovedIdeas />} />
         <Route path={rutaServidor + "Teian/DetalleTeian/:iD_IDEA"} element={<DetallesTeian />} />
         <Route path={rutaServidor + "Teian/TeianesAccepted"} element={<AcceptedTeianes />} />

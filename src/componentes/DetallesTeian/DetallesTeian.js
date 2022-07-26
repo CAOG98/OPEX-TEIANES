@@ -307,12 +307,12 @@ const DetallesTeian = () => {
           <hr />
           <Row className={bodyDetalles}>
             <Col xs={6} className={DetallesInfoGeneral}>
-            <Container className={DetallesInfoCategorias}>
-              <div className={textoIdea}>
-                <div style={{marginBottom:"30px"}}>
+            <div className={DetallesInfoCategorias}>
+            <div style={{marginBottom:"30px"}}>
                   <h5>Idea creada por:</h5><span className="badge rounded-pill" style={{ color: "#fff", background: "#016dbb", marginRight:"10px" }}>{ideasDetalle.nombrE_USUARIO}</span>
                   <span className="badge rounded-pill" style={{ color: "#fff", background: "#016dbb" }}>{ideasDetalle.departamento}</span>
                 </div>
+              <div className={textoIdea}>
                 <h5>Descripción: </h5>
                 <p className="mb-0">{ideasDetalle.ideA_TEXTO}</p>
               </div>
@@ -324,7 +324,7 @@ const DetallesTeian = () => {
                   <Col lg="2"><h5>Coach:</h5></Col>
                   <Col lg="11"><span className="badge rounded-pill" style={{ color: "#fff", background: "#0d6efd" }}>{ideasDetalle.coaches}</span></Col>
                 </Row>
-              </Container>
+              </div>
             </Col>
 
             <Col xs={4} className={DetallesImageGeneral} >

@@ -127,7 +127,7 @@ span{
 /* FOOTER DE LA PAGINA */
 .txtFooter{
     color: #fff;
-    font-size: 18px;
+    font-size: 20px;
 }
 .footer{
     position: fixed;
@@ -170,4 +170,20 @@ span{
     background-color: #fff;
     color: #000;
     box-shadow: none;
+}
+
+.imagenHormiga{
+    position:absolute;
+    right:36%;
+    top:3%;
+    filter:blur(0.3px);
+     width:7%;
+}
+@media (max-width:990px) {
+    .imagenHormiga{
+        position:absolute;
+        right:10%;
+        top:3.5%;
+         width:20%;
+    }
 }

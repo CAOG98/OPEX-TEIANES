@@ -2,6 +2,8 @@ import React, { useEffect, useState } from "react";
 import { Formik, ErrorMessage } from "formik";
 import { Button, Form, Container } from "react-bootstrap";
 import gerberLogo from './images/GerberLogo.png';
+import hormiga from './images/hormiga.png';
+import hormiga2 from './images/hormiga2.gif';
 import ideaLogo from './images/idea.png';
 import ideaPrendida from './images/ideaPrendida.png';
 import styles from './FormularioLogin.module.css'
@@ -69,7 +71,7 @@ const Formulario = () => {
 
             const user3 = user2.nameid
             window.localStorage.setItem('usuario', user3)
-            
+
 
             setOpen(true);
             setSuccessMessage("Credenciales Correctas usuario: ")
@@ -111,6 +113,7 @@ const Formulario = () => {
     const btnHidePassword = styles.btnHidePassword
     const passwordField = styles.passwordField
     const inputFormPassword = styles.inputFormPassword
+    const imagenHormiga = styles.imagenHormiga
 
     const [eye, setEye] = useState(false)
 
@@ -132,7 +135,10 @@ const Formulario = () => {
         return (
             <div className={bodyLogin}>
                 <Container className={clases}>
-                    <img className={imageTitle} src={imagen ? ideaPrendida : ideaLogo} alt='Teian'></img>
+                    <div style={{display:"flex", justifyContent:"space-between"}} >
+                        <img className={imageTitle} src={imagen ? ideaPrendida : ideaLogo} alt='Teian'></img>
+                        <img src={hormiga} className={imagenHormiga} />
+                    </div>
                     <h1 className={titleCard}>TEIANES</h1>
                     <h5 className={titleCard}>(IDEAS DE MEJORA)</h5>
                     <Formik
@@ -211,7 +217,7 @@ const Formulario = () => {
                 </Container>
                 <footer className={footer}>
                     <ModalFooter>
-                        <Marquee className={txtFooter} direction='right' pauseOnClick={true} speed='100' delay={1} gradient={false} gradientColor={0, 0, 0}>Soy parte de la mejora y en mi esta la solución</Marquee>
+                        <Marquee className={txtFooter} direction='right' pauseOnClick={true} speed='50' delay={1} gradient={false} gradientColor={0, 0, 0}>Soy parte de la mejora y en mi esta la solución </Marquee>
                     </ModalFooter>
                 </footer>
 
@@ -219,15 +225,16 @@ const Formulario = () => {
             </div>
         )
     }
-
+    //const rutaServidor="/teianes" //Produccion
+    const rutaServidor = "" //Pruebas
     return (
         <>
             {
                 user
-                    ? window.location =  "/Teian/Formideas"
-                    : RenderFormularioInicioSesion()
+                    ? window.location = "Teian/Formideas"
+            : RenderFormularioInicioSesion()
             }
-            <App nameUser = {nombreUsuario}/>
+            <App nameUser={nombreUsuario} />
         </>
     );
 }
