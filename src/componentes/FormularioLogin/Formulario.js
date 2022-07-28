@@ -9,7 +9,7 @@ import ideaPrendida from './images/ideaPrendida.png';
 import styles from './FormularioLogin.module.css'
 import { ModalFooter } from 'react-bootstrap';
 import Marquee from "react-fast-marquee";
-import { Outlet } from "react-router-dom";
+import { Outlet, Navigate, useNavigate} from "react-router-dom";
 import { AiOutlineEyeInvisible, AiOutlineEye } from 'react-icons/ai'
 // Login
 import loginService from '../../Actions/login'
@@ -42,7 +42,7 @@ const Formulario = () => {
             setUser(user)
         }
 
-    }, [])
+    }, [user])
 
     const handleLogout = () => {
         setUser(null)
@@ -64,13 +64,18 @@ const Formulario = () => {
 
             // noteService.setToken(user.token)
             const token = user.token;
-            console.log(user)
+            // console.log(user)
             window.localStorage.setItem('nombre_empleado', user.nomnbre_empleado)
+            window.localStorage.setItem('puesto', user.puesto)
+            window.localStorage.setItem('depto', user.depto)
+            window.localStorage.setItem('correo', user.correo)
+
+            window.localStorage.setItem('tokenSesion', token)
 
 
             const user2 = jwt(token); // decode your token here
-            console.log(user2)
-            console.log(user2.nameid)
+            // console.log(user2)
+            // console.log(user2.nameid)
             setNombreUsuario(user2.nameid)
 
             const user3 = user2.nameid
@@ -131,13 +136,7 @@ const Formulario = () => {
         const Alert = React.forwardRef(function Alert(props, ref) {
             return <MuiAlert elevation={6} ref={ref} variant="filled" {...props} />;
         });
-        const [state, setState] = React.useState({
-            open2: false,
-            vertical: 'top',
-            horizontal: 'right',
-        });
-
-        const { vertical, horizontal, open2 } = state;
+        
         return (
             <div className={bodyLogin}>
                 <Container className={clases}>
@@ -172,7 +171,7 @@ const Formulario = () => {
                         // EN la funcion onSubmit podemos tomar los datos y enviarlos a una api o una base de datos
                         onSubmit={(valores, { resetForm }) => {
                             resetForm()
-                            console.log(valores);
+                            // console.log(valores);
                             cambiarFormularioEnviado(true)
                             setTimeout(() => cambiarFormularioEnviado(false), 500)
                         }}
@@ -197,13 +196,13 @@ const Formulario = () => {
                                     )} />
                                 </div>
                                 <p style={{ color: "red" }} >{errorMessage}</p>
-                                <Snackbar key={vertical + horizontal} anchorOrigin={{ vertical, horizontal }} open={openError} autoHideDuration={6000}>
+                                <Snackbar  open={openError} autoHideDuration={6000}>
                                     <Alert severity="error" sx={{ width: '100%' }}>
                                         {errorMessage}
                                     </Alert>
                                 </Snackbar>
 
-                                <Snackbar key={vertical + horizontal} anchorOrigin={{ vertical, horizontal }} open={open} autoHideDuration={6000}  >
+                                <Snackbar open={open} autoHideDuration={6000}  >
                                     <Alert severity="success" sx={{ width: '100%' }}>
                                         {successMessage} {nombreUsuario}
                                     </Alert>
@@ -235,14 +234,14 @@ const Formulario = () => {
     }
     //const rutaServidor="/teianes" //Produccion
     const rutaServidor = "" //Pruebas
+    const nav = useNavigate()
     return (
         <>
             {
                 user
-                    ? window.location = "Teian/Formideas"
+                    ? nav("/Teian/Formideas") //window.location = "Teian/Formideas"
                     : RenderFormularioInicioSesion()
             }
-            <App nameUser={nombreUsuario} />
         </>
     );
 }

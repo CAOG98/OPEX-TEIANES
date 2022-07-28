@@ -24,24 +24,28 @@ const Perfil = () => {
 
 
     const nameUsuario = window.localStorage.getItem('usuario')
+    const nombre_empleado = window.localStorage.getItem('nombre_empleado')
+    const puesto = window.localStorage.getItem('puesto')
+    const depto = window.localStorage.getItem('depto')
+    const correo = window.localStorage.getItem('correo')
     const cardPerfil = styles.cardPerfil
     return (
         <Suspense fallback={null}>
             <Container className={cardPerfil}>
                 <Card className="text-center" style={{ borderRadius: "10px" }}>
-                    <Card.Header style={{ backgroundColor: "#0d6efd", color: "#fff" }} >PERFIL</Card.Header>
+                    <Card.Header style={{ backgroundColor: "#0d6efd", color: "#fff" }} ><h4>PERFIL</h4></Card.Header>
                     <Card.Body>
                         <Card.Text>
-                            Nombre: <p>{nameUsuario}</p>
+                            <h5>Nombre:</h5> <p>{nombre_empleado}</p>
                         </Card.Text>
                         <Card.Text>
-                            Puesto: <p>Usuario Teian</p>
+                        <h5>Puesto:</h5> <p>{puesto}</p>
                         </Card.Text>
                         <Card.Text>
-                            Área: <p></p>
+                        <h5>Área:</h5> <p>{depto}</p>
                         </Card.Text>
                         <Card.Text>
-                            Correo: <p>Usuario@teian.com</p>
+                        <h5>Correo electronico:</h5> <p>{correo}</p>
                         </Card.Text>
                     </Card.Body>
                 </Card>

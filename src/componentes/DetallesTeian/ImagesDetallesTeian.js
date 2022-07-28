@@ -26,7 +26,7 @@ const ImagesDetallesTeian = ({ ideasDetalles }) => {
     <div className={contentImagenesCarrousel}>
       {ideasDetalles.archivos.map((item, index) => (
         index === 0 ? (
-          <img src={UrlServer + item.urL_MULTIMEDIA} className={imagenPreview} onClick={() => setToggler(!toggler)} />
+          <img key={index} src={UrlServer + item.urL_MULTIMEDIA} className={imagenPreview} onClick={() => setToggler(!toggler)} />
         ) : (
           <></>
         )

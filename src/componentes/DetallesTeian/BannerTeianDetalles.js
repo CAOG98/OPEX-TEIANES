@@ -41,9 +41,9 @@ const BannerTeianDetalles = ({ ideaDetalle }) => {
       ))} */}
       {dataImagenes.archivos.map((item, index) => (
         index === 0 ? (
-          <Card.Img variant="top" src={UrlServer + item.urL_MULTIMEDIA} className={imageBanner} />
+          <Card.Img key={index} variant="top" src={UrlServer + item.urL_MULTIMEDIA} className={imageBanner} />
         ) : (
-          <Card.Img variant="top" src={notFound} className={imageBanner} />
+          <Card.Img key={index} variant="top" src={notFound} className={imageBanner} />
         )
       ))}
       

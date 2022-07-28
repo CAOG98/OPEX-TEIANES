@@ -70,6 +70,7 @@ const FormIdea = () => {
         const IdCategoria = e.target.value
         await axios.get(`http://10.30.2.167:4000/api/Coaches/CATEGORIA/${IdCategoria}`).then(response => {
             setCoaches(response.data)
+
         }).catch(error => {
             console.log(error)
         })
@@ -164,7 +165,6 @@ const FormIdea = () => {
         <Container className={contFormIdea}>
             <div style={{ display: "flex", justifyContent: "space-between" }}>
                 <img src={gerberLogo} className={imageLogo} alt='Gerber' />
-                <Avatares/>
             </div>
             <h1 className={titleForm}>CREAR TEIAN</h1>
 
@@ -220,7 +220,7 @@ const FormIdea = () => {
                         <div className={inputTeian}>
 
                             <Field as="select" name="categoria" className={selectOption} onClick={handlerCargarCoach}>
-                                <option value={0}>CATEGORÍA (Selecciona la categoría de tu idea)*</option>
+                                <option value="">CATEGORÍA (Selecciona la categoría de tu idea)*</option>
                                 {
                                     categ.map((item, i) => (
                                         <option key={i} value={item.iD_CATEGORIAS}>{item.categorias}</option>
@@ -236,7 +236,7 @@ const FormIdea = () => {
                                 <option value="">COACH (El coach es el guía para llevar tu idea de mejora)*</option>
                                 {
                                     coaches.map((item, i) => (
-                                        <option key={"categoria" + i} value={item.iD_COACH}>{item.coach}</option>
+                                        <option key={i} value={item.iD_COACH}>{item.coach}</option>
                                     ))
 
                                 }

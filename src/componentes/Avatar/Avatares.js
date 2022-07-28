@@ -15,10 +15,11 @@ const Avatares = () => {
   const nombre_empleado = window.localStorage.getItem('nombre_empleado')
   return (
     <div className={badgeNameUser} >
-        <Badge pill bg="primary">
+        <Badge pill bsPrefix style={{background:"#016dbb", padding:"5px 10px", color:"#fff"}}>
           {nombre_empleado}
-        </Badge>
+        </Badge> 
       </div>
   )
 }
 export default Avatares
+

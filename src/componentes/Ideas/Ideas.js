@@ -11,6 +11,7 @@ import ModalAceptadas from './ModalAceptadas'
 import ModalRechazadas from './ModalRechazadas'
 import ReactLoading from 'react-loading';
 import styles from './Ideas.module.css'
+import gerberLogoLoad from '../FormularioLogin/images/GerberLogoLoad.gif';
 
 const UrlServer = "http://10.30.2.167:4000/"
 
@@ -63,7 +64,8 @@ const Ideas = () => {
       {
         !done ? (
           <div className={loadingCard}>
-            <ReactLoading type={"spinningBubbles"} color={"#0d6efd"} height={300} width={300} />
+            {/* <ReactLoading type={"spinningBubbles"} color={"#0d6efd"} height={300} width={300} /> */}
+            <img src={gerberLogoLoad} width="400" />
           </div>
         ) : (
           <div style={{ display: "flex", flexWrap: "wrap", margin: "20px", justifyContent: "center" }}>
