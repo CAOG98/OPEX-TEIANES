@@ -39,7 +39,7 @@ const SideBar = () =>{
               <img className={imageLogo} src={gerberLogo} alt='Gerber' />
             </a>
           </CDBSidebarHeader>
-          <CDBSidebarHeader prefix={<i className="fa-solid fa-id-badge"></i>}>
+          <CDBSidebarHeader prefix={<i className="fas fa-solid fa-user-check"></i>}>     
             <Avatares />
           </CDBSidebarHeader>
 

@@ -94,7 +94,7 @@ const DetallesTeian = () => {
         setIdeasDetalle(data)
         setTimeout(() => {
           setIsLoading(true);
-        }, 3000)
+        }, 600)
         console.log(data)
       })
       .catch(error => console.log(error))
