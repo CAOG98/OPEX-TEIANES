@@ -19,6 +19,7 @@ import Snackbar from '@mui/material/Snackbar';
 import MuiAlert from '@mui/material/Alert';
 import FormIdea from "../FormIdea";
 import App from "../../App";
+import TituloLogin from './images/TituloLogin.png'
 
 
 const Formulario = () => {
@@ -129,6 +130,7 @@ const Formulario = () => {
     const imagenHormiga = styles.imagenHormiga
     const titlesFormLogin = styles.titlesFormLogin
     const formularioLoginCampos = styles.formularioLoginCampos
+    const imgTituloLogin = styles.imgTituloLogin
 
     const [eye, setEye] = useState(false)
 
@@ -151,6 +153,7 @@ const Formulario = () => {
                     <div className={titlesFormLogin}>
                         <h1 className={titleCard}>TEIANES</h1>
                         <h5 className={titleCard}>(IDEAS DE MEJORA)</h5>
+                        {/* <img src={TituloLogin} className={imgTituloLogin} /> */}
                     </div>
                     <Formik
                         initialValues={{

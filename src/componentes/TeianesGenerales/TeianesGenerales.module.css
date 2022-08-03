@@ -23,7 +23,7 @@
     overflow:scroll;
 }
 
-::-webkit-scrollbar{
+/* ::-webkit-scrollbar{
     width: 100px;
 
 }
@@ -37,8 +37,8 @@
     background-image: url('https://en.globeunion.com/wp-content/uploads/2019/05/Gerber_logo_color_1000x390-min.png');
     background-size:contain;
     background-repeat: no-repeat;
-    /* background-color: #016dbb; */
-}
+    background-color: #016dbb;
+} */
 
 
 @media (max-width:990px){

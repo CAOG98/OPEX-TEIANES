@@ -13,9 +13,40 @@
 .loadingCard{
     margin: auto auto;
 }
+.puntosPerfil{
+    display: flex;
+    justify-content: center;
+}
+.puntosIdeas{
+    display: flex;
+    flex-direction: column;
+    margin-right: 20px;
+}
+.perfilContCard{
+    display: flex;
+    flex-direction: column;
+    margin: 0 auto;
+    width: 60%;
+}
 
 @media (max-width:990px){
     .loadingCard{
         margin-top: 120px;
+    }
+    .puntosPerfil{
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+    }
+    .puntosIdeas{
+        display: flex;
+        flex-direction: column;
+        margin-right: 0;
+    }
+    .perfilContCard{
+        display: flex;
+        flex-direction: column;
+        margin: 0 auto;
+        width: 100%;
     }
 }

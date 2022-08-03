@@ -168,9 +168,11 @@ const FormIdea = () => {
     const { vertical, horizontal, open2 } = state;
 
     const textoAyuda = "Tu idea se enviara a la categoría que selecciones"
+    const textoAyudaCoach = "Tu idea se enviara al coach que selecciones"
+    const textoAyudaAreaSoporte = "Tu idea se enviara al area de soporte que selecciones"
     const textoEjemploIdea = `¿Porque? Los baches generan grietas en la taza
 ¿Cuanto? 2 Meses
-¿Como? Buscar Proveedor de llantas, hace un análisis de opciones y sellar baches en el camino del carrito 
+¿Como? Buscar Proveedor de llantas, hacer un análisis de opciones y sellar baches en el camino del carrito 
 ¿Donde? Vaciado`
 
     return (
@@ -247,7 +249,7 @@ const FormIdea = () => {
                             <ErrorMessage name="categoria" component={() => (
                                 <div className={errorMess}>{errors.categoria}</div>
                             )} />
-                            <Tooltip title={textoAyuda} placement="bottom-start">
+                            <Tooltip title={textoAyudaCoach} placement="bottom-start">
                                 <div style={{ display: "flex" }}>
                                     <Field as="select" name="coach" className={selectOption}>
                                         <option value="">COACH (El coach es el guía para llevar tu idea de mejora)*</option>
@@ -265,7 +267,7 @@ const FormIdea = () => {
                                 <div className={errorMess}>{errors.coach}</div>
                             )} />
 
-                            <Tooltip title={textoAyuda} placement="bottom-start">
+                            <Tooltip title={textoAyudaAreaSoporte} placement="bottom-start">
                                 <div style={{ display: "flex" }}>
                                     <Field as="select" name="soporte" className={selectOption}>
                                         <option value="">ÁREA DE SOPORTE (Opcional) (Selecciona el área que pueda apoyar tu idea)</option>

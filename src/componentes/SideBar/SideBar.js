@@ -18,6 +18,7 @@ import Avatares from '../Avatar/Avatares';
 import Avatar from '@mui/material/Avatar';
 import Stack from '@mui/material/Stack';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { FcIdea } from 'react-icons/fa';
 
 function stringToColor(string) {
   let hash = 0;
@@ -54,6 +55,7 @@ const SideBar = () => {
   const imageLogo = styles.imagesTitle
   const sidebarS = styles.sidebarS
   const sideBarHead = styles.sideBarHead
+  const userNameSidebar = styles.userNameSidebar
   const navigate = useNavigate()
 
   const handleLogout = () => {
@@ -74,8 +76,8 @@ const SideBar = () => {
             <img className={imageLogo} src={gerberLogo} alt='Gerber' />
           </a>
         </CDBSidebarHeader>
-        <CDBSidebarHeader prefix={<i className='fas fa-solid fa-user-check'></i>}>
-          <Avatares />
+        <CDBSidebarHeader className={userNameSidebar} prefix={<i className='fas fa-solid fa-user-check'></i>}>
+          <Avatares/>
         </CDBSidebarHeader>
 
         <CDBSidebarContent className="sidebar-content">
@@ -90,7 +92,7 @@ const SideBar = () => {
                 }
                 : { color: '#545e6f', background: '#f0f0f0', transition: '0.3s', }
             } activeClassName="activeClicked">
-              <CDBSidebarMenuItem icon="lightbulb">CREAR TEIAN</CDBSidebarMenuItem>
+              <CDBSidebarMenuItem icon="fa-solid fa-highlighter">CREAR TEIAN</CDBSidebarMenuItem>
             </NavLink>
 
 
@@ -106,6 +108,18 @@ const SideBar = () => {
               <CDBSidebarMenuItem icon="table">MIS TEIANES</CDBSidebarMenuItem>
             </NavLink>
 
+            <NavLink to={rutaServidor + "Teian/IdeasUsuario"} style={({ isActive }) =>
+              isActive
+                ? {
+                  color: '#006dba',
+                  background: '#7600dc',
+                  transition: '0.3s',
+                }
+                : { color: '#545e6f', background: '#f0f0f0', transition: '0.3s', }
+            } activeClassName="activeClicked">
+              <CDBSidebarMenuItem icon="lightbulb ">TEIANES USUARIO</CDBSidebarMenuItem>
+              
+            </NavLink>
 
 
             <NavLink to={rutaServidor + "Teian/IdeasGenerales"} style={({ isActive }) =>

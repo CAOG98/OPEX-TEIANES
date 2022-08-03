@@ -10,7 +10,7 @@
     border-radius: 20px;
     padding:20px 40px 30px 40px;
     background-color: #fff;
-    box-shadow: rgb(38, 57, 77) 0px 20px 20px -10px;
+    box-shadow: rgb(38, 57, 77) 0px 10px 51px 9px;
 }
 /* TITULO DEL FORMULARIO */
 .titleForm{
@@ -130,19 +130,22 @@
     display: flex;
     flex-direction: row;
 }
-.contInfoIdea{
-    margin-top: 23px;
-}
 @media (max-width: 990px){
     .contFormIdea{
         margin-top: 100px ;
     }
     .contTextIdeaInfo{
         display: flex;
-        flex-direction: column;
+        flex-direction:column-reverse;
     }
     .contInfoIdea{
         margin-top: 0;
+    }
+    .ideaTeian,.contInfoIdea{
+        width: 100%;
+    }
+    .txtAreaTeianEjemplo{
+        height: 220px;
     }
 }
 

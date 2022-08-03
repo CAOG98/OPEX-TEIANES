@@ -20,6 +20,7 @@ import IdeasGenerales from "./componentes/Ideas/IdeasGenerales";
 import { PageNotFound } from "./componentes/Ideas/PageNotFound";
 import TeianesImplementados from "./componentes/TeianesImplementados/TeianesImplementados";
 import TeianesGenerales from "./componentes/TeianesGenerales/TeianesGenerales";
+import TeianesUsuario from "./componentes/TeianesUsuario";
 
 
 
@@ -58,6 +59,7 @@ const App = () => {
         <Route path={rutaServidor + "/Login/*"} element={<FormularioLogin />} />
         <Route path={rutaServidor + "Teian/CrearIdea"} element={<FormIdea />} />
         <Route path={rutaServidor + "Teian/TablaIdeas"} element={<TableIdeas />} />
+        <Route path={rutaServidor + "Teian/IdeasUsuario"} element={<TeianesUsuario />} />
         <Route path={rutaServidor + "Teian/IdeasGenerales"} element={<TeianesGenerales />} />
         <Route path={rutaServidor + "Teian/IdeasPorAprobar"} element={<ApprovedIdeas />} />
         <Route path={rutaServidor + "Teian/DetalleTeian/:iD_IDEA"} element={<DetallesTeian />} />

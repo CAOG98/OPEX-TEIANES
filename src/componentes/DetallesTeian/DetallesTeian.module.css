@@ -40,6 +40,7 @@
 /* DetallesInfo */
 .fondoDetalleIdea {
     background-color: #f5f5f5;
+    /* background-image: url("../FormularioLogin/images/FONDO\ TEIANES.jpg"); */
     height: 70%;
     overflow: auto;
 }
@@ -90,12 +91,19 @@
 @media (max-width: 346px) {}
 
 /* Estilos Formulario pestaña TEIAN IMPLEMENTADO */
-.ideaTeian {
+.contEjemploImplementacion{
     display: flex;
+    flex-direction: row;
+}
+.ideaTeian {
     flex-direction: column;
     margin: 10px 0;
+    width: 100%;
 }
-
+.ideaTeianEjemplo{
+    margin:10px 20px;
+    width: 100%;
+}
 .buttonIdea {
     background-color: #fff;
     border: 3px solid #006dba;
@@ -103,7 +111,6 @@
     padding: 8px 30px;
     font-size: 18px;
     transition: 0.3s;
-    margin: 0px auto;
     margin-top: 20px;
     display: flex;
 }
@@ -115,14 +122,22 @@
 }
 
 
-.txtAreaTeian {
+.txtAreaTeian,.txtAreaTeianEjemplo {
     padding: 20px;
     border: 1px solid #000;
     border-radius: 5px;
     resize: none;
     width: 100%;
-    height: 140px;
+    height: 200px;
 }
+.txtAreaTeianEjemplo::placeholder { /* Chrome, Firefox, Opera, Safari 10.1+ */
+    color: #000;
+    opacity: 0.8;
+  }
+  .txtAreaTeianEjemplo{
+    background-color: #E1E1E1;
+    height: 200px;
+  }
 
 .txtAreaTeian:focus {
     box-shadow: 0px 0px 2px 3px rgba(69, 168, 255, .7);
@@ -181,6 +196,18 @@
     .contImplementar {
         width: 100%;
     }
+    .ideaTeianEjemplo{
+        margin:10px 0px;
+    }
+    .contEjemploImplementacion{
+        flex-direction: column-reverse;
+    }
+    .buttonIdea {
+        margin: 20px auto;
+    }
+    .txtAreaTeianEjemplo{
+        height: 234px;
+    }
 }
 
 .contentImagenesCarrousel {
@@ -215,7 +242,7 @@
     .tabsNav{
         position: fixed; 
         width: 100%; 
-        background: #F5F5F5;
+        background: #f5f5f5;
         z-Index: 10;
     }
     .tabNav{

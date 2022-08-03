@@ -32,6 +32,9 @@
     top: 0%;
     transform: rotate(15deg);
 }
+.formularioLoginCampos{
+    margin-top: 3rem;
+}
 .imagenHormiga{
     position: absolute;
     max-width: 100%;
@@ -39,11 +42,13 @@
     right: 10%;
     top: 3%;
 }
-.formularioLoginCampos{
-    margin-top: 2rem;
-}
 .titlesFormLogin{
-    margin-top: 5rem;
+    margin-top: 4rem;
+}
+.imgTituloLogin{
+    display: block;
+    margin: auto;
+    width: 50%;
 }
 .imageFootCard{
     display: block;
@@ -197,9 +202,12 @@ span{
         top:50%; 
         left:80%;
     }
-    
-}
-
-@media(max-width:990px){
-    
+    .formularioLoginCampos{
+        margin-top: 3rem;
+    }
+    .imgTituloLogin{
+        display: block;
+        margin: auto;
+        width: 75%;
+    }
 }

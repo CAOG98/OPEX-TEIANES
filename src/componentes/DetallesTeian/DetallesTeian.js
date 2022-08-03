@@ -169,6 +169,12 @@ const DetallesTeian = () => {
   const titleBanner = styles.titleBanner
   const dateBanner = styles.dateBanner
   const loadingCard = styles.loadingCard
+  const ideaTeianEjemplo = styles.ideaTeianEjemplo
+  const contEjemploImplementacion = styles.contEjemploImplementacion
+  const txtAreaTeianEjemplo = styles.txtAreaTeianEjemplo
+
+  const textoImplementacion = `¿Cómo lo solucionaste? Se hizo un plan de restauración de los carritos, se vio con mantenimiento reparación de baches y se trabajo la disciplina con los carreros.
+¿Qué impacto tuvo? Logramos disminuir las grietas en 2% de forma semanal.`
 
   const UrlServer = "http://10.30.2.167:4000/"
 
@@ -341,12 +347,7 @@ const DetallesTeian = () => {
                   </Row>
                 </TabPanel>
                 <TabPanel className={tabNav} value={value} index={1}>
-                  <div style={{display:"flex", flexDirection:"row"}}>
-                    <p>REGISTRO DE LA IMPLEMENTACIÓN</p>
-                    <Tooltip title="hola" style={{ margin: "8px 0 0 10px" }}>
-                      <TipsAndUpdatesOutlinedIcon></TipsAndUpdatesOutlinedIcon>
-                    </Tooltip>
-                  </div>
+                  <p>REGISTRO DE LA IMPLEMENTACIÓN</p>
                   <hr />
                   <Container className={contImplementar} >
                     <Formik
@@ -375,12 +376,18 @@ const DetallesTeian = () => {
                     >
                       {({ errors }) => (
                         <Form>
-                          <div className={ideaTeian}>
-                            <label htmlFor="TEIAN">DESCRIPCIÓN IDEA DE MEJORA IMPLEMENTADA*</label>
-                            <Field className={txtAreaTeian} name="mensajeTeian" as="textarea" placeholder="Escribe los detalles de la ejecución de la idea" />
-                            <ErrorMessage name="mensajeTeian" component={() => (
-                              <div className={errorMess}>{errors.mensajeTeian}</div>
-                            )} />
+                          <div className={contEjemploImplementacion} >
+                            <div className={ideaTeian}>
+                              <label htmlFor="TEIAN">DESCRIPCIÓN DE LA IMPLEMENTACIÓN</label>
+                              <Field className={txtAreaTeian} name="mensajeTeian" as="textarea" placeholder="Escribe los detalles de la ejecución de la idea" />
+                              <ErrorMessage name="mensajeTeian" component={() => (
+                                <div className={errorMess}>{errors.mensajeTeian}</div>
+                              )} />
+                            </div>
+                            <div className={ideaTeianEjemplo}>
+                              <label htmlFor="TEIAN">EJEMPLO</label>
+                              <Field className={txtAreaTeianEjemplo} disabled name="mensajeTeianEjemplo" as="textarea" placeholder={textoImplementacion} />
+                            </div>
                           </div>
                           <input ref={inputRef} accept="image/*,video/*" type="file" name="files" multiple onChange={(e) => subirArchivos(e.target.files)} style={{ maxWidth: "100%" }} />
                           {openAlert &&
@@ -390,7 +397,7 @@ const DetallesTeian = () => {
                               </Alert>
                             </Stack>
                           }
-                          <button type="submit" className={buttonIdea}>Enviar idea</button>
+                          <button type="submit" className={buttonIdea}>Guardar Implementación</button>
                           {formularioEnviado && <div><p className={messageExito}>Formulario enviado con exito!</p></div>}
                         </Form>
                       )}
