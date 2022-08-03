@@ -13,7 +13,7 @@ import ModalDeshacer from './ModalDeshacer';
 import ReactLoading from 'react-loading';
 import styles from './Ideas.module.css'
 import gerberLogoLoad from '../FormularioLogin/images/GerberLogoLoad.gif';
-
+import Slide from 'react-reveal/Slide';
 
 const UrlServer = "http://10.30.2.167:4000/"
 // Metdo de CARGANDO al momento de dar click en la tarjeta para mandarte a
@@ -73,6 +73,7 @@ const IdeasCanceladas = () => {
             {
               ideas.map((item, index) => (
                 <div key={index} className="column" >
+                  <Slide bottom>
                   <Card style={{ width: '20rem', margin: "25px", borderRadius: "10px", boxShadow: "rgb(38, 57, 77) 0px 20px 20px -10px" }}>
                     <Link to={`/Teian/DetalleTeian/${item.iD_IDEA}`} style={{ textDecoration: "none", color: "#000" }} onClick={Cargando}>
                       <div style={{ height: "250px", overflow: "hidden" }}>
@@ -90,7 +91,7 @@ const IdeasCanceladas = () => {
                       </div>
                     </Link>
                     {/* <span class="badge rounded-pill bg-danger" style={{ position: "absolute", margin: "10px" }}>{item.estatus}</span> */}
-                    <Badge style={{ position: "absolute", margin: "10px" }} bg="danger">{item.estatus}</Badge>
+                    <Badge style={{ position: "absolute", margin: "10px" }} bg="danger">{item.estatuto}</Badge>
                     <Card.Body>
                       <Card.Title>{item.titulO_IDEA.length >= 28 ? item.titulO_IDEA.substr(0, 28) + "..." : item.titulO_IDEA}</Card.Title>
                       <Card.Text>
@@ -108,6 +109,7 @@ const IdeasCanceladas = () => {
                       </div>
                     </Card.Body>
                   </Card>
+                  </Slide>
                 </div>
               ))
             }

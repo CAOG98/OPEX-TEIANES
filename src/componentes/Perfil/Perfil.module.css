@@ -1,11 +1,21 @@
 .cardPerfil{
-    width:40%;
+    width:100%;
     margin-top:10%;
+    margin-bottom: 50px;
 }
 
 @media (max-width:990px){
     .cardPerfil{
         width: 100%;
         margin-top: 100px;
+    }
+}
+.loadingCard{
+    margin: auto auto;
+}
+
+@media (max-width:990px){
+    .loadingCard{
+        margin-top: 120px;
     }
 }

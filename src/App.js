@@ -18,6 +18,8 @@ import FormIdeaTest from "./componentes/FormIdea";
 import Avatares from './componentes/Avatar/Avatares'
 import IdeasGenerales from "./componentes/Ideas/IdeasGenerales";
 import { PageNotFound } from "./componentes/Ideas/PageNotFound";
+import TeianesImplementados from "./componentes/TeianesImplementados/TeianesImplementados";
+import TeianesGenerales from "./componentes/TeianesGenerales/TeianesGenerales";
 
 
 
@@ -52,14 +54,16 @@ const App = () => {
       <SideBar />
       <NavBar />
       <Routes>
-        <Route path="/" element={<Navigate replace to="/Login" />} />
+        <Route path="/*" element={<Navigate replace to="/Login" />} />
         <Route path={rutaServidor + "/Login/*"} element={<FormularioLogin />} />
-        <Route path={rutaServidor + "Teian/Formideas"} element={<FormIdea />} />
-        <Route path={rutaServidor + "Teian/TableIdeas"} element={<TableIdeas />} />
-        <Route path={rutaServidor + "Teian/ApproveIdeas"} element={<ApprovedIdeas />} />
+        <Route path={rutaServidor + "Teian/CrearIdea"} element={<FormIdea />} />
+        <Route path={rutaServidor + "Teian/TablaIdeas"} element={<TableIdeas />} />
+        <Route path={rutaServidor + "Teian/IdeasGenerales"} element={<TeianesGenerales />} />
+        <Route path={rutaServidor + "Teian/IdeasPorAprobar"} element={<ApprovedIdeas />} />
         <Route path={rutaServidor + "Teian/DetalleTeian/:iD_IDEA"} element={<DetallesTeian />} />
-        <Route path={rutaServidor + "Teian/TeianesAccepted"} element={<AcceptedTeianes />} />
-        <Route path={rutaServidor + "Teian/TeianesRechazados"} element={<TeianesRechazados />} />
+        <Route path={rutaServidor + "Teian/IdeasAceptadas"} element={<AcceptedTeianes />} />
+        <Route path={rutaServidor + "Teian/IdeasImplementadas"} element={<TeianesImplementados />} />
+        <Route path={rutaServidor + "Teian/IdeasRechazadas"} element={<TeianesRechazados />} />
         <Route path={rutaServidor + "Teian/Perfil"} element={<Perfil />} />
         <Route path={rutaServidor + "Teian/Dudas"} element={<Dudas />} />
         <Route path="*" element={<PageNotFound />} />

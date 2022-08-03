@@ -1,0 +1,30 @@
+.titleTeianCont{
+    text-align: center;
+}
+.titleTeian{
+    display: inline-block;
+    position: relative;
+    text-align: center;
+    font-family: 'Roboto', sans-serif;
+}
+
+.titleTeian::before{
+    content: '';
+    color: #445CF5;
+    font-size: 60px;
+}
+.titleTeian::after{
+    right: 400px;
+}
+
+
+.conImplementados{
+    max-width:100%;
+    overflow:scroll;
+}
+
+@media (max-width:990px){
+    .conImplementados{
+        margin-top: 6em;
+    }
+}

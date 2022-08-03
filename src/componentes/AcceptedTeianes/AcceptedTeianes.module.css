@@ -5,6 +5,7 @@
     display: inline-block;
     position: relative;
     text-align: center;
+    font-family: 'Roboto', sans-serif;
 }
 
 .titleTeian::before{

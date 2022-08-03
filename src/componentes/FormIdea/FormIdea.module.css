@@ -61,10 +61,12 @@
 }
 
 /* Estilos generales de los campos */
-.ideaTeian{
+.ideaTeian,.contInfoIdea{
     display: flex;
     flex-direction: column;
-    margin: 10px 0;
+    margin-bottom: 10px;
+    margin-right: 20px;
+    width: 50%;
 }
 .titleTeian, .inputTeian{
     display: flex;
@@ -85,11 +87,20 @@
 .selectOption:focus{
     box-shadow: 0px 0px 2px 3px rgba(69, 168, 255, .7);
 }
-.txtAreaTeian{  
+.txtAreaTeianEjemplo{
+    background-color: #E1E1E1;
+}
+
+.txtAreaTeianEjemplo::placeholder { /* Chrome, Firefox, Opera, Safari 10.1+ */
+    color: #000;
+    opacity: 0.8;
+  }
+.txtAreaTeian, .txtAreaTeianEjemplo{  
     padding: 20px;
     border: 1px solid #000;
     border-radius: 5px;
     resize:none;
+    height: 189px;
 }
 .txtAreaTeian:focus{
     box-shadow: 0px 0px 2px 3px rgba(69, 168, 255, .7);
@@ -115,10 +126,23 @@
     max-width: 100%;
     width: 100%;
 }
-
+.contTextIdeaInfo{
+    display: flex;
+    flex-direction: row;
+}
+.contInfoIdea{
+    margin-top: 23px;
+}
 @media (max-width: 990px){
     .contFormIdea{
         margin-top: 100px ;
+    }
+    .contTextIdeaInfo{
+        display: flex;
+        flex-direction: column;
+    }
+    .contInfoIdea{
+        margin-top: 0;
     }
 }
 

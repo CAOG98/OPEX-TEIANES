@@ -20,6 +20,7 @@ import MuiAlert from '@mui/material/Alert';
 import FormIdea from "../FormIdea";
 import App from "../../App";
 
+
 const Formulario = () => {
     // LoginJWT
     // METODOS LOGIN
@@ -69,6 +70,9 @@ const Formulario = () => {
             window.localStorage.setItem('puesto', user.puesto)
             window.localStorage.setItem('depto', user.depto)
             window.localStorage.setItem('correo', user.correo)
+            window.localStorage.setItem('nombre', user.nombre)
+            window.localStorage.setItem('apellido', user.apellido)
+
 
             window.localStorage.setItem('tokenSesion', token)
 
@@ -239,7 +243,7 @@ const Formulario = () => {
         <>
             {
                 user
-                    ? nav("/Teian/Formideas") //window.location = "Teian/Formideas"
+                    ? nav("/Teian/CrearIdea") //window.location = "Teian/Formideas"
                     : RenderFormularioInicioSesion()
             }
         </>

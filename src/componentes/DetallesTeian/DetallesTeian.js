@@ -21,7 +21,9 @@ import VideosImpDetallesTeian from './VideosImpDetallesTeian';
 import VideosDetallesTeian from './VideosDetallesTeian';
 import ImagesImpDetallesTeian from './ImagesImpDetallesTeian';
 import gerberLogoLoad from '../FormularioLogin/images/GerberLogoLoad.gif';
-
+import IconButton from '@mui/material/IconButton'
+import Tooltip from '@mui/material/Tooltip';
+import TipsAndUpdatesOutlinedIcon from '@mui/icons-material/TipsAndUpdatesOutlined';
 
 // Estilos
 const fondoDetalleIdea = styles.fondoDetalleIdea
@@ -95,7 +97,6 @@ const DetallesTeian = () => {
         setTimeout(() => {
           setIsLoading(true);
         }, 600)
-        console.log(data)
       })
       .catch(error => console.log(error))
   }
@@ -140,9 +141,7 @@ const DetallesTeian = () => {
   }
   const insertarArchivos = async (valores) => {
     const sesion = window.localStorage.getItem('usuario')
-    console.log(sesion)
     const mensajeTexto = valores.mensajeTeian
-    console.log(mensajeTexto)
     const f = new FormData()
     if (archivos != null) {
       for (let index = 0; index < archivos.length; index++) {
@@ -179,9 +178,9 @@ const DetallesTeian = () => {
         !isLoading ?
           (
             <div className={loadingCard}>
-            {/* <ReactLoading type={"spinningBubbles"} color={"#0d6efd"} height={300} width={300} /> */}
-            <img src={gerberLogoLoad} width="400" />
-          </div>
+              {/* <ReactLoading type={"spinningBubbles"} color={"#0d6efd"} height={300} width={300} /> */}
+              <img src={gerberLogoLoad} width="400" />
+            </div>
           ) :
           (
             <Container style={{ maxWidth: "100%" }} >
@@ -237,7 +236,7 @@ const DetallesTeian = () => {
                         aria-label="visible arrows tabs example"
                         sx={{
                           [`& .${tabsClasses.scrollButtons}`]: {
-                            '&.Mui-disabled': { opacity: 0.3 },
+                            '&.Mui-disabled': { opacity: 0 },
                           },
                         }}>
                         <Tab label="IDEA CREADA" {...a11yProps(0)} />
@@ -252,7 +251,7 @@ const DetallesTeian = () => {
                         aria-label="visible arrows tabs example"
                         sx={{
                           [`& .${tabsClasses.scrollButtons}`]: {
-                            '&.Mui-disabled': { opacity: 0.3 },
+                            '&.Mui-disabled': { opacity: 0 },
                           },
                         }}>
                         <Tab label="IDEA CREADA" {...a11yProps(0)} />
@@ -267,7 +266,7 @@ const DetallesTeian = () => {
                         aria-label="visible arrows tabs example"
                         sx={{
                           [`& .${tabsClasses.scrollButtons}`]: {
-                            '&.Mui-disabled': { opacity: 0.3 },
+                            '&.Mui-disabled': { opacity: 0 },
                           },
                         }}>
                         <Tab label="IDEA CREADA" {...a11yProps(0)} />
@@ -282,7 +281,7 @@ const DetallesTeian = () => {
                         aria-label="visible arrows tabs example"
                         sx={{
                           [`& .${tabsClasses.scrollButtons}`]: {
-                            '&.Mui-disabled': { opacity: 0.3 },
+                            '&.Mui-disabled': { opacity: 0 },
                           },
                         }}>
                         <Tab label="IDEA CREADA" {...a11yProps(0)} />
@@ -342,7 +341,12 @@ const DetallesTeian = () => {
                   </Row>
                 </TabPanel>
                 <TabPanel className={tabNav} value={value} index={1}>
-                  <p>REGISTRO DE LA IMPLEMENTACIÓN</p>
+                  <div style={{display:"flex", flexDirection:"row"}}>
+                    <p>REGISTRO DE LA IMPLEMENTACIÓN</p>
+                    <Tooltip title="hola" style={{ margin: "8px 0 0 10px" }}>
+                      <TipsAndUpdatesOutlinedIcon></TipsAndUpdatesOutlinedIcon>
+                    </Tooltip>
+                  </div>
                   <hr />
                   <Container className={contImplementar} >
                     <Formik

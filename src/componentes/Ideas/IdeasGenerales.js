@@ -11,7 +11,8 @@ import ModalAceptadas from './ModalAceptadas'
 import ModalRechazadas from './ModalRechazadas'
 import ReactLoading from 'react-loading';
 import styles from './Ideas.module.css'
-
+import gerberLogoLoad from '../FormularioLogin/images/GerberLogoLoad.gif';
+import Slide from 'react-reveal/Slide';
 const UrlServer = "http://10.30.2.167:4000/"
 
 
@@ -37,7 +38,7 @@ const IdeasGenerales = () => {
   const [ideasGenerales, setIdeasGenerales] = useState([])
   const [done, setDone] = useState(undefined)
 
-  const initialUrl = "http://10.30.2.167:4000/api/Ideas"
+  const initialUrl = "http://10.30.2.167:4000/api/Ideas/Exepc_aceptadas"
 
   const fetchIdeas = (url) => {
     fetch(url)
@@ -59,17 +60,19 @@ const IdeasGenerales = () => {
   const loadingCard = styles.loadingCard
 
   return (
-    <Container>
+    <>
       {
         !done ? (
           <div className={loadingCard}>
-            <ReactLoading type={"spinningBubbles"} color={"#0d6efd"} height={300} width={300} />
+            {/* <ReactLoading type={"spinningBubbles"} color={"#0d6efd"} height={300} width={300} /> */}
+            <img src={gerberLogoLoad} width="400" />
           </div>
         ) : (
           <div style={{ display: "flex", flexWrap: "wrap", margin: "20px", justifyContent: "center" }}>
             {
               ideasGenerales.map((item, index) => (
                 <div className="column" key={index} >
+                  <Slide bottom>
                   <Card style={{ width: '20rem', margin: "25px", borderRadius: "10px", boxShadow: "rgb(38, 57, 77) 0px 20px 20px -10px" }} >
                     <Link to={`/Teian/DetalleTeian/${item.iD_IDEA}`} style={{ textDecoration: "none", color: "#000" }} onClick={Cargando}>
                       <div style={{ height: "250px", overflow: "hidden" }}>
@@ -87,7 +90,23 @@ const IdeasGenerales = () => {
                       </div>
                     </Link>
                     {/* <span className="badge rounded-pill bg-secondary" style={{position:"absolute", margin:"10px"}}>{item.estatus}</span> */}
-                    <Badge style={{ position: "absolute", margin: "10px" }} bg="secondary">{item.estatus}</Badge>
+                    {item.iD_ESTATUS === 1 ? (
+                    // <span className="badge rounded-pill bg-secondary" style={{ marginBottom: "10px" }}>{item.estatus}</span>
+                    <Badge bg="secondary" style={{ position: "absolute", margin: "10px" }}>{item.estatuto}</Badge>
+                  ) : item.iD_ESTATUS === 2 ? (
+                    // <span className="badge rounded-pill bg-success text-white" style={{ marginBottom: "10px" }}>{item.estatus}</span>
+                    <Badge bg="success" style={{ position: "absolute", margin: "10px" }}>{item.estatuto}</Badge>
+                  ) : item.iD_ESTATUS === 3 ? (
+                    // <span className="badge rounded-pill bg-secondary" style={{ marginBottom: "10px" }}>{item.estatus}</span>
+                    <Badge bg="danger" style={{ position: "absolute", margin: "10px" }}>{item.estatuto}</Badge>
+                  ) : item.iD_ESTATUS === 4 ? (
+                    // <span className="badge rounded-pill bg-secondary" style={{ marginBottom: "10px" }}>{item.estatus}</span>
+                    <Badge bg="warning" style={{ position: "absolute", margin: "10px" }}>{item.estatuto}</Badge>
+                  ) : (
+                    // <span className="badge rounded-pill bg-secondary" style={{ marginBottom: "10px" }}>{item.estatus}</span>
+                    <Badge style={{ backgroundColor: "#0D6EFD",  position: "absolute", margin: "10px" }}>{item.estatuto}</Badge>
+                  )
+                  }
                     <Card.Body>
                       <Card.Title>{item.titulO_IDEA.length >= 28 ? item.titulO_IDEA.substr(0, 28) + "..." : item.titulO_IDEA }</Card.Title>
                       <Card.Text>
@@ -100,12 +119,13 @@ const IdeasGenerales = () => {
                       </div>
                     </Card.Body>
                   </Card>
+                  </Slide>
                 </div>
               ))}
           </div>
         )
       }
-    </Container>
+    </>
   )
 }
 export default IdeasGenerales

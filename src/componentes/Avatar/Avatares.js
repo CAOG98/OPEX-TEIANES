@@ -11,13 +11,16 @@ const Avatares = () => {
   const AvatarImage = style.AvatarImage
   const badgeNameUser = style.badgeNameUser
 
-  const nameUsuario = window.localStorage.getItem('usuario')
-  const nombre_empleado = window.localStorage.getItem('nombre_empleado')
+  const nombre = window.localStorage.getItem('nombre')
+  const apellido = window.localStorage.getItem('apellido')
+
   return (
     <div className={badgeNameUser} >
-        <Badge pill bsPrefix style={{background:"#016dbb", padding:"5px 10px", color:"#fff"}}>
+        {/* <Badge pill bsPrefix style={{background:"#016dbb", padding:"5px 10px", color:"#fff"}}>
           {nombre_empleado}
-        </Badge> 
+        </Badge>  */}
+        <p style={{color:"#000", fontSize:"16px", marginTop:"10px",fontWeight:"lighter"}}>{nombre} {apellido} </p>
+        {/* <p style={{color:"#000", fontSize:"10px"}}>{nombre_Completo} </p> */}
       </div>
   )
 }

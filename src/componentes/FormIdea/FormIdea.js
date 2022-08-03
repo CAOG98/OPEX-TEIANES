@@ -17,6 +17,11 @@ import Stack from '@mui/material/Stack';
 import Avatares from '../Avatar/Avatares';
 import { data } from 'autoprefixer';
 
+import IconButton from '@mui/material/IconButton'
+import Tooltip from '@mui/material/Tooltip';
+import TipsAndUpdatesOutlinedIcon from '@mui/icons-material/TipsAndUpdatesOutlined';
+import Box from '@mui/material/Box';
+
 const FormIdea = () => {
     //Hooks validacion de formulario
     const [formularioEnviado, cambiarFormularioEnviado] = useState(false)
@@ -70,7 +75,6 @@ const FormIdea = () => {
         const IdCategoria = e.target.value
         await axios.get(`http://10.30.2.167:4000/api/Coaches/CATEGORIA/${IdCategoria}`).then(response => {
             setCoaches(response.data)
-
         }).catch(error => {
             console.log(error)
         })
@@ -91,6 +95,9 @@ const FormIdea = () => {
     const errorMess = styles.errorMess
     const fileTeian = styles.fileTeian
     const imageLogo = styles.imageLogo
+    const contTextIdeaInfo = styles.contTextIdeaInfo
+    const contInfoIdea = styles.contInfoIdea
+    const txtAreaTeianEjemplo = styles.txtAreaTeianEjemplo
 
     //Obtener el nombre del usuario
     const sesion = window.localStorage.getItem('loggedIdeaAppUser')
@@ -160,6 +167,11 @@ const FormIdea = () => {
 
     const { vertical, horizontal, open2 } = state;
 
+    const textoAyuda = "Tu idea se enviara a la categoría que selecciones"
+    const textoEjemploIdea = `¿Porque? Los baches generan grietas en la taza
+¿Cuanto? 2 Meses
+¿Como? Buscar Proveedor de llantas, hace un análisis de opciones y sellar baches en el camino del carrito 
+¿Donde? Vaciado`
 
     return (
         <Container className={contFormIdea}>
@@ -212,55 +224,73 @@ const FormIdea = () => {
                     <Form>
                         <div className={titleTeian}>
                             <label htmlFor="TEIAN">TITULO DEL TEIAN*</label>
-                            <Field className={titleTeianInput} type="text" id="nombre" name="teian" placeholder="Aquí va el titulo de tu idea" maxLength="28" />
+                            <Field className={titleTeianInput} type="text" id="nombre" name="teian" placeholder="Aquí va el titulo de tu idea" maxLength="100" />
                             <ErrorMessage name="teian" component={() => (
                                 <div className={errorMess}>{errors.teian}</div>
                             )} />
                         </div>
                         <div className={inputTeian}>
+                            <Tooltip title={textoAyuda} placement="bottom-start">
+                                <div style={{ display: "flex" }}>
 
-                            <Field as="select" name="categoria" className={selectOption} onClick={handlerCargarCoach}>
-                                <option value="">CATEGORÍA (Selecciona la categoría de tu idea)*</option>
-                                {
-                                    categ.map((item, i) => (
-                                        <option key={i} value={item.iD_CATEGORIAS}>{item.categorias}</option>
-                                    ))
-                                }
-                            </Field>
+                                    <Field as="select" name="categoria" className={selectOption} onClick={handlerCargarCoach}>
+                                        <option value="">CATEGORÍA (Selecciona la categoría de tu idea)*</option>
+                                        {
+                                            categ.map((item, i) => (
+                                                <option key={i} value={item.iD_CATEGORIAS}>{item.categorias}</option>
+                                            ))
+                                        }
+                                    </Field>
+
+                                </div>
+                            </Tooltip>
                             <ErrorMessage name="categoria" component={() => (
                                 <div className={errorMess}>{errors.categoria}</div>
                             )} />
+                            <Tooltip title={textoAyuda} placement="bottom-start">
+                                <div style={{ display: "flex" }}>
+                                    <Field as="select" name="coach" className={selectOption}>
+                                        <option value="">COACH (El coach es el guía para llevar tu idea de mejora)*</option>
+                                        {
+                                            coaches.map((item, i) => (
+                                                <option key={i} value={item.iD_COACH}>{item.coach}</option>
+                                            ))
 
+                                        }
 
-                            <Field as="select" name="coach" className={selectOption}>
-                                <option value="">COACH (El coach es el guía para llevar tu idea de mejora)*</option>
-                                {
-                                    coaches.map((item, i) => (
-                                        <option key={i} value={item.iD_COACH}>{item.coach}</option>
-                                    ))
-
-                                }
-
-                            </Field>
+                                    </Field>
+                                </div>
+                            </Tooltip>
                             <ErrorMessage name="coach" component={() => (
                                 <div className={errorMess}>{errors.coach}</div>
                             )} />
 
-                            <Field as="select" name="soporte" className={selectOption}>
-                                <option value="">ÁREA DE SOPORTE (Opcional) (Selecciona el área que pueda apoyar tu idea)</option>
-                                {
-                                    areaSoporte.map((item, i) => (
-                                        <option key={i} value={item.iD_AREA_SOPORTE}>{item.areA_SOPORTE}</option>
-                                    ))
-                                }
-                            </Field>
+                            <Tooltip title={textoAyuda} placement="bottom-start">
+                                <div style={{ display: "flex" }}>
+                                    <Field as="select" name="soporte" className={selectOption}>
+                                        <option value="">ÁREA DE SOPORTE (Opcional) (Selecciona el área que pueda apoyar tu idea)</option>
+                                        {
+                                            areaSoporte.map((item, i) => (
+                                                <option key={i} value={item.iD_AREA_SOPORTE}>{item.areA_SOPORTE}</option>
+                                            ))
+                                        }
+                                    </Field>
+                                </div>
+                            </Tooltip>
                         </div>
-                        <div className={ideaTeian}>
-                            <label htmlFor="TEIAN">ESCRIBE TU TEIAN*</label>
-                            <Field className={txtAreaTeian} name="mensajeTeian" as="textarea" placeholder="Aquí escribe tu idea de mejora" />
-                            <ErrorMessage name="mensajeTeian" component={() => (
-                                <div className={errorMess}>{errors.mensajeTeian}</div>
-                            )} />
+                        <div className={contTextIdeaInfo}>
+                            <div className={ideaTeian}>
+                                <label htmlFor="TEIAN">ESCRIBE TU TEIAN*</label>
+                                <Field className={txtAreaTeian} name="mensajeTeian" as="textarea" placeholder="Aquí escribe tu idea de mejora" />
+                                <ErrorMessage name="mensajeTeian" component={() => (
+                                    <div className={errorMess}>{errors.mensajeTeian}</div>
+                                )} />
+                            </div>
+                            <div className={contInfoIdea} >
+                                <label htmlFor="TEIAN">EJEMPLO</label>
+                                <Field disabled className={txtAreaTeianEjemplo} name="mensajeEjemplo" as="textarea" placeholder={textoEjemploIdea} />
+
+                            </div>
                         </div>
                         <div>
                             <input ref={inputRef} accept="image/*,video/*" type="file" name="files" multiple onChange={(e) => subirArchivos(e.target.files)} style={{ maxWidth: "100%" }} />
@@ -282,7 +312,7 @@ const FormIdea = () => {
                 )}
             </Formik>
             <Outlet />
-        </Container>
+        </Container >
     );
 }
 

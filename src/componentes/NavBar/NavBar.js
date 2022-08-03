@@ -31,11 +31,13 @@ class NavBar extends React.Component {
           <Navbar.Toggle aria-controls="basic-navbar-nav" />
           <Navbar.Collapse id="basic-navbar-nav" className={navBarColl}>
             <Nav className="me-auto">
-              <Nav.Link href="/Teian/Formideas" className={linkNavBar}>CREAR TEIAN</Nav.Link>
-              <Nav.Link href="/Teian/TableIdeas" className={linkNavBar}>MIS TEIANES</Nav.Link>
-              <Nav.Link href="/Teian/ApproveIdeas" className={linkNavBar}>TEIANES PENDIENTES</Nav.Link>
-              <Nav.Link href="/Teian/TeianesAccepted" className={linkNavBar}>TEIANES ACEPTADOS</Nav.Link>
-              <Nav.Link href="/Teian/TeianesRechazados" className={linkNavBar}>TEIANES RECHAZADOS</Nav.Link>
+              <Nav.Link href="/Teian/CrearIdea" className={linkNavBar}>CREAR TEIAN</Nav.Link>
+              <Nav.Link href="/Teian/TablaIdeas" className={linkNavBar}>MIS TEIANES</Nav.Link>
+              <Nav.Link href="/Teian/IdeasGenerales" className={linkNavBar}>TEIANES GENERALES</Nav.Link>
+              <Nav.Link href="/Teian/IdeasPorAprobar" className={linkNavBar}>TEIANES PENDIENTES</Nav.Link>
+              <Nav.Link href="/Teian/IdeasAceptadas" className={linkNavBar}>TEIANES ACEPTADOS</Nav.Link>
+              <Nav.Link href="/Teian/IdeasImplementadas" className={linkNavBar}>TEIANES IMPLEMENTADOS</Nav.Link>
+              <Nav.Link href="/Teian/IdeasRechazadas" className={linkNavBar}>TEIANES RECHAZADOS</Nav.Link>
               <Nav.Link href="/Teian/Dudas" className={linkNavBar}>DUDAS</Nav.Link>
               <Nav.Link href="/Teian/Perfil" className={linkNavBar}>PERFIL</Nav.Link>
               <button onClick={handleLogout} style={{color:"#fff",border:"none" ,background:"#000"}} >CERRAR SESIÓN</button>

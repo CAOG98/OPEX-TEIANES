@@ -13,6 +13,8 @@ import ReactLoading from 'react-loading';
 import styles from './Ideas.module.css'
 import gerberLogoLoad from '../FormularioLogin/images/GerberLogoLoad.gif';
 
+import Slide from 'react-reveal/Slide';
+
 const UrlServer = "http://10.30.2.167:4000/"
 
 const IdeasAceptadas = () => {
@@ -75,6 +77,7 @@ const IdeasAceptadas = () => {
           {
             ideas.map((item, index) => (
               <div key={index} className="column" >
+                <Slide bottom>
                 <Card style={{ width: '20rem', margin: "25px", borderRadius: "10px", boxShadow: "rgb(38, 57, 77) 0px 20px 20px -10px" }}>
                   <Link to={`/Teian/DetalleTeian/${item.iD_IDEA}`} style={{ textDecoration: "none", color: "#000" }} onClick={Cargando}>
                     <div style={{ height: "250px", overflow: "hidden" }}>
@@ -92,7 +95,7 @@ const IdeasAceptadas = () => {
                     </div>
                   </Link>
                   {/* <span className="badge rounded-pill bg-success text-white" style={{ position: "absolute", margin: "10px" }}>{item.estatus}</span> */}
-                  <Badge style={{ position: "absolute", margin: "10px" }} bg="success">{item.estatus}</Badge>
+                  <Badge bg="success" style={{position: "absolute", margin: "10px" }} >{item.estatuto}</Badge>
                   <Card.Body>
                     <Card.Title>{item.titulO_IDEA.length >= 28 ? item.titulO_IDEA.substr(0, 28) + "..." : item.titulO_IDEA}</Card.Title>
                     <Card.Text>
@@ -102,7 +105,7 @@ const IdeasAceptadas = () => {
                     </Card.Text>
                     <div style={{ display: "flex", justifyContent: "space-between" }}>
                       {/* <Button variant="contained" style={{ backgroundColor: '#445CF5' }} onClick={() => Implementada()}>Implementar</Button> */}
-                      <Link to={`/Teian/DetalleTeian/${item.titulO_IDEA}`} style={{ textDecoration: "none", color: "#fff", background: '#445cf5', padding: "10px 30px", borderRadius: "5px" }} onClick={Cargando}>Implementar</Link>
+                      <Link to={`/Teian/DetalleTeian/${item.iD_IDEA}`} style={{ textDecoration: "none", color: "#fff", background: '#016dbb', padding: "15px 20px", borderRadius: "5px" }} onClick={Cargando}>Implementar</Link>
                       {/* <Button variant="contained" style={{backgroundColor:"#8A94AB"}} >Deshacer</Button> */}
                       <Tooltip title="Información">
                         <IconButton>
@@ -112,6 +115,7 @@ const IdeasAceptadas = () => {
                     </div>
                   </Card.Body>
                 </Card>
+                </Slide>
               </div>
             ))
           }

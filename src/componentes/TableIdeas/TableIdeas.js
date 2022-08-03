@@ -6,8 +6,31 @@ import './TableIdeas.css'
 import { DataGrid, GridToolbar, esES } from '@mui/x-data-grid';
 import { Container } from 'react-bootstrap';
 import formatDate, { formatFecha } from '../Ideas/formatFecha'
+import { height, width } from '@mui/system';
 
-//1. Configuramos las columnas para DataTable
+
+
+const idUsuario = window.localStorage.getItem('usuario')
+
+const baseUrl = `http://10.30.2.167:4000/api/Ideas/Usuario${idUsuario}`
+
+const TableIdeas = () => {
+  //1 Configurar los hooks
+  const [tableData, setTableData] = useState([])
+  const [pageSize, setPageSize] = React.useState(12);
+  const [arrayDatos, setArrayDatos] = useState()
+
+
+  useEffect(() => {
+    fetch(baseUrl)
+      .then((data) => data.json())
+      .then((data) => {
+        setTableData(data)
+        console.log(data)
+      })
+  }, [])
+
+  //1. Configuramos las columnas para DataTable
 const columns = [
   {
     field: 'iD_IDEA',
@@ -65,29 +88,16 @@ const columns = [
     align:'center',
     headerClassName: 'headerTable'
   },
+  {
+    field: 'estatuto',
+    headerName: 'Estado', width: 200,
+    headerAlign: 'center',
+    align:'center',
+  },
+
 ]
 
-const idUsuario = window.localStorage.getItem('usuario')
-
-const baseUrl = `http://10.30.2.167:4000/api/Ideas/Usuario${idUsuario}`
-
-const TableIdeas = () => {
-  //1 Configurar los hooks
-  const [tableData, setTableData] = useState([])
-  const [pageSize, setPageSize] = React.useState(12);
-  const [arrayDatos, setArrayDatos] = useState()
-
-
-  useEffect(() => {
-    fetch(baseUrl)
-      .then((data) => data.json())
-      .then((data) => {
-        setTableData(data)
-        console.log(data)
-      })
-  }, [])
-
-  const dataFilter = tableData.map(({ iD_IDEA, fechA_CREACION_IDEA, titulO_IDEA, categoria, coaches, areA_SOPORTE, ideA_TEXTO, departamento }) => ({ iD_IDEA, fechA_CREACION_IDEA, titulO_IDEA, categoria, coaches, areA_SOPORTE, ideA_TEXTO, departamento }))
+  const dataFilter = tableData.map(({ iD_IDEA, fechA_CREACION_IDEA, titulO_IDEA, categoria, coaches, areA_SOPORTE, ideA_TEXTO, departamento, estatuto }) => ({ iD_IDEA, fechA_CREACION_IDEA, titulO_IDEA, categoria, coaches, areA_SOPORTE, ideA_TEXTO, departamento, estatuto }))
   console.log(dataFilter)
 
   return (
