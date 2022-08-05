@@ -10,7 +10,7 @@
     border-radius: 20px;
     padding:20px 40px 30px 40px;
     background-color: #fff;
-    box-shadow: rgb(38, 57, 77) 0px 10px 51px 9px;
+    box-shadow: rgb(38, 57, 77) 0px 1px 0px 2px;
 }
 /* TITULO DEL FORMULARIO */
 .titleForm{

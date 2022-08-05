@@ -115,7 +115,7 @@ const IdeasGenerales = () => {
                         }
                       </Card.Text>
                       <div style={{ display: "flex", justifyContent: "space-between" }}>
-                      <Link to={`/Teian/DetalleTeian/${item.titulO_IDEA}`} style={{ textDecoration: "none", color: "#fff", background:"#016dbb", padding: "10px 30px", borderRadius: "5px" }} onClick={Cargando}>Ir a detalles</Link>
+                      <Link to={`/Teian/DetalleTeian/${item.iD_IDEA}`} style={{ textDecoration: "none", color: "#fff", background:"#016dbb", padding: "10px 30px", borderRadius: "5px" }} onClick={Cargando}>Ir a detalles</Link>
                       </div>
                     </Card.Body>
                   </Card>

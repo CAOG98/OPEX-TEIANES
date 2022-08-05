@@ -73,6 +73,7 @@ const Formulario = () => {
             window.localStorage.setItem('correo', user.correo)
             window.localStorage.setItem('nombre', user.nombre)
             window.localStorage.setItem('apellido', user.apellido)
+            window.localStorage.setItem('rol', user.rol)
 
 
             window.localStorage.setItem('tokenSesion', token)

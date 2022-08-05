@@ -91,7 +91,23 @@ const IdeasUsuario = () => {
                       </div>
                     </NavLink>
                     {/* <span className="badge rounded-pill bg-secondary" style={{position:"absolute", margin:"10px"}}>{item.estatuto}</span> */}
-                    <Badge style={{ position: "absolute", margin: "10px" }} bg="secondary">{item.estatuto}</Badge>
+                    {item.iD_ESTATUS === 1 ? (
+                    // <span className="badge rounded-pill bg-secondary" style={{ marginBottom: "10px" }}>{item.estatus}</span>
+                    <Badge bg="secondary" style={{ position: "absolute", margin: "10px" }}>{item.estatuto}</Badge>
+                  ) : item.iD_ESTATUS === 2 ? (
+                    // <span className="badge rounded-pill bg-success text-white" style={{ marginBottom: "10px" }}>{item.estatus}</span>
+                    <Badge bg="success" style={{ position: "absolute", margin: "10px" }}>{item.estatuto}</Badge>
+                  ) : item.iD_ESTATUS === 3 ? (
+                    // <span className="badge rounded-pill bg-secondary" style={{ marginBottom: "10px" }}>{item.estatus}</span>
+                    <Badge bg="danger" style={{ position: "absolute", margin: "10px" }}>{item.estatuto}</Badge>
+                  ) : item.iD_ESTATUS === 4 ? (
+                    // <span className="badge rounded-pill bg-secondary" style={{ marginBottom: "10px" }}>{item.estatus}</span>
+                    <Badge bg="warning" style={{ position: "absolute", margin: "10px" }}>{item.estatuto}</Badge>
+                  ) : (
+                    // <span className="badge rounded-pill bg-secondary" style={{ marginBottom: "10px" }}>{item.estatus}</span>
+                    <Badge style={{ backgroundColor: "#0D6EFD",  position: "absolute", margin: "10px" }}>{item.estatuto}</Badge>
+                  )
+                  }
                     <Card.Body>
                       <Card.Title>{item.titulO_IDEA.length >= 28 ? item.titulO_IDEA.substr(0, 23) + "..." : item.titulO_IDEA }</Card.Title>
                       <Card.Text>

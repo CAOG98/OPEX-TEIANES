@@ -16,6 +16,7 @@ const ModalDeshacer = (indexEstatus) => {
   const handleClose = () => setShow(false);
   const handleShow = () => setShow(true);
 
+  const IdUsuario = window.localStorage.getItem('usuario')
   // CAMBIAR EL ESTADO A ELIMINADAS
   const cambiarEstadoDeshacer = (ideaDeshacer) => {
     const ID = ideaDeshacer.index
@@ -24,7 +25,7 @@ const ModalDeshacer = (indexEstatus) => {
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({ title: 'React PUT Request Example' })
     };
-    fetch(`http://10.30.2.167:4000/api/Ideas/EnProceso/${ID}`, requestOptions)
+    fetch(`http://10.30.2.167:4000/api/Ideas/EnProceso/?id=${ID}&numEmpleado=${IdUsuario}`, requestOptions)
     setShow(false);
   }
 

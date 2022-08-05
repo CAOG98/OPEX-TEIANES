@@ -10,6 +10,7 @@ const ModalAceptadas = (indexEstatus) => {
     const handleClose = () => setShow(false);
     const handleShow = () => setShow(true);
 
+    const IdUsuario = window.localStorage.getItem('usuario')
     // Cambiar el estado a Aceptadas
     const cambiarEstadoAceptadas = (ideaAceptada) => {
         const IA = ideaAceptada.index
@@ -18,7 +19,7 @@ const ModalAceptadas = (indexEstatus) => {
             headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify({ title: 'React PUT Request Example' })
         };
-        fetch(`http://10.30.2.167:4000/api/Ideas/Aceptada/${IA}`, requestOptions)
+        fetch(`http://10.30.2.167:4000/api/Ideas/Aceptada/?id=${IA}&numEmpleado=${IdUsuario}`, requestOptions)
         setShow(false);
     }
 

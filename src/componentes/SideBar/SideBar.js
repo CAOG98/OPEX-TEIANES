@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import {
   CDBSidebar,
@@ -19,6 +19,7 @@ import Avatar from '@mui/material/Avatar';
 import Stack from '@mui/material/Stack';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { FcIdea } from 'react-icons/fa';
+
 
 function stringToColor(string) {
   let hash = 0;
@@ -52,6 +53,7 @@ function stringAvatar(name) {
 
 
 const SideBar = () => {
+
   const imageLogo = styles.imagesTitle
   const sidebarS = styles.sidebarS
   const sideBarHead = styles.sideBarHead
@@ -59,14 +61,12 @@ const SideBar = () => {
   const navigate = useNavigate()
 
   const handleLogout = () => {
-    // window.localStorage.removeItem('loggedIdeaAppUser')
     window.localStorage.clear()
     navigate("/Login")
-    // window.location = "/Login"
   }
   //const rutaServidor="/teianes/" //Produccion
   const rutaServidor = "" //Pruebas
-  // const nombre_empleado = window.localStorage.getItem('nombre_empleado')
+  const rol = window.localStorage.getItem('rol')
 
   return (
     <div className={sidebarS}>
@@ -77,11 +77,83 @@ const SideBar = () => {
           </a>
         </CDBSidebarHeader>
         <CDBSidebarHeader className={userNameSidebar} prefix={<i className='fas fa-solid fa-user-check'></i>}>
-          <Avatares/>
+          <Avatares />
         </CDBSidebarHeader>
 
-        <CDBSidebarContent className="sidebar-content">
+        {
+          rol == 1 ?
+            (
+              <CDBSidebarContent className="sidebar-content">
+                <CDBSidebarMenu>
+                  <NavLink to={rutaServidor + "Teian/CrearIdea"} style={({ isActive }) =>
+                    isActive
+                      ? {
+                        color: '#006dba',
+                        background: '#7600dc',
+                        transition: '0.3s',
+                      }
+                      : { color: '#545e6f', background: '#f0f0f0', transition: '0.3s', }
+                  } activeClassName="activeClicked">
+                    <CDBSidebarMenuItem icon="fa-solid fa-highlighter">CREAR TEIAN</CDBSidebarMenuItem>
+                  </NavLink>
 
+
+                  <NavLink to={rutaServidor + "Teian/TablaIdeas"} style={({ isActive }) =>
+                    isActive
+                      ? {
+                        color: '#006dba',
+                        background: '#7600dc',
+                        transition: '0.3s',
+                      }
+                      : { color: '#545e6f', background: '#f0f0f0', transition: '0.3s', }
+                  } activeClassName="activeClicked">
+                    <CDBSidebarMenuItem icon="table">MIS TEIANES</CDBSidebarMenuItem>
+                  </NavLink>
+
+                  <NavLink to={rutaServidor + "Teian/IdeasUsuario"} style={({ isActive }) =>
+                    isActive
+                      ? {
+                        color: '#006dba',
+                        background: '#7600dc',
+                        transition: '0.3s',
+                      }
+                      : { color: '#545e6f', background: '#f0f0f0', transition: '0.3s', }
+                  } activeClassName="activeClicked">
+                    <CDBSidebarMenuItem icon="lightbulb ">TEIANES USUARIO</CDBSidebarMenuItem>
+
+                  </NavLink>
+
+
+                  <NavLink to={rutaServidor + "Teian/IdeasGenerales"} style={({ isActive }) =>
+                    isActive
+                      ? {
+                        color: '#006dba',
+                        background: '#7600dc',
+                        transition: '0.3s',
+                      }
+                      : { color: '#545e6f', background: '#f0f0f0', transition: '0.3s', }
+                  } activeClassName="activeClicked">
+                    <CDBSidebarMenuItem icon="th-large">TEIANES GENERALES</CDBSidebarMenuItem>
+                  </NavLink>
+
+
+                  <NavLink to={rutaServidor + "Teian/Perfil"} style={({ isActive }) =>
+                    isActive
+                      ? {
+                        color: '#006dba',
+                        background: '#7600dc',
+                        transition: '0.3s',
+                      }
+                      : { color: '#545e6f', background: '#f0f0f0', transition: '0.3s', }
+                  } activeClassName="activeClicked">
+                    <CDBSidebarMenuItem icon="user">PERFIL</CDBSidebarMenuItem>
+                  </NavLink>
+                </CDBSidebarMenu>
+              </CDBSidebarContent>
+            )
+          :
+        (
+        <CDBSidebarContent className="sidebar-content">
           <CDBSidebarMenu>
             <NavLink to={rutaServidor + "Teian/CrearIdea"} style={({ isActive }) =>
               isActive
@@ -118,7 +190,7 @@ const SideBar = () => {
                 : { color: '#545e6f', background: '#f0f0f0', transition: '0.3s', }
             } activeClassName="activeClicked">
               <CDBSidebarMenuItem icon="lightbulb ">TEIANES USUARIO</CDBSidebarMenuItem>
-              
+
             </NavLink>
 
 
@@ -198,12 +270,13 @@ const SideBar = () => {
             </NavLink>
           </CDBSidebarMenu>
         </CDBSidebarContent>
-        {/* <CDBSidebarMenuItem icon="LogoutIcon"><LogoutIcon/><button onClick={handleLogout}style={{background:"#fff", border:"none", color:"#545e6f"}} >CERRAR SESIÓN</button></CDBSidebarMenuItem> */}
+        )
+        }
 
         <CDBSidebarHeader prefix={<i className="fas fa-sign-out-alt"></i>}>
           <button onClick={handleLogout} style={{ background: "#fff", border: "none", color: "#545e6f" }} >CERRAR SESIÓN</button>
         </CDBSidebarHeader>
-        
+
         <CDBSidebarFooter style={{ textAlign: 'center', borderTop: '1px solid #333', backgroundColor: '#006dba' }}>
           <NavLink to={rutaServidor + "Teian/Dudas"} activeClassName="activeClicked" style={{ textDecoration: 'none', color: '#fff' }}>
             <div

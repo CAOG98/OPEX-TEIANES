@@ -10,15 +10,18 @@ const ModalDeshacer = (indexEstatus) => {
   const handleClose = () => setShow(false);
   const handleShow = () => setShow(true);
 
+
+  const IdUsuario = window.localStorage.getItem('usuario')
   // CAMBIAR EL ESTADO A RECHAZADAS
   const cambiarEstadoReachazadas = (ideaRechazada) => {
     const IR = ideaRechazada.index
+    console.log(IR)
     const requestOptions = {
       method: 'PUT',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({ title: 'React PUT Request Example' })
     };
-    fetch(`http://10.30.2.167:4000/api/Ideas/Rechazar/${IR}`, requestOptions)
+    fetch(`http://10.30.2.167:4000/api/Ideas/Rechazar/?id=${IR}&numEmpleado=${IdUsuario}`,requestOptions)
     setShow(false);
   }
 

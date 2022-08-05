@@ -10,6 +10,7 @@ const ModalEliminar = (indexIdea) => {
   const handleClose = () => setShow(false);
   const handleShow = () => setShow(true);
 
+  const IdUsuario = window.localStorage.getItem('usuario')
   // CAMBIAR EL ESTADO A ELIMINADAS
   const cambiarEstadoEliminadas = (ideaEliminada) => {
     const iE = ideaEliminada.index
@@ -18,7 +19,7 @@ const ModalEliminar = (indexIdea) => {
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({ title: 'React PUT Request Example' })
     };
-    fetch(`http://10.30.2.167:4000/api/Ideas/Eliminada/${iE}`, requestOptions)
+    fetch(`http://10.30.2.167:4000/api/Ideas/Eliminada/?id=${iE}&numEmpleado=${IdUsuario}`, requestOptions)
     setShow(false);
   }
 
