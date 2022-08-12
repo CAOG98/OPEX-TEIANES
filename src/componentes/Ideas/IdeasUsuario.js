@@ -1,13 +1,10 @@
 import React, { useState, useEffect } from 'react';
 import { Badge, Card } from 'react-bootstrap';
 import notFound from '../Ideas/ImagesIdeas/ImageNotFound.jpg'
-import { Link, NavLink} from 'react-router-dom';
+import {NavLink} from 'react-router-dom';
 import CircularProgress from '@mui/material/CircularProgress';
 import Backdrop from '@mui/material/Backdrop';
 import formatDate from './formatFecha';
-import ModalAceptadas from './ModalAceptadas'
-import ModalRechazadas from './ModalRechazadas'
-import ReactLoading from 'react-loading';
 import styles from './Ideas.module.css'
 import gerberLogoLoad from '../FormularioLogin/images/GerberLogoLoad.gif';
 import Slide from 'react-reveal/Slide';
@@ -66,7 +63,7 @@ const IdeasUsuario = () => {
         !done ? (
           <div className={loadingCard}>
             {/* <ReactLoading type={"spinningBubbles"} color={"#0d6efd"} height={300} width={300} /> */}
-            <img src={gerberLogoLoad} width="400" />
+            <img src={gerberLogoLoad} width="400" alt="" />
           </div>
         ) : (
           <div style={{ display: "flex", flexWrap: "wrap", margin: "20px", justifyContent: "center" }}>

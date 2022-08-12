@@ -143,6 +143,13 @@ const Formulario = () => {
         const Alert = React.forwardRef(function Alert(props, ref) {
             return <MuiAlert elevation={6} ref={ref} variant="filled" {...props} />;
         });
+        const [state, setState] = React.useState({
+            open2: false,
+            vertical: 'top',
+            horizontal: 'right',
+        });
+    
+        const { vertical, horizontal, open2 } = state;
         
         return (
             <div className={bodyLogin}>
@@ -204,13 +211,13 @@ const Formulario = () => {
                                     )} />
                                 </div>
                                 <p style={{ color: "red" }} >{errorMessage}</p>
-                                <Snackbar  open={openError} autoHideDuration={6000}>
+                                <Snackbar key={vertical + horizontal} anchorOrigin={{ vertical, horizontal }} open={openError} autoHideDuration={6000}>
                                     <Alert severity="error" sx={{ width: '100%' }}>
                                         {errorMessage}
                                     </Alert>
                                 </Snackbar>
 
-                                <Snackbar open={open} autoHideDuration={6000}  >
+                                <Snackbar key={vertical + horizontal} anchorOrigin={{ vertical, horizontal }} open={open} autoHideDuration={6000}  >
                                     <Alert severity="success" sx={{ width: '100%' }}>
                                         {successMessage} {nombreUsuario}
                                     </Alert>

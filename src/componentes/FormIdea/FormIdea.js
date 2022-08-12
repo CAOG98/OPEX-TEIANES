@@ -3,7 +3,7 @@ import { Container } from 'react-bootstrap';
 import styles from './FormIdea.module.css'
 import { Outlet } from 'react-router-dom';
 import React, { useEffect, useState, useRef } from "react";
-import Clock from 'react-live-clock';
+
 import { Formik, Form, Field, ErrorMessage } from "formik";
 import axios from 'axios';
 import 'typeface-quicksand';
@@ -11,28 +11,15 @@ import jwt from 'jwt-decode'
 import gerberLogo from '../FormularioLogin/images/GerberLogo.png';
 import Snackbar from '@mui/material/Snackbar';
 import MuiAlert from '@mui/material/Alert';
-import Alert from '@mui/material/Alert';
-import AlertTitle from '@mui/material/AlertTitle';
+
 import Stack from '@mui/material/Stack';
-import Avatares from '../Avatar/Avatares';
 import { data } from 'autoprefixer';
 
-import IconButton from '@mui/material/IconButton'
 import Tooltip from '@mui/material/Tooltip';
-import TipsAndUpdatesOutlinedIcon from '@mui/icons-material/TipsAndUpdatesOutlined';
-import Box from '@mui/material/Box';
 
 const FormIdea = () => {
-    //Hooks validacion de formulario
-    const [formularioEnviado, cambiarFormularioEnviado] = useState(false)
-    const [ideas, setIdeas] = useState([])
-    const [info, setInfo] = useState({})
-    const [archivosVacios, setArchivosVacios] = useState(false)
-
-
     // hooks
     const [categ, setCateg] = useState([])
-    const [categorias, setCategorias] = useState(0)
     const [coaches, setCoaches] = useState([])
     const [areaSoporte, setAreaSoporte] = useState([])
 
@@ -72,8 +59,9 @@ const FormIdea = () => {
 
 
     const handlerCargarCoach = async (e, valores) => {
+        const id_user = window.localStorage.getItem('usuario')
         const IdCategoria = e.target.value
-        await axios.get(`http://10.30.2.167:4000/api/Coaches/CATEGORIA/${IdCategoria}`).then(response => {
+        await axios.get(`http://10.30.2.167:4000/api/Coaches/Categoria_stu_coach?id=${IdCategoria}&id_user=${id_user}`).then(response => {
             setCoaches(response.data)
         }).catch(error => {
             console.log(error)
@@ -93,7 +81,6 @@ const FormIdea = () => {
     const txtAreaTeian = styles.txtAreaTeian
     const messageExito = styles.messageExito
     const errorMess = styles.errorMess
-    const fileTeian = styles.fileTeian
     const imageLogo = styles.imageLogo
     const contTextIdeaInfo = styles.contTextIdeaInfo
     const contInfoIdea = styles.contInfoIdea
@@ -109,7 +96,6 @@ const FormIdea = () => {
     const [archivos, setArchivos] = useState(null)
     const [errorMessage, setErrorMessage] = useState(null)
     const [open, setOpen] = React.useState(false);
-    const [openError, setOpenError] = React.useState(false);
     const [successMessage, setSuccessMessage] = useState(null)
     const inputRef = useRef(null);
     const [openAlert, setOpenAlert] = React.useState(false);
@@ -170,10 +156,10 @@ const FormIdea = () => {
     const textoAyuda = "Tu idea se enviara a la categoría que selecciones"
     const textoAyudaCoach = "Tu idea se enviara al coach que selecciones"
     const textoAyudaAreaSoporte = "Tu idea se enviara al area de soporte que selecciones"
-    const textoEjemploIdea = `¿Porque? Los baches generan grietas en la taza
-¿Cuanto? 2 Meses
-¿Como? Buscar Proveedor de llantas, hacer un análisis de opciones y sellar baches en el camino del carrito 
-¿Donde? Vaciado`
+    const textoEjemploIdea = `¿Porqué? Los baches generan grietas en la taza
+¿Cuánto? 2 Meses
+¿Cómo? Buscar Proveedor de llantas, hacer un análisis de opciones y sellar baches en el camino del carrito 
+¿Dónde? Vaciado`
 
     return (
         <Container className={contFormIdea}>
@@ -198,13 +184,13 @@ const FormIdea = () => {
                         errores.teian = 'Porfavor ingresa un nombre'
                     }
                     if (!valores.categoria) {
-                        errores.categoria = 'Porfavor elije una CATEGORÍA'
+                        errores.categoria = 'Porfavor elije una categoría'
                     }
                     if (!valores.coach) {
-                        errores.coach = 'Porfavor elija un COACH'
+                        errores.coach = 'Porfavor elija un coach'
                     }
                     if (!valores.mensajeTeian) {
-                        errores.mensajeTeian = 'Porfavor escribe tu TEIAN'
+                        errores.mensajeTeian = 'Porfavor escribe tu teian'
                     }
                     if (!valores.file) {
                         errores.file = 'Porfavor suba un archivo'
@@ -236,7 +222,7 @@ const FormIdea = () => {
                                 <div style={{ display: "flex" }}>
 
                                     <Field as="select" name="categoria" className={selectOption} onClick={handlerCargarCoach}>
-                                        <option value="">CATEGORÍA (Selecciona la categoría de tu idea)*</option>
+                                        <option value="">¿EN QUÉ AYUDARA TU TEIAN? (Selecciona a dónde impactara tu teian)*</option>
                                         {
                                             categ.map((item, i) => (
                                                 <option key={i} value={item.iD_CATEGORIAS}>{item.categorias}</option>

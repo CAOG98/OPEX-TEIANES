@@ -248,7 +248,23 @@
     .tabNav{
         margin-top: 50px;
     }
+   
 }
 .loadingCard{
     margin: auto auto;
+}
+
+
+/*PDF*/
+.buttonImprimir{
+    margin-right: 10px;
+}
+@media (max-width:466px)
+{
+    .buttonsImprimir{
+        position:absolute;
+        right: 5px;
+        bottom: 10px;   
+    }
+
 }

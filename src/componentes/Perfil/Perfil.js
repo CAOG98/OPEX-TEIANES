@@ -73,22 +73,24 @@ const Perfil = () => {
   const graficaIdeas = styles.graficaIdeas
   const logotipoPerfil = styles.logotipoPerfil
   const perfilBar = styles.perfilBar
+  const segundaGraficaIdeas = styles.segundaGraficaIdeas
+  const pointsUser = styles.pointsUser
+  const datosPerso = styles.datosPerso
+  const bgImage = styles.bgImage
 
 
   var data = {
-    labels: ['Total ideas', 'Por aprobar', 'Rechazadas', 'Aceptadas', 'Implementadas'],
+    labels: ['Por aprobar', 'Rechazadas', 'Aceptadas', 'Implementadas'],
     datasets: [{
       label: 'Ideas',
-      data: [numeroDeIdeas.ideas_totales, numeroDeIdeas.ideas_proceso, numeroDeIdeas.ideas_rechazadas, numeroDeIdeas.ideas_aceptadas, numeroDeIdeas.ideas_implementadas],
+      data: [ numeroDeIdeas.ideas_proceso, numeroDeIdeas.ideas_rechazadas, numeroDeIdeas.ideas_aceptadas, numeroDeIdeas.ideas_implementadas],
       backgroundColor: [
-        'rgba(255, 224, 31,1)',
         'rgba(123, 133, 143, 1)',
         'rgba(235, 56, 74, 1)',
         'rgba(25, 135, 84, 1)',
         'rgba(83, 145, 238, 1)'
       ],
       borderColor: [
-        'rgba(255, 224, 31,1)',
         'rgba(123, 133, 143, 1)',
         'rgba(220, 53, 69, 1)',
         'rgba(25, 135, 84, 1)',
@@ -100,7 +102,7 @@ const Perfil = () => {
   }
   var options = {
     spacing: 2,
-    rotation: (-0.5 * Math.PI) - (25/180 * Math.PI),
+    rotation: (-0.5 * Math.PI) - (25 / 180 * Math.PI),
     indexAxis: 'y',
     responsive: true,
     plugins: {
@@ -125,23 +127,53 @@ const Perfil = () => {
     }
   }
 
-  const dataDons = {
-    labels: [
-      'Red',
-      'Blue',
-      'Yellow'
-    ],
+  var dataD = {
+    labels: ['Por aprobar', 'Rechazadas', 'Aceptadas', 'Implementadas'],
     datasets: [{
-      label: 'My First Dataset',
-      data: [300, 50, 100],
+      label: 'Ideas',
+      data: [numeroDeIdeas.ideas_proceso, numeroDeIdeas.ideas_rechazadas, numeroDeIdeas.ideas_aceptadas, numeroDeIdeas.ideas_implementadas],
       backgroundColor: [
-        'rgb(255, 99, 132)',
-        'rgb(54, 162, 235)',
-        'rgb(255, 205, 86)'
+        'rgba(123, 133, 143, 1)',
+        'rgba(235, 56, 74, 1)',
+        'rgba(25, 135, 84, 1)',
+        'rgba(83, 145, 238, 1)'
       ],
-      hoverOffset: 4
+      borderColor: [
+        'rgba(123, 133, 143, 1)',
+        'rgba(220, 53, 69, 1)',
+        'rgba(25, 135, 84, 1)',
+        'rgba(13, 110, 253, 1)'
+      ],
+      borderWidth: 0,
+      hoverOffset: 40
     }]
-  };
+  }
+  var optionsD = {
+    spacing: 2,
+    rotation: (-0.5 * Math.PI) - (25 / 180 * Math.PI),
+    indexAxis: 'y',
+    responsive: true,
+    plugins: {
+      legend: {
+        position: "top"
+      },
+      title: {
+        display: true,
+        text: "NUMERO DE IDEAS"
+      }
+    },
+    maintainAspectRatio: false,
+    scales: {
+      y: {
+        beginAtZero: true
+      }
+    },
+    legend: {
+      labels: {
+        fontSize: 26
+      }
+    }
+  }
 
   return (
     <>
@@ -163,19 +195,20 @@ const Perfil = () => {
                         <Card.Header style={{ backgroundColor: "#0d6efd", color: "#fff" }} ><h4>PERFIL DE: {nombre_empleado}</h4></Card.Header>
                         <Card.Body>
                           <div className={perfilBar} >
-                            <div style={{margin:"auto auto"}}>
-                              <h3>Descripción del perfil:</h3>
-                              <Card.Text>
-                                <h5>Puesto:</h5> <p>{puesto}</p>
-                              </Card.Text>
-                              <Card.Text>
-                                <h5>Área:</h5> <p>{depto}</p>
-                              </Card.Text>
-                              <Card.Text>
-                                <h5>Correo electronico:</h5> 
-                                {/* <p>{correo}</p> */}
-                              </Card.Text>
-                            </div>
+                            <div className={datosPerso}>
+                                <h3>Descripción del perfil:</h3>
+                                <Card.Text>
+                                  <h5>Puesto:</h5> <p>{puesto}</p>
+                                </Card.Text>
+                                <Card.Text>
+                                  <h5>Área:</h5> <p>{depto}</p>
+                                </Card.Text>
+                                <Card.Text>
+                                  <h5>Correo electronico:</h5>
+                                  {/* <p>{correo}</p> */}
+                                </Card.Text>
+                              </div>
+
                             <div className={graficaIdeas}>
                               <Bar
                                 data={data}
@@ -185,13 +218,19 @@ const Perfil = () => {
 
                             </div>
                           </div>
-                          <div className={graficaIdeas}>
+                          <div className={segundaGraficaIdeas} >
+                            <div className={graficaIdeas}>
                               <Doughnut
-                                data={data}
+                                data={dataD}
                                 height={400}
-                                options={options}
+                                options={optionsD}
                               />
                             </div>
+                            <div className={pointsUser}>
+                              <h1>IDEAS TOTALES:</h1>
+                              <h3 >{numeroDeIdeas.ideas_totales}</h3>
+                            </div>
+                          </div>
                         </Card.Body>
                       </Card>
                     </div>

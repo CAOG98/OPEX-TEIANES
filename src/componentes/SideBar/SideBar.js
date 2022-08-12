@@ -136,6 +136,18 @@ const SideBar = () => {
                     <CDBSidebarMenuItem icon="th-large">TEIANES GENERALES</CDBSidebarMenuItem>
                   </NavLink>
 
+                  <NavLink to={rutaServidor + "Teian/IdeasAceptadas"} style={({ isActive }) =>
+                    isActive
+                      ? {
+                        color: '#006dba',
+                        background: '#7600dc',
+                        transition: '0.3s',
+                      }
+                      : { color: '#545e6f', background: '#f0f0f0', transition: '0.3s', }
+                  } activeClassName="activeClicked">
+                    <CDBSidebarMenuItem icon="check-circle">TEIANES ACEPTADOS</CDBSidebarMenuItem>
+                  </NavLink>
+
 
                   <NavLink to={rutaServidor + "Teian/Perfil"} style={({ isActive }) =>
                     isActive
@@ -151,126 +163,126 @@ const SideBar = () => {
                 </CDBSidebarMenu>
               </CDBSidebarContent>
             )
-          :
-        (
-        <CDBSidebarContent className="sidebar-content">
-          <CDBSidebarMenu>
-            <NavLink to={rutaServidor + "Teian/CrearIdea"} style={({ isActive }) =>
-              isActive
-                ? {
-                  color: '#006dba',
-                  background: '#7600dc',
-                  transition: '0.3s',
-                }
-                : { color: '#545e6f', background: '#f0f0f0', transition: '0.3s', }
-            } activeClassName="activeClicked">
-              <CDBSidebarMenuItem icon="fa-solid fa-highlighter">CREAR TEIAN</CDBSidebarMenuItem>
-            </NavLink>
+            :
+            (
+              <CDBSidebarContent className="sidebar-content">
+                <CDBSidebarMenu>
+                  <NavLink to={rutaServidor + "Teian/CrearIdea"} style={({ isActive }) =>
+                    isActive
+                      ? {
+                        color: '#006dba',
+                        background: '#7600dc',
+                        transition: '0.3s',
+                      }
+                      : { color: '#545e6f', background: '#f0f0f0', transition: '0.3s', }
+                  } activeClassName="activeClicked">
+                    <CDBSidebarMenuItem icon="fa-solid fa-highlighter">CREAR TEIAN</CDBSidebarMenuItem>
+                  </NavLink>
 
 
-            <NavLink to={rutaServidor + "Teian/TablaIdeas"} style={({ isActive }) =>
-              isActive
-                ? {
-                  color: '#006dba',
-                  background: '#7600dc',
-                  transition: '0.3s',
-                }
-                : { color: '#545e6f', background: '#f0f0f0', transition: '0.3s', }
-            } activeClassName="activeClicked">
-              <CDBSidebarMenuItem icon="table">MIS TEIANES</CDBSidebarMenuItem>
-            </NavLink>
+                  <NavLink to={rutaServidor + "Teian/TablaIdeas"} style={({ isActive }) =>
+                    isActive
+                      ? {
+                        color: '#006dba',
+                        background: '#7600dc',
+                        transition: '0.3s',
+                      }
+                      : { color: '#545e6f', background: '#f0f0f0', transition: '0.3s', }
+                  } activeClassName="activeClicked">
+                    <CDBSidebarMenuItem icon="table">MIS TEIANES</CDBSidebarMenuItem>
+                  </NavLink>
 
-            <NavLink to={rutaServidor + "Teian/IdeasUsuario"} style={({ isActive }) =>
-              isActive
-                ? {
-                  color: '#006dba',
-                  background: '#7600dc',
-                  transition: '0.3s',
-                }
-                : { color: '#545e6f', background: '#f0f0f0', transition: '0.3s', }
-            } activeClassName="activeClicked">
-              <CDBSidebarMenuItem icon="lightbulb ">TEIANES USUARIO</CDBSidebarMenuItem>
+                  <NavLink to={rutaServidor + "Teian/IdeasUsuario"} style={({ isActive }) =>
+                    isActive
+                      ? {
+                        color: '#006dba',
+                        background: '#7600dc',
+                        transition: '0.3s',
+                      }
+                      : { color: '#545e6f', background: '#f0f0f0', transition: '0.3s', }
+                  } activeClassName="activeClicked">
+                    <CDBSidebarMenuItem icon="lightbulb ">TEIANES USUARIO</CDBSidebarMenuItem>
 
-            </NavLink>
-
-
-            <NavLink to={rutaServidor + "Teian/IdeasGenerales"} style={({ isActive }) =>
-              isActive
-                ? {
-                  color: '#006dba',
-                  background: '#7600dc',
-                  transition: '0.3s',
-                }
-                : { color: '#545e6f', background: '#f0f0f0', transition: '0.3s', }
-            } activeClassName="activeClicked">
-              <CDBSidebarMenuItem icon="th-large">TEIANES GENERALES</CDBSidebarMenuItem>
-            </NavLink>
+                  </NavLink>
 
 
+                  <NavLink to={rutaServidor + "Teian/IdeasGenerales"} style={({ isActive }) =>
+                    isActive
+                      ? {
+                        color: '#006dba',
+                        background: '#7600dc',
+                        transition: '0.3s',
+                      }
+                      : { color: '#545e6f', background: '#f0f0f0', transition: '0.3s', }
+                  } activeClassName="activeClicked">
+                    <CDBSidebarMenuItem icon="th-large">TEIANES GENERALES</CDBSidebarMenuItem>
+                  </NavLink>
 
-            <NavLink to={rutaServidor + "Teian/IdeasPorAprobar"} style={({ isActive }) =>
-              isActive
-                ? {
-                  color: '#006dba',
-                  background: '#7600dc',
-                  transition: '0.3s',
-                }
-                : { color: '#545e6f', background: '#f0f0f0', transition: '0.3s', }
-            } activeClassName="activeClicked">
-              <CDBSidebarMenuItem icon="clipboard">TEIANES PENDIENTES</CDBSidebarMenuItem>
-            </NavLink>
 
 
-            <NavLink to={rutaServidor + "Teian/IdeasAceptadas"} style={({ isActive }) =>
-              isActive
-                ? {
-                  color: '#006dba',
-                  background: '#7600dc',
-                  transition: '0.3s',
-                }
-                : { color: '#545e6f', background: '#f0f0f0', transition: '0.3s', }
-            } activeClassName="activeClicked">
-              <CDBSidebarMenuItem icon="check-circle">TEIANES ACEPTADOS</CDBSidebarMenuItem>
-            </NavLink>
+                  <NavLink to={rutaServidor + "Teian/IdeasPorAprobar"} style={({ isActive }) =>
+                    isActive
+                      ? {
+                        color: '#006dba',
+                        background: '#7600dc',
+                        transition: '0.3s',
+                      }
+                      : { color: '#545e6f', background: '#f0f0f0', transition: '0.3s', }
+                  } activeClassName="activeClicked">
+                    <CDBSidebarMenuItem icon="clipboard">TEIANES PENDIENTES</CDBSidebarMenuItem>
+                  </NavLink>
 
-            <NavLink to={rutaServidor + "Teian/IdeasImplementadas"} style={({ isActive }) =>
-              isActive
-                ? {
-                  color: '#006dba',
-                  background: '#7600dc',
-                  transition: '0.3s',
-                }
-                : { color: '#545e6f', background: '#f0f0f0', transition: '0.3s', }
-            } activeClassName="activeClicked">
-              <CDBSidebarMenuItem icon="fa-solid fa-book">TEIANES IMPLEMENTADOS</CDBSidebarMenuItem>
-            </NavLink>
 
-            <NavLink to={rutaServidor + "Teian/IdeasRechazadas"} style={({ isActive }) =>
-              isActive
-                ? {
-                  color: '#006dba',
-                  background: '#7600dc',
-                  transition: '0.3s',
-                }
-                : { color: '#545e6f', background: '#f0f0f0', transition: '0.3s', }
-            } activeClassName="activeClicked">
-              <CDBSidebarMenuItem icon="trash">TEIANES RECHAZADOS</CDBSidebarMenuItem>
-            </NavLink>
+                  <NavLink to={rutaServidor + "Teian/IdeasAceptadas"} style={({ isActive }) =>
+                    isActive
+                      ? {
+                        color: '#006dba',
+                        background: '#7600dc',
+                        transition: '0.3s',
+                      }
+                      : { color: '#545e6f', background: '#f0f0f0', transition: '0.3s', }
+                  } activeClassName="activeClicked">
+                    <CDBSidebarMenuItem icon="check-circle">TEIANES ACEPTADOS</CDBSidebarMenuItem>
+                  </NavLink>
 
-            <NavLink to={rutaServidor + "Teian/Perfil"} style={({ isActive }) =>
-              isActive
-                ? {
-                  color: '#006dba',
-                  background: '#7600dc',
-                  transition: '0.3s',
-                }
-                : { color: '#545e6f', background: '#f0f0f0', transition: '0.3s', }
-            } activeClassName="activeClicked">
-              <CDBSidebarMenuItem icon="user">PERFIL</CDBSidebarMenuItem>
-            </NavLink>
-          </CDBSidebarMenu>
-        </CDBSidebarContent>
-        )
+                  <NavLink to={rutaServidor + "Teian/IdeasImplementadas"} style={({ isActive }) =>
+                    isActive
+                      ? {
+                        color: '#006dba',
+                        background: '#7600dc',
+                        transition: '0.3s',
+                      }
+                      : { color: '#545e6f', background: '#f0f0f0', transition: '0.3s', }
+                  } activeClassName="activeClicked">
+                    <CDBSidebarMenuItem icon="fa-solid fa-book">TEIANES IMPLEMENTADOS</CDBSidebarMenuItem>
+                  </NavLink>
+
+                  <NavLink to={rutaServidor + "Teian/IdeasRechazadas"} style={({ isActive }) =>
+                    isActive
+                      ? {
+                        color: '#006dba',
+                        background: '#7600dc',
+                        transition: '0.3s',
+                      }
+                      : { color: '#545e6f', background: '#f0f0f0', transition: '0.3s', }
+                  } activeClassName="activeClicked">
+                    <CDBSidebarMenuItem icon="trash">TEIANES RECHAZADOS</CDBSidebarMenuItem>
+                  </NavLink>
+
+                  <NavLink to={rutaServidor + "Teian/Perfil"} style={({ isActive }) =>
+                    isActive
+                      ? {
+                        color: '#006dba',
+                        background: '#7600dc',
+                        transition: '0.3s',
+                      }
+                      : { color: '#545e6f', background: '#f0f0f0', transition: '0.3s', }
+                  } activeClassName="activeClicked">
+                    <CDBSidebarMenuItem icon="user">PERFIL</CDBSidebarMenuItem>
+                  </NavLink>
+                </CDBSidebarMenu>
+              </CDBSidebarContent>
+            )
         }
 
         <CDBSidebarHeader prefix={<i className="fas fa-sign-out-alt"></i>}>

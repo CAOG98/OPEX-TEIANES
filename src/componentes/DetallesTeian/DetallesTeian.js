@@ -24,6 +24,7 @@ import gerberLogoLoad from '../FormularioLogin/images/GerberLogoLoad.gif';
 import IconButton from '@mui/material/IconButton'
 import Tooltip from '@mui/material/Tooltip';
 import TipsAndUpdatesOutlinedIcon from '@mui/icons-material/TipsAndUpdatesOutlined';
+import PdfDatos from './PdfDatos';
 
 // Estilos
 const fondoDetalleIdea = styles.fondoDetalleIdea
@@ -225,11 +226,14 @@ const DetallesTeian = () => {
                   <h3 className={titleBanner}>{ideasDetalle.titulO_IDEA}</h3>
                   <div className={dateBanner}>
                     <Card.Text>Ultima Actualización:</Card.Text>
-                    <Card.Text>
-                      {
-                        formatDate(ideasDetalle.fechA_CREACION_IDEA)
-                      }
-                    </Card.Text>
+                    <div style={{display:"flex", justifyContent:"space-between" }}>
+                      <Card.Text>
+                        {
+                          formatDate(ideasDetalle.fechA_CREACION_IDEA)
+                        }
+                      </Card.Text>
+                      <PdfDatos id={iD_IDEA} />
+                    </div>
                   </div>
                 </Card.ImgOverlay>
               </Card>
@@ -296,7 +300,20 @@ const DetallesTeian = () => {
                       </Tabs>
                     </Box>
                   ) : (
-                    <></>
+                    <Box sx={{ borderBottom: 1, borderColor: 'divider' }}>
+                      <Tabs className={tabsNav} value={value} onChange={handleChange} variant="scrollable"
+                        scrollButtons
+                        aria-label="visible arrows tabs example"
+                        sx={{
+                          [`& .${tabsClasses.scrollButtons}`]: {
+                            '&.Mui-disabled': { opacity: 0 },
+                          },
+                        }}>
+                        <Tab label="IDEA CREADA" {...a11yProps(0)} />
+                        <Tab label="IMPLEMENTAR" {...a11yProps(1)} disabled />
+                        <Tab label="IDEA IMPLEMENTADA" {...a11yProps(2)} disabled />
+                      </Tabs>
+                    </Box>
                   )
                 }
                 {/* <Box sx={{ borderBottom: 1, borderColor: 'divider' }}>
@@ -329,7 +346,7 @@ const DetallesTeian = () => {
                         </div>
                         <Row className={tituloCategorias}>
                           <Col lg="2"><h5>Categoria:</h5></Col>
-                          <Col lg="11"><span className="badge rounded-pill" style={{ color: "#fff", background: "#0d6efd" }}>{ideasDetalle.categoria}</span></Col>
+                          <Col lg="11"><span className="badge rounded-pill" style={{ color: "#fff", background: "#0d6efd" }}>{ideasDetalle.categoria.toUpperCase()}</span></Col>
                         </Row>
                         <Row className={tituloCategorias}>
                           <Col lg="2"><h5>Coach:</h5></Col>
@@ -410,13 +427,13 @@ const DetallesTeian = () => {
                     <hr />
                     <Col xs={6} className={DetallesInfoGeneral}>
                       <div className={textoIdea}>
-                        <h5>Texto de la idea:</h5>
+                        <h5>Descripción de la idea implementada:</h5>
                         <p className="mb-0">{ideasDetalle.comentario}</p>
                       </div>
 
                       <Row className={tituloCategorias}>
                         <Col lg="2"><h5>Categoria:</h5></Col>
-                        <Col lg="11"><span className="badge rounded-pill" style={{ color: "#fff", background: "#0d6efd" }}>{ideasDetalle.categoria}</span></Col>
+                        <Col lg="11"><span className="badge rounded-pill" style={{ color: "#fff", background: "#0d6efd" }}>{ideasDetalle.categoria.toUpperCase()}</span></Col>
                       </Row>
                       <Row className={tituloCategorias}>
                         <Col lg="2"><h5>Coach:</h5></Col>

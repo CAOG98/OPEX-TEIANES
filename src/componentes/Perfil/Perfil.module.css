@@ -9,6 +9,26 @@
     display: flex;
     justify-content: space-between;
 }
+.datosPerso{
+    margin: auto auto;
+    /* background-size: cover;
+    background-repeat: no-repeat;
+    background-image: url('../FormularioLogin/images/tabla.png'); */
+}
+.segundaGraficaIdeas{
+    display: flex;
+}
+.pointsUser{
+    margin: auto auto;
+    /* display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-image: url(https://w1.pngwing.com/pngs/691/274/png-transparent-pen-and-notebook-paper-drawing-paper-clip-printing-papel-de-carta-stationery-label-thumbnail.png); */
+
+}
 
 @media (max-width:990px){
     .cardPerfil{
@@ -24,6 +44,12 @@
         display: flex;
         justify-content: space-between;
         flex-direction: column;
+    }
+    .segundaGraficaIdeas{
+        flex-direction: column;   
+    }
+    .pointsUser{
+        margin:100px;
     }
 }
 .loadingCard{

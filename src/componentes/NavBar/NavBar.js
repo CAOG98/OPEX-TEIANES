@@ -1,9 +1,7 @@
 import React from 'react';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import styles from './NavBar.module.css'
-import NavbarToggle from 'react-bootstrap/esm/NavbarToggle';
-import { Button, Container, Nav, Navbar, NavDropdown } from 'react-bootstrap';
-import NavbarCollapse from 'react-bootstrap/esm/NavbarCollapse';
+import { Button, Container, Navbar } from 'react-bootstrap';
 import gerberLogo from '../FormularioLogin/images/GerberLogo.png';
 import Avatares from '../Avatar/Avatares'
 // import component 
@@ -12,17 +10,13 @@ import Drawer from 'react-modern-drawer'
 //import styles 
 import 'react-modern-drawer/dist/index.css'
 import { MdMenu } from "react-icons/md";
-import { CDBSidebar, CDBSidebarContent, CDBSidebarFooter, CDBSidebarHeader, CDBSidebarMenu, CDBSidebarMenuItem } from 'cdbreact';
+import { CDBSidebarContent, CDBSidebarFooter, CDBSidebarHeader, CDBSidebarMenu, CDBSidebarMenuItem } from 'cdbreact';
 import { NavLink } from 'react-router-dom';
 
 const NavBar = () => {
   const [isOpen, setIsOpen] = React.useState(false)
   const imageLogo = styles.imageLogo
-  const linkNavBar = styles.linkNavBar
   const navBarBody = styles.navBarBody
-  const navBarColl = styles.navBarColl
-  const linkNavBarDrop = styles.linkNavBarDrop
-  const bgDropD = styles.bgDropD
 
   const handleLogout = () => {
     // noteService.setToken(user.token)
@@ -32,13 +26,13 @@ const NavBar = () => {
   const toggleDrawer = () => {
     setIsOpen((prevState) => !prevState)
   }
-  const nameUsuario = window.localStorage.getItem('nombre_empleado')
+
   const rol = window.localStorage.getItem('rol')
   const rutaServidor = ""
   return (
     <Navbar expand="lg" className={navBarBody}>
       <Container style={{ maxWidth: '100%', width: '100%' }}>
-        <Navbar.Brand href="#home"><img className={imageLogo} src={gerberLogo} /></Navbar.Brand>
+        <Navbar.Brand href="#home"><img className={imageLogo} src={gerberLogo} alt="" /></Navbar.Brand>
         {
           rol == 1 ?
             (
@@ -107,6 +101,17 @@ const NavBar = () => {
                           <CDBSidebarMenuItem icon="th-large">TEIANES GENERALES</CDBSidebarMenuItem>
                         </NavLink>
 
+                        <NavLink to={rutaServidor + "Teian/IdeasAceptadas"} style={({ isActive }) =>
+                          isActive
+                            ? {
+                              color: '#006dba',
+                              background: '#7600dc',
+                              transition: '0.3s',
+                            }
+                            : { color: '#545e6f', background: '#f0f0f0', transition: '0.3s', }
+                        } activeClassName="activeClicked">
+                          <CDBSidebarMenuItem icon="check-circle">TEIANES ACEPTADOS</CDBSidebarMenuItem>
+                        </NavLink>
 
                         <NavLink to={"Teian/Perfil"} style={({ isActive }) =>
                           isActive

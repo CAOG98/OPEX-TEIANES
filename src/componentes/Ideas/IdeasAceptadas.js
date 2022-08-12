@@ -22,8 +22,8 @@ const IdeasAceptadas = () => {
   // ------------------------
   const [ideas, setIdeas] = useState([])
   const [done, setDone] = useState(undefined)
-
-  const initialUrl = "http://10.30.2.167:4000/api/ideas/Aprobadas"
+  const idUsuario = window.localStorage.getItem('usuario')
+  const initialUrl = `http://10.30.2.167:4000/api/ideas/Aprobadas/?id_user=${idUsuario}`
 
   const fetchIdeas = (url) => {
     fetch(url)
