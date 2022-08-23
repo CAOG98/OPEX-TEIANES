@@ -26,6 +26,7 @@ import Tooltip from '@mui/material/Tooltip';
 import TipsAndUpdatesOutlinedIcon from '@mui/icons-material/TipsAndUpdatesOutlined';
 import PdfDatos from './PdfDatos';
 import { FcMoneyTransfer } from "react-icons/fc";
+import GaugeChart from 'react-gauge-chart'
 
 // Estilos
 const fondoDetalleIdea = styles.fondoDetalleIdea
@@ -100,6 +101,7 @@ const DetallesTeian = () => {
       .then(response => response.json())
       .then(data => {
         setIdeasDetalle(data)
+        console.log(data)
         setTimeout(() => {
           setIsLoading(true);
         }, 600)
@@ -214,7 +216,7 @@ const DetallesTeian = () => {
                     <Card.Img variant="top" src={notFound} className={imageBanner} />
                   )
                 }
-                <Card.ImgOverlay>
+                <Card.ImgOverlay  >
                   {ideasDetalle.iD_ESTATUS === 1 ? (
                     // <span className="badge rounded-pill bg-secondary" style={{ marginBottom: "10px" }}>{item.estatus}</span>
                     <Badge bg="secondary">{ideasDetalle.estatuto}</Badge>
@@ -232,17 +234,17 @@ const DetallesTeian = () => {
                     <Badge style={{ backgroundColor: "#0D6EFD" }}>{ideasDetalle.estatuto}</Badge>
                   )
                   }
-                  <h3 className={titleBanner}>{ideasDetalle.titulO_IDEA}</h3>
+                  <h3  className={titleBanner}>{ideasDetalle.titulO_IDEA}</h3>
                   <div className={dateBanner}>
+                  <div style={{ display: "flex", justifyContent: "space-between" }}>
                     <Card.Text>Fecha de creación de idea:</Card.Text>
-                    <div style={{ display: "flex", justifyContent: "space-between" }}>
+                    <PdfDatos id={iD_IDEA} />
+                    </div>
                       <Card.Text>
                         {
                           formatDate(ideasDetalle.fechA_CREACION_IDEA)
                         }
-                      </Card.Text>
-                      <PdfDatos id={iD_IDEA} />
-                    </div>
+                      </Card.Text> 
                   </div>
                 </Card.ImgOverlay>
               </Card>
@@ -335,34 +337,51 @@ const DetallesTeian = () => {
                   <p> DETALLES DEL TEIAN</p>
                   <hr />
                   <Row className={bodyDetalles}>
-                    <Col xs={6} className={DetallesInfoGeneral}>
-                      <div className={DetallesInfoCategorias}>
-                        <div style={{ marginBottom: "30px" }}>
-                          <h5>Idea creada por:</h5><span className="badge rounded-pill" style={{ color: "#fff", background: "#016dbb", marginRight: "10px" }}>{ideasDetalle.nombrE_USUARIO}</span>
-                          <span className="badge rounded-pill" style={{ color: "#fff", background: "#016dbb" }}>{ideasDetalle.departamento}</span>
-                        </div>
-                        <div className={textoIdea}>
-                          <h5>Descripción: </h5>
-                          <p className="mb-0">{ideasDetalle.ideA_TEXTO}</p>
-                        </div>
-                        <Row className={tituloCategorias}>
-                          <Col lg="2"><h5>Categoría:</h5></Col>
-                          <Col lg="11"><span className="badge rounded-pill" style={{ color: "#fff", background: "#0d6efd" }}>{ideasDetalle.categoria.toUpperCase()}</span></Col>
-                        </Row>
-                        <Row className={tituloCategorias}>
-                          <Col lg="2"><h5>Coach:</h5></Col>
-                          <Col lg="11"><span className="badge rounded-pill" style={{ color: "#fff", background: "#0d6efd" }}>{ideasDetalle.coaches}</span></Col>
-                        </Row>
-                        <Row className={tituloCategorias}>
-                          <div style={{display:"flex"}}>
-                            <FcMoneyTransfer size="30px"/>
-                            <Col lg="2"><h5>Inversión:</h5></Col>
+                    <Col xs={4} className={DetallesInfoGeneral}>
+                      <div style={{ display: "flex" }}>
+                        <div className={DetallesInfoCategorias}>
+                          <div style={{ marginBottom: "30px" }}>
+                            <h5 style={{fontSize:"23px"}}>Idea creada por:</h5><span className="badge rounded-pill" style={{ color: "#fff", background: "#016dbb", marginRight: "10px",fontSize:"13px" }}>{ideasDetalle.nombrE_USUARIO}</span>
+                            <span className="badge rounded-pill" style={{ color: "#fff", background: "#016dbb",fontSize:"13px" }}>{ideasDetalle.departamento}</span>
                           </div>
-                          <Col lg="11"><span className="badge rounded-pill" style={{ color: "#fff", background: "#0d6efd" }}>{ideasDetalle.inversion}</span></Col>
-                        </Row>
+                          <div className={textoIdea}>
+                            <h5 style={{fontSize:"23px"}} >Descripción: </h5>
+                            <p style={{fontSize:"20px"}} className="mb-0">{ideasDetalle.ideA_TEXTO}</p>
+                          </div>
+                          <Row className={tituloCategorias}>
+                            <Col lg="2"><h5 style={{fontSize:"23px"}}>Categoría:</h5></Col>
+                            <Col lg="11"><span className="badge rounded-pill" style={{ color: "#fff", background: "#0d6efd",fontSize:"13px"}}>{ideasDetalle.categoria.toUpperCase()}</span></Col>
+                          </Row>
+                          <Row className={tituloCategorias}>
+                            <Col lg="2"><h5 style={{fontSize:"23px"}}>Coach:</h5></Col>
+                            <Col lg="11"><span className="badge rounded-pill" style={{ color: "#fff", background: "#0d6efd",fontSize:"13px" }}>{ideasDetalle.coaches}</span></Col>
+                          </Row>
+                        </div>
                       </div>
                     </Col>
 
+                    <Col xs={4} className={DetallesInfoGeneral} >
+                      <div style={{ width: "100%", color: "#000", margin: "0 auto" }}>
+                      <center><h5><FcMoneyTransfer size="30px" />Inversión estimada requerida:</h5></center>
+                        <GaugeChart id="gauge-chart6"
+                        fontSize='16px'
+                          nrOfLevels={14}
+                          colors={["#D1301B","#449E4B"]}
+                          arcWidth={0.3}
+                          percent={ideasDetalle.porcenT_INVERSION}
+                          textColor={"#f5f5f5"}
+                          needleBaseColor={"#464A4F"}
+                          needleColor={"#D1301B"}
+                          animate={true}
+                          animDelay={500}
+                          animateDuration={3000}
+                          formatTextValue={value => ''}
+                          arcWidth={0.2}
+                        />
+                        <center><h5>{ideasDetalle.inversion}</h5></center>
+                        
+                      </div>
+                    </Col>
                     {/* --------------------------Imagenes y videos que suben los usuarios en un slider----------------------------------  */}
                     <Col xs={4} className={DetallesImageGeneral} >
                       <div style={{ display: "flex", flexDirection: "column" }} >
@@ -447,21 +466,21 @@ const DetallesTeian = () => {
                     <hr />
                     <Col xs={6} className={DetallesInfoGeneral}>
                       <div style={{ marginBottom: "30px" }}>
-                        <h5>Idea implementada por:</h5><span className="badge rounded-pill" style={{ color: "#fff", background: "#016dbb", marginRight: "10px" }}>{ideasDetalle.nombrE_USUARIO}</span>
-                        <span className="badge rounded-pill" style={{ color: "#fff", background: "#016dbb" }}>{ideasDetalle.departamento}</span>
+                        <h5  style={{fontSize:"23px"}}>Idea implementada por:</h5><span className="badge rounded-pill" style={{ color: "#fff", background: "#016dbb", marginRight: "10px",fontSize:"13px" }}>{ideasDetalle.nombrE_USUARIO}</span>
+                        <span className="badge rounded-pill" style={{ color: "#fff", background: "#016dbb",fontSize:"13px" }}>{ideasDetalle.departamento}</span>
                       </div>
                       <div className={textoIdea}>
-                        <h5>Descripción de la idea implementada:</h5>
-                        <p className="mb-0">{ideasDetalle.comentario}</p>
+                        <h5  style={{fontSize:"23px"}}>Descripción de la idea implementada:</h5>
+                        <p style={{fontSize:"20px"}} className="mb-0">{ideasDetalle.comentario}</p>
                       </div>
 
                       <Row className={tituloCategorias}>
-                        <Col lg="2"><h5>Categoría:</h5></Col>
-                        <Col lg="11"><span className="badge rounded-pill" style={{ color: "#fff", background: "#0d6efd" }}>{ideasDetalle.categoria.toUpperCase()}</span></Col>
+                        <Col lg="2"><h5  style={{fontSize:"23px"}}>Categoría:</h5></Col>
+                        <Col lg="11"><span className="badge rounded-pill" style={{ color: "#fff", background: "#0d6efd", fontSize:"13px" }}>{ideasDetalle.categoria.toUpperCase()}</span></Col>
                       </Row>
                       <Row className={tituloCategorias}>
-                        <Col lg="2"><h5>Coach:</h5></Col>
-                        <Col lg="11"><span className="badge rounded-pill" style={{ color: "#fff", background: "#0d6efd" }}>{ideasDetalle.coaches}</span></Col>
+                        <Col lg="2"><h5  style={{fontSize:"23px"}}>Coach:</h5></Col>
+                        <Col lg="11"><span className="badge rounded-pill" style={{ color: "#fff", background: "#0d6efd", fontSize:"13px" }}>{ideasDetalle.coaches}</span></Col>
                       </Row>
 
                     </Col>

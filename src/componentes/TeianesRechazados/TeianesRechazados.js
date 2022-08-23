@@ -1,5 +1,4 @@
 import React, { useEffect, useState, lazy, Suspense } from 'react';
-import Clock from 'react-live-clock';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import { Accordion, Button, Card, Container } from 'react-bootstrap';
 import Pagination from '../Ideas/Pagination';

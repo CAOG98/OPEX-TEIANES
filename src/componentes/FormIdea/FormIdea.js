@@ -401,7 +401,7 @@ const FormIdea = () => {
                                 </Stack>
                             }
                         </div>
-                        <button type="submit" className={buttonIdea} disabled={isDisabled} >Enviar teian</button>
+                        <button type="submit" className={buttonIdea} disabled={isDisabled}>Enviar teian</button>
                         {open && <Snackbar key={vertical + horizontal} anchorOrigin={{ vertical, horizontal }} open={open} autoHideDuration={6000}>
                             <Alert severity="success" sx={{ width: '100%' }}>
                                 {successMessage}

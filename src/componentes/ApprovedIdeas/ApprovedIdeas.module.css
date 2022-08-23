@@ -102,7 +102,7 @@
 
 
 .contAprovadas::-webkit-scrollbar{
-    width: 20px;
+    width: 10px;
     border-radius: 6em;
 }
 

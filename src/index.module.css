@@ -9,7 +9,9 @@ body {
   width: 100vw;
   height: 100vh;
   /* background-color: #2FB0ED; */
-  background-color: #00A8F0;
+  /* background-color: #00A8F0; */
+  background: linear-gradient(to top,
+  #ececec  20%, #B8E2FF 40%, #6CC0FA 60%, #389ADF  80%, #006dba  100%) no-repeat;
   ;
   /* background-image: url("./componentes/FormularioLogin/images/FONDO\ TEIANES.jpg"); */
   /* background: linear-gradient(to top,

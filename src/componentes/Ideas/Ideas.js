@@ -15,6 +15,7 @@ import coachPersonaje from '../FormularioLogin/images/coachPersonaje.png';
 import Slide from 'react-reveal/Slide';
 import Button from 'react-bootstrap/Button';
 import Modal from 'react-bootstrap/Modal';
+import { Formik, Form, Field, ErrorMessage } from "formik";
 
 const UrlServer = "http://10.30.2.167:4000/"
 
@@ -50,7 +51,7 @@ const Ideas = () => {
         setIdeas(data)
         setDone(true)
       })
-      .catch(error => console.log(error))
+      // .catch(error => console.log(error))
   }
 
   useEffect(() => {
@@ -118,7 +119,7 @@ const Ideas = () => {
 
   //-----------------------------------------------
   const ModalRechazadas = (indexEstatus) => {
-    console.log(indexEstatus)
+    // console.log(indexEstatus)
     const [show, setShow] = useState(false);
 
     const handleClose = () => setShow(false);
@@ -127,17 +128,18 @@ const Ideas = () => {
 
     const IdUsuario = window.localStorage.getItem('usuario')
     // CAMBIAR EL ESTADO A RECHAZADAS
-    const cambiarEstadoReachazadas = (ideaRechazada) => {
-      console.log(ideaRechazada)
+    const cambiarEstadoReachazadas = (ideaRechazada, valores) => {
+      // console.log(ideaRechazada)
+      console.log(valores)
       const IR = ideaRechazada.index
       const indexIR = ideaRechazada.indexCard
-      console.log(indexIR)
+      // console.log(indexIR)
       const requestOptions = {
         method: 'PUT',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ title: 'React PUT Request Example' })
       };
-      fetch(`http://10.30.2.167:4000/api/Ideas/Rechazar/?id=${IR}&numEmpleado=${IdUsuario}`, requestOptions)
+      fetch(`http://10.30.2.167:4000/api/Ideas/Rechazar/?id=${IR}&numEmpleado=${IdUsuario}&RazonDeRechazo=${valores.razonRechazada}`, requestOptions)
       setShow(false);
       setTimeout(() => {
         setIdeas((prevState) =>
@@ -158,11 +160,45 @@ const Ideas = () => {
             <Modal.Title>¿Estás seguro que desea rechazar esta idea?</Modal.Title>
           </Modal.Header>
           <Modal.Body>Esta idea se podrá ver en "TEIANES RECHAZADOS"</Modal.Body>
-          <Modal.Footer>
-            <Button variant="secondary" style={{ backgroundColor: '#DB5F58' }} onClick={() => cambiarEstadoReachazadas(indexEstatus)}>
-              Rechazar
-            </Button>
-          </Modal.Footer>
+          <Formik
+            initialValues={{
+              razonRechazada: ''
+            }}
+            // Validacion nombre
+            validate={(valores) => {
+              let errores = {};
+              if (!valores.razonRechazada) {
+                errores.razonRechazada = 'Favor de completar el campo'
+              }
+              return errores
+            }}
+            onSubmit={(valores, { resetForm }) => {
+              cambiarEstadoReachazadas(indexEstatus, valores)
+              console.log(valores.razonRechazada)
+              resetForm()
+            }}
+          >
+            {({ values, errors, touched }) => (
+              <Form>
+                <div style={{ display: "flex", flexDirection: "column" }} >
+                  <Modal.Body> Motivo de Rechazo (Retroalimentación)</Modal.Body>
+                  <Field style={{ margin: "0 auto", width: "96%", height: "120px", padding: "20px",borderRadius:'5px' }} name="razonRechazada" as="textarea" placeholder="¿Porqué esta rechazando esta idea?" />
+                  <Modal.Body>
+                    <ErrorMessage name="razonRechazada" component={() => (
+                      <div style={{ color: "red" }}>{errors.razonRechazada}</div>
+                    )} />
+                  </Modal.Body>
+                </div>
+
+                <Modal.Footer>
+                  {/* <Button variant="secondary" style={{ backgroundColor: '#DB5F58' }} onClick={() => cambiarEstadoReachazadas(indexEstatus)}>
+                    Rechazar
+                  </Button> */}
+                  <button style={{background:'#DB5F58', padding:"10px", color:"#fff", borderColor:'#fff', borderRadius:'5px'}} type="submit">Rechazar </button>
+                </Modal.Footer>
+              </Form>
+            )}
+          </Formik>
         </Modal>
       </>
     );

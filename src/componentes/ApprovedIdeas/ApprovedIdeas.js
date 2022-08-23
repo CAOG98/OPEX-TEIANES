@@ -1,5 +1,4 @@
 import React, { Suspense, useEffect, useState, lazy } from 'react';
-import Clock from 'react-live-clock';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import { Container } from 'react-bootstrap';
 // import Ideas from '../Ideas';

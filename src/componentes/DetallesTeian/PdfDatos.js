@@ -10,7 +10,6 @@ import styles from './DetallesTeian.module.css'
 
 const PdfDatos = (iD_IDEA) => {
     const [ideasDetalle, setIdeasDetalle] = useState([])
-    const [mortyA, setMortyA] = useState([])
     const id_pdf = iD_IDEA.id
     const UrlServer = "http://10.30.2.167:4000/"
 
@@ -73,12 +72,12 @@ const PdfDatos = (iD_IDEA) => {
     const pdfGenerate = () => {
         console.log(ideasDetalle.archivos)
         var doc = new jsPDF('landscape', 'px', 'a4', 'false')
-        ideasDetalle.archivosimp.map((item, index) => {
+        ideasDetalle.archivos.map((item, index) => {
             if (index == 0) {
                 let ext = item.extension.substring(1)
                 console.log(ext)
                 let url = UrlServer + item.urL_MULTIMEDIA.toString()
-                doc.addImage( url, ext.toUpperCase(), 100, 125, 150, 150)
+                doc.addImage( url, ext.toUpperCase(),83, 125, 180, 150)
             }
         })
 
@@ -191,6 +190,14 @@ const PdfDatos = (iD_IDEA) => {
         doc.setFont(undefined, 'normal');
         doc.text(431, 78, ideasDetalle.areA_SOPORTE)
 
+        //Inversión
+        doc.setFontSize(12)
+        doc.setFont(undefined, 'bold');
+        doc.text(365, 91, 'Inversión:')
+        doc.setFontSize(10)
+        doc.setFont(undefined, 'normal');
+        doc.text(431, 91, ideasDetalle.inversion)
+
         //Coach
         doc.setFontSize(12)
         doc.setFont(undefined, 'bold');
@@ -223,7 +230,7 @@ const PdfDatos = (iD_IDEA) => {
                     let ext = item.extension.substring(1)
                     console.log(ext)
                     let url = UrlServer + item.urL_MULTIMEDIA.toString()
-                    doc.addImage( url, ext.toUpperCase(),370, 125, 150, 150)
+                    doc.addImage( url, ext.toUpperCase(),357, 125, 180, 150)
                 }
             })
             doc.addImage(logoFooter, 'PNG', 500, 400, 125, 50)
@@ -242,7 +249,7 @@ const PdfDatos = (iD_IDEA) => {
                 let ext = item.extension.substring(1)
                 console.log(ext)
                 let url = UrlServer + item.urL_MULTIMEDIA.toString()
-                doc.addImage( url, ext.toUpperCase(), 100, 125, 150, 150)
+                doc.addImage( url, ext.toUpperCase(), 83, 125, 180, 150)
             }
         })
         //Lineas decoracion
@@ -397,7 +404,7 @@ const PdfDatos = (iD_IDEA) => {
                     let ext = item.extension.substring(1)
                     console.log(ext)
                     let url = UrlServer + item.urL_MULTIMEDIA.toString()
-                    doc.addImage( url, ext.toUpperCase(),370, 125, 150, 150)
+                    doc.addImage( url, ext.toUpperCase(),357, 125, 180, 150)
                 }
             })
             //Fecha de implementacion de idea
