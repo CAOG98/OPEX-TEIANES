@@ -130,7 +130,7 @@ const Ideas = () => {
     // CAMBIAR EL ESTADO A RECHAZADAS
     const cambiarEstadoReachazadas = (ideaRechazada, valores) => {
       // console.log(ideaRechazada)
-      console.log(valores)
+      // console.log(valores)
       const IR = ideaRechazada.index
       const indexIR = ideaRechazada.indexCard
       // console.log(indexIR)
@@ -174,7 +174,7 @@ const Ideas = () => {
             }}
             onSubmit={(valores, { resetForm }) => {
               cambiarEstadoReachazadas(indexEstatus, valores)
-              console.log(valores.razonRechazada)
+              // console.log(valores.razonRechazada)
               resetForm()
             }}
           >

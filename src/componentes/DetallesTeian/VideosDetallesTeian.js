@@ -25,8 +25,8 @@ const VideosDetallesTeian = ({ ideasDetalles }) => {
   return (
     <div className={contentImagenesCarrousel}>
       {ideasDetalles.videos.map((item, index) => (
-        arrayImagenes.push(UrlServer + item.urL_MULTIMEDIA),
-        console.log(arrayImagenes)
+        arrayImagenes.push(UrlServer + item.urL_MULTIMEDIA)
+        // console.log(arrayImagenes)
       ))}
       {
         arrayImagenes.length === 0 ?(

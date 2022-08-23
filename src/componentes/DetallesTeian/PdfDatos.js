@@ -42,9 +42,9 @@ const PdfDatos = (iD_IDEA) => {
             .then(response => response.json())
             .then(data => {
                 setIdeasDetalle(data)
-                console.log(data)
+                // console.log(data)
             })
-            .catch(error => console.log(error))
+            // .catch(error => console.log(error))
     }
 
     useEffect(() => {
@@ -70,12 +70,12 @@ const PdfDatos = (iD_IDEA) => {
 
 
     const pdfGenerate = () => {
-        console.log(ideasDetalle.archivos)
+        // console.log(ideasDetalle.archivos)
         var doc = new jsPDF('landscape', 'px', 'a4', 'false')
         ideasDetalle.archivos.map((item, index) => {
             if (index == 0) {
                 let ext = item.extension.substring(1)
-                console.log(ext)
+                // console.log(ext)
                 let url = UrlServer + item.urL_MULTIMEDIA.toString()
                 doc.addImage( url, ext.toUpperCase(),83, 125, 180, 150)
             }
@@ -228,7 +228,7 @@ const PdfDatos = (iD_IDEA) => {
             ideasDetalle.archivosimp.map((item, index) => {
                 if (index == 0) {
                     let ext = item.extension.substring(1)
-                    console.log(ext)
+                    // console.log(ext)
                     let url = UrlServer + item.urL_MULTIMEDIA.toString()
                     doc.addImage( url, ext.toUpperCase(),357, 125, 180, 150)
                 }
@@ -242,12 +242,12 @@ const PdfDatos = (iD_IDEA) => {
     }
     
     const pdfGenerate2 = () => {
-        console.log(ideasDetalle.archivos)
+        // console.log(ideasDetalle.archivos)
         var doc = new jsPDF('landscape', 'px', 'a4', 'false')
         ideasDetalle.archivos.map((item, index) => {
             if (index == 0) {
                 let ext = item.extension.substring(1)
-                console.log(ext)
+                // console.log(ext)
                 let url = UrlServer + item.urL_MULTIMEDIA.toString()
                 doc.addImage( url, ext.toUpperCase(), 83, 125, 180, 150)
             }
@@ -398,11 +398,11 @@ const PdfDatos = (iD_IDEA) => {
             doc.setFont(undefined, 'normal');
             doc.text(335, 320, ideasDetalle.comentario, { align: 'justify', lineHeightFactor: 1.5, maxWidth: 230 })
             doc.addImage(logoFooter, 'PNG', 500, 400, 125, 50)
-            console.log(ideasDetalle.archivosimp)
+            // console.log(ideasDetalle.archivosimp)
             ideasDetalle.archivosimp.map((item, index) => {
                 if (index == 0) {
                     let ext = item.extension.substring(1)
-                    console.log(ext)
+                    // console.log(ext)
                     let url = UrlServer + item.urL_MULTIMEDIA.toString()
                     doc.addImage( url, ext.toUpperCase(),357, 125, 180, 150)
                 }

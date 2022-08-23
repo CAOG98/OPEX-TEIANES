@@ -101,12 +101,12 @@ const DetallesTeian = () => {
       .then(response => response.json())
       .then(data => {
         setIdeasDetalle(data)
-        console.log(data)
+        // console.log(data)
         setTimeout(() => {
           setIsLoading(true);
         }, 600)
       })
-      .catch(error => console.log(error))
+      // .catch(error => console.log(error))
   }
 
   useEffect(() => {
@@ -161,7 +161,7 @@ const DetallesTeian = () => {
       f, { headers: { 'Content-Type': 'multipart/form-data' } }).then(response => {
         window.location.reload();
       }).catch(error => {
-        console.log(error)
+        // console.log(error)
       })
   }
 
@@ -420,7 +420,7 @@ const DetallesTeian = () => {
                       onSubmit={(valores, { resetForm }) => {
                         resetForm()
                         insertarArchivos(valores)
-                        console.log(valores);
+                        // console.log(valores);
                         cambiarFormularioEnviado(true)
                         setTimeout(() => cambiarFormularioEnviado(false), 5000)
                       }}

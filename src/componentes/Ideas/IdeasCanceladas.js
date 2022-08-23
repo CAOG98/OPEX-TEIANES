@@ -53,7 +53,7 @@ const IdeasCanceladas = () => {
         setIdeas(data)
         setDone(true)
       })
-      .catch(error => console.log(error))
+      // .catch(error => console.log(error))
   }
 
   useEffect(() => {
@@ -64,7 +64,7 @@ const IdeasCanceladas = () => {
   // ------------------------
   //--------------------------------------------------------------------------------
   const ModalDeshacer = (indexEstatus) => {
-    console.log(indexEstatus)
+    // console.log(indexEstatus)
 
     const [indexItem, setIndexItem] = useState()
 

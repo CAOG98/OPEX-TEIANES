@@ -32,8 +32,8 @@ const ImagesImpDetallesTeian = ({ ideasDetalles }) => {
         )
       ))}
       {ideasDetalles.archivosimp.map((item, index) => (
-        arrayImagenes.push(UrlServer + item.urL_MULTIMEDIA),
-        console.log(arrayImagenes)
+        console.log(arrayImagenes.push(UrlServer + item.urL_MULTIMEDIA))
+        // console.log(arrayImagenes)
       ))}
 
       <FsLightbox

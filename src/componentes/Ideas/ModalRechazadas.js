@@ -15,7 +15,7 @@ const ModalDeshacer = (indexEstatus) => {
   // CAMBIAR EL ESTADO A RECHAZADAS
   const cambiarEstadoReachazadas = (ideaRechazada) => {
     const IR = ideaRechazada.index
-    console.log(IR)
+    // console.log(IR)
     const requestOptions = {
       method: 'PUT',
       headers: { 'Content-Type': 'application/json' },
