@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import styles from './DetallesTeian.module.css'
+// Libreria para los slides de las imagenes 
 import FsLightbox from 'fslightbox-react';
-// import styles
 import 'lightgallery/css/lightgallery.css';
 import 'lightgallery/css/lg-zoom.css';
 import 'lightgallery/css/lg-thumbnail.css';
@@ -10,6 +10,8 @@ import 'lightgallery/css/lg-thumbnail.css';
 
 const contentImagenesCarrousel = styles.contentImagenesCarrousel
 const imagenPreview = styles.imagenPreview
+
+//Url necesaria para poder abrir las imagenes desde el server
 const UrlServer = "http://10.30.2.167:4000/"
 
 const ImagesDetallesTeian = ({ ideasDetalles }) => {
@@ -17,6 +19,7 @@ const ImagesDetallesTeian = ({ ideasDetalles }) => {
   const arrayImagenes = [];
   return (
     <div className={contentImagenesCarrousel}>
+      {/* Recorrer el array y agarrar la primera imagen que encuentre y mostrarla en la preview */}
       {ideasDetalles.archivos.map((item, index) => (
         index === 0 ? (
           <img key={index} src={UrlServer + item.urL_MULTIMEDIA} alt="" className={imagenPreview} onClick={() => setToggler(!toggler)} />
@@ -25,7 +28,7 @@ const ImagesDetallesTeian = ({ ideasDetalles }) => {
         )
       ))}
       {ideasDetalles.archivos.map((item, index) => (
-        arrayImagenes.push(UrlServer + item.urL_MULTIMEDIA)
+        console.log(arrayImagenes.push(UrlServer + item.urL_MULTIMEDIA))
         // console.log(arrayImagenes)
       ))}
 

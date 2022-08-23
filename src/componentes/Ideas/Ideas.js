@@ -101,9 +101,9 @@ const Ideas = () => {
         <Modal show={show} onHide={handleClose} size="lg" aria-labelledby="contained-modal-title-vcenter"
           centered>
           <Modal.Header closeButton>
-            <Modal.Title>¿Esta seguro que desea aceptar esta idea?</Modal.Title>
+            <Modal.Title>¿Estás seguro que desea aceptar esta idea?</Modal.Title>
           </Modal.Header>
-          <Modal.Body>Esta idea la podra ver en "TEIANES ACEPTADOS"</Modal.Body>
+          <Modal.Body>Esta idea se podra ver en "TEIANES ACEPTADOS"</Modal.Body>
           <Modal.Footer>
             <Button variant="secondary" style={{ backgroundColor: '#20BA81' }} onClick={() => cambiarEstadoAceptadas(indexEstatus)}>
               Aceptar
@@ -155,9 +155,9 @@ const Ideas = () => {
         <Modal show={show} onHide={handleClose} size="lg" aria-labelledby="contained-modal-title-vcenter"
           centered>
           <Modal.Header closeButton>
-            <Modal.Title>¿Esta seguro que desea rechazar esta idea?</Modal.Title>
+            <Modal.Title>¿Estás seguro que desea rechazar esta idea?</Modal.Title>
           </Modal.Header>
-          <Modal.Body>Esta idea la podras ver en "TEIANES RECHAZADOS"</Modal.Body>
+          <Modal.Body>Esta idea se podrá ver en "TEIANES RECHAZADOS"</Modal.Body>
           <Modal.Footer>
             <Button variant="secondary" style={{ backgroundColor: '#DB5F58' }} onClick={() => cambiarEstadoReachazadas(indexEstatus)}>
               Rechazar
@@ -179,7 +179,7 @@ const Ideas = () => {
   // };
 
   const loadingCard = styles.loadingCard
-
+  const zoomTarjeta = styles.zoomTarjeta
   return (
     <>
       {
@@ -193,7 +193,7 @@ const Ideas = () => {
               ideas.map((item, index) => (
                 <div className="column" key={index} >
                   <Slide bottom>
-                    <Card style={{ width: '20rem', margin: "25px", borderRadius: "10px", boxShadow: "rgb(38, 57, 77) 0px 20px 20px -10px" }} >
+                    <Card style={{ width: '20rem', margin: "25px", borderRadius: "5px", boxShadow: "rgb(38, 57, 77) 0px 20px 20px -10px" }} className={zoomTarjeta} >
                       <NavLink exact to={`/Teian/DetalleTeian/${item.iD_IDEA}`} style={{ textDecoration: "none", color: "#000" }} onClick={Cargando}>
                         <div style={{ height: "250px", overflow: "hidden" }}>
                           {item.archivos.length === 0 ? (

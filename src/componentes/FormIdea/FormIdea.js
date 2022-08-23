@@ -16,12 +16,15 @@ import Stack from '@mui/material/Stack';
 import { data } from 'autoprefixer';
 
 import Tooltip from '@mui/material/Tooltip';
+import TextField from '@mui/material/TextField';
+import MenuItem from '@mui/material/MenuItem';
 
 const FormIdea = () => {
     // hooks
     const [categ, setCateg] = useState([])
     const [coaches, setCoaches] = useState([])
     const [areaSoporte, setAreaSoporte] = useState([])
+    const [inversion, setInversion] = useState([])
 
     // Pedir los Areas
     const initialUrlSoporte = "http://10.30.2.167:4000/api/Areas"
@@ -32,7 +35,7 @@ const FormIdea = () => {
             .then(data => {
                 setAreaSoporte(data)
             })
-            .catch(error => console.log(error))
+            // .catch(error => console.log(error))
     }
 
     useEffect(() => {
@@ -49,7 +52,7 @@ const FormIdea = () => {
             .then(data => {
                 setCateg(data)
             })
-            .catch(error => console.log(error))
+            // .catch(error => console.log(error))
     }
 
     useEffect(() => {
@@ -60,14 +63,35 @@ const FormIdea = () => {
 
     const handlerCargarCoach = async (e, valores) => {
         const id_user = window.localStorage.getItem('usuario')
+        // console.log(e.target.value)
         const IdCategoria = e.target.value
         await axios.get(`http://10.30.2.167:4000/api/Coaches/Categoria_stu_coach?id=${IdCategoria}&id_user=${id_user}`).then(response => {
             setCoaches(response.data)
-        }).catch(error => {
-            console.log(error)
         })
+        // .catch(error => {
+        //     console.log(error)
+        // })
     }
     // -------------------------------------------------------------------
+
+    // --------------------------------------------------------------------------------------------
+    
+     // Pedir las inversiones
+     const initialUrlInversion = "http://10.30.2.167:4000/api/Deptos/Req_Inversion"
+
+     const fetchInversiones = (url) => {
+         fetch(url)
+             .then(response => response.json())
+             .then(data => {
+                setInversion(data)
+             })
+            //  .catch(error => (console.logrror))
+     }
+ 
+     useEffect(() => {
+        fetchInversiones(initialUrlInversion)
+     }, [])
+    // --------------------------------------------------------------------------------------------
 
     // Estilos
     const contFormIdea = styles.contFormIdea
@@ -85,6 +109,10 @@ const FormIdea = () => {
     const contTextIdeaInfo = styles.contTextIdeaInfo
     const contInfoIdea = styles.contInfoIdea
     const txtAreaTeianEjemplo = styles.txtAreaTeianEjemplo
+    // Estilos RadioButton
+    const radioButton = styles.radioButton
+    const radioContainer = styles.radioContainer
+    const labelRadio = styles.labelRadio
 
     //Obtener el nombre del usuario
     const sesion = window.localStorage.getItem('loggedIdeaAppUser')
@@ -101,6 +129,15 @@ const FormIdea = () => {
     const [openAlert, setOpenAlert] = React.useState(false);
     // Boton
     const [isDisabled, setIsDisabled] = useState(false);
+
+    // Check para activar y desactivar el select
+    const [visible, setVisible] = useState(false);
+
+    //     const [currency, setCurrency] = useState('');
+
+    //   const handleChange = (event) => {
+    //     setCurrency(event.target.value);
+    //   };
 
 
     // Subir Archivos e idea //
@@ -131,12 +168,19 @@ const FormIdea = () => {
                 f.append("archivito", archivos[index])
             }
         }
+        var id_inverPrueba = 0
+        if(valores.inver > 1){
+            id_inverPrueba = valores.inver
+        }else{
+            id_inverPrueba = 1
+        }
+        
         await axios.post(`http://10.30.2.167:4000/api/Ideas?titulo=${valores.teian}` + `&id_user=${user2.nameid}` +
-            `&id_coach=${valores.coach}` + `&idea_texto=${valores.mensajeTeian}` + `&id_categoria=${valores.categoria}`, f, { headers: { 'Content-Type': 'application/json' } }).then(response => {
-                console.log(valores)
+            `&id_coach=${valores.coach}` + `&idea_texto=${valores.mensajeTeian}` + `&id_categoria=${valores.categoria}` + `&id_soporte=${valores.soporte}` + `&id_inversion=${id_inverPrueba}`, f, { headers: { 'Content-Type': 'application/json' } }).then(response => {
+                // console.log(valores)
                 inputRef.current.value = null;
             }).catch(error => {
-                console.log(error)
+                // console.log(error)
             })
 
     }
@@ -174,7 +218,9 @@ const FormIdea = () => {
                     categoria: '',
                     coach: '',
                     soporte: '',
+                    inver:'',
                     mensajeTeian: '',
+                    picked: false,
                     file: []
                 }}
                 // Validacion nombre
@@ -191,6 +237,9 @@ const FormIdea = () => {
                     }
                     if (!valores.mensajeTeian) {
                         errores.mensajeTeian = 'Porfavor escribe tu teian'
+                    }
+                    if (!valores.picked) {
+                        errores.picked = 'Selecciona una opcion'
                     }
                     if (!valores.file) {
                         errores.file = 'Porfavor suba un archivo'
@@ -211,8 +260,8 @@ const FormIdea = () => {
                 {({ values, errors, touched }) => (
                     <Form>
                         <div className={titleTeian}>
-                            <label htmlFor="TEIAN">TITULO DEL TEIAN*</label>
-                            <Field className={titleTeianInput} type="text" id="nombre" name="teian" placeholder="Aquí va el titulo de tu idea" maxLength="100" />
+                            <label htmlFor="TEIAN">TÍTULO DEL TEIAN*</label>
+                            <Field className={titleTeianInput} type="text" id="nombre" name="teian" placeholder="Aquí va el título de tu idea" maxLength="100" />
                             <ErrorMessage name="teian" component={() => (
                                 <div className={errorMess}>{errors.teian}</div>
                             )} />
@@ -222,7 +271,7 @@ const FormIdea = () => {
                                 <div style={{ display: "flex" }}>
 
                                     <Field as="select" name="categoria" className={selectOption} onClick={handlerCargarCoach}>
-                                        <option value="">¿EN QUÉ AYUDARA TU TEIAN? (Selecciona a dónde impactara tu teian)*</option>
+                                        <option value="">¿EN QUÉ AYUDARÁ TU TEIAN? (Selecciona a dónde impactará tu teian)*</option>
                                         {
                                             categ.map((item, i) => (
                                                 <option key={i} value={item.iD_CATEGORIAS}>{item.categorias}</option>
@@ -235,6 +284,33 @@ const FormIdea = () => {
                             <ErrorMessage name="categoria" component={() => (
                                 <div className={errorMess}>{errors.categoria}</div>
                             )} />
+                            {/* <Tooltip title={textoAyuda} placement="bottom-start">
+                                <div style={{ display: "flex" }}>
+                                    <TextField
+                                        id="outlined-select-currency"
+                                        select
+                                        label="¿EN QUÉ AYUDARÁ TU TEIAN? (Selecciona a dónde impactará tu teian)*"
+                                        name="categoria"
+                                        // value={currency}
+                                        // onChange={handleChange}
+                                        onChange={handlerCargarCoach}
+                                        // helperText="Please select your currency"
+                                        style={{width:"100%"}}
+                                    >
+                                        {categ.map((item, i) => (
+                                            <MenuItem key={i} value={item.iD_CATEGORIAS}>
+                                                {item.categorias}
+                                            </MenuItem>
+                                        ))}
+                                    </TextField>
+                                </div>
+                            </Tooltip>
+                            <ErrorMessage name="categoria" component={() => (
+                                <div className={errorMess}>{errors.categoria}</div>
+                            )} />  */}
+
+
+
                             <Tooltip title={textoAyudaCoach} placement="bottom-start">
                                 <div style={{ display: "flex" }}>
                                     <Field as="select" name="coach" className={selectOption}>
@@ -266,6 +342,41 @@ const FormIdea = () => {
                                 </div>
                             </Tooltip>
                         </div>
+                        <label>
+                            ¿REQUIERE INVERSIÓN?
+                        </label>
+                        <div role="group" aria-labelledby="my-radio-group" className={radioContainer}>
+                            <Field type="radio" name="picked" value="true" onClick={() => setVisible(true)} className={radioButton} />
+                            <label className={labelRadio}>
+                                Si
+                            </label>
+                            <Field type="radio" name="picked" value="false" onClick={() => setVisible(false)} className={radioButton} />
+                            <label className={labelRadio}>
+                                No
+                            </label>
+                        </div>
+                        <ErrorMessage name="picked" component={() => (
+                                <div className={errorMess}>{errors.picked}</div>
+                            )} />
+                        {visible &&
+                            <Tooltip title="Monto aproximado que requiere tu idea" placement="bottom-start">
+                                <div style={{ display: "flex" }}>
+                                    <Field as="select" name="inver" className={selectOption}>
+                                        <option value="">SELECCIONA EL MONTO APROXIMADO DE INVERSIÓN EN TU IDEA</option>
+                                        {
+                                            inversion.map((item, i) => (
+                                                <option key={i} value={item.iD_INVERSION}>{item.textO_INVERSION}</option>
+                                            ))
+                                        }
+                                    </Field>
+                                </div>
+                            </Tooltip>
+                        }
+                        <ErrorMessage name="inver" component={() => (
+                                <div className={errorMess}>{errors.inver}</div>
+                            )} />
+
+
                         <div className={contTextIdeaInfo}>
                             <div className={ideaTeian}>
                                 <label htmlFor="TEIAN">ESCRIBE TU TEIAN*</label>

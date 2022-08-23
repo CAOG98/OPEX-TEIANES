@@ -5,6 +5,8 @@
     display: inline-block;
     position: relative;
     text-align: center;
+    color:#fff;
+    font-family: cursive;
     /* font-family: 'Roboto', sans-serif; */
 }
 

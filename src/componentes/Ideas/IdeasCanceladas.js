@@ -171,7 +171,7 @@ const IdeasCanceladas = () => {
   }
   //--------------------------------------------------------------------------------
   const loadingCard = styles.loadingCard
-
+  const zoomTarjeta = styles.zoomTarjeta
   return (
     <>
       {
@@ -187,7 +187,7 @@ const IdeasCanceladas = () => {
               ideas.map((item, index) => (
                 <div key={index} className="column" >
                   <Slide bottom>
-                    <Card style={{ width: '20rem', margin: "25px", borderRadius: "10px", boxShadow: "rgb(38, 57, 77) 0px 20px 20px -10px" }}>
+                    <Card style={{ width: '20rem', margin: "25px", borderRadius: "5px", boxShadow: "rgb(38, 57, 77) 0px 20px 20px -10px" }} className={zoomTarjeta}>
                       <Link to={`/Teian/DetalleTeian/${item.iD_IDEA}`} style={{ textDecoration: "none", color: "#000" }} onClick={Cargando}>
                         <div style={{ height: "250px", overflow: "hidden" }}>
                           {item.archivos.length === 0 ? (

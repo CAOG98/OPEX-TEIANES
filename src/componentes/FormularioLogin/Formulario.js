@@ -9,7 +9,7 @@ import ideaPrendida from './images/ideaPrendida.png';
 import styles from './FormularioLogin.module.css'
 import { ModalFooter } from 'react-bootstrap';
 import Marquee from "react-fast-marquee";
-import { Outlet, Navigate, useNavigate} from "react-router-dom";
+import { Outlet, Navigate, useNavigate } from "react-router-dom";
 import { AiOutlineEyeInvisible, AiOutlineEye } from 'react-icons/ai'
 // Login
 import loginService from '../../Actions/login'
@@ -20,6 +20,10 @@ import MuiAlert from '@mui/material/Alert';
 import FormIdea from "../FormIdea";
 import App from "../../App";
 import TituloLogin from './images/TituloLogin.png'
+import Tooltip from '@mui/material/Tooltip';
+import LockOpenIcon from '@mui/icons-material/LockOpen';
+import IconButton from '@mui/material/IconButton';
+
 
 
 const Formulario = () => {
@@ -98,6 +102,7 @@ const Formulario = () => {
                 setSuccessMessage(null)
                 setOpen(false)
             }, 1200)
+
         } catch (e) {
             setErrorMessage('Contraseña o usuario Incorrectos')
             setOpenError(true)
@@ -148,13 +153,15 @@ const Formulario = () => {
             vertical: 'top',
             horizontal: 'right',
         });
-    
+
         const { vertical, horizontal, open2 } = state;
-        
+
+        const helpPassword = ``
+
         return (
             <div className={bodyLogin}>
                 <Container className={clases}>
-                    <div style={{display:"flex",flexDirection:"column", justifyContent:"end"}} >
+                    <div style={{ display: "flex", flexDirection: "column", justifyContent: "end" }} >
                         <img className={imageTitle} src={imagen ? ideaPrendida : ideaLogo} alt='Teian'></img>
                         <img src={hormiga} className={imagenHormiga} />
                     </div>
@@ -200,12 +207,23 @@ const Formulario = () => {
                                         <div className={errorMess}>{errors.numeroTrabajador}</div>
                                     )} />
                                 </div>
-                                <div className={contFormInput}>
-                                    <label htmlFor="Contraseña">Contraseña</label>
+                                <div className={contFormInput} >
+                                    <div style={{display:"flex"}}>
+                                        <label htmlFor="Contraseña">Contraseña</label>
+                                        <div style={{marginTop:"-10px"}}>
+                                            <Tooltip title="Nota: Tu contraseña es la primera letra de tu nombre,
+                                    la primera letra de tu apellido paterno, la primera letra de tu apeliido materno y el numero 2022">
+                                                <IconButton>
+                                                    <LockOpenIcon />
+                                                </IconButton>
+                                            </Tooltip>
+                                        </div>
+                                    </div>
                                     <div className={passwordField}>
                                         <Form.Control className={inputFormPassword} type={eye ? "text" : "password"} id="password" name="contraseña" placeholder="Colocar la contraseña" autoComplete="off" onChange={({ target }) => setPassword(target.value)} />
                                         <Button className={btnHidePassword} onClick={toggleBtn}>{eye ? <AiOutlineEyeInvisible /> : <AiOutlineEye />}</Button>
                                     </div>
+
                                     <ErrorMessage name="contraseña" component={() => (
                                         <div className={errorMess}>{errors.contraseña}</div>
                                     )} />
@@ -254,7 +272,8 @@ const Formulario = () => {
         <>
             {
                 user
-                    ? nav("/Teian/CrearIdea") //window.location = "Teian/Formideas"
+                    ? window.location.reload(nav("/Teian/CrearIdea"))
+
                     : RenderFormularioInicioSesion()
             }
         </>

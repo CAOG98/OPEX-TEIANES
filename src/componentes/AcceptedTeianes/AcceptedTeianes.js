@@ -18,22 +18,6 @@ const contAceptados = styles.contAceptados
 
 const AcceptedTeianes = () => {
   const [ideas, setIdeas] = useState([])
-
-  // const initialUrl = "http://10.30.2.167:4000/api/Ideas/Aceptadas"
-
-  // const fetchIdeas = (url) => {
-  //   fetch(url)
-  //     .then(response => response.json())
-  //     .then(data => {
-  //       setIdeas(data)
-  //     })
-  //     .catch(error => console.log(error))
-  // }
-
-  // useEffect(() => {
-  //   fetchIdeas(initialUrl)
-  // }, [])
-
   return (
     <>
       <Container className={contAceptados} >

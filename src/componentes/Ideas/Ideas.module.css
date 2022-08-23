@@ -10,3 +10,12 @@
         margin-top: 50px;
     }
 }
+
+.zoomTarjeta{
+    transition: .5s;
+}
+.zoomTarjeta:hover{
+    transform: scale(1.2);
+    transition: .4s;
+    background-color: "#000";
+}

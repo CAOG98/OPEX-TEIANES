@@ -19,7 +19,7 @@ const Avatares = () => {
         {/* <Badge pill bsPrefix style={{background:"#016dbb", padding:"5px 10px", color:"#fff"}}>
           {nombre_empleado}
         </Badge>  */}
-        <p style={{color:"#000", fontSize:"16px", marginTop:"10px",fontWeight:"lighter"}}>{nombre} {apellido} </p>
+        <p style={{color:"#fff", fontSize:"16px",fontWeight:"lighter"}}>{nombre} {apellido} </p>
         {/* <p style={{color:"#000", fontSize:"10px"}}>{nombre_Completo} </p> */}
       </div>
   )

@@ -6,6 +6,7 @@ import gerberLogo from '../FormularioLogin/images/GerberLogo.png';
 import Avatares from '../Avatar/Avatares'
 // import component 
 import Drawer from 'react-modern-drawer'
+import { useNavigate } from 'react-router-dom';
 
 //import styles 
 import 'react-modern-drawer/dist/index.css'
@@ -17,11 +18,14 @@ const NavBar = () => {
   const [isOpen, setIsOpen] = React.useState(false)
   const imageLogo = styles.imageLogo
   const navBarBody = styles.navBarBody
+  const navigate = useNavigate()
 
   const handleLogout = () => {
     // noteService.setToken(user.token)
-    window.localStorage.removeItem('loggedIdeaAppUser')
-    window.location = "/Login"
+    window.location.reload(navigate("/Login"))
+    window.localStorage.clear()
+    // navigate("/Login")
+    
   }
   const toggleDrawer = () => {
     setIsOpen((prevState) => !prevState)
@@ -37,12 +41,12 @@ const NavBar = () => {
           rol == 1 ?
             (
               <div>
-                <Button onClick={toggleDrawer}><MdMenu /></Button>
+                <Button style={{background:"#3c3c33", borderColor:"#3c3c33", boxShadow:"none"}} onClick={toggleDrawer}><MdMenu /></Button>
                 <Drawer
                   open={isOpen}
                   onClose={toggleDrawer}
                   direction='left'
-                  style={{ borderRight: "2px solid", width:"300px" }}
+                  style={{ borderRight: "2px solid", width:"300px", backgroundColor:"#8b8c89" }}
                 >
                   <div>
                     <CDBSidebarHeader prefix={<i className='fas fa-solid fa-user-check'></i>}>
@@ -53,11 +57,11 @@ const NavBar = () => {
                         <NavLink to={"Teian/CrearIdea"} style={({ isActive }) =>
                           isActive
                             ? {
-                              color: '#006dba',
+                              color: '#000',
                               background: '#7600dc',
                               transition: '0.3s',
                             }
-                            : { color: '#545e6f', background: '#f0f0f0', transition: '0.3s', }
+                            : { color: '#fff', background: '#f0f0f0', transition: '0.3s', }
                         } activeClassName="activeClicked">
                           <CDBSidebarMenuItem icon="fa-solid fa-highlighter">CREAR TEIAN</CDBSidebarMenuItem>
                         </NavLink>
@@ -66,11 +70,11 @@ const NavBar = () => {
                         <NavLink to={"Teian/TablaIdeas"} style={({ isActive }) =>
                           isActive
                             ? {
-                              color: '#006dba',
+                              color: '#000',
                               background: '#7600dc',
                               transition: '0.3s',
                             }
-                            : { color: '#545e6f', background: '#f0f0f0', transition: '0.3s', }
+                            : { color: '#fff', background: '#f0f0f0', transition: '0.3s', }
                         } activeClassName="activeClicked">
                           <CDBSidebarMenuItem icon="table">MIS TEIANES</CDBSidebarMenuItem>
                         </NavLink>
@@ -78,11 +82,11 @@ const NavBar = () => {
                         <NavLink to={"Teian/IdeasUsuario"} style={({ isActive }) =>
                           isActive
                             ? {
-                              color: '#006dba',
+                              color: '#000',
                               background: '#7600dc',
                               transition: '0.3s',
                             }
-                            : { color: '#545e6f', background: '#f0f0f0', transition: '0.3s', }
+                            : { color: '#fff', background: '#f0f0f0', transition: '0.3s', }
                         } activeClassName="activeClicked">
                           <CDBSidebarMenuItem icon="lightbulb ">TEIANES USUARIO</CDBSidebarMenuItem>
 
@@ -92,11 +96,11 @@ const NavBar = () => {
                         <NavLink to={"Teian/IdeasGenerales"} style={({ isActive }) =>
                           isActive
                             ? {
-                              color: '#006dba',
+                              color: '#000',
                               background: '#7600dc',
                               transition: '0.3s',
                             }
-                            : { color: '#545e6f', background: '#f0f0f0', transition: '0.3s', }
+                            : { color: '#fff', background: '#f0f0f0', transition: '0.3s', }
                         } activeClassName="activeClicked">
                           <CDBSidebarMenuItem icon="th-large">TEIANES GENERALES</CDBSidebarMenuItem>
                         </NavLink>
@@ -104,11 +108,11 @@ const NavBar = () => {
                         <NavLink to={rutaServidor + "Teian/IdeasAceptadas"} style={({ isActive }) =>
                           isActive
                             ? {
-                              color: '#006dba',
+                              color: '#000',
                               background: '#7600dc',
                               transition: '0.3s',
                             }
-                            : { color: '#545e6f', background: '#f0f0f0', transition: '0.3s', }
+                            : { color: '#fff', background: '#f0f0f0', transition: '0.3s', }
                         } activeClassName="activeClicked">
                           <CDBSidebarMenuItem icon="check-circle">TEIANES ACEPTADOS</CDBSidebarMenuItem>
                         </NavLink>
@@ -116,11 +120,11 @@ const NavBar = () => {
                         <NavLink to={"Teian/Perfil"} style={({ isActive }) =>
                           isActive
                             ? {
-                              color: '#006dba',
+                              color: '#000',
                               background: '#7600dc',
                               transition: '0.3s',
                             }
-                            : { color: '#545e6f', background: '#f0f0f0', transition: '0.3s', }
+                            : { color: '#fff', background: '#f0f0f0', transition: '0.3s', }
                         } activeClassName="activeClicked">
                           <CDBSidebarMenuItem icon="user">PERFIL</CDBSidebarMenuItem>
                         </NavLink>
@@ -129,10 +133,10 @@ const NavBar = () => {
 
                     <div style={{ position: "fixed", bottom: "0", width: "100%" }}>
                       <CDBSidebarHeader prefix={<i className="fas fa-sign-out-alt"></i>}>
-                        <button onClick={handleLogout} style={{ background: "#fff", border: "none", color: "#545e6f" }} >CERRAR SESIÓN</button>
+                        <button onClick={handleLogout} style={{ background: "#8b8c89", border: "none", color: "#fff" }} >CERRAR SESIÓN</button>
                       </CDBSidebarHeader>
 
-                      <CDBSidebarFooter style={{ textAlign: 'center', borderTop: '1px solid #333', backgroundColor: '#006dba' }}>
+                      <CDBSidebarFooter style={{ textAlign: 'center', borderTop: '1px solid #333', backgroundColor: '#3c3c33' }}>
                         <NavLink to={"Teian/Dudas"} activeClassName="activeClicked" style={{ textDecoration: 'none', color: '#fff' }}>
                           <div
                             className="sidebar-btn-wrapper"
@@ -148,18 +152,18 @@ const NavBar = () => {
                   </div>
                 </Drawer>
               </div>
-            ) :
+            ) : rol == 2 ?
             (
               <div>
-                <Button onClick={toggleDrawer}><MdMenu /></Button>
+                <Button style={{background:"#3c3c33", borderColor:"#3c3c33", boxShadow:"none"}} onClick={toggleDrawer}><MdMenu /></Button>
                 <Drawer
                   open={isOpen}
                   onClose={toggleDrawer}
                   direction='left'
                   
-                  style={{ borderRight: "2px solid", width:"300px" }}
+                  style={{ borderRight: "2px solid", width:"300px", backgroundColor:"#8b8c89" }}
                 >
-                  <div>
+                  <div style={{background:"#8b8c89"}}>
                     <CDBSidebarHeader prefix={<i className='fas fa-solid fa-user-check'></i>}>
                       <Avatares />
                     </CDBSidebarHeader>
@@ -168,11 +172,11 @@ const NavBar = () => {
                         <NavLink to={rutaServidor + "Teian/CrearIdea"} style={({ isActive }) =>
                           isActive
                             ? {
-                              color: '#006dba',
+                              color: '#000',
                               background: '#7600dc',
                               transition: '0.3s',
                             }
-                            : { color: '#545e6f', background: '#f0f0f0', transition: '0.3s', }
+                            : { color: '#fff', background: '#f0f0f0', transition: '0.3s', }
                         } activeClassName="activeClicked">
                           <CDBSidebarMenuItem icon="fa-solid fa-highlighter">CREAR TEIAN</CDBSidebarMenuItem>
                         </NavLink>
@@ -181,11 +185,11 @@ const NavBar = () => {
                         <NavLink to={rutaServidor + "Teian/TablaIdeas"} style={({ isActive }) =>
                           isActive
                             ? {
-                              color: '#006dba',
+                              color: '#000',
                               background: '#7600dc',
                               transition: '0.3s',
                             }
-                            : { color: '#545e6f', background: '#f0f0f0', transition: '0.3s', }
+                            : { color: '#fff', background: '#f0f0f0', transition: '0.3s', }
                         } activeClassName="activeClicked">
                           <CDBSidebarMenuItem icon="table">MIS TEIANES</CDBSidebarMenuItem>
                         </NavLink>
@@ -193,11 +197,11 @@ const NavBar = () => {
                         <NavLink to={rutaServidor + "Teian/IdeasUsuario"} style={({ isActive }) =>
                           isActive
                             ? {
-                              color: '#006dba',
+                              color: '#000',
                               background: '#7600dc',
                               transition: '0.3s',
                             }
-                            : { color: '#545e6f', background: '#f0f0f0', transition: '0.3s', }
+                            : { color: '#fff', background: '#f0f0f0', transition: '0.3s', }
                         } activeClassName="activeClicked">
                           <CDBSidebarMenuItem icon="lightbulb ">TEIANES USUARIO</CDBSidebarMenuItem>
 
@@ -207,11 +211,11 @@ const NavBar = () => {
                         <NavLink to={rutaServidor + "Teian/IdeasGenerales"} style={({ isActive }) =>
                           isActive
                             ? {
-                              color: '#006dba',
+                              color: '#000',
                               background: '#7600dc',
                               transition: '0.3s',
                             }
-                            : { color: '#545e6f', background: '#f0f0f0', transition: '0.3s', }
+                            : { color: '#fff', background: '#f0f0f0', transition: '0.3s', }
                         } activeClassName="activeClicked">
                           <CDBSidebarMenuItem icon="th-large">TEIANES GENERALES</CDBSidebarMenuItem>
                         </NavLink>
@@ -221,11 +225,11 @@ const NavBar = () => {
                         <NavLink to={rutaServidor + "Teian/IdeasPorAprobar"} style={({ isActive }) =>
                           isActive
                             ? {
-                              color: '#006dba',
+                              color: '#000',
                               background: '#7600dc',
                               transition: '0.3s',
                             }
-                            : { color: '#545e6f', background: '#f0f0f0', transition: '0.3s', }
+                            : { color: '#fff', background: '#f0f0f0', transition: '0.3s', }
                         } activeClassName="activeClicked">
                           <CDBSidebarMenuItem icon="clipboard">TEIANES PENDIENTES</CDBSidebarMenuItem>
                         </NavLink>
@@ -234,11 +238,11 @@ const NavBar = () => {
                         <NavLink to={rutaServidor + "Teian/IdeasAceptadas"} style={({ isActive }) =>
                           isActive
                             ? {
-                              color: '#006dba',
+                              color: '#000',
                               background: '#7600dc',
                               transition: '0.3s',
                             }
-                            : { color: '#545e6f', background: '#f0f0f0', transition: '0.3s', }
+                            : { color: '#fff', background: '#f0f0f0', transition: '0.3s', }
                         } activeClassName="activeClicked">
                           <CDBSidebarMenuItem icon="check-circle">TEIANES ACEPTADOS</CDBSidebarMenuItem>
                         </NavLink>
@@ -246,11 +250,11 @@ const NavBar = () => {
                         <NavLink to={rutaServidor + "Teian/IdeasImplementadas"} style={({ isActive }) =>
                           isActive
                             ? {
-                              color: '#006dba',
+                              color: '#000',
                               background: '#7600dc',
                               transition: '0.3s',
                             }
-                            : { color: '#545e6f', background: '#f0f0f0', transition: '0.3s', }
+                            : { color: '#fff', background: '#f0f0f0', transition: '0.3s', }
                         } activeClassName="activeClicked">
                           <CDBSidebarMenuItem icon="fa-solid fa-book">TEIANES IMPLEMENTADOS</CDBSidebarMenuItem>
                         </NavLink>
@@ -258,11 +262,11 @@ const NavBar = () => {
                         <NavLink to={rutaServidor + "Teian/IdeasRechazadas"} style={({ isActive }) =>
                           isActive
                             ? {
-                              color: '#006dba',
+                              color: '#000',
                               background: '#7600dc',
                               transition: '0.3s',
                             }
-                            : { color: '#545e6f', background: '#f0f0f0', transition: '0.3s', }
+                            : { color: '#fff', background: '#f0f0f0', transition: '0.3s', }
                         } activeClassName="activeClicked">
                           <CDBSidebarMenuItem icon="trash">TEIANES RECHAZADOS</CDBSidebarMenuItem>
                         </NavLink>
@@ -270,22 +274,58 @@ const NavBar = () => {
                         <NavLink to={rutaServidor + "Teian/Perfil"} style={({ isActive }) =>
                           isActive
                             ? {
-                              color: '#006dba',
+                              color: '#000',
                               background: '#7600dc',
                               transition: '0.3s',
                             }
-                            : { color: '#545e6f', background: '#f0f0f0', transition: '0.3s', }
+                            : { color: '#fff', background: '#f0f0f0', transition: '0.3s', }
                         } activeClassName="activeClicked">
                           <CDBSidebarMenuItem icon="user">PERFIL</CDBSidebarMenuItem>
                         </NavLink>
                       </CDBSidebarMenu>
                     </CDBSidebarContent>
-                    <div style={{ position: "fixed", bottom: "0", width: "100%" }}>
+                    <div style={{ position: "fixed", bottom: "0", width: "100%",background:"#8b8c89" }}>
+
                       <CDBSidebarHeader prefix={<i className="fas fa-sign-out-alt"></i>}>
-                        <button onClick={handleLogout} style={{ background: "#fff", border: "none", color: "#545e6f" }} >CERRAR SESIÓN</button>
+                        <button onClick={handleLogout} style={{ background: "#8b8c89", border: "none", color: "#fff" }} >CERRAR SESIÓN</button>
                       </CDBSidebarHeader>
 
-                      <CDBSidebarFooter style={{ textAlign: 'center', borderTop: '1px solid #333', backgroundColor: '#006dba' }}>
+                      <CDBSidebarFooter style={{ textAlign: 'center', borderTop: '1px solid #333', backgroundColor: '#3c3c33' }}>
+                        <NavLink to={"Teian/Dudas"} activeClassName="activeClicked" style={{ textDecoration: 'none', color: '#fff' }}>
+                          <div
+                            className="sidebar-btn-wrapper"
+                            style={{
+                              padding: '20px 5px',
+                            }}
+                          >
+                            Dudas
+                          </div>
+                        </NavLink>
+                      </CDBSidebarFooter>
+                    </div>
+                  </div>
+                </Drawer>
+              </div>
+            ): 
+            (
+              <div  >
+                <Button onClick={toggleDrawer}><MdMenu /></Button>
+                <Drawer
+                  open={isOpen}
+                  onClose={toggleDrawer}
+                  direction='left'
+                  style={{ borderRight: "2px solid", width:"300px", backgroundColor:"#8b8c89" }}
+                >
+                  <div>
+                    <CDBSidebarHeader prefix={<i className='fas fa-solid fa-user-check'></i>}>
+                      <Avatares />
+                    </CDBSidebarHeader>
+                    <div style={{ position: "fixed", bottom: "0", width: "100%" }}>
+                      <CDBSidebarHeader prefix={<i className="fas fa-sign-out-alt"></i>}>
+                        <button onClick={handleLogout} style={{ background: "#8b8c89", border: "none", color: "#fff" }} >CERRAR SESIÓN</button>
+                      </CDBSidebarHeader>
+
+                      <CDBSidebarFooter style={{ textAlign: 'center', borderTop: '1px solid #333', backgroundColor: '#3c3c33' }}>
                         <NavLink to={"Teian/Dudas"} activeClassName="activeClicked" style={{ textDecoration: 'none', color: '#fff' }}>
                           <div
                             className="sidebar-btn-wrapper"

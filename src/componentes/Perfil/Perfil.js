@@ -31,7 +31,7 @@ const Perfil = () => {
       .then(data => {
         setUsuarios(data)
         setDone(true)
-        console.log(data)
+        // console.log(data)
       })
       .catch(error => console.log(error))
   }
@@ -48,9 +48,9 @@ const Perfil = () => {
       .then(response => response.json())
       .then(data => {
         setNumeroDeIdeas(data)
-        console.log(data)
+        // console.log(data)
       })
-      .catch(error => console.log(error))
+      // .catch(error => console.log(error))
   }
 
   useEffect(() => {
@@ -111,7 +111,7 @@ const Perfil = () => {
       },
       title: {
         display: true,
-        text: "NUMERO DE IDEAS"
+        text: "NÚMERO DE IDEAS"
       }
     },
     maintainAspectRatio: false,
@@ -159,7 +159,7 @@ const Perfil = () => {
       },
       title: {
         display: true,
-        text: "NUMERO DE IDEAS"
+        text: "NÚMERO DE IDEAS"
       }
     },
     maintainAspectRatio: false,
@@ -192,7 +192,7 @@ const Perfil = () => {
                   <div className={perfilContCard}>
                     <div className={cardPerfil}>
                       <Card className="text-center" style={{ borderRadius: "10px" }}>
-                        <Card.Header style={{ backgroundColor: "#0d6efd", color: "#fff" }} ><h4>PERFIL DE: {nombre_empleado}</h4></Card.Header>
+                        <Card.Header style={{ backgroundColor: "#3c3c33", color: "#fff" }} ><h4>PERFIL DE: {nombre_empleado}</h4></Card.Header>
                         <Card.Body>
                           <div className={perfilBar} >
                             <div className={datosPerso}>
@@ -204,7 +204,7 @@ const Perfil = () => {
                                   <h5>Área:</h5> <p>{depto}</p>
                                 </Card.Text>
                                 <Card.Text>
-                                  <h5>Correo electronico:</h5>
+                                  <h5>Correo electrónico:</h5>
                                   {/* <p>{correo}</p> */}
                                 </Card.Text>
                               </div>

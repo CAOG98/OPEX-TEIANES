@@ -80,11 +80,14 @@
 
 .titleTeianCont{
     text-align: center;
+    margin-top: 20px;
 }
 .titleTeian{
     display: inline-block;
     position: relative;
     text-align: center;
+    color:#fff;
+    font-family: cursive;
     /* font-family: 'Roboto', sans-serif;
     font-weight: lighter */
 };

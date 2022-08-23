@@ -73,7 +73,14 @@ const PdfDatos = (iD_IDEA) => {
     const pdfGenerate = () => {
         console.log(ideasDetalle.archivos)
         var doc = new jsPDF('landscape', 'px', 'a4', 'false')
-        
+        ideasDetalle.archivosimp.map((item, index) => {
+            if (index == 0) {
+                let ext = item.extension.substring(1)
+                console.log(ext)
+                let url = UrlServer + item.urL_MULTIMEDIA.toString()
+                doc.addImage( url, ext.toUpperCase(), 100, 125, 150, 150)
+            }
+        })
 
         //Lineas decoracion
         doc.setDrawColor('#006dba')
@@ -211,6 +218,14 @@ const PdfDatos = (iD_IDEA) => {
             doc.setFontSize(10)
             doc.setFont(undefined, 'normal');
             doc.text(335, 320, ideasDetalle.comentario, { align: 'justify', lineHeightFactor: 1.5, maxWidth: 230 })
+            ideasDetalle.archivosimp.map((item, index) => {
+                if (index == 0) {
+                    let ext = item.extension.substring(1)
+                    console.log(ext)
+                    let url = UrlServer + item.urL_MULTIMEDIA.toString()
+                    doc.addImage( url, ext.toUpperCase(),370, 125, 150, 150)
+                }
+            })
             doc.addImage(logoFooter, 'PNG', 500, 400, 125, 50)
         }
 
@@ -227,13 +242,7 @@ const PdfDatos = (iD_IDEA) => {
                 let ext = item.extension.substring(1)
                 console.log(ext)
                 let url = UrlServer + item.urL_MULTIMEDIA.toString()
-                console.log(url)
-                var img = new Image()
-                img.src = url
-                img.crossOrigin="Anonymous"
-                console.log(img)
-                //doc.addImage( img.src, ext.toUpperCase(), 100, 140, 150, 150)
-                doc.html(img)
+                doc.addImage( url, ext.toUpperCase(), 100, 125, 150, 150)
             }
         })
         //Lineas decoracion
@@ -382,6 +391,15 @@ const PdfDatos = (iD_IDEA) => {
             doc.setFont(undefined, 'normal');
             doc.text(335, 320, ideasDetalle.comentario, { align: 'justify', lineHeightFactor: 1.5, maxWidth: 230 })
             doc.addImage(logoFooter, 'PNG', 500, 400, 125, 50)
+            console.log(ideasDetalle.archivosimp)
+            ideasDetalle.archivosimp.map((item, index) => {
+                if (index == 0) {
+                    let ext = item.extension.substring(1)
+                    console.log(ext)
+                    let url = UrlServer + item.urL_MULTIMEDIA.toString()
+                    doc.addImage( url, ext.toUpperCase(),370, 125, 150, 150)
+                }
+            })
             //Fecha de implementacion de idea
             doc.setFontSize(11)
             doc.text(450, 45, 'Fecha imp. idea: ' + formatDate(ideasDetalle.fechA_IMPLEMENTADA))

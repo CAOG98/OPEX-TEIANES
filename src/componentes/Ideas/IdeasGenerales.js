@@ -13,9 +13,11 @@ import ReactLoading from 'react-loading';
 import styles from './Ideas.module.css'
 import gerberLogoLoad from '../FormularioLogin/images/GerberLogoLoad.gif';
 import Slide from 'react-reveal/Slide';
+import { AiOutlineArrowRight } from "react-icons/ai";
+
+
+
 const UrlServer = "http://10.30.2.167:4000/"
-
-
 
 // Metdo de CARGANDO
 const Cargando = () => {
@@ -58,6 +60,7 @@ const IdeasGenerales = () => {
   // ------------------------
 
   const loadingCard = styles.loadingCard
+  const zoomTarjeta = styles.zoomTarjeta
 
   return (
     <>
@@ -73,7 +76,7 @@ const IdeasGenerales = () => {
               ideasGenerales.map((item, index) => (
                 <div className="column" key={index} >
                   <Slide bottom>
-                  <Card style={{ width: '20rem', margin: "25px", borderRadius: "10px", boxShadow: "rgb(38, 57, 77) 0px 20px 20px -10px" }} >
+                  <Card style={{ width: '20rem', margin: "25px", borderRadius: "5px", boxShadow: "rgb(38, 57, 77) 0px 20px 20px -10px" }} className={zoomTarjeta}>
                     <Link to={`/Teian/DetalleTeian/${item.iD_IDEA}`} style={{ textDecoration: "none", color: "#000" }} onClick={Cargando}>
                       <div style={{ height: "250px", overflow: "hidden" }}>
                         {item.archivos.length === 0 ? (
@@ -115,7 +118,7 @@ const IdeasGenerales = () => {
                         }
                       </Card.Text>
                       <div style={{ display: "flex", justifyContent: "space-between" }}>
-                      <Link to={`/Teian/DetalleTeian/${item.iD_IDEA}`} style={{ textDecoration: "none", color: "#fff", background:"#016dbb", padding: "10px 30px", borderRadius: "5px" }} onClick={Cargando}>Ir a detalles</Link>
+                      <Link to={`/Teian/DetalleTeian/${item.iD_IDEA}`} style={{ textDecoration: "none", color: "#fff", background:"#8b8c89", padding: "10px 30px", borderRadius: "5px" }} onClick={Cargando}>Ir a detalles <AiOutlineArrowRight/> </Link>
                       </div>
                     </Card.Body>
                   </Card>

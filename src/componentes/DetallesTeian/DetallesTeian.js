@@ -25,6 +25,7 @@ import IconButton from '@mui/material/IconButton'
 import Tooltip from '@mui/material/Tooltip';
 import TipsAndUpdatesOutlinedIcon from '@mui/icons-material/TipsAndUpdatesOutlined';
 import PdfDatos from './PdfDatos';
+import { FcMoneyTransfer } from "react-icons/fc";
 
 // Estilos
 const fondoDetalleIdea = styles.fondoDetalleIdea
@@ -48,6 +49,8 @@ const contImplementar = styles.contImplementar
 const dropzone = styles.dropzone
 const bodyFiles = styles.bodyFiles
 
+
+//Funciones de las tabs de Detalles del teian
 function TabPanel(props) {
   const { children, value, index, ...other } = props;
 
@@ -80,6 +83,7 @@ function a11yProps(index) {
     'aria-controls': `simple-tabpanel-${index}`,
   };
 }
+//--------------------------------------------------------------
 
 const DetallesTeian = () => {
   const [formularioEnviado, cambiarFormularioEnviado] = useState(false)
@@ -88,6 +92,7 @@ const DetallesTeian = () => {
   const [isLoading, setIsLoading] = useState(undefined);
 
   const { iD_IDEA } = useParams()
+  //Con esta api traemos los datos de la idea que esta pidiendo el usuario
   const initialUrlDetalle = `http://10.30.2.167:4000/api/Ideas/Detalle_Idea/${iD_IDEA}`
 
   const fetchIdeasDetalle = (url) => {
@@ -107,6 +112,7 @@ const DetallesTeian = () => {
   }, [])
 
 
+  //Estilos de las pestañas de detalle de la idea
   const textoIdea = styles.textoIdea
   const tabsNav = styles.tabsNav
   const tabNav = styles.tabNav
@@ -117,7 +123,7 @@ const DetallesTeian = () => {
   const inputRef = useRef(null);
 
 
-  // ESTOS METODOS SIRVEN PARA SUBIR ARCHIVOS EN CASO DE QUE NO FUNCIONE EL NUEVO
+  // ESTOS METODOS SIRVEN PARA SUBIR ARCHIVOS 
   // Para subir multiples archivos
   const [archivos, setArchivos] = useState(null)
   const subirArchivos = e => {
@@ -165,6 +171,7 @@ const DetallesTeian = () => {
 
 
   const [isDisabled, setIsDisabled] = useState(false);
+  //Algunos estilos del banner 
   const imageBanner = styles.imageBanner
   const bannerCont = styles.bannerCont
   const titleBanner = styles.titleBanner
@@ -174,6 +181,7 @@ const DetallesTeian = () => {
   const contEjemploImplementacion = styles.contEjemploImplementacion
   const txtAreaTeianEjemplo = styles.txtAreaTeianEjemplo
 
+  //Texto de ejemplo de la implementacion
   const textoImplementacion = `¿Cómo lo solucionaste? Se hizo un plan de restauración de los carritos, se vio con mantenimiento reparación de baches y se trabajo la disciplina con los carreros.
 ¿Qué impacto tuvo? Logramos disminuir las grietas en 2% de forma semanal.`
 
@@ -185,12 +193,13 @@ const DetallesTeian = () => {
         !isLoading ?
           (
             <div className={loadingCard}>
-              {/* <ReactLoading type={"spinningBubbles"} color={"#0d6efd"} height={300} width={300} /> */}
               <img src={gerberLogoLoad} width="400" />
             </div>
           ) :
           (
-            <Container style={{ maxWidth: "100%" }} >
+            <Container style={{ maxWidth: "100%", paddingRight: "2px", paddingLeft: "2px" }} >
+
+              {/* Banner de la pagina detalle del Teian */}
               <Card className={bannerCont}>
                 {
                   ideasDetalle.archivos.length > 0 ? (
@@ -225,8 +234,8 @@ const DetallesTeian = () => {
                   }
                   <h3 className={titleBanner}>{ideasDetalle.titulO_IDEA}</h3>
                   <div className={dateBanner}>
-                    <Card.Text>Ultima Actualización:</Card.Text>
-                    <div style={{display:"flex", justifyContent:"space-between" }}>
+                    <Card.Text>Fecha de creación de idea:</Card.Text>
+                    <div style={{ display: "flex", justifyContent: "space-between" }}>
                       <Card.Text>
                         {
                           formatDate(ideasDetalle.fechA_CREACION_IDEA)
@@ -237,6 +246,9 @@ const DetallesTeian = () => {
                   </div>
                 </Card.ImgOverlay>
               </Card>
+              {/*---------------------------------------------Aqui termina el banner  --------------------------------------------------- */}
+
+              {/* -------------------------Pestañas dependiendo en que estado se encuentre la idea ------------------------------------------------ */}
               <Box sx={{ width: '100%' }} className={fondoDetalleIdea}>
                 {
                   ideasDetalle.iD_ESTATUS === 1 ? (
@@ -316,20 +328,9 @@ const DetallesTeian = () => {
                     </Box>
                   )
                 }
-                {/* <Box sx={{ borderBottom: 1, borderColor: 'divider' }}>
-          <Tabs className={tabsNav} value={value} onChange={handleChange} variant="scrollable"
-            scrollButtons
-            aria-label="visible arrows tabs example"
-            sx={{
-              [`& .${tabsClasses.scrollButtons}`]: {
-                '&.Mui-disabled': { opacity: 0.3 },
-              },
-            }}>
-            <Tab label="IDEA CREADA" {...a11yProps(0)} />
-            <Tab label="IMPLEMENTAR" {...a11yProps(1)} />
-            <Tab label="IDEA IMPLEMENTADA" {...a11yProps(2)} />
-          </Tabs>
-        </Box> */}
+                {/* -------------------------Aqui termina Pestañas dependiendo en que estado se encuentre la idea ------------------------------------------------ */}
+
+                {/*------------------------------------------------ Primera Pestaña ------------------------------------------------*/}
                 <TabPanel className={tabNav} value={value} index={0}>
                   <p> DETALLES DEL TEIAN</p>
                   <hr />
@@ -345,27 +346,41 @@ const DetallesTeian = () => {
                           <p className="mb-0">{ideasDetalle.ideA_TEXTO}</p>
                         </div>
                         <Row className={tituloCategorias}>
-                          <Col lg="2"><h5>Categoria:</h5></Col>
+                          <Col lg="2"><h5>Categoría:</h5></Col>
                           <Col lg="11"><span className="badge rounded-pill" style={{ color: "#fff", background: "#0d6efd" }}>{ideasDetalle.categoria.toUpperCase()}</span></Col>
                         </Row>
                         <Row className={tituloCategorias}>
                           <Col lg="2"><h5>Coach:</h5></Col>
                           <Col lg="11"><span className="badge rounded-pill" style={{ color: "#fff", background: "#0d6efd" }}>{ideasDetalle.coaches}</span></Col>
                         </Row>
+                        <Row className={tituloCategorias}>
+                          <div style={{display:"flex"}}>
+                            <FcMoneyTransfer size="30px"/>
+                            <Col lg="2"><h5>Inversión:</h5></Col>
+                          </div>
+                          <Col lg="11"><span className="badge rounded-pill" style={{ color: "#fff", background: "#0d6efd" }}>{ideasDetalle.inversion}</span></Col>
+                        </Row>
                       </div>
                     </Col>
 
+                    {/* --------------------------Imagenes y videos que suben los usuarios en un slider----------------------------------  */}
                     <Col xs={4} className={DetallesImageGeneral} >
                       <div style={{ display: "flex", flexDirection: "column" }} >
                         <ImagesDetallesTeian ideasDetalles={ideasDetalle} />
                         <VideosDetallesTeian ideasDetalles={ideasDetalle} />
                       </div>
                     </Col>
+                    {/* --------------------------Aqui termina las Imagenes y videos que suben los usuarios en un slider----------------------------------  */}
+
                   </Row>
                 </TabPanel>
+                {/*------------------------------------------------Aqui termina Primera Pestaña ------------------------------------------------*/}
+
+                {/*------------------------------------------------ Segunda Pestaña ------------------------------------------------*/}
                 <TabPanel className={tabNav} value={value} index={1}>
                   <p>REGISTRO DE LA IMPLEMENTACIÓN</p>
                   <hr />
+                  {/* -----------------------------------------Formulario de implementar idea ------------------------------------------------- */}
                   <Container className={contImplementar} >
                     <Formik
                       initialValues={{
@@ -420,19 +435,28 @@ const DetallesTeian = () => {
                       )}
                     </Formik>
                   </Container>
+                  {/* -----------------------------------------Aqui Formulario de implementar idea ------------------------------------------------- */}
                 </TabPanel>
+                {/*------------------------------------------------Aqui termina Segunda Pestaña ------------------------------------------------*/}
+
+
+                {/*------------------------------------------------ Tercera Pestaña ------------------------------------------------*/}
                 <TabPanel className={tabNav} value={value} index={2}>
                   <Row className={bodyDetalles}>
                     <p>RESULTADOS DEL TEIAN</p>
                     <hr />
                     <Col xs={6} className={DetallesInfoGeneral}>
+                      <div style={{ marginBottom: "30px" }}>
+                        <h5>Idea implementada por:</h5><span className="badge rounded-pill" style={{ color: "#fff", background: "#016dbb", marginRight: "10px" }}>{ideasDetalle.nombrE_USUARIO}</span>
+                        <span className="badge rounded-pill" style={{ color: "#fff", background: "#016dbb" }}>{ideasDetalle.departamento}</span>
+                      </div>
                       <div className={textoIdea}>
                         <h5>Descripción de la idea implementada:</h5>
                         <p className="mb-0">{ideasDetalle.comentario}</p>
                       </div>
 
                       <Row className={tituloCategorias}>
-                        <Col lg="2"><h5>Categoria:</h5></Col>
+                        <Col lg="2"><h5>Categoría:</h5></Col>
                         <Col lg="11"><span className="badge rounded-pill" style={{ color: "#fff", background: "#0d6efd" }}>{ideasDetalle.categoria.toUpperCase()}</span></Col>
                       </Row>
                       <Row className={tituloCategorias}>
@@ -449,6 +473,8 @@ const DetallesTeian = () => {
                     </Col>
                   </Row>
                 </TabPanel>
+                {/*------------------------------------------------Aqui termina Tercera Pestaña ------------------------------------------------*/}
+
               </Box>
             </Container>
           )

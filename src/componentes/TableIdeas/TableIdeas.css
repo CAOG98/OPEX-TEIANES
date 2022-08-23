@@ -9,12 +9,15 @@
 
 
 .contTable{
-    max-width: 100%;
+    max-width: 95%;
+    background-color: #fff;
+    max-height: 98%;
 }
 
 .titleTable{
     position: absolute;
     left: 45%;
+    font-family: cursive;
 }
 
 @media (max-width:1227px) {    

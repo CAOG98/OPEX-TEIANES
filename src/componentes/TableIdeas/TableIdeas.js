@@ -26,7 +26,7 @@ const TableIdeas = () => {
       .then((data) => data.json())
       .then((data) => {
         setTableData(data)
-        console.log(data)
+        // console.log(data)
       })
   }, [])
 
@@ -48,7 +48,7 @@ const columns = [
   },
   {
     field: 'titulO_IDEA',
-    headerName: 'TITULO', width: 400,
+    headerName: 'TÍTULO', width: 400,
     headerAlign: 'center',
     align:'center',
     headerClassName: 'headerTable'
@@ -69,28 +69,28 @@ const columns = [
   },
   {
     field: 'areA_SOPORTE',
-    headerName: 'AREA DE SOPORTE', width: 200,
+    headerName: 'ÁREA DE SOPORTE', width: 200,
     headerAlign: 'center',
     align:'center',
     headerClassName: 'headerTable'
   },
   {
     field: 'ideA_TEXTO',
-    headerName: 'DESCRIPCION DE LA IDEA', width: 200,
+    headerName: 'DESCRIPCIÓN DE LA IDEA', width: 200,
     headerAlign: 'center',
     align:'center',
     headerClassName: 'headerTable'
   },
   {
     field: 'departamento',
-    headerName: 'Departamento', width: 200,
+    headerName: 'DEPARTAMENTO', width: 200,
     headerAlign: 'center',
     align:'center',
     headerClassName: 'headerTable'
   },
   {
     field: 'estatuto',
-    headerName: 'Estado', width: 200,
+    headerName: 'ESTADO', width: 200,
     headerAlign: 'center',
     align:'center',
   },
@@ -98,7 +98,7 @@ const columns = [
 ]
 
   const dataFilter = tableData.map(({ iD_IDEA, fechA_CREACION_IDEA, titulO_IDEA, categoria, coaches, areA_SOPORTE, ideA_TEXTO, departamento, estatuto }) => ({ iD_IDEA, fechA_CREACION_IDEA, titulO_IDEA, categoria, coaches, areA_SOPORTE, ideA_TEXTO, departamento, estatuto }))
-  console.log(dataFilter)
+  // console.log(dataFilter)
 
   return (
     <Container className="contTable" >

@@ -1,33 +1,34 @@
-body{
+body {
   background-color: #F5F5F5;
 }
-.cont{
-    display: flex;
-    position: absolute;
-    top: 0;
-    width: 100vw;
-    height: 100vh;
-    /* background-color: #F5F5F5; */
-    background-image: url("./componentes/FormularioLogin/images/FONDO\ TEIANES.jpg");
-    /* background: linear-gradient(to top,
+
+.cont {
+  display: flex;
+  position: absolute;
+  top: 0;
+  width: 100vw;
+  height: 100vh;
+  /* background-color: #2FB0ED; */
+  background-color: #00A8F0;
+  ;
+  /* background-image: url("./componentes/FormularioLogin/images/FONDO\ TEIANES.jpg"); */
+  /* background: linear-gradient(to top,
   #fff  20%, #B8E2FF 40%, #6CC0FA 60%, #389ADF  80%, #006dba  100%) no-repeat; */
 }
 
 @media (max-width:990px) {
-  .sidebarS{
+  .sidebarS {
     display: none;
   }
-  .cont{
+
+  .cont {
     position: absolute;
     top: 0;
     width: 100vw;
     height: 100vh;
-    background-color: #F5F5F5;
+    overflow: auto;
+    /* background-color: #F5F5F5; */
     /* background: linear-gradient(to top,
   #fff  20%, #B8E2FF 40%, #6CC0FA 60%, #389ADF  80%, #006dba  100%) no-repeat; */
+  }
 }
-}
-
-
-
-
