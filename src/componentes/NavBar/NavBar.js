@@ -15,11 +15,14 @@ import { CDBSidebarContent, CDBSidebarFooter, CDBSidebarHeader, CDBSidebarMenu, 
 import { NavLink } from 'react-router-dom';
 
 const NavBar = () => {
+  // Hook para abrir el menu
   const [isOpen, setIsOpen] = React.useState(false)
   const imageLogo = styles.imageLogo
   const navBarBody = styles.navBarBody
+  // Hook para navegar entre url
   const navigate = useNavigate()
 
+  // Metodo para cerrar sesion
   const handleLogout = () => {
     // noteService.setToken(user.token)
     window.location.reload(navigate("/Login"))
@@ -31,12 +34,14 @@ const NavBar = () => {
     setIsOpen((prevState) => !prevState)
   }
 
+  // Metodo para extraer el rol del usuario desde el localStorage
   const rol = window.localStorage.getItem('rol')
   const rutaServidor = ""
   return (
     <Navbar expand="lg" className={navBarBody}>
       <Container style={{ maxWidth: '100%', width: '100%' }}>
         <Navbar.Brand href="#home"><img className={imageLogo} src={gerberLogo} alt="" /></Navbar.Brand>
+        {/* Condicion para saber que rol tiene ese usuario y dependiendo mostrar ciertas pestañas */}
         {
           rol == 1 ?
             (

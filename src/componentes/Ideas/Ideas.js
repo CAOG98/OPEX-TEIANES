@@ -17,6 +17,7 @@ import Button from 'react-bootstrap/Button';
 import Modal from 'react-bootstrap/Modal';
 import { Formik, Form, Field, ErrorMessage } from "formik";
 
+// URL del servidor para poner antes de la url de la imagen y poder verla
 const UrlServer = "http://10.30.2.167:4000/"
 
 
@@ -38,12 +39,17 @@ const Cargando = () => {
 }
 
 const Ideas = () => {
-  // ------------------------
+  // hooks para el cargando y cargar ideas 
   const [ideas, setIdeas] = useState([])
   const [done, setDone] = useState(undefined)
-  const id_user = window.localStorage.getItem('usuario')
-  const initialUrl = `http://10.30.2.167:4000/api/Coaches/IDEAS/${id_user}`
 
+
+  // Extraer el id del usuario
+  const id_user = window.localStorage.getItem('usuario')
+
+  // Api de ideas que se le asignaron a ese coach
+  const initialUrl = `http://10.30.2.167:4000/api/Coaches/IDEAS/${id_user}`
+// Fetch a esa url para extraer los datos
   const fetchIdeas = (url) => {
     fetch(url)
       .then(response => response.json())
@@ -117,7 +123,7 @@ const Ideas = () => {
   //----------------------------------------------
 
 
-  //-----------------------------------------------
+  //Modal de Rechazadas
   const ModalRechazadas = (indexEstatus) => {
     // console.log(indexEstatus)
     const [show, setShow] = useState(false);
@@ -204,10 +210,6 @@ const Ideas = () => {
     );
   }
   //-----------------------------------------------
-
-
-
-
   // const DeleteItems = (indexItem) => {
   //   setIdeas((prevState) =>
   //     prevState.filter((todo, index) => index !== indexItem)
@@ -218,11 +220,13 @@ const Ideas = () => {
   const zoomTarjeta = styles.zoomTarjeta
   return (
     <>
+    {/* Pantalla de carga en lo que el servidor trae la informacion */}
       {
         !done ? (
           <div className={loadingCard}>
             <img src={gerberLogoLoad} width="400" alt="" />
           </div>
+          
         ) : (
           <div style={{ display: "flex", flexWrap: "wrap", margin: "20px", justifyContent: "center" }}>
             {
@@ -233,13 +237,13 @@ const Ideas = () => {
                       <NavLink exact to={`/Teian/DetalleTeian/${item.iD_IDEA}`} style={{ textDecoration: "none", color: "#000" }} onClick={Cargando}>
                         <div style={{ height: "250px", overflow: "hidden" }}>
                           {item.archivos.length === 0 ? (
-                            <Card.Img key={index} variant="top" src={notFound} />
+                            <Card.Img style={{height:"100%", objectFit:"cover"}} key={index} variant="top" src={notFound} />
                           ) : (
                             item.archivos.map((item2, index) => (
                               index === 0 ? (
-                                <Card.Img key={index} variant="top" src={UrlServer + item2.urL_MULTIMEDIA} />
+                                <Card.Img style={{height:"100%", objectFit:"cover"}} key={index} variant="top" src={UrlServer + item2.urL_MULTIMEDIA} />
                               ) : (
-                                <Card.Img key={index} variant="top" src={notFound} />
+                                <Card.Img style={{height:"100%", objectFit:"cover"}} key={index} variant="top" src={notFound} />
                               )
                             )))
                           }

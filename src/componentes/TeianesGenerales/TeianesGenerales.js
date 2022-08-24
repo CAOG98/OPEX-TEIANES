@@ -8,6 +8,7 @@ import { Container } from 'react-bootstrap';
 const IdeasGenerales = lazy(() => import('../Ideas/IdeasGenerales'))
 
 
+// Estilos generales
 const titleTeian = styles.titleTeian
 const titleTeianCont = styles.titleTeianCont
 const conGenerales= styles.conGenerales

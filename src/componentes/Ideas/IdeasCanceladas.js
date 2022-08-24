@@ -38,14 +38,15 @@ const Cargando = () => {
 
 
 const IdeasCanceladas = () => {
-  // const [imagen, setImagen] = useState(false)
-  // const [lista, setlista] = useState([]);
-  // ------------------------
+  // Hooks para el fetch y el cargando
   const [ideas, setIdeas] = useState([])
   const [done, setDone] = useState(undefined)
 
+
+  // Api ideas rechazadas
   const initialUrl = "http://10.30.2.167:4000/api/Ideas/Rechazadas"
 
+  // Fetch a esa url para extraer los datos
   const fetchIdeas = (url) => {
     fetch(url)
       .then(response => response.json())
@@ -191,13 +192,13 @@ const IdeasCanceladas = () => {
                       <Link to={`/Teian/DetalleTeian/${item.iD_IDEA}`} style={{ textDecoration: "none", color: "#000" }} onClick={Cargando}>
                         <div style={{ height: "250px", overflow: "hidden" }}>
                           {item.archivos.length === 0 ? (
-                            <Card.Img key={index} variant="top" src={notFound} />
+                            <Card.Img style={{height:"100%", objectFit:"cover"}} key={index} variant="top" src={notFound} />
                           ) : (
                             item.archivos.map((item2, index) => (
                               index === 0 ? (
-                                <Card.Img key={index} variant="top" src={UrlServer + item2.urL_MULTIMEDIA} />
+                                <Card.Img style={{height:"100%", objectFit:"cover"}} key={index} variant="top" src={UrlServer + item2.urL_MULTIMEDIA} />
                               ) : (
-                                <Card.Img key={index} variant="top" src={notFound} />
+                                <Card.Img style={{height:"100%", objectFit:"cover"}} key={index} variant="top" src={notFound} />
                               )
                             )))
                           }

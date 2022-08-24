@@ -18,7 +18,6 @@ import jwt from 'jwt-decode'
 import Snackbar from '@mui/material/Snackbar';
 import MuiAlert from '@mui/material/Alert';
 import FormIdea from "../FormIdea";
-import App from "../../App";
 import TituloLogin from './images/TituloLogin.png'
 import Tooltip from '@mui/material/Tooltip';
 import LockOpenIcon from '@mui/icons-material/LockOpen';
@@ -41,6 +40,7 @@ const Formulario = () => {
     const [nombreUsuario, setNombreUsuario] = useState(null)
 
 
+    // Pregunta si existe una sesion
     useEffect(() => {
         const loggedUserJSON = window.localStorage.getItem('loggedIdeaAppUser')
         if (loggedUserJSON) {
@@ -50,6 +50,7 @@ const Formulario = () => {
 
     }, [user])
 
+    // Metodo para cerrar sesion
     const handleLogout = () => {
         setUser(null)
         // noteService.setToken(user.token)
@@ -57,9 +58,11 @@ const Formulario = () => {
     }
 
 
+    // Metodo para iniciar sesion
     const handleLogin = async (event) => {
         event.preventDefault()
         try {
+            // Llama a la clase loginService para saber si existe un usuario 
             const user = await loginService.login({
                 username,
                 password
@@ -70,7 +73,8 @@ const Formulario = () => {
 
             // noteService.setToken(user.token)
             const token = user.token;
-            // console.log(user)
+            console.log(user)
+            // Metodos para traer los datos del localStorage
             window.localStorage.setItem('nombre_empleado', user.nomnbre_empleado)
             window.localStorage.setItem('puesto', user.puesto)
             window.localStorage.setItem('depto', user.depto)
@@ -80,6 +84,7 @@ const Formulario = () => {
             window.localStorage.setItem('rol', user.rol)
 
 
+            //Metodo para traer el local sesion del local Storage
             window.localStorage.setItem('tokenSesion', token)
 
 
@@ -104,6 +109,7 @@ const Formulario = () => {
             }, 1200)
 
         } catch (e) {
+            // Errores si los datos estan incorrectos
             setErrorMessage('Contraseña o usuario Incorrectos')
             setOpenError(true)
             setTimeout(() => {
@@ -115,6 +121,7 @@ const Formulario = () => {
     // Hook
     const [formularioEnviado, cambiarFormularioEnviado] = useState(false)
 
+    // Clases de los estilos de Login
     const clases = styles.login
     const footer = styles.footer
     const txtFooter = styles.txtFooter
@@ -138,12 +145,14 @@ const Formulario = () => {
     const formularioLoginCampos = styles.formularioLoginCampos
     const imgTituloLogin = styles.imgTituloLogin
 
+    // Funcion para el ojo (ver la contraseña)
     const [eye, setEye] = useState(false)
-
     const toggleBtn = () => {
         setEye(prevState => !prevState);
     }
 
+
+    // Funcion que regresa el formulario
     const RenderFormularioInicioSesion = () => {
         const Alert = React.forwardRef(function Alert(props, ref) {
             return <MuiAlert elevation={6} ref={ref} variant="filled" {...props} />;
@@ -265,6 +274,10 @@ const Formulario = () => {
             </div>
         )
     }
+    // Aqui termina la funcion que regresa el formulario
+
+
+    // Regresa con una condicion si el usuario tiene sesion lo redirigira a la pestaña de crear la idea y si no lo dejara en la misma pantalla de login
     //const rutaServidor="/teianes" //Produccion
     const rutaServidor = "" //Pruebas
     const nav = useNavigate()

@@ -71,7 +71,7 @@ const PdfDatos = (iD_IDEA) => {
 
     const pdfGenerate = () => {
         // console.log(ideasDetalle.archivos)
-        var doc = new jsPDF('landscape', 'px', 'a4', 'false')
+        var doc = new jsPDF('landscape', 'px', 'a4', 'true')
         ideasDetalle.archivos.map((item, index) => {
             if (index == 0) {
                 let ext = item.extension.substring(1)
@@ -116,7 +116,7 @@ const PdfDatos = (iD_IDEA) => {
 
         doc.setFontSize(12)
         doc.setFont(undefined, 'bold');
-        doc.text(510, 20, 'Estatus: ')
+        doc.text(532, 20, 'Estatus: ')
         if (ideasDetalle.iD_ESTATUS === 5) {
             doc.setTextColor(13, 130, 235);
         } else if (ideasDetalle.iD_ESTATUS === 4) {
@@ -133,7 +133,7 @@ const PdfDatos = (iD_IDEA) => {
                 }
         doc.setFontSize(11)
         doc.setFont(undefined, 'bold');
-        doc.text(545, 20, ideasDetalle.estatuto)
+        doc.text(572, 20, ideasDetalle.estatuto)
 
         doc.setTextColor(0, 0, 0);
         //Titulo Idea
@@ -243,13 +243,13 @@ const PdfDatos = (iD_IDEA) => {
     
     const pdfGenerate2 = () => {
         // console.log(ideasDetalle.archivos)
-        var doc = new jsPDF('landscape', 'px', 'a4', 'false')
+        var doc = new jsPDF('landscape', 'px', 'a4', true)
         ideasDetalle.archivos.map((item, index) => {
             if (index == 0) {
                 let ext = item.extension.substring(1)
                 // console.log(ext)
                 let url = UrlServer + item.urL_MULTIMEDIA.toString()
-                doc.addImage( url, ext.toUpperCase(), 83, 125, 180, 150)
+                doc.addImage( url, ext.toUpperCase(), 83, 125, 180, 150,'','FAST')
             }
         })
         //Lineas decoracion
@@ -287,7 +287,7 @@ const PdfDatos = (iD_IDEA) => {
 
         doc.setFontSize(12)
         doc.setFont(undefined, 'bold');
-        doc.text(510, 20, 'Estatus: ')
+        doc.text(537, 20, 'Estatus: ')
         if (ideasDetalle.iD_ESTATUS === 5) {
             doc.setTextColor(13, 130, 235);
         } else if (ideasDetalle.iD_ESTATUS === 4) {
@@ -304,7 +304,7 @@ const PdfDatos = (iD_IDEA) => {
                 }
         doc.setFontSize(11)
         doc.setFont(undefined, 'bold');
-        doc.text(545, 20, ideasDetalle.estatuto)
+        doc.text(572, 20, ideasDetalle.estatuto)
 
         doc.setTextColor(0, 0, 0);
         //Titulo Idea
@@ -359,6 +359,14 @@ const PdfDatos = (iD_IDEA) => {
         doc.setFont(undefined, 'normal');
         doc.text(431, 78, ideasDetalle.areA_SOPORTE)
 
+        //Inversión
+        doc.setFontSize(12)
+        doc.setFont(undefined, 'bold');
+        doc.text(365, 91, 'Inversión:')
+        doc.setFontSize(10)
+        doc.setFont(undefined, 'normal');
+        doc.text(431, 91, ideasDetalle.inversion)
+
         //Coach
         doc.setFontSize(12)
         doc.setFont(undefined, 'bold');
@@ -404,7 +412,7 @@ const PdfDatos = (iD_IDEA) => {
                     let ext = item.extension.substring(1)
                     // console.log(ext)
                     let url = UrlServer + item.urL_MULTIMEDIA.toString()
-                    doc.addImage( url, ext.toUpperCase(),357, 125, 180, 150)
+                    doc.addImage( url, ext.toUpperCase(),357, 125, 180, 150,'','FAST')
                 }
             })
             //Fecha de implementacion de idea

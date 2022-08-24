@@ -12,19 +12,23 @@ import formatDate from './formatFecha';
 import ReactLoading from 'react-loading';
 import styles from './Ideas.module.css'
 import gerberLogoLoad from '../FormularioLogin/images/GerberLogoLoad.gif';
-
 import Slide from 'react-reveal/Slide';
 
+// URL del servidor para poner antes de la url de la imagen y poder verla
 const UrlServer = "http://10.30.2.167:4000/"
 
 const IdeasAceptadas = () => {
-  // const [tab, setTab] = useState(false)
-  // ------------------------
+  // Hooks para el fetch y el cargando 
   const [ideas, setIdeas] = useState([])
   const [done, setDone] = useState(undefined)
+
+
+  // Extraer el usuario del local storage
   const idUsuario = window.localStorage.getItem('usuario')
+  // Api de ideas del usuario aprobadas
   const initialUrl = `http://10.30.2.167:4000/api/ideas/Aprobadas/?id_user=${idUsuario}`
 
+  // Fetch a esa url para extraer los datos
   const fetchIdeas = (url) => {
     fetch(url)
       .then(response => response.json())
@@ -42,12 +46,6 @@ const IdeasAceptadas = () => {
   }, [])
   // ------------------------
 
-
-
-
-  // const Implementada = () => {
-  //   setTab(true)
-  // };
   // Metdo de CARGANDO
   const Cargando = () => {
     const [open, setOpen] = React.useState(true);
@@ -63,10 +61,12 @@ const IdeasAceptadas = () => {
       </div>
     );
   }
+
   const loadingCard = styles.loadingCard
   const zoomTarjeta = styles.zoomTarjeta
   return (
     <>
+    {/* Pantalla de carga en lo que el servidor trae la informacion */}
     {
       !done ? (
         <div className={loadingCard}>
@@ -83,13 +83,13 @@ const IdeasAceptadas = () => {
                   <Link to={`/Teian/DetalleTeian/${item.iD_IDEA}`} style={{ textDecoration: "none", color: "#000" }} onClick={Cargando}>
                     <div style={{ height: "250px", overflow: "hidden" }}>
                       {item.archivos.length === 0 ? (
-                        <Card.Img key={index} variant="top" src={notFound} />
+                        <Card.Img style={{height:"100%", objectFit:"cover"}} key={index} variant="top" src={notFound} />
                       ) : (
                         item.archivos.map((item2, index) => (
                           index === 0 ? (
-                            <Card.Img key={index} variant="top" src={UrlServer + item2.urL_MULTIMEDIA} />
+                            <Card.Img style={{height:"100%", objectFit:"cover"}} key={index} variant="top" src={UrlServer + item2.urL_MULTIMEDIA} />
                           ) : (
-                            <Card.Img key={index} variant="top" src={notFound} />
+                            <Card.Img style={{height:"100%", objectFit:"cover"}} key={index} variant="top" src={notFound} />
                           )
                         )))
                       }
@@ -106,7 +106,7 @@ const IdeasAceptadas = () => {
                     </Card.Text>
                     <div style={{ display: "flex", justifyContent: "space-between" }}>
                       {/* <Button variant="contained" style={{ backgroundColor: '#445CF5' }} onClick={() => Implementada()}>Implementar</Button> */}
-                      <Link to={`/Teian/DetalleTeian/${item.iD_IDEA}`} style={{ textDecoration: "none", color: "#fff", background: '#016dbb', padding: "15px 20px", borderRadius: "5px" }} onClick={Cargando}>Implementar</Link>
+                      <Link to={`/Teian/DetalleTeian/${item.iD_IDEA}`} style={{ textDecoration: "none", color: "#fff", background: '#3c3c33', padding: "15px 20px", borderRadius: "5px" }} onClick={Cargando}>Implementar</Link>
                       {/* <Button variant="contained" style={{backgroundColor:"#8A94AB"}} >Deshacer</Button> */}
                       <Tooltip title="Información">
                         <IconButton>

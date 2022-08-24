@@ -22,35 +22,36 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { FcIdea } from 'react-icons/fa';
 
 
-function stringToColor(string) {
-  let hash = 0;
-  let i;
+// Darle color a la letra de cada usuario (icono del nombre)
+// function stringToColor(string) {
+//   let hash = 0;
+//   let i;
 
-  /* eslint-disable no-bitwise */
-  for (i = 0; i < string.length; i += 1) {
-    hash = string.charCodeAt(i) + ((hash << 5) - hash);
-  }
+//   /* eslint-disable no-bitwise */
+//   for (i = 0; i < string.length; i += 1) {
+//     hash = string.charCodeAt(i) + ((hash << 5) - hash);
+//   }
 
-  let color = '#';
+//   let color = '#';
 
-  for (i = 0; i < 3; i += 1) {
-    const value = (hash >> (i * 8)) & 0xff;
-    // console.log(value)
-    color += `00${value.toString(16)}`.slice(-2);
-  }
-  /* eslint-enable no-bitwise */
+//   for (i = 0; i < 3; i += 1) {
+//     const value = (hash >> (i * 8)) & 0xff;
+//     // console.log(value)
+//     color += `00${value.toString(16)}`.slice(-2);
+//   }
+//   /* eslint-enable no-bitwise */
 
-  return color;
-}
+//   return color;
+// }
 
-function stringAvatar(name) {
-  return {
-    sx: {
-      bgcolor: stringToColor(name),
-    },
-    children: `${name.split(' ')[0][0]}${name.split(' ')[1][0]}`,
-  };
-}
+// function stringAvatar(name) {
+//   return {
+//     sx: {
+//       bgcolor: stringToColor(name),
+//     },
+//     children: `${name.split(' ')[0][0]}${name.split(' ')[1][0]}`,
+//   };
+// }
 
 
 const SideBar = () => {
@@ -61,6 +62,7 @@ const SideBar = () => {
   const userNameSidebar = styles.userNameSidebar
   const navigate = useNavigate()
 
+  // Metodo para cerrar sesion
   const handleLogout = () => {
     window.localStorage.clear()
     // navigate("/Login")
@@ -68,6 +70,7 @@ const SideBar = () => {
   }
   //const rutaServidor="/teianes/" //Produccion
   const rutaServidor = "" //Pruebas
+  // Metodo para extraer el rol desde el local Storage
   const rol = window.localStorage.getItem('rol')
 
   return (
@@ -81,7 +84,7 @@ const SideBar = () => {
         <CDBSidebarHeader prefix={<i style={{color:"#fff"}} className='fas fa-solid fa-user-check'></i>}>
           <Avatares />
         </CDBSidebarHeader>
-
+        {/* Condicion para saber que tipo de rol es el usuario */}
         {
           rol == 1 ?
             (
@@ -178,7 +181,7 @@ const SideBar = () => {
                       }
                       : { color: '#fff', background: '#f0f0f0', transition: '0.3s', }
                   } activeClassName="activeClicked">
-                    <CDBSidebarMenuItem style={{margin:"-2px 10px"}} icon="fa-solid fa-highlighter">CREAR TEIAN</CDBSidebarMenuItem>
+                    <CDBSidebarMenuItem  icon="fa-solid fa-highlighter">CREAR TEIAN</CDBSidebarMenuItem>
                   </NavLink>
 
 

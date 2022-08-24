@@ -21,15 +21,15 @@ import TeianesImplementados from "./componentes/TeianesImplementados/TeianesImpl
 import TeianesGenerales from "./componentes/TeianesGenerales/TeianesGenerales";
 import TeianesUsuario from "./componentes/TeianesUsuario";
 
-
-
-
+// Estilo general
 const cont = styles.cont
 
 const App = () => {
+  // Hooks para extraer las ideas
   const [ideas, setIdeas] = useState([])
-  const [info, setInfo] = useState({})
+  // const [info, setInfo] = useState({})
 
+  // Api para extraer todas las ideas
   const initialUrl = "http://10.30.2.167:4000/api/Ideas"
 
   const fetchIdeas = (url) => {
@@ -52,6 +52,7 @@ const App = () => {
   //const rutaServidor="/teianes/" //Produccions
   return (
     <>
+    {/* Condicion para saber si tiene iniciada sesion o no */}
     {
       !tokenSesion ? 
       (

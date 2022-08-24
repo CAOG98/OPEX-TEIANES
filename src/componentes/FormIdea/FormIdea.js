@@ -35,7 +35,7 @@ const FormIdea = () => {
             .then(data => {
                 setAreaSoporte(data)
             })
-            // .catch(error => console.log(error))
+        // .catch(error => console.log(error))
     }
 
     useEffect(() => {
@@ -52,15 +52,15 @@ const FormIdea = () => {
             .then(data => {
                 setCateg(data)
             })
-            // .catch(error => console.log(error))
+        // .catch(error => console.log(error))
     }
 
     useEffect(() => {
         fetchCategorias(initialUrl)
     }, [])
+ // Aqui termina Pedir las categorias
 
-
-
+ // Pedir las Coaches
     const handlerCargarCoach = async (e, valores) => {
         const id_user = window.localStorage.getItem('usuario')
         // console.log(e.target.value)
@@ -72,26 +72,26 @@ const FormIdea = () => {
         //     console.log(error)
         // })
     }
-    // -------------------------------------------------------------------
+    // Aqui termina Pedir las Coaches -------------------------------------------------------------------
 
     // --------------------------------------------------------------------------------------------
-    
-     // Pedir las inversiones
-     const initialUrlInversion = "http://10.30.2.167:4000/api/Deptos/Req_Inversion"
 
-     const fetchInversiones = (url) => {
-         fetch(url)
-             .then(response => response.json())
-             .then(data => {
+    // Pedir las inversiones
+    const initialUrlInversion = "http://10.30.2.167:4000/api/Deptos/Req_Inversion"
+
+    const fetchInversiones = (url) => {
+        fetch(url)
+            .then(response => response.json())
+            .then(data => {
                 setInversion(data)
-             })
-            //  .catch(error => (console.logrror))
-     }
- 
-     useEffect(() => {
+            })
+        //  .catch(error => (console.logrror))
+    }
+
+    useEffect(() => {
         fetchInversiones(initialUrlInversion)
-     }, [])
-    // --------------------------------------------------------------------------------------------
+    }, [])
+    // Aqui termina pedir las inversiones
 
     // Estilos
     const contFormIdea = styles.contFormIdea
@@ -120,6 +120,9 @@ const FormIdea = () => {
     const token = sesionJson.token;
     const user2 = jwt(token);
 
+    // Estilos linea archivos y boton
+    const filesButton = styles.filesButton
+
     //Para subir multiples archivos
     const [archivos, setArchivos] = useState(null)
     const [errorMessage, setErrorMessage] = useState(null)
@@ -140,7 +143,7 @@ const FormIdea = () => {
     //   };
 
 
-    // Subir Archivos e idea //
+    // Subir Archivos e idea 
     const subirArchivos = e => {
         let sumaTamanio = 0
         for (let i = 0; i < e.length; i++) {
@@ -169,12 +172,12 @@ const FormIdea = () => {
             }
         }
         var id_inverPrueba = 0
-        if(valores.inver > 1){
+        if (valores.inver > 1) {
             id_inverPrueba = valores.inver
-        }else{
+        } else {
             id_inverPrueba = 1
         }
-        
+
         await axios.post(`http://10.30.2.167:4000/api/Ideas?titulo=${valores.teian}` + `&id_user=${user2.nameid}` +
             `&id_coach=${valores.coach}` + `&idea_texto=${valores.mensajeTeian}` + `&id_categoria=${valores.categoria}` + `&id_soporte=${valores.soporte}` + `&id_inversion=${id_inverPrueba}`, f, { headers: { 'Content-Type': 'application/json' } }).then(response => {
                 // console.log(valores)
@@ -197,6 +200,7 @@ const FormIdea = () => {
 
     const { vertical, horizontal, open2 } = state;
 
+    //Textos de de los tooltips
     const textoAyuda = "Tu idea se enviara a la categoría que selecciones"
     const textoAyudaCoach = "Tu idea se enviara al coach que selecciones"
     const textoAyudaAreaSoporte = "Tu idea se enviara al area de soporte que selecciones"
@@ -206,85 +210,87 @@ const FormIdea = () => {
 ¿Dónde? Vaciado`
 
     return (
-        <Container className={contFormIdea}>
-            <div style={{ display: "flex", justifyContent: "space-between" }}>
-                <img src={gerberLogo} className={imageLogo} alt='Gerber' />
-            </div>
-            <h1 className={titleForm}>CREAR TEIAN</h1>
+        <div style={{width:"100%", overflow:"auto"}}>
+            {/* Formulario de crear teian */}
+            <Container className={contFormIdea}>
+                <div style={{ display: "flex", justifyContent: "space-between" }}>
+                    <img src={gerberLogo} className={imageLogo} alt='Gerber' />
+                </div>
+                <h1 className={titleForm}>CREAR TEIAN</h1>
 
-            <Formik
-                initialValues={{
-                    teian: '',
-                    categoria: '',
-                    coach: '',
-                    soporte: '',
-                    inver:'',
-                    mensajeTeian: '',
-                    picked: false,
-                    file: []
-                }}
-                // Validacion nombre
-                validate={(valores) => {
-                    let errores = {};
-                    if (!valores.teian) {
-                        errores.teian = 'Porfavor ingresa un nombre'
-                    }
-                    if (!valores.categoria) {
-                        errores.categoria = 'Porfavor elije una categoría'
-                    }
-                    if (!valores.coach) {
-                        errores.coach = 'Porfavor elija un coach'
-                    }
-                    if (!valores.mensajeTeian) {
-                        errores.mensajeTeian = 'Porfavor escribe tu teian'
-                    }
-                    if (!valores.picked) {
-                        errores.picked = 'Selecciona una opcion'
-                    }
-                    if (!valores.file) {
-                        errores.file = 'Porfavor suba un archivo'
-                    }
-                    return errores
-                }}
-                onSubmit={(valores, { resetForm }) => {
-                    resetForm()
-                    insertarArchivos(valores)
-                    setOpen(true);
-                    setSuccessMessage("Su idea ha sido enviada")
-                    setTimeout(() => {
-                        setSuccessMessage(null)
-                        setOpen(false)
-                    }, 5000)
-                }}
-            >
-                {({ values, errors, touched }) => (
-                    <Form>
-                        <div className={titleTeian}>
-                            <label htmlFor="TEIAN">TÍTULO DEL TEIAN*</label>
-                            <Field className={titleTeianInput} type="text" id="nombre" name="teian" placeholder="Aquí va el título de tu idea" maxLength="100" />
-                            <ErrorMessage name="teian" component={() => (
-                                <div className={errorMess}>{errors.teian}</div>
-                            )} />
-                        </div>
-                        <div className={inputTeian}>
-                            <Tooltip title={textoAyuda} placement="bottom-start">
-                                <div style={{ display: "flex" }}>
+                <Formik
+                    initialValues={{
+                        teian: '',
+                        categoria: '',
+                        coach: '',
+                        soporte: '',
+                        inver: '',
+                        mensajeTeian: '',
+                        picked: false,
+                        file: []
+                    }}
+                    // Validacion nombre
+                    validate={(valores) => {
+                        let errores = {};
+                        if (!valores.teian) {
+                            errores.teian = 'Porfavor ingresa un nombre'
+                        }
+                        if (!valores.categoria) {
+                            errores.categoria = 'Porfavor elije una categoría'
+                        }
+                        if (!valores.coach) {
+                            errores.coach = 'Porfavor elija un coach'
+                        }
+                        if (!valores.mensajeTeian) {
+                            errores.mensajeTeian = 'Porfavor escribe tu teian'
+                        }
+                        if (!valores.picked) {
+                            errores.picked = 'Selecciona una opcion'
+                        }
+                        if (!valores.file) {
+                            errores.file = 'Porfavor suba un archivo'
+                        }
+                        return errores
+                    }}
+                    onSubmit={(valores, { resetForm }) => {
+                        resetForm()
+                        insertarArchivos(valores)
+                        setOpen(true);
+                        setSuccessMessage("Su idea ha sido enviada")
+                        setTimeout(() => {
+                            setSuccessMessage(null)
+                            setOpen(false)
+                        }, 5000)
+                    }}
+                >
+                    {({ values, errors, touched }) => (
+                        <Form>
+                            <div className={titleTeian}>
+                                <label htmlFor="TEIAN">TÍTULO DEL TEIAN*</label>
+                                <Field className={titleTeianInput} type="text" id="nombre" name="teian" placeholder="Aquí va el título de tu idea" maxLength="100" />
+                                <ErrorMessage name="teian" component={() => (
+                                    <div className={errorMess}>{errors.teian}</div>
+                                )} />
+                            </div>
+                            <div className={inputTeian}>
+                                <Tooltip title={textoAyuda} placement="bottom-start">
+                                    <div style={{ display: "flex" }}>
 
-                                    <Field as="select" name="categoria" className={selectOption} onClick={handlerCargarCoach}>
-                                        <option value="">¿EN QUÉ AYUDARÁ TU TEIAN? (Selecciona a dónde impactará tu teian)*</option>
-                                        {
-                                            categ.map((item, i) => (
-                                                <option key={i} value={item.iD_CATEGORIAS}>{item.categorias}</option>
-                                            ))
-                                        }
-                                    </Field>
+                                        <Field as="select" name="categoria" className={selectOption} onClick={handlerCargarCoach}>
+                                            <option value="">¿EN QUÉ AYUDARÁ TU TEIAN? (Selecciona a dónde impactará tu teian)*</option>
+                                            {
+                                                categ.map((item, i) => (
+                                                    <option key={i} value={item.iD_CATEGORIAS}>{item.categorias}</option>
+                                                ))
+                                            }
+                                        </Field>
 
-                                </div>
-                            </Tooltip>
-                            <ErrorMessage name="categoria" component={() => (
-                                <div className={errorMess}>{errors.categoria}</div>
-                            )} />
-                            {/* <Tooltip title={textoAyuda} placement="bottom-start">
+                                    </div>
+                                </Tooltip>
+                                <ErrorMessage name="categoria" component={() => (
+                                    <div className={errorMess}>{errors.categoria}</div>
+                                )} />
+                                {/* <Tooltip title={textoAyuda} placement="bottom-start">
                                 <div style={{ display: "flex" }}>
                                     <TextField
                                         id="outlined-select-currency"
@@ -311,107 +317,110 @@ const FormIdea = () => {
 
 
 
-                            <Tooltip title={textoAyudaCoach} placement="bottom-start">
-                                <div style={{ display: "flex" }}>
-                                    <Field as="select" name="coach" className={selectOption}>
-                                        <option value="">COACH (El coach es el guía para llevar tu idea de mejora)*</option>
-                                        {
-                                            coaches.map((item, i) => (
-                                                <option key={i} value={item.iD_COACH}>{item.coach}</option>
-                                            ))
+                                <Tooltip title={textoAyudaCoach} placement="bottom-start">
+                                    <div style={{ display: "flex" }}>
+                                        <Field as="select" name="coach" className={selectOption}>
+                                            <option value="">COACH (El coach es el guía para llevar tu idea de mejora)*</option>
+                                            {
+                                                coaches.map((item, i) => (
+                                                    <option key={i} value={item.iD_COACH}>{item.coach}</option>
+                                                ))
 
-                                        }
+                                            }
 
-                                    </Field>
-                                </div>
-                            </Tooltip>
-                            <ErrorMessage name="coach" component={() => (
-                                <div className={errorMess}>{errors.coach}</div>
-                            )} />
+                                        </Field>
+                                    </div>
+                                </Tooltip>
+                                <ErrorMessage name="coach" component={() => (
+                                    <div className={errorMess}>{errors.coach}</div>
+                                )} />
 
-                            <Tooltip title={textoAyudaAreaSoporte} placement="bottom-start">
-                                <div style={{ display: "flex" }}>
-                                    <Field as="select" name="soporte" className={selectOption}>
-                                        <option value="">ÁREA DE SOPORTE (Opcional) (Selecciona el área que pueda apoyar tu idea)</option>
-                                        {
-                                            areaSoporte.map((item, i) => (
-                                                <option key={i} value={item.iD_AREA_SOPORTE}>{item.areA_SOPORTE}</option>
-                                            ))
-                                        }
-                                    </Field>
-                                </div>
-                            </Tooltip>
-                        </div>
-                        <label>
-                            ¿REQUIERE INVERSIÓN?
-                        </label>
-                        <div role="group" aria-labelledby="my-radio-group" className={radioContainer}>
-                            <Field type="radio" name="picked" value="true" onClick={() => setVisible(true)} className={radioButton} />
-                            <label className={labelRadio}>
-                                Si
+                                <Tooltip title={textoAyudaAreaSoporte} placement="bottom-start">
+                                    <div style={{ display: "flex" }}>
+                                        <Field as="select" name="soporte" className={selectOption}>
+                                            <option value="">ÁREA DE SOPORTE (Opcional) (Selecciona el área que pueda apoyar tu idea)</option>
+                                            {
+                                                areaSoporte.map((item, i) => (
+                                                    <option key={i} value={item.iD_AREA_SOPORTE}>{item.areA_SOPORTE}</option>
+                                                ))
+                                            }
+                                        </Field>
+                                    </div>
+                                </Tooltip>
+                            </div>
+                            <label>
+                                ¿REQUIERE INVERSIÓN?
                             </label>
-                            <Field type="radio" name="picked" value="false" onClick={() => setVisible(false)} className={radioButton} />
-                            <label className={labelRadio}>
-                                No
-                            </label>
-                        </div>
-                        <ErrorMessage name="picked" component={() => (
+                            <div role="group" aria-labelledby="my-radio-group" className={radioContainer}>
+                                <Field type="radio" name="picked" value="true" onClick={() => setVisible(true)} className={radioButton} />
+                                <label className={labelRadio}>
+                                    Si
+                                </label>
+                                <Field type="radio" name="picked" value="false" onClick={() => setVisible(false)} className={radioButton} />
+                                <label className={labelRadio}>
+                                    No
+                                </label>
+                            </div>
+                            <ErrorMessage name="picked" component={() => (
                                 <div className={errorMess}>{errors.picked}</div>
                             )} />
-                        {visible &&
-                            <Tooltip title="Monto aproximado que requiere tu idea" placement="bottom-start">
-                                <div style={{ display: "flex" }}>
-                                    <Field as="select" name="inver" className={selectOption}>
-                                        <option value="">SELECCIONA EL MONTO APROXIMADO DE INVERSIÓN EN TU IDEA</option>
-                                        {
-                                            inversion.map((item, i) => (
-                                                <option key={i} value={item.iD_INVERSION}>{item.textO_INVERSION}</option>
-                                            ))
-                                        }
-                                    </Field>
-                                </div>
-                            </Tooltip>
-                        }
-                        <ErrorMessage name="inver" component={() => (
+                            {visible &&
+                                <Tooltip title="Monto aproximado que requiere tu idea" placement="bottom-start">
+                                    <div style={{ display: "flex" }}>
+                                        <Field as="select" name="inver" className={selectOption}>
+                                            <option value="">SELECCIONA EL MONTO APROXIMADO DE INVERSIÓN EN TU IDEA</option>
+                                            {
+                                                inversion.map((item, i) => (
+                                                    <option key={i} value={item.iD_INVERSION}>{item.textO_INVERSION}</option>
+                                                ))
+                                            }
+                                        </Field>
+                                    </div>
+                                </Tooltip>
+                            }
+                            <ErrorMessage name="inver" component={() => (
                                 <div className={errorMess}>{errors.inver}</div>
                             )} />
 
 
-                        <div className={contTextIdeaInfo}>
-                            <div className={ideaTeian}>
-                                <label htmlFor="TEIAN">ESCRIBE TU TEIAN*</label>
-                                <Field className={txtAreaTeian} name="mensajeTeian" as="textarea" placeholder="Aquí escribe tu idea de mejora" />
-                                <ErrorMessage name="mensajeTeian" component={() => (
-                                    <div className={errorMess}>{errors.mensajeTeian}</div>
-                                )} />
-                            </div>
-                            <div className={contInfoIdea} >
-                                <label htmlFor="TEIAN">EJEMPLO</label>
-                                <Field disabled className={txtAreaTeianEjemplo} name="mensajeEjemplo" as="textarea" placeholder={textoEjemploIdea} />
+                            <div className={contTextIdeaInfo}>
+                                <div className={ideaTeian}>
+                                    <label htmlFor="TEIAN">ESCRIBE TU TEIAN*</label>
+                                    <Field className={txtAreaTeian} name="mensajeTeian" as="textarea" placeholder="Aquí escribe tu idea de mejora" />
+                                    <ErrorMessage name="mensajeTeian" component={() => (
+                                        <div className={errorMess}>{errors.mensajeTeian}</div>
+                                    )} />
+                                </div>
+                                <div className={contInfoIdea} >
+                                    <label htmlFor="TEIAN">EJEMPLO</label>
+                                    <Field disabled className={txtAreaTeianEjemplo} name="mensajeEjemplo" as="textarea" placeholder={textoEjemploIdea} />
 
+                                </div>
                             </div>
-                        </div>
-                        <div>
-                            <input ref={inputRef} accept="image/*,video/*" type="file" name="files" multiple onChange={(e) => subirArchivos(e.target.files)} style={{ maxWidth: "100%" }} />
-                            {openAlert &&
-                                <Stack sx={{ marginTop: '20px', width: '100%' }} spacing={2}>
-                                    <Alert severity="error">
-                                        <strong>{errorMessage}</strong>
-                                    </Alert>
-                                </Stack>
-                            }
-                        </div>
-                        <button type="submit" className={buttonIdea} disabled={isDisabled}>Enviar teian</button>
-                        {open && <Snackbar key={vertical + horizontal} anchorOrigin={{ vertical, horizontal }} open={open} autoHideDuration={6000}>
-                            <Alert severity="success" sx={{ width: '100%' }}>
-                                {successMessage}
-                            </Alert>
-                        </Snackbar>}
-                    </Form>
-                )}
-            </Formik>
-            <Outlet />
-        </Container >
+                            <div className={filesButton}>
+                                <input ref={inputRef} accept="image/*,video/*" type="file" name="files" multiple onChange={(e) => subirArchivos(e.target.files)} style={{ maxWidth: "100%" }} />
+                                {openAlert &&
+                                    <Stack sx={{ marginTop: '20px', width: '100%' }} spacing={2}>
+                                        <Alert severity="error">
+                                            <strong>{errorMessage}</strong>
+                                        </Alert>
+                                    </Stack>
+                                }
+                                <button type="submit" className={buttonIdea} disabled={isDisabled}>Enviar teian</button>
+                            </div>
+
+                            {open && <Snackbar key={vertical + horizontal} anchorOrigin={{ vertical, horizontal }} open={open} autoHideDuration={6000}>
+                                <Alert severity="success" sx={{ width: '100%' }}>
+                                    {successMessage}
+                                </Alert>
+                            </Snackbar>}
+                        </Form>
+                    )}
+                </Formik>
+                <Outlet />
+            </Container >
+            {/* Aqui termina el formulario */}
+        </div>
     );
 }
 

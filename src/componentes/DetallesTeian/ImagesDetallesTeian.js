@@ -20,13 +20,15 @@ const ImagesDetallesTeian = ({ ideasDetalles }) => {
   return (
     <div className={contentImagenesCarrousel}>
       {/* Recorrer el array y agarrar la primera imagen que encuentre y mostrarla en la preview */}
-      {ideasDetalles.archivos.map((item, index) => (
-        index === 0 ? (
-          <img key={index} src={UrlServer + item.urL_MULTIMEDIA} alt="" className={imagenPreview} onClick={() => setToggler(!toggler)} />
-        ) : (
-          <></>
-        )
-      ))}
+      <div style={{width:"100%", height:"500px"}}>
+        {ideasDetalles.archivos.map((item, index) => (
+          index === 0 ? (
+            <img style={{height:"100%", objectFit:"cover"}} key={index} src={UrlServer + item.urL_MULTIMEDIA} alt="" className={imagenPreview} onClick={() => setToggler(!toggler)} />
+          ) : (
+            <></>
+          )
+        ))}
+      </div>
       {ideasDetalles.archivos.map((item, index) => (
         console.log(arrayImagenes.push(UrlServer + item.urL_MULTIMEDIA))
         // console.log(arrayImagenes)
@@ -39,7 +41,7 @@ const ImagesDetallesTeian = ({ ideasDetalles }) => {
         }
         types={[
           ...new Array(arrayImagenes.length).fill('image'),
-      //  ...new Array(arrayImagenes.length).fill('video')
+          //  ...new Array(arrayImagenes.length).fill('video')
         ]
         }
         disableLocalStorage={true}

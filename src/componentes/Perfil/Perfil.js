@@ -2,12 +2,18 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import { Container, Card } from 'react-bootstrap';
 import React, { useState, Suspense, useEffect } from "react";
 import styles from './Perfil.module.css'
+// Pantalla de carga animacion
 import gerberLogoLoad from '../FormularioLogin/images/GerberLogoLoad.gif';
+// Footer del perfil
 import gerberInfo from '../FormularioLogin/images/GerberInfo.png';
+// Libreria para la animacion
 import Fade from 'react-reveal/Fade';
+// Importamos los elementos desde la libreria
 import { Chart as ChartJS, BarElement, CategoryScale, LinearScale, Title, Legend, Tooltip, ArcElement } from 'chart.js'
 import { Bar, Doughnut, Pie } from 'react-chartjs-2'
 
+
+// Elementos que se utilizaran en las graficas
 ChartJS.register(
   CategoryScale,
   LinearScale,
@@ -18,13 +24,19 @@ ChartJS.register(
 )
 
 const Perfil = () => {
-
-  const idUsuario = window.localStorage.getItem('usuario')
+  // Hooks
+  const [done, setDone] = useState(undefined)
   const [usuarios, setUsuarios] = useState([])
   const [numeroDeIdeas, setNumeroDeIdeas] = useState([])
-  const initialUrl = "http://10.30.2.167:4000/api/usuarios"
-  const [done, setDone] = useState(undefined)
 
+  // Metodo para extraer el id del usuario desde localStorage
+  const idUsuario = window.localStorage.getItem('usuario')
+
+  // Api para extraer los datos del usuario
+  const initialUrl = "http://10.30.2.167:4000/api/usuarios"
+ 
+
+  // Fetch a esa url para extraer los datos
   const fetchIdeas = (url) => {
     fetch(url)
       .then(response => response.json())
@@ -41,6 +53,7 @@ const Perfil = () => {
   }, [])
 
 
+  // Api para extraer total ideas del usuario 
   const initialUrlNumeroIdeas = `http://10.30.2.167:4000/api/usuarios/NumeroDeIdeas/${idUsuario}`
 
   const fetchIdeasNumero = (url) => {
@@ -60,11 +73,15 @@ const Perfil = () => {
 
 
 
+  // Metodos para extraer los datos del usuario desde el localStorage
   const nameUsuario = window.localStorage.getItem('usuario')
   const nombre_empleado = window.localStorage.getItem('nombre_empleado')
   const puesto = window.localStorage.getItem('puesto')
   const depto = window.localStorage.getItem('depto')
   const correo = window.localStorage.getItem('correo')
+
+
+  // Estilos Generales del perfil
   const cardPerfil = styles.cardPerfil
   const loadingCard = styles.loadingCard
   const puntosPerfil = styles.puntosPerfil
@@ -79,6 +96,8 @@ const Perfil = () => {
   const bgImage = styles.bgImage
 
 
+
+  // Grafica de barras
   var data = {
     labels: ['Por aprobar', 'Rechazadas', 'Aceptadas', 'Implementadas'],
     datasets: [{
@@ -100,6 +119,8 @@ const Perfil = () => {
       hoverOffset: 40
     }]
   }
+// Aqui termina la grafica de barras
+  // Opciones de la grafica de barras
   var options = {
     spacing: 2,
     rotation: (-0.5 * Math.PI) - (25 / 180 * Math.PI),
@@ -126,7 +147,9 @@ const Perfil = () => {
       }
     }
   }
+  // Aqui termina las opciones de la grafica de barras
 
+  // Grafica Dona
   var dataD = {
     labels: ['Por aprobar', 'Rechazadas', 'Aceptadas', 'Implementadas'],
     datasets: [{
@@ -148,6 +171,9 @@ const Perfil = () => {
       hoverOffset: 40
     }]
   }
+  // Aqui termina la grafica dona
+
+  // Opciones de la grafica de dona
   var optionsD = {
     spacing: 2,
     rotation: (-0.5 * Math.PI) - (25 / 180 * Math.PI),
@@ -174,6 +200,7 @@ const Perfil = () => {
       }
     }
   }
+  // Aqui termina la grafica de dona
 
   return (
     <>
@@ -205,7 +232,7 @@ const Perfil = () => {
                                 </Card.Text>
                                 <Card.Text>
                                   <h5>Correo electrónico:</h5>
-                                  {/* <p>{correo}</p> */}
+                                  <p>{correo}</p>
                                 </Card.Text>
                               </div>
 

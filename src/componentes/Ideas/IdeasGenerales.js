@@ -16,7 +16,7 @@ import Slide from 'react-reveal/Slide';
 import { AiOutlineArrowRight } from "react-icons/ai";
 
 
-
+// URL del servidor para poner antes de la url de la imagen y poder verla
 const UrlServer = "http://10.30.2.167:4000/"
 
 // Metdo de CARGANDO
@@ -40,8 +40,10 @@ const IdeasGenerales = () => {
   const [ideasGenerales, setIdeasGenerales] = useState([])
   const [done, setDone] = useState(undefined)
 
+   // Api de ideas del usuario aprobadas
   const initialUrl = "http://10.30.2.167:4000/api/Ideas/Exepc_aceptadas"
 
+  // Fetch a esa url para extraer los datos
   const fetchIdeas = (url) => {
     fetch(url)
       .then(response => response.json())
@@ -64,6 +66,7 @@ const IdeasGenerales = () => {
 
   return (
     <>
+    {/* Pantalla de carga en lo que el servidor trae la informacion */}
       {
         !done ? (
           <div className={loadingCard}>
@@ -80,13 +83,13 @@ const IdeasGenerales = () => {
                     <Link to={`/Teian/DetalleTeian/${item.iD_IDEA}`} style={{ textDecoration: "none", color: "#000" }} onClick={Cargando}>
                       <div style={{ height: "250px", overflow: "hidden" }}>
                         {item.archivos.length === 0 ? (
-                          <Card.Img key={index} variant="top" src={notFound} />
+                          <Card.Img style={{height:"100%", objectFit:"cover"}} key={index} variant="top" src={notFound} />
                         ) : (
                           item.archivos.map((item2, index) => (
                             index === 0 ? (
-                              <Card.Img key={index} variant="top" src={UrlServer + item2.urL_MULTIMEDIA} />
+                              <Card.Img style={{height:"100%", objectFit:"cover"}} key={index} variant="top" src={UrlServer + item2.urL_MULTIMEDIA} />
                             ) : (
-                              <Card.Img key={index} variant="top" src={notFound} />
+                              <Card.Img style={{height:"100%", objectFit:"cover"}} key={index} variant="top" src={notFound} />
                             )
                           )))
                         }
@@ -111,14 +114,14 @@ const IdeasGenerales = () => {
                   )
                   }
                     <Card.Body>
-                      <Card.Title>{item.titulO_IDEA.length >= 28 ? item.titulO_IDEA.substr(0, 28) + "..." : item.titulO_IDEA }</Card.Title>
+                      <Card.Title>{item.titulO_IDEA.length >= 28 ? item.titulO_IDEA.substr(0, 23) + "..." : item.titulO_IDEA }</Card.Title>
                       <Card.Text>
                         {
                           formatDate(item.fechA_CREACION_IDEA)
                         }
                       </Card.Text>
                       <div style={{ display: "flex", justifyContent: "space-between" }}>
-                      <Link to={`/Teian/DetalleTeian/${item.iD_IDEA}`} style={{ textDecoration: "none", color: "#fff", background:"#8b8c89", padding: "10px 30px", borderRadius: "5px" }} onClick={Cargando}>Ir a detalles <AiOutlineArrowRight/> </Link>
+                      <Link to={`/Teian/DetalleTeian/${item.iD_IDEA}`} style={{ textDecoration: "none", color: "#fff", background:"#3c3c33", padding: "10px 30px", borderRadius: "5px" }} onClick={Cargando}>Ir a detalles <AiOutlineArrowRight/> </Link>
                       </div>
                     </Card.Body>
                   </Card>

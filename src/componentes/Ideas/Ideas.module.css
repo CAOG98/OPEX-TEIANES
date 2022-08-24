@@ -1,3 +1,4 @@
+/* logo de pantalla de carga */
 .loadingCard{
     display: flex;
     align-items: center;
@@ -11,11 +12,13 @@
     }
 }
 
+
+/* Efecto de la tarjeta cuando se pone el raton encima  */
 .zoomTarjeta{
     transition: .5s;
 }
 .zoomTarjeta:hover{
-    transform: scale(1.2);
+    transform: scale(1.1);
     transition: .4s;
     background-color: "#000";
 }

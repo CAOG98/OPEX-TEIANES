@@ -24,13 +24,15 @@ const ImagesImpDetallesTeian = ({ ideasDetalles }) => {
   const arrayImagenes = [];
   return (
     <div className={contentImagenesCarrousel}>
+      <div style={{width:"100%", height:"500px"}}>
       {ideasDetalles.archivosimp.map((item, index) => (
         index === 0 ? (
-          <img key={index} src={UrlServer + item.urL_MULTIMEDIA} className={imagenPreview} onClick={() => setToggler(!toggler)} />
+          <img style={{height:"100%", objectFit:"cover"}} key={index} src={UrlServer + item.urL_MULTIMEDIA} className={imagenPreview} onClick={() => setToggler(!toggler)} />
         ) : (
           <></>
         )
       ))}
+      </div>
       {ideasDetalles.archivosimp.map((item, index) => (
         console.log(arrayImagenes.push(UrlServer + item.urL_MULTIMEDIA))
         // console.log(arrayImagenes)

@@ -13,6 +13,11 @@ import ReactLoading from 'react-loading';
 import styles from './Ideas.module.css'
 import gerberLogoLoad from '../FormularioLogin/images/GerberLogoLoad.gif';
 import Slide from 'react-reveal/Slide';
+import { AiOutlineArrowRight } from "react-icons/ai";
+
+
+
+// URL del servidor para poner antes de la url de la imagen y poder verla
 const UrlServer = "http://10.30.2.167:4000/"
 
 
@@ -34,12 +39,13 @@ const Cargando = () => {
 }
 
 const IdeasImplementadas = () => {
-  // ------------------------
+  // hooks
   const [ideasGenerales, setIdeasImplementadas] = useState([])
   const [done, setDone] = useState(undefined)
 
+  // Api de ideas del usuario implementadas
   const initialUrl = "http://10.30.2.167:4000/api/Ideas/Implementadas"
-
+// Fetch a esa url para extraer los datos
   const fetchIdeas = (url) => {
     fetch(url)
       .then(response => response.json())
@@ -60,7 +66,8 @@ const IdeasImplementadas = () => {
   const loadingCard = styles.loadingCard
   const zoomTarjeta = styles.zoomTarjeta
   return (
-    <Container>
+    <>
+      {/* Pantalla de carga en lo que el servidor trae la informacion */}
       {
         !done ? (
           <div className={loadingCard}>
@@ -75,15 +82,16 @@ const IdeasImplementadas = () => {
                   <Slide bottom>
                   <Card style={{ width: '20rem', margin: "25px", borderRadius: "5px", boxShadow: "rgb(38, 57, 77) 0px 20px 20px -10px" }} className={zoomTarjeta} >
                     <Link to={`/Teian/DetalleTeian/${item.iD_IDEA}`} style={{ textDecoration: "none", color: "#000" }} onClick={Cargando}>
-                      <div style={{ height: "250px", overflow: "hidden" }}>
+                      {/* <div> */}
+                      <div style={{ height: "250px", overflow:"hidden" }}>
                         {item.archivos.length === 0 ? (
-                          <Card.Img key={index} variant="top" src={notFound} />
+                          <Card.Img style={{height:"100%", objectFit:"cover"}} key={index} variant="top" src={notFound} />
                         ) : (
                           item.archivos.map((item2, index) => (
                             index === 0 ? (
-                              <Card.Img key={index} variant="top" src={UrlServer + item2.urL_MULTIMEDIA} />
+                              <Card.Img style={{height:"100%", objectFit:"cover"}} key={index} variant="top" src={UrlServer + item2.urL_MULTIMEDIA} />
                             ) : (
-                              <Card.Img key={index} variant="top" src={notFound} />
+                              <Card.Img style={{height:"100%", objectFit:"cover"}} key={index} variant="top" src={notFound} />
                             )
                           )))
                         }
@@ -99,7 +107,7 @@ const IdeasImplementadas = () => {
                         }
                       </Card.Text>
                       <div style={{ display: "flex", justifyContent: "space-between" }}>
-                      <Link to={`/Teian/DetalleTeian/${item.iD_IDEA}`} style={{ textDecoration: "none", color: "#fff", background:"#016dbb", padding: "10px 30px", borderRadius: "5px" }} onClick={Cargando}>Ir a detalles</Link>
+                      <Link to={`/Teian/DetalleTeian/${item.iD_IDEA}`} style={{ textDecoration: "none", color: "#fff", background:"#3c3c33", padding: "10px 30px", borderRadius: "5px" }} onClick={Cargando}>Ir a detalles <AiOutlineArrowRight/></Link>
                       </div>
                     </Card.Body>
                   </Card>
@@ -109,7 +117,7 @@ const IdeasImplementadas = () => {
           </div>
         )
       }
-    </Container>
+    </>
   )
 }
 export default IdeasImplementadas

@@ -1,14 +1,16 @@
 import React, { useState, useEffect } from 'react';
 import { Badge, Card } from 'react-bootstrap';
 import notFound from '../Ideas/ImagesIdeas/ImageNotFound.jpg'
-import {NavLink} from 'react-router-dom';
+import {NavLink, Link} from 'react-router-dom';
 import CircularProgress from '@mui/material/CircularProgress';
 import Backdrop from '@mui/material/Backdrop';
 import formatDate from './formatFecha';
 import styles from './Ideas.module.css'
 import gerberLogoLoad from '../FormularioLogin/images/GerberLogoLoad.gif';
 import Slide from 'react-reveal/Slide';
+import { AiOutlineArrowRight } from "react-icons/ai";
 
+// URL del servidor para poner antes de la url de la imagen y poder verla
 const UrlServer = "http://10.30.2.167:4000/"
 
 
@@ -35,8 +37,10 @@ const IdeasUsuario = () => {
   const [done, setDone] = useState(undefined)
   const idUsuario = window.localStorage.getItem('usuario')
 
+  // Api de ideas solo de un usuario en especifico
   const initialUrl = `http://10.30.2.167:4000/api/Ideas/Usuario${idUsuario}`
 
+  // Fetch a esa url para extraer los datos
   const fetchIdeas = (url) => {
     fetch(url)
       .then(response => response.json())
@@ -59,6 +63,7 @@ const IdeasUsuario = () => {
   const zoomTarjeta = styles.zoomTarjeta
   return (
     <>
+    {/* Pantalla de carga en lo que el servidor trae la informacion */}
       {
         !done ? (
           <div className={loadingCard}>
@@ -72,21 +77,21 @@ const IdeasUsuario = () => {
                 <div className="column" key={index} >
                   <Slide bottom>
                   <Card style={{ width: '20rem', margin: "25px", borderRadius: "5px", boxShadow: "rgb(38, 57, 77) 0px 20px 20px -10px" }} className={zoomTarjeta} >
-                    <NavLink exact to={`/Teian/DetalleTeian/${item.iD_IDEA}`} style={{ textDecoration: "none", color: "#000" }} onClick={Cargando}>
+                    <Link exact to={`/Teian/DetalleTeian/${item.iD_IDEA}`} style={{ textDecoration: "none", color: "#000" }} onClick={Cargando}>
                       <div style={{ height: "250px", overflow: "hidden" }}>
                         {item.archivos.length === 0 ? (
-                          <Card.Img key={index} variant="top" src={notFound} />
+                          <Card.Img style={{height:"100%", objectFit:"cover"}} key={index} variant="top" src={notFound} />
                         ) : (
                           item.archivos.map((item2, index) => (
                             index === 0 ? (
-                              <Card.Img key={index} variant="top" src={UrlServer + item2.urL_MULTIMEDIA} />
+                              <Card.Img style={{height:"100%", objectFit:"cover"}} key={index} variant="top" src={UrlServer + item2.urL_MULTIMEDIA} />
                             ) : (
-                              <Card.Img key={index} variant="top" src={notFound} />
+                              <Card.Img style={{height:"100%", objectFit:"cover"}} key={index} variant="top" src={notFound} />
                             )
                           )))
                         }
                       </div>
-                    </NavLink>
+                    </Link>
                     {/* <span className="badge rounded-pill bg-secondary" style={{position:"absolute", margin:"10px"}}>{item.estatuto}</span> */}
                     {item.iD_ESTATUS === 1 ? (
                     // <span className="badge rounded-pill bg-secondary" style={{ marginBottom: "10px" }}>{item.estatus}</span>
@@ -112,6 +117,9 @@ const IdeasUsuario = () => {
                           formatDate(item.fechA_CREACION_IDEA)
                         }
                       </Card.Text>
+                      <div style={{ display: "flex", justifyContent: "space-between" }}>
+                      <Link to={`/Teian/DetalleTeian/${item.iD_IDEA}`} style={{ textDecoration: "none", color: "#fff", background:"#3c3c33", padding: "10px 30px", borderRadius: "5px" }} onClick={Cargando}>Ir a detalles <AiOutlineArrowRight/> </Link>
+                      </div>
                     </Card.Body>
                   </Card>
                   </Slide>
