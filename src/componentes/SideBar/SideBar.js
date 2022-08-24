@@ -61,15 +61,14 @@ const SideBar = () => {
   const sideBarHead = styles.sideBarHead
   const userNameSidebar = styles.userNameSidebar
   const navigate = useNavigate()
-
+  const rutaServidor = ""
+  //const rutaServidor="/teianes/" //Produccions
   // Metodo para cerrar sesion
   const handleLogout = () => {
     window.localStorage.clear()
     // navigate("/Login")
-    window.location.reload(navigate("/Login"))
+    window.location.reload(navigate(rutaServidor + "/Login"))
   }
-  //const rutaServidor="/teianes/" //Produccion
-  const rutaServidor = "" //Pruebas
   // Metodo para extraer el rol desde el local Storage
   const rol = window.localStorage.getItem('rol')
 
@@ -77,7 +76,7 @@ const SideBar = () => {
     <div className={sidebarS}>
       <CDBSidebar textColor="#fff" backgroundColor="#8b8c89" maxWidth="300px" toggled="false" >
         <CDBSidebarHeader prefix={<i className="fa fa-bars fa-large"></i>}>
-          <a href="/" className="text-decoration-none" style={{ color: 'inherit' }}>
+          <a href={rutaServidor} className="text-decoration-none" style={{ color: 'inherit' }}>
             <img className={imageLogo} src={GerberLogoBlanco} alt='Gerber' />
           </a>
         </CDBSidebarHeader>

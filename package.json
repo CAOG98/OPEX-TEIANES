@@ -1,6 +1,7 @@
 {
   "name": "react-fundamentos",
   "version": "0.1.0",
+  "homepage": "http://gumxrpt01/teianes/",
   "private": true,
   "dependencies": {
     "@emotion/react": "^11.9.3",

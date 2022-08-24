@@ -21,11 +21,13 @@ const NavBar = () => {
   const navBarBody = styles.navBarBody
   // Hook para navegar entre url
   const navigate = useNavigate()
+  const rutaServidor = ""
+  //const rutaServidor="/teianes/" //Produccions
 
   // Metodo para cerrar sesion
   const handleLogout = () => {
     // noteService.setToken(user.token)
-    window.location.reload(navigate("/Login"))
+    window.location.reload(navigate(rutaServidor + "/Login"))
     window.localStorage.clear()
     // navigate("/Login")
     
@@ -36,7 +38,6 @@ const NavBar = () => {
 
   // Metodo para extraer el rol del usuario desde el localStorage
   const rol = window.localStorage.getItem('rol')
-  const rutaServidor = ""
   return (
     <Navbar expand="lg" className={navBarBody}>
       <Container style={{ maxWidth: '100%', width: '100%' }}>
@@ -59,7 +60,7 @@ const NavBar = () => {
                     </CDBSidebarHeader>
                     <CDBSidebarContent className="sidebar-content">
                       <CDBSidebarMenu>
-                        <NavLink to={"Teian/CrearIdea"} style={({ isActive }) =>
+                        <NavLink to={rutaServidor + "Teian/CrearIdea"} style={({ isActive }) =>
                           isActive
                             ? {
                               color: '#000',
@@ -72,7 +73,7 @@ const NavBar = () => {
                         </NavLink>
 
 
-                        <NavLink to={"Teian/TablaIdeas"} style={({ isActive }) =>
+                        <NavLink to={rutaServidor + "Teian/TablaIdeas"} style={({ isActive }) =>
                           isActive
                             ? {
                               color: '#000',
@@ -84,7 +85,7 @@ const NavBar = () => {
                           <CDBSidebarMenuItem icon="table">MIS TEIANES</CDBSidebarMenuItem>
                         </NavLink>
 
-                        <NavLink to={"Teian/IdeasUsuario"} style={({ isActive }) =>
+                        <NavLink to={rutaServidor + "Teian/IdeasUsuario"} style={({ isActive }) =>
                           isActive
                             ? {
                               color: '#000',
@@ -98,7 +99,7 @@ const NavBar = () => {
                         </NavLink>
 
 
-                        <NavLink to={"Teian/IdeasGenerales"} style={({ isActive }) =>
+                        <NavLink to={rutaServidor + "Teian/IdeasGenerales"} style={({ isActive }) =>
                           isActive
                             ? {
                               color: '#000',
@@ -122,7 +123,7 @@ const NavBar = () => {
                           <CDBSidebarMenuItem icon="check-circle">TEIANES ACEPTADOS</CDBSidebarMenuItem>
                         </NavLink>
 
-                        <NavLink to={"Teian/Perfil"} style={({ isActive }) =>
+                        <NavLink to={rutaServidor + "Teian/Perfil"} style={({ isActive }) =>
                           isActive
                             ? {
                               color: '#000',
@@ -296,7 +297,7 @@ const NavBar = () => {
                       </CDBSidebarHeader>
 
                       <CDBSidebarFooter style={{ textAlign: 'center', borderTop: '1px solid #333', backgroundColor: '#3c3c33' }}>
-                        <NavLink to={"Teian/Dudas"} activeClassName="activeClicked" style={{ textDecoration: 'none', color: '#fff' }}>
+                        <NavLink to={rutaServidor + "Teian/Dudas"} activeClassName="activeClicked" style={{ textDecoration: 'none', color: '#fff' }}>
                           <div
                             className="sidebar-btn-wrapper"
                             style={{
@@ -331,7 +332,7 @@ const NavBar = () => {
                       </CDBSidebarHeader>
 
                       <CDBSidebarFooter style={{ textAlign: 'center', borderTop: '1px solid #333', backgroundColor: '#3c3c33' }}>
-                        <NavLink to={"Teian/Dudas"} activeClassName="activeClicked" style={{ textDecoration: 'none', color: '#fff' }}>
+                        <NavLink to={rutaServidor + "Teian/Dudas"} activeClassName="activeClicked" style={{ textDecoration: 'none', color: '#fff' }}>
                           <div
                             className="sidebar-btn-wrapper"
                             style={{
